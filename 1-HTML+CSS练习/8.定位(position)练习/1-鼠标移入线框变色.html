@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0px;
+		}
+		a{
+			text-decoration: none;
+		}
+		.bg {
+			width: 800px;
+			height: 800px;
+			background-color: #c1c6d4;
+			position: relative;
+		}
+		.bg1, .bg2, .bg3 {
+			width: 590px;
+			height: 170px;
+			background-color: #fff;
+		} 
+		.bg1 {
+			position: absolute;
+			left: 105px;
+			top: 106px;
+		}
+		.bg2 {
+			position: absolute;
+			left: 105px;
+			top: 306px;
+		}
+		.bg3 {
+			position: absolute;
+			left: 105px;
+			top: 506px;
+		}
+		.nav1, .nav2, .nav3 {
+			width: 542px;
+			height: 40px;
+			position: absolute;
+			left: 24px;
+			top: 65px;
+		}
+		.nav1 a {
+			font-size: 16px;
+			color: #e7788d;
+			font-family: "宋体";
+			float: left;
+			background-color: #fdf1f4;
+			border: 1px solid #e7788d;
+			border-right: 0;
+			text-align: center;
+			line-height: 38px;
+		}
+		.nav2 a {
+			font-size: 16px;
+			color: #e7788d;
+			font-family: "宋体";
+			float: left;
+			background-color: #fdf1f4;
+			border-top: 1px solid #e7788d;
+			border-left: 1px solid #e7788d;
+			border-bottom: 3px solid #e7788d;
+			text-align: center;
+			line-height: 38px;
+		}
+		.nav3 a {
+			font-size: 16px;
+			line-height: 30px;
+			color: #e7788d;
+			font-family: "宋体";
+			float: left;
+			border-top: 1px solid #fff;
+			text-align: center;
+			line-height: 38px;
+		}
+		.a1 {
+			width: 98px;
+		}
+		.a2 {
+			width: 104px;
+		}
+		.a3 {
+			width: 116px;
+		}
+		.a4 {
+			width: 114px;
+		}
+		.a5 {
+			width: 104px;
+		}
+		.nav1 .a5{
+			border-right: 1px solid #e7788d;
+		}
+		.nav2 .a5{
+			border-right: 1px solid #e7788d;
+		}
+		 .nav1 .active, .nav2 .active{
+			color: #fff;
+			background-color: #e7788d;
+		}
+		a:hover{
+			color: #fff;
+			background-color: #e7788d;
+		}
+		.hr1, .hr2, .hr3, .hr4{
+			width: 0px;
+			height: 20px;
+			position: relative;
+			float: left;
+			margin: 8px 0;
+			border-right: 1px solid #fae4e8;
+		}
+		hr{
+			width: 542px;
+			height:0px;
+			position: absolute;
+			top: 39px;
+			margin: 0;
+			border-bottom: 3px solid #e7788d;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg">
+		<div class="bg1">
+			<div class="nav1">
+				<a class="a1" href="">妙味</a><a class="a2" href="">欢迎你</a><a class="a3 active" href="">妙味课堂</a><a class="a4" href="">欢迎大家</a><a class="a5"href="">miaov</a>
+			</div>
+		</div>
+		<div class="bg2">
+			<div class="nav2">
+				<a class="a1" href="">妙味</a><a class="a2" href="">欢迎你</a><a class="a3 active" href="">妙味课堂</a><a class="a4" href="">欢迎大家</a><a class="a5"href="">miaov</a>
+			</div>
+		</div>
+		<div class="bg3">
+			<div class="nav3">
+				<a class="a1" href="">妙味</a><div class="hr1"></div>
+				<a class="a2" href="">欢迎你</a><div class="hr2"></div>
+				<a class="a3 active" href="">妙味课堂</a><div class="hr3"></div>
+				<a class="a4" href="">欢迎大家</a><div class="hr4"></div>
+				<a class="a5"href="">miaov</a><hr>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

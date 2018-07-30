@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0px;
+		}
+		a{
+			text-decoration: none;
+		}
+		.bg {
+			width: 800px;
+			height: 604px;
+			background-color: #cba5bb;
+			position: relative;
+		}
+		.bg1, .bg2 {
+			width: 590px;
+			height: 170px;
+			background-color: #fff;
+		} 
+		.bg1 {
+			position: absolute;
+			left: 105px;
+			top: 106px;
+		}
+		.bg2 {
+			position: absolute;
+			left: 105px;
+			top: 306px;
+		}
+		.nav1, .nav2 {
+			width: 546px;
+			height: 40px;
+			position: absolute;
+			left: 24px;
+			top: 65px;
+		}
+		.nav1 a {
+			font-size: 16px;
+			color: #e7788d;
+			font-family: "宋体";
+			float: left;
+			background-color: #fdf1f4;
+			border: 1px solid #e7788d;
+			border-right: 0;
+			text-align: center;
+			line-height: 38px;
+		}
+		.nav2 a {
+			font-size: 16px;
+			color: #e7788d;
+			font-family: "宋体";
+			float: left;
+			background-color: #fdf1f4;
+			/*border: 1px solid #fdf1f4;
+			border-right: 0;*/
+			border-bottom: 2px solid #e7788d;
+			text-align: center;
+			line-height: 38px;
+		}
+		.a1 {
+			width: 98px;
+		}
+		.a2 {
+			width: 104px;
+		}
+		.a3 {
+			width: 116px;
+		}
+		.a4 {
+			width: 114px;
+		}
+		.a5 {
+			width: 104px;
+		}
+		.nav1 .a5{
+			border-right: 1px solid #e7788d;
+		}
+		.nav1 a:hover, .nav1 .active {
+		 	background-color: #fff;
+		 	border-bottom: 0;
+		 	border-top: 2px solid #e7788d; 
+		} 
+		.nav2 a:hover, .nav2 .active{
+			color: #000;
+			background-color: #fff;
+			border: 2px solid #e7788d;
+			border-bottom: 0; 
+		} 
+	</style>
+</head>
+<body>
+	<div class="bg">
+		<div class="bg1">
+			<div class="nav1">
+				<a class="a1" href="">妙味</a><a class="a2" href="">欢迎你</a><a class="a3 active" href="">妙味课堂</a><a class="a4" href="">欢迎大家</a><a class="a5"href="">miaov</a>
+			</div>
+		</div>
+		<div class="bg2">
+			<div class="nav2">
+				<a class="a1" href="">妙味</a><a class="a2" href="">欢迎你</a><a class="a3 active" href="">妙味课堂</a><a class="a4" href="">欢迎大家</a><a class="a5"href="">miaov</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

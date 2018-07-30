@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>明星推荐片模块</title>
+	<style>
+		body,h3,p,section{
+			margin: 0;
+		}
+		h3,p{
+			font-weight: normal;
+		}
+		.bg{
+			width: 1000px;
+			height: 550px;
+			background: url(./images/bg.gif) no-repeat;
+		}
+		.bg1{
+			width: 411px;
+			height: 450px;
+			background-color: #ffffff;
+			position: relative;
+			left: 68px;
+			top: 52px;
+			/*float: left;*/
+		}
+		header{
+			width: 348px;
+			height: 36px;
+			background-color: #e7788d;
+			position: relative;
+			left: 32px;
+			top: 30px;
+		}
+		header h3{
+			font-size:16px;
+			line-height: 36px;
+			color: #f9e2e6;
+			font-family: "宋体";
+			position: relative;
+			left: 26px;
+			
+		}
+		.section1{
+			width: 349px;
+			height: 130px;
+			background-color: #ededed;
+			position: relative;
+			left: 32px;
+			top: 50px;
+		}
+		.images{
+			width: 124px
+			height:124px;
+			float: left;
+		}
+		.images img{
+			width: 120px;
+			height: 120px;
+			border: 4px solid #ffffff;
+			position: relative;
+			left: 1px;
+			top: 1px;
+		}
+		.introduction{
+			position: relative;
+			left: 11px;
+			top: 3px;
+		}
+		.introduction h3{
+			font-size: 16px;
+			line-height: 36px;
+			color: #000000;
+			font-family: "宋体";
+		}
+		.introduction p{
+			font-size: 14px;
+			line-height: 26px;
+			color: #000000;
+			font-family: "宋体";
+		}
+		.section2{
+			width: 349px;
+			height: 200px;
+			position: relative;
+			left: 32px;
+			top: 65px;
+			clear: left;
+
+		}
+		.section2 p{
+			font-size: 14px;
+			line-height: 38px;
+			color: #000000;
+			border-bottom: 1px dashed #e5e5e5;
+
+		}
+		.section2 img{
+			width: 6px;
+			height: 6px;
+			padding-right: 4px;
+		}
+		.section2 span{
+			float: right;
+			color: #000000;
+		}
+		.section2 .clearBoder{
+			border-bottom: 0px;
+		}
+
+
+
+		.bg2{
+			width: 411px;
+			height: 450px;
+			background-color: #595959;
+			/*float: left;*/
+			position: absolute;
+			left: 457px;
+			top: 0px;
+		}
+		.header2 h3{
+			color: #e7788d;
+			background-color: #595959;
+		}
+		.section1Color{
+			background-color: #353535;
+		}
+		.images .img2{
+			border: 4px solid #353535;
+		}
+		.color h3{
+			color: #ffffff;
+		}
+		.color p{
+			color: #ffffff;
+		}
+		.color span{
+			color: #ffffff;
+		}
+	</style>
+</head>
+<body>
+<div class="bg">
+  <div class="bg1">
+	<header>
+		<h3>明星推荐</h3>
+	</header>
+	<section class="section1">
+		<div class="images">
+			<img src="./images/image.gif">
+		</div>
+		<div class="introduction">
+			<h3>周秀娜荐片：让子弹飞</h3>
+			<p>主演：胡歌/刘涛/王凯/黄维德</p>
+			<p>类型：剧情/古装/励志</p>
+			<p>点评：我最近最喜欢的就是这...</p>
+		</div>
+	</section>
+	<section class="section2">
+		<p><img src="./images/dot.gif">《巴别塔》：好的故事引人深思<span>阿朵</span></p> 
+		<p><img src="./images/dot.gif">《洛杉矶之战》：外星人那么弱智？<span>丁子峻</span></p>
+		<p><img src="./images/dot.gif">《让子弹飞》：美文是我的偶像<span>周秀娜</span> </p>
+		<p><img src="./images/dot.gif">《剑雨》：武侠里也可以有爱情<span>叶念琛</span> </p>
+		<p class="clearBoder"><img src="./images/dot.gif">《春风沉醉的夜晚》：非常真实<span>如小果</span></p>
+	</section>
+
+	<div class="bg2">
+	<header class="header2">
+		<h3>明星推荐</h3>
+	</header>
+	<section class="section1  section1Color">
+		<div class="images">
+			<img  class="img2" src="./images/image.gif">
+		</div>
+		<div class="introduction color">
+			<h3>周秀娜荐片：让子弹飞</h3>
+			<p>主演：胡歌/刘涛/王凯/黄维德</p>
+			<p>类型：剧情/古装/励志</p>
+			<p>点评：我最近最喜欢的就是这...</p>
+		</div>
+	</section>
+	<section class="section2 color">
+		<p><img src="./images/dot.gif">《巴别塔》：好的故事引人深思<span>阿朵</span></p> 
+		<p><img src="./images/dot.gif">《洛杉矶之战》：外星人那么弱智？<span>丁子峻</span></p>
+		<p><img src="./images/dot.gif">《让子弹飞》：美文是我的偶像<span>周秀娜</span> </p>
+		<p><img src="./images/dot.gif">《剑雨》：武侠里也可以有爱情<span>叶念琛</span> </p>
+		<p class="clearBoder"><img src="./images/dot.gif">《春风沉醉的夜晚》：非常真实<span>如小果</span></p>
+	</section>
+  </div>
+
+
+</div>
+</body>
+</html>

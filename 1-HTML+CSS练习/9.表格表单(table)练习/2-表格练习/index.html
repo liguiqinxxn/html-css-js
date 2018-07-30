@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格练习</title>
+	<style>
+	    body, th, td{
+	    	margin: 0;
+	    }
+	    .box{
+	    	width: 675px;
+	    	height: 187px;
+	    	background-color: #ebeff7;
+	    }
+		table, th, td{
+			border: 1px solid #99b0da;
+		}
+		table{
+			border-collapse: collapse;
+			width: 638px;
+			height: 153px;
+			position: relative;
+			left: 18px;
+			top: 21px;
+		}
+		th, td {
+			text-align: center;
+			font-family: "宋体";
+		}
+		th{
+			font-size: 14px;
+			line-height: 26px;
+			background-color: #dbe3fa;
+		}
+		td{
+			font-size: 12px;
+			line-height: 22px;
+			background-color: #ffffff;
+		}
+		td img{
+			position: relative;
+			top: 3px;
+		}
+		.red{
+			color: #cc0000;
+		}
+		.kongge{
+			height: 4px;
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+	<table>
+		<thead>
+			<tr>
+				<th colspan="2">日期</th>
+				<th colspan="2">天气现象</th>
+				<th>气温</th>
+				<th>风向</th>
+				<th>风力</th>
+			</tr>
+			<tr>
+				<td rowspan="2">22日星期五</td>
+				<td>白天</td>
+				<td><img src="./images/白天.gif"></td>
+				<td>晴间多云</td>
+				<td class="red">高温7℃</td>
+				<td>无持续风向</td>
+				<td>微风</td>
+			</tr>
+			<tr>
+				<td>夜间</td>
+				<td><img src="./images/夜间.gif"></td>
+				<td>晴</td>
+				<td>低温-4℃</td>
+				<td>无持续风向</td>
+				<td>微风</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="kongge"></tr>
+			<tr>
+				<td rowspan="2" class="red">23日星期六</td>
+				<td>白天</td>
+				<td><img src="./images/白天.gif"></td>
+				<td>晴</td>
+				<td class="red">高温9℃</td>
+				<td>无持续风向</td>
+				<td>微风</td>
+			</tr>
+			<tr>
+				<td>夜间</td>
+				<td><img src="./images/阴.gif"></td>
+				<td>阴</td>
+				<td>低温-2℃</td>
+				<td>无持续风向</td>
+				<td>微风</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

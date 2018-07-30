@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单美化</title>
+	<style>
+		body,p {
+			margin: 0;
+		}
+		input{
+			padding: 0;
+		}
+		.bg{
+			width: 1600px;
+			height: 720px;
+			background: url(./images/bg.gif) no-repeat;
+		}
+		.box{
+			width: 410px;
+			height: 500px;
+			background-color: #ffffff;
+			position: relative;
+			left: 121px;
+			top: 103px;
+		}
+		p{
+			line-height: 40px;
+			position: relative;
+			top: 43px;
+			margin: 10px 0;
+		}
+		p label{
+			font-size: 14px;
+			font-family: "宋体";
+			display: block;
+			float: left;
+			min-width: 100px;
+			text-align: right;
+			color: #8f8f8f;
+		}
+		input{
+			font-size: 14px;
+			font-family: "宋体";
+			color: #000000;
+			position: relative;
+			left: 17px;
+		}
+		.name input {
+			width: 228px;
+			height: 38px;
+			border: 1px solid #c9c9c9;
+		}
+		.password input {
+			width: 228px;
+			height: 38px;
+			border: 1px solid #c9c9c9;
+		}
+		.kuai {
+				width: 230px;
+				height: 38px;
+				background-color: #fdf1f3;
+				color: #ec96a7;
+				font-size: 12px;
+				text-align: center;
+				line-height: 38px;
+				display: block;
+				position: absolute;
+				left: 117px;
+				top: 41px;
+		}
+		.liuyan{
+			position: relative;
+			top: 78px;
+		}
+		.liuyan textarea{
+			width: 228px;
+			height: 78px;
+			font-size: 14px;
+			font-family: "宋体";
+			line-height: 32px;
+			padding: 0;
+			border: 1px solid #c9c9c9;
+			position: relative;
+			left: 17px;
+			resize:none;
+		}
+		.sex {
+			font-size: 14px;
+			font-family: "宋体";
+			display: inline-block;
+			min-width: 100px;
+			text-align: right;
+			color: #8f8f8f;
+			line-height: 20px;
+			position: relative;
+			top: 83px;
+		}
+		.radio-check {
+            position: relative;
+            top: 83px;
+            left: -23px;
+            display: inline-block;
+			line-height: 46px;
+        }
+        .radio-check > input {
+        	width: 20px;
+        	height:20px;
+        	line-height: 32px;
+        	opacity: 0;
+        }
+        .radio-check > label {
+        	font-size: 14px;
+        	line-height: 32px;
+			font-family: "宋体";
+			color: #000000;
+        }
+        .radio-check > label:before {
+        	content: '';
+        	display: inline-block;
+        	width: 20px;
+        	height: 20px;
+        	border-radius: 50%;
+        	border: 1px solid #ddd;
+        	position: relative;
+        	left: 0;
+        	top: 5px;
+        	transition: all 0.3s ease;
+        	-webkit-transition: all 0.3s ease;
+        	-moz-transition: all 0.3s ease;
+        }
+        .radio-check > label:after {
+        	content: '';
+        	position: relative;
+        	left: -38px;
+        	top: 0px;
+        	display: inline-block;
+        	width: 10px;
+        	height: 10px;
+        	border-radius: 50%;
+        	transition: all 0.3s ease;
+        	-webkit-transition: all 0.3s ease;
+        	-moz-transition: all 0.3s ease;
+        	}
+        	.radio-check input[type='radio']:checked + label:before {
+        	border-color: #e7788d;
+        	}
+        	.radio-check input[type='radio']:checked + label:after {
+        	background: #e7788d;
+        }
+
+		.aihao {
+			font-size: 14px;
+			font-family: "宋体";
+			display: inline-block;
+			min-width: 100px;
+			text-align: right;
+			color: #8f8f8f;
+			line-height: 32px;
+			position: relative;
+			top: 83px;
+		}
+		.checkbox-check {
+            position: relative;
+            top: 40px;
+            left: 117px;
+            display: inline-block;
+			line-height: 40px;
+        }
+        .checkbox-check > input {
+        	position: relative;
+        	left: 0;
+        	top: 0;
+        	width: 20px;
+        	height:20px;
+        	line-height: 40px;
+        	opacity: 0;
+        }
+        .checkbox-check > label {
+        	font-size: 14px;
+			font-family: "宋体";
+			color: #000000;
+        	width: 65px;
+			height: 32px;
+			line-height: 32px;
+			float: left;
+			background-color: #f9f9f9;
+			text-align: center;
+			margin-right: 10px;
+			left: 117px;
+        }
+        .checkbox-check input[type='checkbox']:checked + label {
+        	color: #ffffff;
+        	transition: all 0.3s ease;
+        	-webkit-transition: all 0.3s ease;
+        	-moz-transition: all 0.3s ease;
+        	}
+        .checkbox-check input[type='checkbox']:checked + label {
+        	background-color: #e7788d;
+        	transition: all 0.3s ease;
+        	-webkit-transition: all 0.3s ease;
+        	-moz-transition: all 0.3s ease;
+        }
+		.submit{
+			width: 180px;
+			height: 44px;
+			background-color: #e7788d;
+			color: #ffffff;
+			border: 0;
+			position: relative;
+			left: 117px; 
+		}
+	</style>
+</head>
+<body>
+	<div class="bg">
+		<div class="box">
+			<form action="https://www.hao123.com/">
+				<p class="name">
+					<label for="name">用户名：</label>
+					<input type="text" name="" id="name">
+				</p>
+
+				<p class="password">
+					<label for="password">密码：</label>
+					<input type="password" name="" id="password"><span class="kuai">密码要8-12位的数字或字母组合</span>
+				</p>
+
+				<p class="liuyan">
+					<label for="liuyan">留言：</label>
+					<textarea id="liuyan" maxlength="20">人生在于折腾
+					</textarea>
+				</p>
+
+				<p class="sex">性别：</p>
+				<div class="radio-check">
+					<input type = "radio" id = "male" name = "sex">
+					<label for="male"> 男</label>
+					<input type = "radio" id = "female" name = "sex">
+					<label for="female"> 女</label>	
+				</div>
+			</br>
+				<p class="aihao">爱好：</p>
+				<div class="checkbox-check">
+					<input type="checkbox" name="aihao" value="打球" id="daqiu">
+					<label for="daqiu">打球</label>
+					<input type="checkbox" name="aihao" value="唱歌" id="changge">
+					<label for="changge">唱歌</label>
+					<input type="checkbox" name="aihao" value="睡觉" id="shuijiao">
+					<label for="shuijiao">睡觉</label>
+				</div>
+
+				<p>
+					<input type="submit" name="tijiao" value="提交" class="submit">
+				</p>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
