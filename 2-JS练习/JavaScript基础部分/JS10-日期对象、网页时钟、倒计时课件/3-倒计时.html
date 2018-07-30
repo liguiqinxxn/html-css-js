@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+// 现在的时间点（在变）
+// 未来的时间点（不变）
+var iNow = new Date();
+// var iNew = new Date( 2013, 10, 27,  21,56,0  );
+
+var iNew = new Date( 'November 27,2013 22:3:0' );
+
+var t = Math.floor((iNew - iNow)/1000);
+// 毫秒 - 秒
+var str = Math.floor(t/86400)+'天'+Math.floor(t%86400/3600)+'时'+Math.floor(t%86400%3600/60)+'分'+t%60+'秒';
+
+alert( str );
+
+// 天：Math.floor(t/86400)
+// 时：Math.floor(t%86400/3600)
+// 分：Math.floor(t%86400%3600/60)
+// 秒：t%60
+
+// 数字形式：new Date( 2013,4,1,9,48,12 );
+// 字符串形式：new Date('June 10,2013 12:12:12');
+
+// January、February、March、April、May、June、
+// July、August、September、October、November、December
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

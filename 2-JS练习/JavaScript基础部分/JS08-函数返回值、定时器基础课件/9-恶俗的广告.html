@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body { background:url(img/sina.jpg) no-repeat center 0; text-align:center; }
+img { display:none; }
+</style>
+<script>
+window.onload = function (){
+	var miaov = document.getElementById('miaov');
+	
+	setTimeout( function(){
+		miaov.style.display = 'inline-block';
+		
+		setTimeout(function(){
+			miaov.style.display = 'none';
+		}, 3000);
+		
+	},  2000);
+};
+</script>
+</head>
+
+<body>
+
+<img id="miaov" src="img/miaov.jpg" />
+
+</body>
+</html>

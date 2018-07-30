@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+/*
+	定时器：时间概念
+		var timer = setInterval( 函数, 毫秒 );					重复执行（发动机）
+		clearInterval( timer );																	清除
+		
+		var timer = setTimeout( 函数, 毫秒 );				执行一次（炸弹）
+		clearTimeout( timer );
+*/
+
+// for(var i=0; i<3; i++){ document.title = i; }			// 瞬间完成，没有时间根据
+
+i = 0;
+
+var timer = null;
+
+function fn1(){
+	i++;
+	document.title = i;
+	
+	if( i === 10 ){
+		clearInterval( timer );
+	}
+}
+timer = setInterval( fn1, 200 );
+// fn1();		// 直接调用
+// document.onclick = fn1;			// 事件调用
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

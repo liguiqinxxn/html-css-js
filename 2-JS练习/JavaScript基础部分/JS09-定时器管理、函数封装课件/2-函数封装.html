@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 { width:100px; height:100px; background:red; position:absolute; top:50px; left:30px; }
+</style>
+</head>
+
+<body>
+
+<input id="btn1" type="button" value="往后" />
+<input id="btn2" type="button" value="往前" />
+<div id="div1"></div>
+
+<script>
+var oBtn1 = document.getElementById('btn1');
+var oBtn2 = document.getElementById('btn2');
+var oDiv = document.getElementById('div1');
+
+oBtn1.onclick = function () {
+	
+	doMove ( oDiv, -12, 10 );
+
+};
+
+oBtn2.onclick = function () {
+	
+	doMove ( oDiv, 12, 800 );
+	
+};
+
+/*
+	oDiv 12		800		>
+	oDiv -12   -10		<
+	
+	doMove ( oDiv, 12, 800 );
+*/
+
+function doMove ( obj, dir, target ) {
+	clearInterval( obj.timer );
+	
+	obj.timer = setInterval(function () {
+		
+		var speed = parseInt(getStyle( obj, 'left' )) + dir;			// 步长
+		
+		if ( speed > target && dir > 0 ) {		// 往前跑
+			speed = target;
+		}
+		
+		if ( speed < target && dir < 0 ) {		// 往后跑
+			speed = target;
+		}
+		
+		obj.style.left = speed + 'px';
+		
+		if ( speed == target ) {
+			clearInterval( obj.timer );
+		}
+		
+	}, 30);
+}
+
+function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
+</script>
+
+</body>
+</html>

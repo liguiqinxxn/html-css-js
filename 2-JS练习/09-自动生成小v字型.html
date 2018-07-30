@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body{
+	margin: 0;
+}
+div{
+	width: 100px;
+	margin: 200px auto 0;
+	position: relative;
+}
+li{
+	width:50px;
+	height:50px; 
+	background:red;
+	position:absolute;
+	top:0;
+	left:0; 
+	font-size:30px; 
+	text-align:center; 
+	line-height:50px; 
+	color:#fff;
+}
+</style>
+<script>
+window.onload = function (){
+	var oBtn =document.getElementById('btn');
+	var oUl = document.getElementById('ul');
+	var len =5;
+	
+		oBtn.onclick = function(){
+			oUl.innerHTML = '';
+			for( var i=0; i<len; i++ ){
+			oUl.innerHTML += '<li>' + i + '</li>';
+
+			var ali = document.getElementsByTagName('li');	
+			// 来一个小V字形（小练习）
+				var j = i%2;
+				ali[i].style.left = i*50 + 'px';
+				if (i<len/2) {
+					ali[i].style.top = 25 + i*50 + 'px';
+				}else {
+					ali[i].style.top = 25 + j*50 + 'px'
+				};	
+			
+		}	
+	};
+	
+}
+</script>
+</head>
+
+<body>
+	<div>
+		<input id="btn" type="button"  value="自动生成小v型">
+		<ul id='ul'></ul>
+	</div>
+</body>
+</html>

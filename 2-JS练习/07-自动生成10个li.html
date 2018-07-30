@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>自动生成10个li</title>
+<style>
+	body{
+		margin: 0;
+	}
+	div{
+		width: 600px;
+		height: 200px;
+		margin: 200px auto 0;
+		background-color: #ccc;
+	}
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	li{
+		display: inline-block;
+		font-size: 30px;
+		width: 50px;
+		height: 50px;
+		border: 1px solid #000;
+		text-align: center;
+		line-height: 50px;
+		margin: 2px;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<input id="btn" type="button"  value="自动生成10个li">
+		<ul id='ul'></ul>
+	</div>
+	
+</body>
+<script>
+	window.onload = function () {
+		var oBtn =document.getElementById('btn');
+		var oUl = document.getElementById('ul');
+	
+		oBtn.onclick = function () {
+			oUl.innerHTML = '';
+			for( var i=0; i<10; i++ ){
+				oUl.innerHTML += '<li>' + i + '</li>';
+
+				var ali = document.getElementsByTagName('li');
+				if(i%4 == 0) {
+				 	ali[i].style.backgroundColor = 'red';
+				 }else if(i%4 ==1) {
+				 	ali[i].style.backgroundColor = 'yellow';
+				 }else if(i%4 ==2) {
+				 	ali[i].style.backgroundColor = 'blue';
+				 }else if(i%4 ==3) {
+				 	ali[i].style.backgroundColor = 'green';
+				 }
+			};
+		};
+	}
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+li { width:100px; height:150px; float:left; margin-right:30px; background:#f1f1f1; position:relative; z-index:1; }
+div { width:80px; height:200px; background:red; position:absolute; top:75px; left:10px; display:none; }
+</style>
+<script>
+window.onload = function (){
+	var aLi  = document.getElementsByTagName('li');
+	var that = null;
+	
+	for( var i=0; i<aLi.length; i++ ){
+		aLi[i].onmouseover = function (){
+			that = this;
+			fn1();
+		};
+		aLi[i].onmouseout = function (){
+			this.getElementsByTagName('div')[0].style.display = 'none';
+		};
+	}
+	
+	function fn1(){
+		that.getElementsByTagName('div')[0].style.display = 'block';
+	}
+};
+</script>
+</head>
+
+<body>
+
+<ul>
+	<li>
+  	<div></div>
+  </li>
+	<li>
+  	<div></div>
+  </li>
+	<li>
+  	<div></div>
+  </li>
+</ul>
+
+</body>
+</html>

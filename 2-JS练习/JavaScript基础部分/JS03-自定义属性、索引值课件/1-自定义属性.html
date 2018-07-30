@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+/*
+	HTML 标签属性、
+	自定义属性
+*/
+window.onload = function (){
+	var aBtn = document.getElementsByTagName('input');
+	
+	// aBtn[0].abc = 123;			// 自定义属性
+	
+	// alert( aBtn[0].abc );
+	// aBtn[0].abc = 456;
+	
+	// JS 可以为任何HTML元素添加任意个 自定义属性
+	
+	for( var i=0; i<aBtn.length; i++ ){
+		aBtn[i].abc = 123;
+		aBtn[i].xyz = true;
+	}
+	
+};
+</script>
+</head>
+
+<body>
+
+<input type="button" value="按钮1" />
+<input type="button" value="按钮2" />
+<input type="button" value="按钮3" />
+
+</body>
+</html>

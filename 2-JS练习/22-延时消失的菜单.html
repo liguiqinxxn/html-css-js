@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body {margin: 0; background-color: #000;}
+ul {margin: 0;padding: 0;list-style: none;}
+a {text-decoration: none;}
+.bg {width: 542px;height: 92px;background-color: #fff;margin: 200px auto 0;position: relative;}
+#list {width: 518px;height: 34px;background: url(images/img22/bg.png)repeat-x;margin: 0 auto;border: 1px solid #215a9c;border-radius: 4px;position: relative;top: 10px;}
+#list ul {}
+#list li {font-size: 14px;line-height: 36px;color: #fff;float: left;}
+#list a {font-size: 14px;color: #fff;padding: 5px 20px;margin: 0 5px;border-radius: 6px;}
+#list span {float: right;font-size:14px;line-height: 36px;color: #fff;padding-right: 20px;}
+#list a:hover {background-color: rgba(255,255,255,0.3);}
+
+#content {width: 400px;height: 27px;margin-top: 20px;display: inline-block;position: relative;top: 0;}
+#content .con {position: absolute;top: 0px;display: none;}
+#content .con:nth-child(1) {left: 15px;}
+#content .con:nth-child(2) {width: 315px;left: 94px;}
+#content .con:nth-child(3) {width: 275px;left: 100px;}
+#content .con:nth-child(4) {width: 378px;left: 130px;}
+#content ul {height: 25px;border: 1px solid #94b5d6;border-radius: 5px;background: url(images/img22/bg.png) 0 -35px repeat-x;overflow: hidden;padding: 0 28px 0 15px;}
+#content li {font-size: 12px;line-height: 25px;color:#7b5ab5;float: left;}
+#content a {color: #215a9c;padding: 5px 8px;}
+#content a:hover {text-decoration-line: underline;}
+#content strong {width: 7px;height: 5px;background:url(images/img22/1.png) no-repeat;display: inline-block;position: absolute;top: -4px;}
+#content .con:nth-child(1) strong{left: 48px;}
+#content .con:nth-child(2) strong{left: 48px;}
+#content .con:nth-child(3) strong{left: 140px;}
+#content .con:nth-child(4) strong{left: 189px;}
+</style>
+<script>
+window.onload = function (){
+	var oList = document.getElementById('list');
+	var aListLi = oList.getElementsByTagName('li'); 
+	var aCon = document.getElementsByClassName('con');
+	var index;
+	var timer1 ,timer2= null;
+	var num;
+
+	
+	for (var i = 0; i < aListLi.length; i++) {
+		aListLi[i].index = i;
+		aListLi[i].onmouseover = function (){	//鼠标移入显示内容
+			num = this.index;
+			timer1 = setTimeout(function(){
+				hide();
+				aCon[num].style.display = 'block';
+			},500);	
+		};
+		aListLi[i].onmouseout = function (){   //鼠标移出隐藏内容	
+			timer2 = setTimeout(hide,500);
+		};
+	};
+
+	for (var i = 0; i < aCon.length; i++) {
+		aCon[i].onmouseover = function () {
+		//鼠标移到内容上取消隐藏内容的定时器
+			clearTimeout( timer2 );
+		};
+		aCon[i].onmouseout = function () {
+		//鼠标移出内容开启隐藏内容的定时器
+			timer2 = setTimeout(hide,500);	
+		};
+	};
+
+	function hide(){//隐藏内容
+		for (var i = 0; i < aCon.length; i++) {
+			aCon[i].style.display = 'none';
+		};
+	}
+}
+</script>
+</head>
+<body>
+<div class="bg">
+	<div id="list">
+		<ul>
+			<li><a href="#">首页</a>|</li>
+			<li><a href="#">关于我们</a>|</li>
+			<li><a href="#">作品</a>|</li>
+			<li><a href="#">博客</a></li>
+		</ul>
+		<span>&gt&gt更多</span>
+	</div>
+	<div id="content">
+		<div class="con">
+			<ul>
+				<li><a href="#">最近更新</a>|</li>
+				<li><a href="#">活动</a>|</li>
+				<li><a href="#">报名试听</a>|</li>
+				<li><a href="#">学员反馈</a>|</li>
+			</ul>
+			<strong></strong>
+		</div>
+		<div class="con">
+			<ul>
+				<li><a href="#">妙味讲师</a>|</li>
+				<li><a href="#">培训方式</a>|</li>
+				<li><a href="#">培训理念</a>|</li>
+				<li><a href="#">联系我们</a>|</li>
+			</ul>
+			<strong></strong>
+		</div>
+		<div class="con">
+			<ul>
+				<li><a href="#">般固</a>|</li>
+				<li><a href="#">MATRIX</a>|</li>
+				<li><a href="#">留学e网</a>|</li>
+				<li><a href="#">ECMall</a>|</li>
+			</ul>
+			<strong></strong>
+		</div>
+		<div class="con">
+			<ul>
+				<li><a href="#">JS教程</a>|</li>
+				<li><a href="#">弹出层效果</a>|</li>
+				<li><a href="#">3D球面标签云</a>|</li>
+				<li><a href="#">Window计算器</a>|</li>
+			</ul>
+			<strong></strong>
+		</div>
+		
+	</div>
+</div>
+
+</body>
+</html>

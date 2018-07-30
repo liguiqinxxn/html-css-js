@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+li { list-style:none; }
+.lis { width:80px; height:30px; border:1px solid #333; position:relative; }
+.lis a { display:block; line-height:30px; text-align:center; text-decoration:none; color:#000; background:#f1f1f1; }
+ul ul { padding:0; margin:0; width:140px; border:1px solid #333; position:absolute; top:30px; left:-1px; background:#FF9; display:none; }
+ul ul li { text-align:center; line-height:30px; }
+</style>
+
+<!--
+
+希望把某个元素移除你的视线：
+
+	1、display:none;				显示为无
+  2、visibility:hidden;	隐藏
+  3、width \ height
+  4、透明度
+  5、left \ top
+  6、拿一个白色DIV盖住它
+  7、margin负值
+  ……
+
+-->
+
+</head>
+
+<body>
+
+<ul>
+	<li id="lis" class="lis">
+		<a id="link" href="#">微博</a>
+    <ul id="ul1">
+    	<li>私信</li>
+    	<li>评论</li>
+    	<li>@我</li>
+    </ul>
+  </li>
+</ul>
+
+<script>
+
+// 毕加索 = 帕布罗.迭戈.荷瑟.山迪亚哥.弗朗西斯科.德.保拉.居安.尼波莫切诺.克瑞斯皮尼亚诺.德.罗斯.瑞米迪欧斯.西波瑞亚诺.德.拉.山迪西玛.特立尼达.玛利亚.帕里西奥.克里托.瑞兹.布拉斯科.毕加索
+
+var li = document.getElementById('lis');
+var ul = document.getElementById('ul1');
+var a = document.getElementById('link');
+
+li.onmouseover = show;
+li.onmouseout = hide;
+
+function show(){
+	ul.style.display = 'block';
+	a.style.background = 'yellow';
+}
+
+function hide(){
+	ul.style.display = 'none';
+	a.style.background = '#f1f1f1';
+}
+
+/*
+	JS中如何获取元素：
+		1、通过ID名称来获取元素：
+				document get element by id 'link'
+				docuemnt.getElementById('link');
+		2
+		……
+	
+	事件：鼠标事件、键盘事件、系统事件、表单事件、自定义事件……
+	
+		onclick
+		onmouseover
+		onmouseout
+		onmousedown
+		onmouseup
+		onmousemove		就像是鼠标抚摸一样的事件
+		……
+		
+		onload				加载完以后执行……
+		window.onload = 事情
+		img.onload
+		body.onload
+		……
+		
+	如何添加事件：
+		元素.onmouseover
+		
+	函数：可以理解为-命令，做一些事~~
+		function abc(){		// 肯定不会主动执行的！
+			……
+		}
+		1、直接调用：abc();
+		2、事件调用：元素.事件 = 函数名 oDiv.onclick = abc;
+		
+		function (){}		匿名函数
+		元素.事件 = function (){};
+		
+	
+	测试：
+		alert(1);		带一个确定按钮的警告框
+		alert('ok');	'ok' 字符串
+		alert("ok");
+		
+	变量：
+		var li = document.getElementById('lis');
+		var num = 123;
+		var name = 'leo';
+*/
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+/*
+ECMAScript：标准、核心
+HTML 标签类型：block、inline、inline-block、table……
+JS中的数据类型：数字、字符串、布尔、函数、对象(obj、[]、{}、null)、未定义
+
+typeof 判断数据类型
+
+*/
+
+var i = 100;
+// alert( typeof i );			// number
+
+var s = ' miaov ';
+// alert( typeof s );				// string
+// alert( s.length );				// 7
+// alert( s.charAt(3) );		// 'a'
+
+var b = true;				// 布尔值：true  false
+// alert( typeof b );		// boolean
+if ( true ) {}
+for ( ; false ; ) {  }
+
+var fn = function (){ alert(1); };
+// fn();
+function fn1(){
+	alert(2);
+}
+// alert( fn1 );
+// fn1();
+
+var obj = document;
+// alert( typeof obj );				// object  物体、东西、对象
+obj.abc = 123;
+obj.onOff = true;
+obj.fn1 = function (){ alert(1); };
+// alert( document.onOff );		// 123
+// obj.fn1();
+
+var arr = [ 1,2,3,4 ];
+// alert( arr.length );
+// arr[2] = 345;
+// alert( arr );
+// arr.push( 5,6,7 );
+// alert( arr );
+// alert( typeof arr );		// object
+
+arr.abc = 999;
+arr.fn1 = function (){ alert('ok'); };
+// alert( arr.abc );
+// arr.fn1();
+
+var json = { name:'miaov', age:5  };
+// alert( json.name + '今年' + json.age + '岁了' );
+// alert( typeof json );
+
+var n = null;
+// alert( typeof n );
+
+var u;
+// alert( typeof u );			// undefined 未定义
+// 表示你写的程序出问题了~~
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

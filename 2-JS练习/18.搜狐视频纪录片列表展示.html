@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body{margin: 0;background-color: #000;}
+ul{list-style: none;padding: 0;margin: 0;}
+p,h2{padding: 0;margin: 0;}
+.bg{width:256px;height: 412px; background-color: #dee7e7;padding: 0 6px;margin: 100px auto 0;position: relative;}
+.title{font-size: 18px;line-height: 38px;border-bottom:1px solid #94bdd6;color: #103142; text-indent: 12px;}
+#tabs{width: 116px;height: 26px; position: absolute;top: 13px;right: 6px;}
+#tabs li{width: 35px;height: 24px;font-size: 12px;line-height: 24px; color: #185273; border: 1px solid #94bdd6;float: right;position: relative;text-align: center;}
+#tabs li:nth-child(1){left: 1px;}
+#tabs li:nth-child(2){left: 2px;}
+#tabs li:nth-child(3){left: 3px;}
+#tabs .active{color:#000;background-color: #fff;font-weight: bold;border-bottom: 1px solid #fff; }
+.list{font-size: 11px;}
+.list li{width: 256px; border-bottom: 1px dashed #fff; position: relative;}
+.list li span{width: 17px;height: 13px;line-height: 13px; color: #fff;font-size: 9px;background-color: #29739c;display: inline-block;text-align: center;margin: 7px 8px;}
+.list li p{line-height: 27px;color: #393131;display: inline;}
+.list .info{display: none;}
+.list .info .img{width: 80px;height: 60px;padding: 2px;border: 1px solid #94bdd6;position: relative;top: -16px;left: 36px;}
+.list .info strong{width: 108px;line-height: 18px;font-weight: normal;color: #185273;position: absolute;top:7px;right: 20px;}
+.list .info .btn{position: absolute;top: 55px;right: 6px;}
+#more{font-size: 11px;line-height: 26px;color: #393131;float: right;}
+</style>
+<script>
+window.onload = function(){
+	var oTab = document.getElementById('tabs');
+
+	var aUl = document.getElementsByClassName('list');
+	var aTabLi = oTab.getElementsByTagName('li');
+
+	//初始化
+	function fnTab() {
+		for (var i = 0; i < aUl.length; i++) {
+			aUl[i].style.display = 'none';
+			if (aTabLi[i].className == 'active') {
+				aUl[i].style.display = 'block';
+			};
+			show(aUl[i]);
+		};
+	}
+	fnTab();
+
+	//切换选项卡
+	for (var i = 0; i < aTabLi.length; i++) {
+		aTabLi[i].index = i;
+		aTabLi[i].onclick = function(){
+			for (var i = 0; i < aTabLi.length; i++) {
+				aTabLi[i].className = '';
+			};
+			this.className = 'active';
+			fnTab();
+		};
+	};
+
+	//高亮效果
+	function show(ul){
+		var aLi = ul.getElementsByTagName('li');
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].onmouseover = function(){
+				for (var i = 0; i < aLi.length; i++) {
+					aLi[i].getElementsByTagName('p')[0].style.display = "inline";
+					aLi[i].getElementsByClassName('info')[0].style.display = "none";
+					aLi[i].style.backgroundColor = "#dee7e7";
+				};
+				this.getElementsByTagName('p')[0].style.display = "none";
+				this.getElementsByClassName('info')[0].style.display = "block";
+				this.style.backgroundColor = "#fff";
+			};
+		};
+	}
+	
+	
+}	
+</script>
+</head>
+<body>
+<div class="bg">
+	<h2 class="title">观看排行榜</h2>
+	<ul id="tabs">
+		<li>全部</li>
+		<li>每周</li>
+		<li class="active">每日</li>
+	</ul>
+	<ul class="list">
+		<li style="background-color: #fff;">
+			<span>1</span>
+			<p style="display: none;">解密：3关于地球与零一问人类的一问</p>
+			<div class="info" style="display: block;">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>2</span>
+			<p>解密：3关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>3</span>
+			<p>解密：3关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>4</span>
+			<p>解密：3关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>5</span>
+			<p>解密：3关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>6</span>
+			<p>解密：3关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>7</span>
+			<p>解密：3关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>8</span>
+			<p>解密：3关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>9</span>
+			<p>解密：3关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>10</span>
+			<p>解密：3关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+	</ul>
+	<ul class="list">
+		<li style="background-color: #fff;">
+			<span>1</span>
+			<p style="display: none;">解密：2关于地球与零一问人类的一问</p>
+			<div class="info" style="display: block;">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>2</span>
+			<p>解密：2关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>3</span>
+			<p>解密：2关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>4</span>
+			<p>解密：2关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>5</span>
+			<p>解密：2关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>6</span>
+			<p>解密：2关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>7</span>
+			<p>解密：2关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>8</span>
+			<p>解密：2关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>9</span>
+			<p>解密：2关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>10</span>
+			<p>解密：2关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+	</ul>
+	<ul class="list">
+		<li style="background-color: #fff;">
+			<span>1</span>
+			<p style="display: none;">解密：1关于地球与零一问人类的一问</p>
+			<div class="info" style="display: block;">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>2</span>
+			<p>解密：1关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>3</span>
+			<p>解密：1关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>4</span>
+			<p>解密：1关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>5</span>
+			<p>解密：1关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>6</span>
+			<p>解密：1关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>7</span>
+			<p>解密：1关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>8</span>
+			<p>解密：1关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>9</span>
+			<p>解密：1关于地球与零一问人类的一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+		<li>
+			<span>10</span>
+			<p>解密：1关于与人类的一千零零一问一问</p>
+			<div class="info">
+				<img class="img" src="images/img18/01.png">
+				<strong>深度解密传奇事件人物，探索未知、...</strong>
+				<img class="btn" src="images/img18/02.png">
+			</div>
+		</li>
+	</ul>
+	<span id="more">更多&gt&gt</span>
+</div>
+</body>
+</html>

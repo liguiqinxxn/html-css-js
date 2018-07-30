@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<input type="text" />
+<input type="button" value="检测" />
+
+<script>
+
+// alert( detectNum('123456') );
+
+var aInp = document.getElementsByTagName('input');
+
+aInp[1].onclick = function () {
+	
+	var val = aInp[0].value;
+	
+	if ( detectNum(val) ) {
+		alert( '恭喜，'+ val +'全是数字' );
+	} else {
+		alert('输入有误');
+	}
+};
+
+function detectNum ( str ) {
+	var n = 0;
+	for ( var i=0; i<str.length; i++ ) {
+		n = str.charCodeAt(i);
+		if ( n<48 || n>57 )return false;
+	}
+	return true;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<style>
+body {margin: 0; background-color: #000;}
+h2{padding: 0;margin: 0;}
+ul{list-style:none;padding: 0;margin: 0 }
+#table{width: 570px;background-color: #fff;margin: 250px auto 0;}
+#table h2{width: 570px;height: 30px;font-size: 15px;line-height: 30px; color: #fff;background-color: #6ba542;text-indent: 24px;}
+#table ul{width: 570px;}
+#table li{width: 522px;height: 39px;font-size: 14px;line-height: 39px; border-top: 1px solid #bddede;padding: 0 24px;}
+#table span{}
+#table input{width: 154px;height: 25px;color: #000; border:1px solid #a59c21; display: none;}
+#table li img{width: 18px; height: 18px;padding: 0 6px;}
+.button{display: none;}
+#table li button{border: 0;background-color: #fff;color: #429400;}
+#table li .active{background-color: #429400; color: #fff;}
+</style>
+<script>
+window.onload = function(){
+	var oTab = document.getElementById('table');
+	var oUl = oTab.getElementsByTagName('ul')[0];
+
+	var aLi = oUl.getElementsByTagName('li');
+	var arrText = ['妙味远程课程','妙味实体课程','妙味远程课程','妙味网络课程','妙味远程课程'];
+
+	//初始化
+	function fnTab(){
+		oUl.innerHTML = '';
+		for (var i = 0; i < arrText.length; i++) {
+			oUl.innerHTML += '<li><span>'+arrText[i]+'</span><input type="text" value="'+arrText[i]+' "><img src="images/img17/01.png"><div class="button"><button>保存</button><button>取消</button></div></li>';
+		}
+		for (var i = 0; i < arrText.length; i++) {
+			aLi[i].index = i; //自定义属性
+			fn(aLi[i]);
+		}
+	}
+	fnTab();
+
+	function fn(li){
+		var oImg = li.getElementsByTagName('img')[0];
+		var oSpan = li.getElementsByTagName('span')[0];
+		var oInp = li.getElementsByTagName('input')[0];
+		var oBtn = li.getElementsByClassName('button')[0];
+		var aBtn = li.getElementsByTagName('button');
+		var str;
+		// 编辑
+		oImg.onclick = function() {
+			edit();
+		};
+
+		// 保存
+		aBtn[0].onclick = function(){
+			str = oInp.value;
+			arrText[ li.index ] = str;
+			edited();
+			fnTab();
+		};
+		// 取消
+		aBtn[1].onclick = function(){
+			str = oSpan.innerHTML;
+			arrText[ li.index ] = str;
+			edited();
+			fnTab();
+		};
+		//鼠标移入移出按钮效果
+		for (var i = 0; i < aBtn.length; i++) {
+			aBtn[i].onmouseover =function(){
+				this.className = "active";
+			}
+			aBtn[i].onmouseout =function(){
+				this.className = " ";
+			}
+		};
+		// 切换编辑状态
+		function edit() {
+			for (var i = 0; i < arrText.length; i++) {
+				aLi[i].getElementsByTagName('span')[0].style.display = "inline-block";
+				aLi[i].getElementsByTagName('input')[0].style.display = "none";
+				aLi[i].getElementsByTagName('img')[0].style.display = "inline-block";
+				aLi[i].getElementsByClassName('button')[0].style.display = "none";
+			}
+			oSpan.style.display = "none";
+			oInp.style.display = "inline-block";
+			oImg.style.display = "none";
+			oBtn.style.display = "inline-block";
+		}
+		// 编辑完成后状态
+		function edited() {
+			oSpan.style.display = "inline-block";
+			oInp.style.display = "none";
+			oImg.style.display = "inline-block";
+			oBtn.style.display = "none";
+		}
+
+	}
+}
+</script>
+<body>
+<div id="table">
+	<h2>分类名称</h2>
+	<ul>
+	</ul>
+</div>
+</body>
+</html>

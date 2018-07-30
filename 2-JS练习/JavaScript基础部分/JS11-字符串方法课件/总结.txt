@@ -1,0 +1,29 @@
+var str = 'ÃîÎ¶¿ÎÌÃ-WWW.miaov.com';
+
+str.charAt(1);			// 'Î¶'
+str.charCodeAt(1);			// 21619
+String.fromCharCode(22937, 21619);	// 'ÃîÎ¶'
+
+str.indexOf('m', 4);			// 9
+str.lastIndexOf('o');			// 16
+
+'1000' < '2'			// true
+'1000' > 2			// true
+
+str.substring(0, 4);			// 'ÃîÎ¶¿ÎÌÃ'
+str.slice(-3);			// 'com'
+
+str.toUpperCase();			// 'ÃîÎ¶¿ÎÌÃ-WWW.MIAOV.COM'
+str.toLowerCase();			// 'ÃîÎ¶¿ÎÌÃ-www.miaov.com'
+
+str.split('.', 2);			// [ 'ÃîÎ¶¿ÎÌÃ-WWW', 'miaov' ]
+
+var arr = [ 'www', 'miaov', 'com' ];
+arr.join('aaa');			// 'www.miaov.com'
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+/*
+	系统时间对象
+*/
+// alert( new Date() );		// 当前系统的时间对象
+
+// myTime typeof   object
+
+window.onload = function () {
+
+	var oBody = document.body;
+	
+	setInterval( fnTime, 1000 );
+	
+	fnTime ();
+	
+	function fnTime () {
+	
+		var myTime = new Date();
+		
+		// number
+		var iYear = myTime.getFullYear();
+		var iMonth = myTime.getMonth()+1;
+		var iDate = myTime.getDate();
+		var iWeek = myTime.getDay();
+		var iHours = myTime.getHours();
+		var iMin = myTime.getMinutes();
+		var iSec = myTime.getSeconds();
+		var str = '';
+		
+		if( iWeek === 0 ) iWeek = '星期日';
+		if( iWeek === 1 ) iWeek = '星期一';
+		if( iWeek === 2 ) iWeek = '星期二';
+		if( iWeek === 3 ) iWeek = '星期三';
+		if( iWeek === 4 ) iWeek = '星期四';
+		if( iWeek === 5 ) iWeek = '星期五';
+		if( iWeek === 6 ) iWeek = '星期六';
+		
+		str = iYear+ '年' +iMonth+'月'+iDate+'日 '+iWeek+' '+ toTwo(iHours)+' : '+ toTwo(iMin)+' : '+ toTwo(iSec);
+		
+		oBody.innerHTML = str;
+	
+	}
+};
+
+// alert( toTwo(5) );			// '05'
+// alert( toTwo(15) );		// '15'
+
+function toTwo ( n ) {
+	return n < 10 ?  '0' + n : '' + n;
+}
+
+</script>
+
+</head>
+
+<body style="font-size:60px;">
+</body>
+</html>

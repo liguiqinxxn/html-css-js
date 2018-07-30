@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+/*
+	HTML 的属性操作：读、写
+		属性名：
+		属性值：
+		
+		读操作：获取、找到
+		元素.属性名
+		
+		写操作："添加？"、替换、修改
+		元素.属性名 = 新的值
+		
+		oP.innerHTML					=> 读取p里面所有的html代码
+		oP.innerHTML = 123;		=> 替换p里面所有的html代码
+		
+*/
+window.onload = function (){
+	var oBtn = document.getElementById('btn1');
+	var oText = document.getElementById('text1');
+	var oP = document.getElementById('p1');
+
+	oBtn.onclick = function (){
+		// oImg.src = oText.value;
+		// alert( oP.innerHTML );
+		oP.innerHTML = oText.value;
+	};
+};
+</script>
+
+</head>
+
+<body>
+
+<input id="text1" type="text" />
+<input id="btn1" type="button" value="按钮" />
+<p id="p1">这是一些文字</p>
+
+</body>
+</html>

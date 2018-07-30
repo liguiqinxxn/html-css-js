@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+	body{
+		margin: 0;
+	}
+	ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	img{
+		border: none;
+		vertical-align: top;
+	}
+
+	ul{
+		width: 540px;
+		height: 200px;
+		margin:200px auto 0;
+	}
+	li{
+		display: inline;
+		position: relative;
+		font-size: 0;
+	}
+	li .img{
+		width: 85px;
+		height: 90px;
+	}
+	li div{
+		position: absolute;
+		top: -130px;
+		left: 35px;
+		display: none;
+	}
+	li div img{
+		position: absolute;
+		z-index: 9999;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li style="z-index: 6;">
+			<img class="img" src="images/img_01.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li style="z-index: 5;">
+			<img  class="img" src="images/img_02.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 4;">
+			<img class="img" src="images/img_03.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 3;">
+			<img class="img" src="images/img_04.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 2;">
+			<img class="img" src="images/img_05.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 1;">
+			<img class="img" src="images/img_06.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 12;">
+			<img class="img" src="images/img_07.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 11;">
+			<img class="img" src="images/img_08.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 10;">
+			<img class="img" src="images/img_09.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 9;">
+			<img class="img" src="images/img_10.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li style="z-index: 8;">
+			<img class="img" src="images/img_11.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+		<li  style="z-index: 7;">
+			<img class="img" src="images/img_12.png">
+			<div><img src="images/img_13.png"></div>
+		</li>
+	</ul>
+</body>
+<script>
+	window.onload = function () {
+	var aLi = document.getElementsByTagName('li');
+
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].onmouseover	= function(){
+				this.getElementsByTagName('div')[0].style.display = 'block';
+			}	
+			aLi[i].onmouseout	= function(){
+				this.getElementsByTagName('div')[0].style.display = 'none';
+			}	
+		};	
+}
+</script>
+</html>

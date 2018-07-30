@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+/*
+	HTML 的属性操作：读、写
+		属性名：
+		属性值：
+		
+		读操作：获取、找到
+		元素.属性名
+		
+		写操作：“添加”、替换、修改
+		元素.属性名 = 新的值
+		
+*/
+window.onload = function (){
+	var oBtn = document.getElementById('btn1');
+	var oText = document.getElementById('text1');
+	var oSelect = document.getElementById('select1');
+
+	oBtn.onclick = function (){
+		// alert(oBtn.value);		// '按钮'
+		// alert( oText.value );
+		// alert( oSelect.value );
+		
+		// 字符串连接
+		// oText.value    oSelect.value
+		// '刘伟' +  '北京'	 =>	'刘伟北京'
+		// '刘伟' + '在' + '北京'	 =>	'刘伟在北京'
+		
+		alert(oText.value + ' 在 ' + oSelect.value);
+	};
+};
+</script>
+
+</head>
+
+<body>
+
+<input id="text1" type="text" />
+<select id="select1">
+	<option value="北京">北京</option>
+	<option value="上海">上海</option>
+	<option value="杭州">杭州</option>
+</select>
+<input id="btn1" type="button" value="按钮" />
+
+</body>
+</html>

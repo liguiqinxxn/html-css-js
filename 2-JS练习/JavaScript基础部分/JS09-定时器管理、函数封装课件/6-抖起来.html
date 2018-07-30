@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+img { position:absolute; top:200px; left:300px; width:180px; }
+#img1 { left:100px; }
+</style>
+
+<script src="miaov.js"></script>
+<script>
+window.onload = function () {
+	var oImg1 = document.getElementById('img1');
+	var oImg2 = document.getElementById('img2');
+	
+	oImg1.onclick = fnShake;
+	oImg2.onclick = fnShake;
+	
+	function fnShake() {
+		var _this = this;
+		shake( _this, 'left', function(){
+			shake( _this, 'top' );
+		});
+	}
+
+};
+
+function shake ( obj, attr, endFn ) {
+	var pos = parseInt( getStyle(obj, attr) );
+	var arr = [];			// 20, -20, 18, -18 ..... 0
+	var num = 0;
+	var timer = null;
+		
+	for ( var i=20; i>0; i-=2 ) {
+		arr.push( i, -i );
+	}
+	arr.push(0);
+		
+	clearInterval( obj.shake );
+	obj.shake = setInterval(function (){
+		obj.style[attr] = pos + arr[num] + 'px';
+		num++;
+		if ( num === arr.length ) {
+			clearInterval( obj.shake );
+			endFn && endFn();
+		}
+	}, 50);
+}
+</script>
+
+</head>
+
+<body>
+
+<img id="img1" src="img/4.jpg" />
+<img id="img2" src="img/5.jpg" />
+
+</body>
+</html>

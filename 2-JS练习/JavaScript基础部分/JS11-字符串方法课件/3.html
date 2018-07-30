@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<script>
+/*
+document.body.innerHTML = String.fromCharCode(22937);
+document.body.innerHTML += String.fromCharCode(21619);
+*/
+
+var str = '';
+for ( var i=10000; i<20000; i++ ) {
+	str += String.fromCharCode(i) + ' ';
+}
+document.body.innerHTML = str;
+</script>
+
+</body>
+</html>

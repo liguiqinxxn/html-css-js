@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+/*
+#list {}		var oUl = document.getElementById('list');							静态方法
+
+li {}					document.getElementsByTagName('li');									动态方法
+#list li {} var aLi = oUl.getElementsByTagName('li');
+							// aLi => [ li, li, li ]	 元素的集合
+							aLi.length								3
+							aLi[0]
+							// 在用 TagNasme 的时候，必须要加上：[]
+*/
+window.onload = function (){
+	//	var oUl = document.getElementById('list');
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	
+	// document.getElementsByTagName('li');
+	
+	// alert( aLi.length );
+};
+</script>
+</head>
+
+<body>
+
+<ul id="list">
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+<ol>
+	<li></li>
+	<li></li>
+</ol>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+	var oImg = document.getElementById('img1');
+	var arr = [ 'img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg' ];
+	var num = 0;
+	
+	oImg.onclick = function (){
+		// num = num + 2;
+		// num += 2;
+		num ++;
+		if(num == arr.length){
+			num = 0;
+		}
+		// alert( arr[num] );
+		oImg.src = arr[num];
+	};
+
+};
+
+</script>
+</head>
+
+<body>
+
+<img id="img1" src="img/1.jpg" width="400" height="400" />
+
+</body>
+</html>

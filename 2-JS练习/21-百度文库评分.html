@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body {margin: 0;background-color: #000;font-size: 18px;}
+ul {list-style: none; margin: 0;padding: 0;}
+#score {width: 504px;height: 64px;background-color: #fff;margin: 200px auto 0;}
+#score span {color: red;display: inline-block;padding: 23px 0 23px 4px;}
+#score strong {color: #313139;display: inline-block;}
+#score ul {height: 30px;display: inline-block; overflow: hidden;position: relative;top: 10px;}
+#score li {height: 22px;display: inline-block;}
+#score .stars li {width: 22px;height: 25px;background: url(images/img21/2.png);cursor: pointer;}
+#score .stars a {display: block;width: 100%;padding-top: 25px;overflow: hidden;}
+#score .text li {color: #ef7300;display: none;}
+#score img {display: inline-block;position: relative;top: 12px;}
+</style>
+<script>
+window.onload = function () {
+	var oImg = document.getElementsByTagName('img')[0];
+	var aLight = document.getElementsByClassName('light');
+	var aUl = document.getElementsByTagName('ul');
+	var aStarLi = aUl[0].getElementsByTagName('li');
+	var aTxtLi = aUl[1].getElementsByTagName('li');
+	var num = finalnum = tempnum = 0;
+	//num:传入点亮星星的个数
+	//finalnum:最终点亮星星的个数
+	//tempnum:一个中间值
+
+	function fnShow(num) {
+		//如果传入的num为0，则finalnum取tempnum的值
+		finalnum = num || tempnum;
+		for (var i = 0; i < aStarLi.length; i++) {
+			//点亮星星就是加class为light的样式
+			aStarLi[i].className = i <finalnum?"light" : "";
+			aStarLi[i].style.backgroundPosition = " 0 0";
+		};
+		if (finalnum >= 3) {//点亮星星数大于等于3时，显示笑脸
+			for (var i = 0; i < aLight.length; i++) {
+				aLight[i].style.backgroundPosition = " 0 -25px";
+			};
+		}else {//点亮星星数小于3时，显示哭脸
+			for (var i = 0; i < aLight.length; i++) {
+				aLight[i].style.backgroundPosition = " 0 -50px";
+			};
+		};
+
+		for (var i = 0; i < aTxtLi.length; i++) {//初始化
+			aTxtLi[i].style.display = 'none';
+		};
+		if (finalnum ==0 ) {//未点亮才显示提示，否则显示评价文字
+			oImg.style.display = 'inline-block';
+		}else {
+			oImg.style.display = 'none';
+			aTxtLi[finalnum-1].style.display = 'inline-block';
+		};	
+	}
+
+	for (var i = 0; i < aStarLi.length; i++) {
+		aStarLi[i].index = i+1;
+		aStarLi[i].onmouseover = function(){//鼠标经过点亮星星。
+			fnShow(this.index);//传入的值为正，就是finalnum
+		};
+		aStarLi[i].onmouseout = function() { //鼠标离开时星星变暗
+			fnShow(0);//传入值为0，finalnum为tempnum,初始为0
+		};
+		aStarLi[i].onclick = function() { //鼠标点击,同时会调用onmouseout,改变tempnum值点亮星星
+			tempnum= this.index;
+		};
+	}
+}
+</script>
+</head>
+<body>
+<div id="score">
+	<span>*</span><strong>总体评价：</strong
+	><ul class="stars">
+		<li><a href="javascript:;">1</a></li>
+		<li><a href="javascript:;">2</a></li>
+		<li><a href="javascript:;">3</a></li>
+		<li><a href="javascript:;">4</a></li>
+		<li><a href="javascript:;">5</a></li>
+	</ul>
+	<ul class="text" >
+		<li>很差</li>
+		<li>较差</li>
+		<li>还行</li>
+		<li>推荐</li>
+		<li>立荐</li>
+	</ul>
+	<img src="images/img21/1.png">
+</div>
+</body>
+</html>

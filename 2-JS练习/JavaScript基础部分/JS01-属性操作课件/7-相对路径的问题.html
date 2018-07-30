@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+	var oImg = document.getElementById('img1');
+	
+	oImg.onclick = function (){
+		// alert( oImg.src );
+		// img/1.jpg
+		// file:///C:/Users/Administrator/Desktop/11-4-JS1/img/1.jpg
+		// if( oImg.src == 'img/1.jpg' ){
+		// 不能做为判断条件：
+		
+		// 1、所有的相对路径地址
+		/*
+					img src
+					href 
+					
+			 2、颜色值：color: red 	#f00 rgb() rgba()
+		*/
+			
+		if( oImg.src == 'file:///C:/Users/Administrator/Desktop/11-4-JS1/img/1.jpg' ){
+			oImg.src = 'img/2.jpg';
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+
+<img id="img1" src="img/1.jpg" width="400" />
+
+</body>
+</html>

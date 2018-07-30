@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+window.onload = function (){
+	
+	// +=
+	/*
+		document.body.innerHTML += '<input type="button" value="按钮" />';
+		document.body.innerHTML += '<input type="button" value="按钮" />';
+		document.body.innerHTML += '<input type="button" value="按钮" />';
+	*/
+	
+	// 性能有问题！！！
+	
+	var str = '';
+	for( var i=0; i<6000; i++ ){
+		// document.body.innerHTML += '<input type="button" value="按钮" />';
+		str += '<input type="button" value="按钮" />';
+	}
+	
+	document.body.innerHTML = str;
+};
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

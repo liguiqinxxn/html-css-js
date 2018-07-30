@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+	var aBtn = document.getElementsByTagName('input');
+	
+	// 想建立“匹配”“对应”关系，就用索引值
+	var arr = [ '莫涛', '张森', '杜鹏' ];
+	
+	for( var i=0; i<aBtn.length; i++ ){
+		
+		aBtn[i].index = i;			// 自定义属性（索引值）
+		
+		aBtn[i].onclick = function (){
+			// alert( arr[ this.index ] );
+			this.value = arr[ this.index ];
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+
+<input type="button" value="btn1" />
+<input type="button" value="btn2" />
+<input type="button" value="btn3" />
+
+</body>
+</html>

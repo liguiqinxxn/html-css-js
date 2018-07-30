@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body{margin: 0;background-color: #000;}
+li {cursor: pointer;}
+
+ul{list-style: none;padding: 0;margin: 0;}
+.bg{width: 962px;height: 330px; background-color: #e7e7e7;padding: 5px;margin: 200px auto 0;}
+.aside{width: 150px;height: 330px;float: left;}
+.aside li{width: 150px;height: 80px;font-size: 15px;border: 1px solid #c6c6c6;border-right: 0; text-align: center;position: relative;}
+.aside li:nth-child(1){top: 0;}
+.aside li:nth-child(2){top: -1px;}
+.aside li:nth-child(3){top: -2px;}
+.aside li:nth-child(4){top: -3px;}
+.aside li span{width: 34px;height: 36px;background:url(images/img19/img.png) no-repeat;display: block;margin: 10px auto;}
+.aside li:nth-child(1) span{background-position:0 0;}
+.aside li:nth-child(2) span{background-position: -34px 0;}
+.aside li:nth-child(3) span{background-position: -68px 0;}
+.aside li:nth-child(4) span{background-position: -102px 0;}
+.aside .active{background-color: #fff;}
+#content{width: 810px;height: 330px;float: left;}
+#content .list{width: 810px;height: 30px;position: relative;top: -8px;text-align: center;}
+#content ul li{/*width: 33%;*/height: 28px;font-size: 12px;line-height: 28px;color: #fff;border: 1px solid #fff;background-color: #5a5a52;display: inline-block;text-align: center;}
+#content ul:nth-child(2) li{width: 33%;}
+#content ul:nth-child(3) li{width: 24.7%;}
+#content ul:nth-child(4) li{width: 19.7%;}
+#content ul:nth-child(5) li{width: 24.7%;}
+#content ul .active{background-color: #ef3163;}
+</style>
+<script>
+window.onload = function(){
+	var oTab = document.getElementById('tabs');
+	var oCon = document.getElementById('content');
+	var oImg = oCon.getElementsByTagName('img')[0];
+
+	var aTabLi = oTab.getElementsByTagName('li');
+	var aConUl = oCon.getElementsByTagName('ul');
+	var arrUrl = [
+	['images/img19/img1_1.png','images/img19/img1_2.png','images/img19/img1_3.png'],
+	['images/img19/img2_1.png','images/img19/img2_2.png','images/img19/img2_3.png','images/img19/img2_4.png'],
+	['images/img19/img3_1.png','images/img19/img3_2.png','images/img19/img3_3.png','images/img19/img3_4.png','images/img19/img3_5.png'],
+	['images/img19/img4_1.png','images/img19/img4_2.png','images/img19/img4_3.png','images/img19/img4_4.png']
+	];
+	var x = 0 ;
+	var y = 0 ;
+	
+
+	function fnTab(){
+		oImg.src = arrUrl[x][y];
+		for (var i = 0; i < aTabLi.length; i++) {
+			aTabLi[i].index = i ;
+			aTabLi[i].onmouseover = function() {
+				for (var i = 0; i < aTabLi.length; i++) {
+					aTabLi[i].className = '';
+					aConUl[i].style.display = 'none';
+				};
+				this.className = 'active';
+				aConUl[this.index].style.display = 'block';
+
+				for (var i = 0; i < aTabLi.length; i++) {
+					if (aTabLi[i].className == 'active') {
+						x = aTabLi[i].index ;
+						showImg(aConUl[x]);
+					};
+				};
+			};
+		};	
+	}
+	fnTab();
+	
+	function showImg (ul) {
+		var aConLi = ul.getElementsByTagName('li');
+		
+		for (var i = 0; i < aConLi.length; i++) {
+			aConLi[i].onmouseover = function(){
+				for (var i = 0; i < aConLi.length; i++) {
+					aConLi[i].className = '';
+				};
+				this.className = 'active';
+				for (var i = 0; i < aConLi.length; i++) {
+					aConLi[i].index = i ;
+					if (aConLi[i].className == 'active') {
+						y = aConLi[i].index;
+					};
+				fnTab();
+				};	
+			};
+		};
+
+		fnTab();
+	}
+
+}
+</script>
+</head>
+<body>
+<div class="bg">
+	<div class="aside">
+		<ul id="tabs">
+			<li class="active"><span></span>最热团购</li>
+			<li><span></span>商城特惠</li>
+			<li><span></span>名品推荐</li>
+			<li><span></span>缤纷活动</li>
+		</ul>
+	</div>
+	<div id="content">
+		<img src=" ">
+		<ul class="list" 
+			><li class="active">雅诗兰黛完美修护唇膏（蓝色花纹管管体）3.6g</li
+			><li>雅诗兰黛花漾唇膏 01# 3.8g</li
+			><li>倩碧卓越润肤乳 125ml</li
+		></ul>
+		<ul class="list" style="display: none;"  
+			><li class="active">肌研满150减30</li
+			><li>高性价比单价商品 2.8折起</li
+			><li>贝德玛满228送128</li
+			><li>吃出健康美态 2.8折起</li
+		></ul>
+		<ul class="list"  style="display: none;" 
+			><li class="active">艾格利克全场1.5折起</li
+			><li>NO1dora全场1.4折起</li
+			><li>伊米妮全场1折起</li
+			><li>小熊电器全场1折起</li
+			><li>贝提娜全场1折起</li
+		></ul>
+		<ul class="list" style="display: none;"
+			><li class="active">万达大歌星2小时欢唱劵</li
+			><li>Free派-高丝娜蔻眼霜</li
+			><li>财付通下单立减 还抽单反</li
+			><li>Free派-芙优润天蚕丝面膜</li
+		></ul>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+	var oText = document.getElementById('text1');
+	var oBtn = document.getElementById('btn1');
+	
+	oBtn.onclick = function (){
+		if( oText.value == '' ){
+			alert('请输入');
+		} else if ( oText.value == 'CSS' ){
+			alert('ok，您输入的是：CSS，恭喜通过！');
+		} else if ( oText.value == 'JS' ){
+			alert('ok，您输入的是：CSS，恭喜通过！');
+		} else if ( oText.value == 'HTML5' ){
+			alert('ok，您输入的是：CSS，恭喜通过！');
+		} else {
+			alert('我不喜欢你写的内容，88~');
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+
+<input id="text1" type="text" />
+<input id="btn1" type="button" value="口令确认" />
+<!--
+	CSS
+  JS
+  HTML5
+-->
+
+</body>
+</html>

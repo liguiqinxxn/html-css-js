@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+var json = { name : 'leo', age : 32 };
+// alert( json.name );
+
+var arrUrl = [ 'img/1.png', 'img/2.png', 'img/3.png', 'img/4.png' ];
+var arrText = [ '小宠物', '图片二', '图片三', '面具' ];
+
+var imgData = {
+	url : [ 'img/1.png', 'img/2.png', 'img/3.png', 'img/4.png' ],
+	text : [ '小宠物', '图片二', '图片三', '面具' ]
+};
+// alert( imgData.url[2] );
+
+// var json2 = { name : 'miaov' };
+var json2 = { 'name' : 'miaov' };
+
+// alert( json2.name );
+// alert( json2['name'] );
+json2.name = '妙味';
+json2['name'] = 'miaov';
+// alert(json2.name);
+
+var json3 = { abc : 123, xyz : '' };
+//  { [], [], [] }		[ {}, {}, {} ]
+var arr = [ { 'name' : 'TM', 'age' : 23 }, { 'name' : 'leo', 'age' : 32 } ];
+// alert( arr[0].name + '今年有' + arr[1]['age']  );
+
+
+var json4 = { 'name' : 'miaov', 'age' : 3, 'fun' : '前端开发'  };
+
+for ( var attr in json4  ) {
+	// alert( attr );
+	// alert( json4[attr] );
+}
+
+var json5 = {
+	'url' : [ 'img/1.png', 'img/2.png', 'img/3.png', 'img/4.png' ],
+	'text' : [ '小宠物', '图片二', '图片三', '面具' ]
+};
+
+// var arr = [ {}, {}, {} ];
+
+for ( var attr in json5 ) {
+	for ( var i=0; i < json5[attr].length; i++ ) {
+		alert( json5[attr][i] );
+	}
+}
+
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

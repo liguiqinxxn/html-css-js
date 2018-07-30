@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+	var oBtn1 = document.getElementById('btn1');
+	var oBtn2 = document.getElementById('btn2');
+	var oBtn3 = document.getElementById('btn3');
+	var oBtn4 = document.getElementById('btn4');
+	var oP = document.getElementById('p1');
+	var num = 14;
+	
+	oBtn1.onclick = function (){
+		num -= 2;
+		oP.style.fontSize = num + 'px';
+		// JS 不允许出现"-"
+		// padding-top		paddingTop
+		// margin-left		marginLeft
+	};
+	oBtn2.onclick = function (){
+		// num = num + 2;
+		num += 2;
+		
+		oP.style.fontSize = num + 'px';
+		// JS 不允许出现"-"
+	};
+	
+	oBtn3.onclick = function (){
+		// oP.class = 'red';
+		// class => className
+		oP.className = 'red';
+	};
+	oBtn4.onclick = function (){
+		// oP.class = 'red';
+		// class => className
+		oP.className = 'yellow';
+	};
+};
+</script>
+<style>
+.red { width:400px; border:10px solid #333; background:red; padding:20px; color:yellow; }
+.yellow { width:500px; border:5px solid #333; background:yellow; padding:10px; color:red; }
+</style>
+</head>
+
+<body>
+
+<input id="btn1" type="button" value="-" />
+<input id="btn2" type="button" value="+" />
+<input id="btn3" type="button" value="红" />
+<input id="btn4" type="button" value="黄" />
+<p id="p1" style="font-size:16px;">10月28日晚，中央纪委监察部官网发布消息，贵州省委常委、遵义市委书记廖少华因涉嫌严重违纪违法接受组织调查。3天后中组部宣布对其免职。廖成为十八大后中纪委一连串"打虎"行动中第十一位落马的副省部级以上高官。</p>
+
+</body>
+</html>

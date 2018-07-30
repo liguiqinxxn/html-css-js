@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+var arr = [
+	[ 1,2,3,4,'4+' ],
+	[ 4,5,6 ],
+	[ 7,8,9 ]
+];
+
+// arr[1][2]
+
+for( var i=0; i<arr.length; i++ ){
+	// arr[i][0]
+	// arr[i][1]
+	// arr[i][2]
+	for( var j=0; j<arr[i].length; j++ ){
+		// alert( arr[i][j] );
+	}
+}
+
+// for( var i=0; ){}
+// for( var i=0; ){}
+
+window.onload = function (){
+	var oUl = document.getElementById('list');
+	var aUl = oUl.getElementsByTagName('ul');
+	var len = aUl.length;
+	var aLi = null;		// 空
+	
+	for( var i=0; i<len; i++ ){
+		aLi = aUl[i].getElementsByTagName('li');
+		
+		for( var j=0; j<aLi.length; j++ ){
+			aLi[j].style.border = '1px solid red';
+		}
+	}
+};
+</script>
+
+</head>
+
+<body>
+
+<ul id="list">
+	<li>
+  	<h2>我的好友</h2>
+    <ul>
+    	<li>莫涛</li>
+    	<li>张森</li>
+    	<li>杜鹏</li>
+    </ul>
+  </li>
+  <li><ol><li>no</li><li>no</li><li>no</li></ol></li>
+	<li>
+  	<h2>我的坏友</h2>
+    <ul>
+    	<li>莫小涛</li>
+    	<li>张小森</li>
+    </ul>
+  </li>
+  <li><ol><li>no</li><li>no</li><li>no</li></ol></li>
+	<li>
+  	<h2>我的黑名单</h2>
+    <ul>
+    	<li>莫张</li>
+    </ul>
+  </li>
+</ul>
+
+</body>
+</html>

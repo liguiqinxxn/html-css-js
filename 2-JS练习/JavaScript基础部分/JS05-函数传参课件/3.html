@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+ul { padding:0; margin:0; }
+li { list-style:none; }
+body { background:#333; }
+.box { width:400px; height:500px; position:relative; background:url(img/loader_ico.gif) no-repeat center #fff; float:left; margin-right:60px; }
+.box img { width:400px; height:500px; }
+.box ul { width:40px; position:absolute; top:0; right:-50px; }
+.box li { width:40px; height:40px; margin-bottom:4px; background:#666; }
+.box .active { background:#FC3; }
+.box span { top:0; }
+.box p { bottom:0; margin:0; }
+.box p,.box span { position:absolute; left:0; width:400px; height:30px; line-height:30px; text-align:center; color:#fff; background:#000; }
+</style>
+<script>
+
+/*
+	重用代码：
+		1、尽量保证 HTML 代码结构一致，可以通过父级选取子元素
+		2、把核心主程序实现，用函数包起来
+		3、把每组里不同的值找出来，通过传参实现
+*/
+
+window.onload = function (){
+	fnTab( 'pic1', [ 'img/1.png', 'img/2.png', 'img/3.png', 'img/4.png' ], [ '小宠物', '图片二', '图片三', '面具' ], 'onclick' );
+	fnTab( 'pic2', [ 'img/2.png', 'img/3.png', 'img/4.png' ], [ '图片二', '图片三', '面具' ], 'onmouseover' );
+};
+
+function fnTab( id, arrUrl, arrText, evt ){
+	var oDiv = document.getElementById(id);
+	var oImg = oDiv.getElementsByTagName('img')[0];
+	var oSpan = oDiv.getElementsByTagName('span')[0];
+	var oP = oDiv.getElementsByTagName('p')[0];
+	var oUl = oDiv.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var num = 0;
+	
+	for( var i=0; i<arrUrl.length; i++ ){
+		oUl.innerHTML += '<li></li>';
+	}
+	
+	// 初始化
+	function fnTab(){
+		oImg.src = arrUrl[num];
+		oSpan.innerHTML = 1+num+' / '+arrUrl.length;
+		oP.innerHTML = arrText[num];
+		for( var i=0; i<aLi.length; i++ ){
+			aLi[i].className = '';
+		}
+		aLi[num].className = 'active';
+	}
+	fnTab();
+	
+	for( var i=0; i<aLi.length; i++ ){
+		aLi[i].index = i;			// 索引值
+		aLi[i][evt] = function (){
+			num = this.index;
+			fnTab();
+		};
+	}
+}
+</script>
+</head>
+
+<body>
+
+<div id="pic1" class="box">
+	<img src="" />
+  <span>数量正在加载中……</span>
+  <p>文字说明正在加载中……</p>
+  <ul></ul>
+</div>
+
+<div id="pic2" class="box">
+	<img src="" />
+  <span>数量正在加载中……</span>
+  <p>文字说明正在加载中……</p>
+  <ul></ul>
+</div>
+
+</body>
+</html>

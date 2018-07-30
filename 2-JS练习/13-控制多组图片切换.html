@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body{margin: 0;background-color: #000;}
+p{padding: 0; margin: 0;}
+#bg {width: 873px; height: 551px; background:url(images/bg.png) no-repeat; margin: 200px auto 0; position: relative;}
+input {width: 80px;height: 30px;font-size:15px;color: #000; border:2px solid #efefef; border-radius: 6px; background-color: #fff;margin:42px 0 20px 24px;}
+#first {width: 450px;height: 290px;padding: 25px; position: absolute;left: 24px;}
+#first img {width: 448px;height: 245px;}
+#first p {font-size: 12px;text-align: center; font-weight: bold;}
+#first span {font-size: 10px;float: right;}
+#second {width: 244px;height: 290px;padding: 25px;position: absolute;right: 40px;}
+#second img {width: 248px;height: 245px;}
+#second p {font-size: 12px; text-align: center;font-weight: bold;}
+#second span {font-size: 10px;float: right;}
+</style>
+<script>
+window.onload = function(){
+	var oPre = document.getElementById('pre');
+	var oNext = document.getElementById('next');
+
+	var aSec = document.getElementsByTagName('section');
+	var aImg = document.getElementsByTagName('img');
+	var aP = document.getElementsByTagName('p');
+	var aSpan = document.getElementsByTagName('span');
+	var arrUrl0 = ['images/01_1.png','images/01_2.png','images/01_3.png','images/01_4.png'];
+	var arrUrl1 = ['images/02_1.png','images/02_2.png','images/02_3.png'];
+	var num0 = 0;
+	var num1 = 0;
+
+	//初始化
+	function fnTab(){
+		aImg[0].src = arrUrl0[num0];
+		aImg[1].src = arrUrl1[num1];
+		aP[0].innerHTML = '第一组第'+ (num0+1) +'张';
+		aP[1].innerHTML = '第二组第'+ (num1+1) +'张';
+		aSpan[0].innerHTML = +(num0+1)+'/'+arrUrl0.length;
+		aSpan[1].innerHTML = +(num1+1)+'/'+arrUrl1.length;
+	}
+	fnTab();
+
+	oPre.onclick = function(){
+		num0 = num0-1;
+		num1 = num1-1;
+		if (num0 < 0) {
+			num0 = arrUrl0.length-1;
+		};
+		if (num1 < 0) {
+			num1 = arrUrl1.length-1;
+		};
+		fnTab();
+	}
+	oNext.onclick = function(){
+		num0 = num0+1;
+		num1 = num1+1;
+		if (num0 > arrUrl0.length-1) {
+			num0 = 0;
+		};
+		if (num1 > arrUrl1.length-1) {
+			num1 = 0;
+		};
+		fnTab();
+	}
+	aImg[0].onclick = function(){
+		num0 = num0+1;
+		if (num0 > arrUrl0.length-1) {
+			num0 = 0;
+		};
+		fnTab();
+	}
+	aImg[1].onclick = function(){
+		num1 = num1+1;
+		if (num1 > arrUrl1.length-1) {
+			num1 = 0;
+		};
+		fnTab();
+	}
+
+}
+</script>
+</head>
+<body>
+<div id="bg">
+	<input id="pre" type="button" value="上一组">
+	<input id="next" type="button" value="下一组">
+	<section id="first">
+		<img src="">
+		<p></p>
+		<span></span>
+	</section>
+	<section id="second">
+		<img src="">
+		<p></p>
+		<span></span>
+	</section>
+</div>
+</body>
+</html>

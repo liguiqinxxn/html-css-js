@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+li { height:30px; border-bottom:1px solid #333; }
+</style>
+<script>
+window.onload = function (){
+	var oUl = document.getElementById('list');
+	var aLi = oUl.getElementsByTagName('li');
+	var arr = [ '今天', '明天', '后天' ];
+	var len = arr.length;
+	
+	/*
+	aLi[0].onclick = function (){ alert(1); };
+	aLi[1].onclick = function (){ alert(1); };
+	aLi[2].onclick = function (){ alert(1); };
+	*/
+	// aLi.onclick = function (){ alert(1); };
+	
+	for( var i=0; i<len; i++ ){
+	
+		aLi[i].innerHTML = arr[i];
+		
+		aLi[i].onclick = function (){
+			// alert(i);   i => 3
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+
+<ul id="list">
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+</body>
+</html>

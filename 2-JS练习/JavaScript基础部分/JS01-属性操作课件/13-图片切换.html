@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+</head>
+
+<body>
+
+<img id="img1" src="img/2.jpg" width="200" />
+
+<script>
+var oImg = document.getElementById('img1');
+var onOff = true;		// 布尔值：true 1  false 0
+
+oImg.onclick = function (){
+	// if( oImg.src == 'img/2.jpg' ){
+	// 有条件，就用现成的，如果没有，创造条件也得做事
+		
+	if( onOff ){
+		oImg.src = 'img/4.jpg';
+		onOff = false;
+	} else {
+		oImg.src = 'img/2.jpg';
+		onOff = true;
+	}
+};
+
+</script>
+
+</body>
+</html>

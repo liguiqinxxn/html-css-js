@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<input type="text" />
+<input type="button" value="加密" />
+<div id="div1">加密...</div>
+
+<script>
+var aInp = document.getElementsByTagName('input');
+var oDiv = document.getElementById('div1');
+
+aInp[1].onclick = function () {
+	var str = aInp[0].value;			// 妙味课堂
+	var str1 = '';
+	// alert( str.charCodeAt(0) );
+	for ( var i=0; i<str.length; i++ ) {
+		str1 += String.fromCharCode(str.charCodeAt(i)-520);
+	}
+	oDiv.innerHTML = str1;
+};
+</script>
+
+</body>
+</html>

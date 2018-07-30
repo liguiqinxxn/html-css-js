@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+div { width:100px; height:120px; background:red; }
+</style>
+<script src="miaov.js"></script>
+<script>
+$(function(){
+	
+	// $('div1').style.width = '300px';
+	
+	
+	$('btn1').onclick = function  (){
+		// alert( $('div1').style.width );
+		// $('div1').style.cssText = 'width:350px;';
+		
+		// alert( getComputedStyle( $('div1') ).width );			// IE6 7 8 不兼容
+		
+		// alert( $('div1').currentStyle.width );										// 标准浏览器不兼容
+		/*
+		if( $('div1').currentStyle ){
+			alert( $('div1').currentStyle.width );
+		} else {
+			alert( getComputedStyle( $('div1'), 250 ).width );
+			// FF 4.0 之前
+		}
+		*/
+		
+		// alert( getStyle( $('div1'), 'width' ) );
+		// alert( getStyle( $('div1'), 'height' ) );
+		
+		alert( getStyle( $('div1'), 'marginRight' ) );
+		
+		/*
+				获取到的是计算机（浏览器）计算后的样式
+				
+				background: url() red ……		复合样式（不要获取）
+				backgroundColor									单一样式（不要用来做判断）
+				
+				不要有空格
+				
+				不要获取未设置后的样式：不兼容
+		*/
+	};
+});
+
+
+</script>
+</head>
+
+<body>
+
+<input id="btn1" type="button" value="按钮" />
+<div id="div1"></div>
+
+</body>
+</html>

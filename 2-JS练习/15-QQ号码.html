@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function(){
+	var aInp = document.getElementsByTagName('input');
+	var str = '';
+	aInp[1].onclick = function(){
+		str = aInp[0].value;
+		aInp[0].value = '';
+		// HTML 中拿到的内容，类型都是字符串
+
+		if ( str == '') {
+			alert('您什么都没有输入哦！')
+		}else if ( isNaN(str) ) {
+			alert('您输入的不是纯数字哦！');	
+		}else if (str[0] == '0') {
+			alert('不能有0在前面哦！');
+		}else if (! (parseInt(str) == parseFloat(str)) ) {
+			alert('输入的不能是小数哦！');
+		}else if ( (str.length<5) || (str.length>10) ){
+			alert('输入的数字必须在5位以上、10位以内');
+		}else{
+			alert('您输入的QQ号码: '+str+' 满足要求');
+		}
+	}
+
+}
+</script>
+</head>
+<body>
+请输入QQ号码：<input type="text" />
+<input type="button" value="判断" />
+
+
+<br />
+1、有没有输入<br />
+2、输入的是不是数字<br />
+3、不能有0在前面<br />
+4、不能是小数<br />
+5、输入的数字必须在5位以上、10位以内<br />
+
+</body>
+</html>

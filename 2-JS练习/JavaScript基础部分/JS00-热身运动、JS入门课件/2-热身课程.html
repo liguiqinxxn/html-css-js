@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<style>
+li { list-style:none; }
+.lis { width:80px; height:30px; border:1px solid #333; position:relative; }
+.lis a { display:block; line-height:30px; text-align:center; text-decoration:none; color:#000; background:#f1f1f1; }
+ul ul { padding:0; margin:0; width:140px; border:1px solid #333; position:absolute; top:30px; left:-1px; background:#FF9; display:none; }
+ul ul li { text-align:center; line-height:30px; }
+</style>
+<script>
+window.onload = function (){
+	
+	var li = document.getElementById('lis');
+	var ul = document.getElementById('ul1');
+	var a = document.getElementById('link');
+	
+	li.onmouseover = function (){
+		ul.style.display = 'block';
+		a.style.background = 'yellow';
+	};
+	li.onmouseout = function hide(){
+		ul.style.display = 'none';
+		a.style.background = '#f1f1f1';
+	};
+	
+};
+</script>
+</head>
+
+<body>
+
+<ul>
+	<li id="lis" class="lis">
+		<a id="link" href="#">微博</a>
+    <ul id="ul1">
+    	<li>私信</li>
+    	<li>评论</li>
+    	<li>@我</li>
+    </ul>
+  </li>
+</ul>
+
+<script>
+// abc();
+</script>
+
+</body>
+</html>

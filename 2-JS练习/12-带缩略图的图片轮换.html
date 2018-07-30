@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+ul,h2 {margin: 0; padding: 0;}
+ul{list-style: none;}
+
+#bg {width: 800px; height: 800px; background: url(images/img/bg.jpg) center center no-repeat; margin: 0 auto;}
+h2 {font-size: 30px;line-height: 80px; color: #fff; font-weight: normal; text-indent: 120px; }
+
+#image {width: 800px;margin: 0 auto; position: relative;}
+#image #pre {width: 50px; height: 50px;position: absolute;top: 230px;left: 0; padding: 20px;}
+#image #next {width: 50px; height: 50px;position: absolute;top: 230px;right: 0;padding: 20px;}
+#image #img{width: 650px;height: 650px;border:1px solid #fff; margin: 0 auto;display: block;}
+
+ul {width: 800px; height: 30px; text-align: center;margin: 10px;}
+li {display: inline-block; margin: 0 auto; position: relative;}
+ul span{display: inline-block; width: 15px; height: 15px; background: url(images/img/normal.png) no-repeat; padding: 5px}
+ul .active{background: url(images/img/active.png) no-repeat;}
+ul img{display: none;width: 80px;height: 80px;
+border: 2px solid #fff; position: absolute; top: -90px;left: -35px;}
+</style>
+<script>
+window.onload = function(){
+	var oPre = document.getElementById('pre');
+	var oNext = document.getElementById('next');
+	var oImg = document.getElementById('img');
+	var oUl = document.getElementsByTagName('ul')[0];
+
+	var aSpan = oUl.getElementsByTagName('span');
+	var aImg = oUl.getElementsByTagName('img');
+	var aLi = oUl.getElementsByTagName('li');
+	var arrUrl = ['images/img/01.png','images/img/02.png','images/img/03.png','images/img/04.png','images/img/05.png'];
+	var num = 0;
+	var flag ;
+
+	for (var i = 0; i < arrUrl.length; i++) {
+		oUl.innerHTML += '<li><span></span><img src=""><li>';
+	}
+
+	//初始化
+	function fnTab(){
+		oImg.src = arrUrl[num];
+		for (var i = 0; i < arrUrl.length; i++) {
+			aImg[i].src = arrUrl[i];
+		}
+		for( var i=0; i<arrUrl.length; i++ ){
+			aSpan[i].className = '';
+		}
+		aSpan[num].className = 'active';
+	}
+	fnTab();
+
+	oPre.onclick = function(){
+		num = num-1;
+		if (num < 0) {
+			num = 0;
+			alert('已经是第一张啦！！！')	
+		}
+		fnTab();
+	};
+	oNext.onclick = function(){
+		num = num+1;
+		if (num > arrUrl.length-1) {
+			num = arrUrl.length-1 ;	
+			alert('已经是最后一张了！！！')
+		}
+		fnTab();
+	};
+
+	for (var i = 0; i < aSpan.length; i++) {
+		aSpan[i].index = i;
+
+		aSpan[i].onclick = function(){
+			num = this.index;
+			fnTab();
+		};
+
+		aSpan[i].onmouseover = function(){
+			flag = this.index;
+			aImg[flag].style.display = 'block';
+		};
+		aSpan[i].onmouseout = function(){
+			flag = this.index;
+			aImg[flag].style.display = 'none';
+		};
+	}
+
+}
+</script>
+</head>
+<body>
+	<div id="bg">
+		<h2>带缩略图的图片轮换</h2>
+		<div id="image">
+			<img id="img" src="">
+			<img id="pre" src="images/img/pre_arrow.png">
+			<img id="next" src="images/img/next_arrow.png">
+		</div>
+		<ul></ul>
+	</div>	
+</body>
+</html>

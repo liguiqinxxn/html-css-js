@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+	body{
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	p{
+		font-size: 20px;
+	}
+	#btn{
+		width: 100px;
+		height: 30px;
+		background-color: red;
+		border: 0;
+		color: #fff;
+	}
+	#div1{
+		width: 100px;
+		height: 100px;
+		border: 2px solid #000;
+	}
+	#set{
+		display: none;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0,0.4);
+	}
+	.div2{
+		position: relative;
+		top: 250px;
+		width: 400px;
+		height: 350px;
+		margin: auto;
+		background-color: rgba(0,0,0,0.3);
+	}
+	.div3{
+		position: relative;
+		top: 30px;
+		width: 300px;
+		height: 250px;
+		padding: 20px;
+		background-color: #fff;
+		margin: auto;
+	}
+	.div3 button{
+		width: 40px;
+		height: 40px;
+	}
+	#red {
+		background-color: red; 
+	}
+	#yellow {
+		background-color: yellow;
+	}
+	#blue {
+		background-color: blue;
+	}
+	.div4{
+		text-align: center;
+	}
+	.div4 button{
+		width: 60px;
+		height: 40px;
+		color: #fff;
+		background-color: rgb(0,0,160);
+		border: 0;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<p>请为下面的DIV设置样式：<button id="btn">点击设置</button></p>
+		<div id="div1"></div>
+	</div>
+	<div id="set">
+		<div class="div2">
+			<div class="div3">
+				<p>请选择背景色：
+					<button id="red">红</button>
+					<button id="yellow">黄</button>
+					<button id="blue">蓝</button>
+				</p>
+				<p>请选择宽(px)；
+					<button id="w200">200</button>
+					<button id="w300">300</button>
+					<button id="w400">400</button>
+				</p>
+				<p>请选择高(px)；
+					<button id="h200">200</button>
+					<button id="h300">300</button>
+					<button id="h400">400</button>
+				</p>
+				<div class="div4">
+					<button id="reset">恢复</button>
+					<button id="confirm">确定</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+<script>
+	window.onload = function() {
+		var odiv1 = document.getElementById('div1');
+
+		document.getElementById('btn').onclick = function (){
+			document.getElementById('set').style.display = "block";
+		}
+
+		document.getElementById('red').onclick = function (){
+			odiv1.style.background = "red";
+		}
+		document.getElementById('yellow').onclick = function (){
+			odiv1.style.background = "yellow";
+		}
+		document.getElementById('blue').onclick = function (){
+			odiv1.style.background = "blue";
+		}
+		document.getElementById('w200').onclick = function (){
+			odiv1.style.width = "200px";
+		}
+		document.getElementById('w300').onclick = function (){
+			odiv1.style.width = "300px";
+		}
+		document.getElementById('w400').onclick = function (){
+			odiv1.style.width = "400px";
+		}
+		document.getElementById('h200').onclick = function (){
+			odiv1.style.height = "200px";
+		}
+		document.getElementById('h300').onclick = function (){
+			odiv1.style.height = "300px";
+		}
+		document.getElementById('h400').onclick = function (){
+			odiv1.style.height = "400px";
+		}
+		document.getElementById('reset').onclick = function (){
+			odiv1.style.height = "100px";
+			odiv1.style.width = "100px";
+			odiv1.style.background = "#fff";
+		}
+		document.getElementById('confirm').onclick = function (){
+			document.getElementById('set').style.display = "none";
+		}
+	}
+</script>
+</html>

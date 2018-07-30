@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+/*
+var i = 0;
+i++;
+if( i === 5 ){
+	i = 0;
+}
+i%=5;
+*/
+window.onload = function (){
+	var aLi = document.getElementsByTagName('li');
+	var arr = [ 'red', 'yellow', 'blue' ];
+	
+	for( var i=0; i<aLi.length; i++ ){
+		
+		aLi[i].index = i;
+		
+		aLi[i].style.background = arr[i%arr.length];
+		
+		aLi[i].onmouseover = function (){
+			this.style.background = 'gray';
+		};
+		aLi[i].onmouseout = function (){
+			this.style.background = arr[this.index%arr.length];
+		};
+	}
+};
+</script>
+<style>
+li { height:24px; margin-bottom:3px; list-style:none; }
+</style>
+</head>
+
+<body>
+
+<ul id="ul1">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+</body>
+</html>

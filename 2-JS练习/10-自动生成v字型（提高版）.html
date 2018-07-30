@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #div1{
+        position: relative;
+    }
+    #div1 div{
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <input type="button" value="点击" id="btn1">
+    <div id="div1"></div>
+</body>
+<script>
+    window.onload = function() {
+        var str='';
+        var len=7;
+        var aColor=['red','blue','yellow','green'];
+        var flag=1;
+        var oDiv1=document.getElementById('div1');
+        var oBtn=document.getElementById('btn1');
+        var onOff=true;
+
+        oBtn.onclick=function(){
+            if (onOff) {
+                for (var i = 0; i < len; i++) {
+                    str+='<div></div>';
+                    oDiv1.innerHTML=str;             
+                }
+                onOff=false;
+            }
+
+            var aDiv=oDiv1.getElementsByTagName('div');
+            //开始坐标设置
+            if (flag==1) {
+                for (var i = 0; i < len; i++) {
+                    if (i<len/2) {
+                        aDiv[i].style.top=(Math.floor(len/2)-i)*50+'px';
+                        aDiv[i].style.left=i*50+'px';
+                    }else if(i>len/2){
+                        aDiv[i].style.top=(i-Math.floor(len/2))*50+'px';
+                        aDiv[i].style.left=i*50+'px';
+                    }
+                     aDiv[i].style.background=aColor[i%aColor.length]; 
+                     aDiv[i].innerHTML=i; 
+                     aDiv[i].style.textAlign="center"; 
+                     aDiv[i].style.lineHeight="50px"; 
+                }
+
+                flag=2;
+            }else if (flag==2) {
+                for (var i = 0; i < len; i++) {
+                    if (i<len/2) {
+                        aDiv[i].style.top=i*50+'px';
+                        aDiv[i].style.left=i*50+'px'; 
+                    }else if (i>len/2) {
+                        aDiv[i].style.top=i*50+'px';
+                        aDiv[i].style.left=(len-i-1)*50+'px';
+                    }
+                }
+                flag=3;
+            }else if (flag==3) {
+                for (var i = 0; i < len; i++) {
+                    if (i<len/2) {
+                        aDiv[i].style.top=i*50+'px';
+                        aDiv[i].style.left=i*50+'px'; 
+                    }else if (i>len/2) {
+                        aDiv[i].style.top=(len-i-1)*50+'px';
+                        aDiv[i].style.left=i*50+'px';   
+                    }
+                }
+                flag=4;
+            }else if (flag==4) {
+                for (var i = 0; i < len; i++) {
+                    if (i<len/2) {
+                        aDiv[i].style.top=i*50+'px';
+                        aDiv[i].style.left=(Math.floor(len/2)-i)*50+'px'; 
+                    }else if (i>len/2) {
+                        aDiv[i].style.top=i*50+'px';
+                        aDiv[i].style.left=(i-Math.floor(len/2))*50+'px';   
+                    }
+                }
+                flag=1;
+        };
+
+    }
+}
+</script>
+</html>

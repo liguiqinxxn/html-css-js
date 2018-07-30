@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+var arr = [ 'c', 'd', 'a', 'e' ];
+// arr.sort();
+// alert( arr );
+
+var arr2 = [ 4,3,5,5,76,2,0,8 ];
+// arr2.sort();
+// alert( arr2 );
+
+arr2.sort(function ( a, b ) {
+	return a - b;
+});
+
+// alert( arr2 );
+
+var arrWidth = [ '345px', '23px', '10px', '1000px' ];
+
+arrWidth.sort(function ( a, b ) {
+	return parseInt(a) - parseInt(b);
+});
+
+alert( arrWidth );
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

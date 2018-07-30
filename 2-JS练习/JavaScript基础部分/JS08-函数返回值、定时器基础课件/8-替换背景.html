@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<input type="button" value="换背景吧" />
+<input type="button" value="停" />
+
+<script>
+var aBtn = document.getElementsByTagName('input');
+var arrUrl = [ 'img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg' ];
+var num = 0;
+var timer = null;
+
+var oBody = document.body;
+
+aBtn[0].onclick = function (){
+	
+	clearInterval( timer );			// null、未定义
+	
+	timer = setInterval(function(){
+		oBody.style.background  = 'url('+ arrUrl[num] +')';
+		num++;
+		num%=arrUrl.length;
+	}, 1000);
+};
+aBtn[1].onclick = function (){
+	clearInterval( timer );
+};
+
+// oBody.style.background  = 'url('+ arrUrl[num] +')';
+
+</script>
+
+</body>
+</html>

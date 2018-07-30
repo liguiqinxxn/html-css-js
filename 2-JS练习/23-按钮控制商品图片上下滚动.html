@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body {margin: 0;background-color: #000;}
+ul {margin: 0;padding: 0;list-style: none;}
+strong{font-weight: normal;}
+.body{width: 184px;height: 468px;background-color: #fff;margin: 100px auto 0;position: relative;}
+header {width: 168px;height: 24px;background: url(images/img23/bg.png) repeat-x;border-radius: 5px 5px 0 0;margin: 0 auto;position: relative;top: 8px;}
+header span, header strong{font-size: 11px;line-height: 24px;color: #fff;}
+header span {float: left;padding-left: 10px;}
+header strong {float: right;padding-right: 10px;}
+.conment {width: 166px;height: 426px;border: 1px solid #ced6d6;border-radius:0 0 4px 4px;margin: 0 auto;position: relative;top: 8px;}
+.conment #up,.conment #down {width: 164px;height: 22px;background-color: #efefe7;cursor: pointer;border:1px solid #efefe7;}
+.conment #up span, .conment #down span {width: 13px;height: 13px;background: url(images/img23/2.png) no-repeat;display: block;margin: 0 auto;position: relative;top: 4px;}
+.conment #down span {background-position: 0 -13px;}
+.conment ul {width: 166px;height: 380px;overflow: hidden;}
+.conment li {width: 150px;height: 113px;border-bottom: 1px solid #c6c6ce;margin: 0 auto;position: relative;top: 0px;}
+</style>
+<script>
+window.onload = function (){
+	var oCon =document.getElementsByClassName('conment')[0];
+	var oUp = document.getElementById('up');
+	var oDown = document.getElementById('down');
+	var oUl = document.getElementsByTagName('ul')[0];
+
+	var aDiv = oCon.getElementsByTagName('div');
+	var aLi = oUl.getElementsByTagName('li');
+	var top = topMax = 0;
+	var timer = null;
+
+	top = parseInt(getComputedStyle(aLi[0]).top);
+
+	oUp.onmousedown = function(){//鼠标一直按向上按钮一直向上走
+		clearInterval( timer );	
+		timer = setInterval(function(){
+			for (var i = 0; i < aLi.length; i++) {
+				topMax = aLi.length*114-380;
+				if (top <= -topMax) {
+					top= -topMax;
+				}else{
+					top -= 1;
+				};
+				aLi[i].style.top = top +'px';
+			}
+		},200);
+	};
+
+	oDown.onmousedown = function(){//鼠标一直按向下按钮一直向下走
+		clearInterval( timer );	
+		timer = setInterval(function(){
+			for (var i = 0; i < aLi.length; i++) {
+				if (top >= 0) {
+					top= 0;
+				}else{
+					top += 1;
+				};
+				aLi[i].style.top = top +'px';
+			}
+		},200);
+		
+	};
+
+	for (var i = 0; i < aDiv.length; i++) {
+		aDiv[i].onmouseup = function(){//鼠标抬起停止
+			clearInterval( timer );
+		};
+		aDiv[i].onmouseover = function(){//鼠标移入变背景色
+			this.style.backgroundColor = '#e7efef';
+			this.style.border = '1px dotted #080810';
+		};
+		aDiv[i].onmouseout = function(){//鼠标移出变为默认背景色
+			this.style.backgroundColor = '#efefe7';
+			this.style.border = '1px solid #efefe7';
+		};
+	};
+
+}
+</script>
+</head>
+<body>
+<div class="body">
+	<header>
+		<span>妙味课堂</span><strong>&gt&gt更多</strong>
+	</header>
+	<div class="conment">
+		<div id= "up">
+			<span></span>
+		</div>
+		<ul>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+			<li><img src="images/img23/1.png" ></li>
+		</ul>
+		<div id="down">
+			<span></span>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body{
+	/*background:url(img/5.gif) no-repeat;*/
+}
+#div1 { width:240px; height:400px; border:1px solid #333; border-radius: 8px; background:#f1f1f1; padding:10px;position: relative; overflow-y: scroll;}
+strong{width: 200px;}
+span{
+	padding: 0 5px;
+}
+.left {
+	/*position: absolute;
+	left: 20px;*/
+	float: left;
+}
+.right {
+	/*position: absolute;
+	right: 20px;*/
+	float: right;
+}
+</style>
+<script>
+window.onload = function (){
+	var oDiv = document.getElementById('div1');
+	var oStrong = document.getElementById('strong1');
+	var oText = document.getElementById('text1');
+	var oBtn = document.getElementById('btn1');
+	var onOff = true;
+	var oDir = "right";
+	
+	oBtn.onclick = function (){
+		oDiv.innerHTML = '<span class=' + oDir+ '>' +oStrong.innerHTML+'</span><br /><span class=' + oDir+ '>' + oText.value + '</span><br />' +oDiv.innerHTML;
+		oText.value = '';
+	};
+
+	oStrong.onclick = function (){
+		if( onOff ){
+			oStrong.innerHTML = '李四:';
+			onOff = false;
+			oDir = "left";
+		} else {
+			oStrong.innerHTML = '张三:';
+			onOff = true;
+			oDir = "right";
+		}
+	};
+};
+</script>
+</head>
+
+<body>
+
+<div id="div1"></div>
+<strong id="strong1">张三:</strong>
+<input id="text1" type="text" />
+<input id="btn1" type="button" value="提交" />
+
+</body>
+</html>

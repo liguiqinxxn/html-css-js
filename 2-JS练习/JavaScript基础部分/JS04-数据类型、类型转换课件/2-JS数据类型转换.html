@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+var a = '+100';
+// alert( a+100 );		// '100100'
+// alert( Number(a) );			// 100
+var a1 = '    ';
+// alert( Number(a1) );		// 0
+var a2 = true;
+// alert( Number(a2) );			// true-1  false-0
+var a3 = [ 1 ];
+// alert( Number(a3) );			// 1 0
+var a4 = null;
+// alert( Number(a4) );				// 0
+
+// var b = ' 200px';
+// alert( parseInt(b) );
+
+var c = '12.34元';
+// alert( parseFloat(c) );
+
+var num = '200.45';
+if( parseInt(num) == parseFloat(num) ){
+	alert( num + '是整数' );
+}else{
+	alert( num + '是小数' );
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+var json = {};
+// alert( Number(json) );
+
+var u;
+// alert( Number(u) );
+
+var a3 = function (){ alert(1); };
+// alert( Number(a3) );			// NaN
+
+
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

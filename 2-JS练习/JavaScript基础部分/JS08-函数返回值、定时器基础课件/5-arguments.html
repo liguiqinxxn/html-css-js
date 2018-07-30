@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+
+fn1( 1,2,3 );										// 实参——实际传递的参数
+// function fn1( a,b,c ){		// 形参——形式上，abc这些名代表123
+function fn1(){
+	// arguments => [ 1,2,3 ] —— 实参的集合
+	// alert( arguments );
+	// alert( arguments.length );
+	// alert( arguments[arguments.length-1] );
+}
+
+// 当函数的参数个数无法确定的时候：用 arguments
+// alert( sum( 1,2,3 ) );				// 6
+// alert( sum( 1,2,3,4 ) );			// 10
+function sum (){
+	var n = 0;
+	for( var i=0; i<arguments.length; i++ ){
+		n += arguments[i];
+	}
+	return n;
+}
+
+// 课后小练习：
+// alert( sum( 1,2,3 , '+' ) );					// 6
+// alert( sum( 10,2,3,4, '-' ) );			// 1
+
+var a = 1;
+function fn2( a ){
+	arguments[0] = 3;
+	alert(a);												// 3
+	var a = 2;
+	alert( arguments[0] );	// 2
+}
+fn2(a);
+alert(a);													// 1				 	
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

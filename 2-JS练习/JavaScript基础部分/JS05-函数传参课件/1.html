@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script>
+/*
+	函数传递参数
+	参数=JS的数据类型：
+		数字、字符串、布尔、函数、对象、未定义
+*/
+
+fn1(100, 'px');
+function fn1(a, b){
+	// alert( a+b );
+}
+
+fn2('miaov');
+fn2('妙味课堂');
+function fn2(a){
+	// alert(a.charAt(2));
+}
+
+function fn4(){
+	alert(4);
+}
+// fn3( fn4 );
+// fn3( function ( a ){ alert(a); } );
+function fn3( fn ){
+	// fn(100);
+	fn();
+}
+
+fn5( window, document );
+function fn5( w, d ){
+	w.onload = function (){
+		d.body.innerHTML = 123;
+	};
+}
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+div { width:200px; height:200px; background:red; display:none; }
+</style>
+<script>
+window.onload = function (){
+	var oBtn1 = document.getElementById('show_btn');
+	var oBtn2 = document.getElementById('hide_btn');
+	var oDiv = document.getElementById('div1');
+	var oStrong = document.getElementById('strong1');
+	
+	oStrong.onclick = show;
+	oBtn1.onclick = show;
+	
+	function show(){
+		oDiv.style.display = 'block';
+		oDiv.style.width = '300px';
+		oDiv.style.background = 'yellow';
+	}
+	
+	oBtn2.onclick = function (){
+		oDiv.style.display = 'none';
+	};
+};
+</script>
+</head>
+
+<body>
+
+<input id="show_btn" type="button" value="显示" />
+<input id="hide_btn" type="button" value="隐藏" />
+
+<strong id="strong1">我也要让它显示~~</strong>
+
+<div id="div1"></div>
+
+</body>
+</html>

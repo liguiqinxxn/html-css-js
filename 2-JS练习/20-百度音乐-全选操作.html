@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body {margin: 0;background-color: #000;font-size: 12px;}
+ul {list-style: none;margin: 0;padding: 0;}
+#list {width: 312px;height: 216px;background-color: #fff;margin: 200px auto 0;}
+#list ul {/*width: 312px;*/border-bottom: 1px solid #dedede;}
+#list li {width: 100%;height: 30px;/*text-indent: -40px;*/line-height: 30px;}
+#list input {width: 45px;}
+#list li span {width: 104px;float: right;}
+</style>
+
+<script>
+window.onload = function (){
+	var oDiv = document.getElementById('option');
+	var oInp = oDiv.getElementsByTagName('input')[0];
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var aInp = oUl.getElementsByTagName('input');
+
+	function bgColor() {
+		for (var i = 0; i < aLi.length; i++) {
+			if(i%2 == 0){
+				aLi[i].style.backgroundColor = '#f7ffff';
+			}else {
+				aLi[i].style.backgroundColor = '#fff';
+			};
+
+			if (aInp[i].checked == true) {
+				aLi[i].style.backgroundColor = '#efefef';
+			};
+		};
+	}
+	bgColor();
+	
+	// 全选控制选择项
+	oInp.onclick = function(){
+		if (oInp.checked) {
+			for (var i = 0; i < aInp.length; i++) {
+				aInp[i].checked = true;
+			};
+		}else{
+			for (var i = 0; i < aInp.length; i++) {
+				aInp[i].checked = false;
+			};
+		};
+		bgColor();	
+	}
+
+	// 选择项控制全选
+	for (var i = 0; i < aInp.length; i++) {
+		aInp[i].onclick = function(){
+			for (var i = 0; i < aInp.length; i++) {
+				//有一个没选中全选按钮就不选
+				if (aInp[i].checked == false) {
+					oInp.checked = false ;
+				}else if (aInp[0].checked&&aInp[1].checked&&aInp[2].checked&&aInp[3].checked&&aInp[4].checked&&aInp[5].checked) {
+					oInp.checked = true;
+				};
+			};
+			bgColor();
+		};
+	};
+
+	// 鼠标移入移出改变背景色
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].onmouseover = function() {
+			this.style.backgroundColor = '#efefef';
+		};
+		aLi[i].onmouseout = function() {
+			bgColor();
+		};
+	};
+}
+</script>
+</head>
+<body>
+<div id="list">
+	<ul>
+		<li>
+			<input type="checkbox" value="私奔">私奔
+			<span>梁博</span>
+		</li>
+		<li>
+			<input type="checkbox" value="北京北京">北京北京
+			<span>梁博,黄勇</span>
+		</li>
+		<li>
+			<input type="checkbox" value="我爱你中国" checked>我爱你中国
+			<span>梁博</span>
+		</li>
+		<li>
+			<input type="checkbox" value="花火">花火
+			<span>梁博</span>
+		</li>
+		<li>
+			<input type="checkbox" value="回来">回来
+			<span>梁博</span>
+		</li>
+		<li>
+			<input type="checkbox" value="爱要有你才完美">爱要有你才完美
+			<span>梁博,那英</span>
+		</li>
+	</ul>
+	<div id="option">
+		<input  type="checkbox" name="" value="全选">全选
+	</div>
+	
+</div>	
+</body>
+</html>
