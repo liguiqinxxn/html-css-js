@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:100px;
+	height: 100px;
+	background: red;
+}
+#div2{
+	width:100px;
+	height: 100px;
+	background: blue;
+}
+</style>
+</head>
+<body>
+	<input type="button" name="" id="btn" value="点击添加" />
+	<div id="box">
+		<div id="div1"></div>
+		<hr id="hr">
+		<div id="div2">
+			<p>我是p标签</p>
+		</div>
+	</div>
+<script type="text/javascript">
+	var btn = document.getElementById('btn');
+	var div1 = document.getElementById('div1');
+	var div2 = document.getElementById('div2');
+	var hr = document.getElementById('hr');
+	var box = document.getElementById('box');
+	/*
+		需求：
+			当点击按钮的时候，将蓝色方块克隆一份出来放到红色方块下
+			
+			元素.cloneNode()  //克隆某个元素
+		
+		注意：
+			在克隆的时候，默认（false）只克隆指定元素本身，不会克隆该元素下的所有子节点。（cloneNode(有参数，默认为false)），如果里面传入true，那么就可以克隆该元素下的所有子节点。
+			
+			事件是不会被克隆的。
+			
+			
+		
+		注意：
+			appendChild/insertBefore/replaceChild在操作一个已有的元素时，	是将已有的元素移动，而不是复制一份进行操作。
+		
+		
+	*/
+	
+	div2.onclick = function(){
+		alert(1);
+	}
+	
+	btn.onclick = function(){
+		var cElemnt = div2.cloneNode(true);
+		
+		box.insertBefore(cElemnt,hr)
+		
+		//console.log(cElemnt)
+	}
+	
+</script>
+</body>
+</html>

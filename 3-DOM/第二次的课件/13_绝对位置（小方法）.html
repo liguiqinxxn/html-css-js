@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+/*div{
+	padding: 100px;
+}	*/
+*{
+	margin: 0;
+	padding: 0;
+}
+#div1{
+	background: red;
+	width:100px;
+	height:100px;
+	margin-left: 50px;
+	position: relative;
+	border: 10px solid #000;
+}
+#div2{
+	background: blue;
+	position: relative;
+	width:60px;
+	height:60px;
+	top:20px;
+	left:30px;
+	border: 10px solid #000;
+}
+#div3{
+	width:30px;
+	height:30px;
+	background: yellow;
+	position: absolute;
+	top:20px;
+	border: 1px solid #000;
+	left:0;
+	transition:1s left;
+}
+body{
+	height:2000px;
+}
+</style>
+</head>
+<body>
+	<input type="button" name="" id="btn" value="点击就走" />
+	<div id="div1">
+		<div id="div2">
+			<div id="div3"></div>
+		</div>
+	</div>
+<script type="text/javascript">
+	/*
+	 	
+	 	getBoundingClientRect(返回值为一个对象)：
+	 		获取某个元素的信息（高版本：left,top,bottom,rigit,width,height）
+	 	
+	 	注意：
+	 		获取的值是会根据滚动条变化的。
+	 		
+	*/
+	var div3 = document.getElementById('div3');
+	var btn = document.getElementById('btn');
+	
+	btn.onclick = function(){
+		
+		div3.style.left = -div3.getBoundingClientRect().left + 'px';
+		console.log(div3.getBoundingClientRect().top);
+	}
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

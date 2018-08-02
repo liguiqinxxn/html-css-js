@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<table border="" id="box">
+		<thead id="thead">
+			<tr>
+				<th>头1</th>
+				<th>头2</th>
+				<th>头3</th>
+				<th>头4</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>内容一</td>
+				<td>内容二</td>
+				<td>内容三</td>
+				<td>内容四</td>
+			</tr>
+			<tr>
+				<td>内容一</td>
+				<td>内容二</td>
+				<td>内容三</td>
+				<td>内容四</td>
+			</tr>
+		</tbody>
+		<tbody>
+			<tr>
+				<td>内容一</td>
+				<td>内容二</td>
+				<td>内容三</td>
+				<td>内容四</td>
+			</tr>
+			<tr>
+				<td>内容一</td>
+				<td>内容二</td>
+				<td>内容三</td>
+				<td>内容四</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>统计一</td>
+				<td>统计二</td>
+				<td>统计三</td>
+				<td>统计四</td>
+			</tr>
+		</tfoot>
+	</table>
+<script type="text/javascript">
+	var box = document.getElementById('box');
+	
+	/*
+		table.tHead -->  获取tHead
+		
+		table.rows --> 获取tr 获取的是行数（一组）
+		
+		table.tFoot---获取表格底部
+		
+		table.tBodies---获取表格主体  
+			注意：
+				获取到的是一个集合
+		
+		rows[n].cells
+			单元格  就是td
+
+	*/
+	
+	//var tHead = document.getElementById('thead');
+	
+	//var tr = box.getElementsByTagName('tr');
+	
+	box.tHead.style.borderColor = 'red';
+	
+	//console.log(box.rows[0])
+	box.rows[1].style.background = 'greenyellow';
+	
+	box.tFoot.style.background = '#ccc';
+	
+	
+	box.tBodies[1].style.background = 'blue';
+
+	box.tBodies[0].rows[0].cells[1].style.background = 'pink';
+	
+	
+</script>
+</body>
+</html>

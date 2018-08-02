@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" name="" id="btn" value="点击添加" />
+	<ul id="ul">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+<script type="text/javascript">
+	var btn = document.getElementById('btn');
+	var ul = document.getElementById('ul');
+	/*
+		删除节点:
+			父级.removeChild(指定的子节点)
+			
+		注意：
+			如果指定的子节点没有，那么会报错。（进行判断解决）
+	*/
+	
+	btn.onclick = function(){
+		if(ul.lastElementChild){
+			ul.removeChild(ul.lastElementChild)
+		}
+	}
+	
+</script>
+</body>
+</html>

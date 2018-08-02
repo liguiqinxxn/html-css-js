@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="div1"></div>
+	<ul>
+		<li>
+			<span></span>
+		</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+<script type="text/javascript">
+	/*
+		一般分为三大关系：
+			父级关系：只有一层上下级关系（从当前往上找）
+			子级关系：只有以下一层的关系
+			兄弟关系: 同一个父级（同一级）
+			
+			父子节点 ： 上下两层节点之间的关系。
+			祖先节点 ：当前节点上面的所有节点的统称。
+			子孙节点 ：当前节点下面的所有节点的统称。
+			
+		
+		按照节点的类型划分：
+			nodeType  返回一个数字
+			
+			var str = '';
+			
+			元素节点：
+				数字1
+				
+
+	*/
+	
+	var div = document.getElementById('div1');
+	
+	
+	
+	console.log(div.nodeType)
+	
+//	var str = '';
+//	console.log(typeof str);
+</script>
+</body>
+</html>

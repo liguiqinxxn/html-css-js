@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" name="" id="btn" value="点击添加" />
+	<ul id="ul">
+	</ul>
+<script type="text/javascript">
+	var btn = document.getElementById('btn');
+	var ul = document.getElementById('ul');
+	
+	var html = '';
+	var num = 0;
+	
+	/*
+		document.createElement('标签的名字');  //创建元素
+		
+		插入元素：（向父级末尾添加一个元素）
+			parentNode.appendChild(childNode)
+		
+		
+	*/
+	
+	btn.onclick = function(){
+		num++;
+		var li = document.createElement('li');//创建元素
+		
+		li.innerHTML = num;
+		
+		ul.appendChild(li);
+		
+	}
+	
+//	btn.onclick = function(){
+//		num++;
+//		html+='<li>'+num+'</li>';
+//		
+//		ul.innerHTML = html;
+//	}
+	
+</script>
+</body>
+</html>

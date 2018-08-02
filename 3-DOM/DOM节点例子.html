@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {margin: 0;}
+		ul {width: 200px;}
+		li {width: 200px;list-style: none;height: 30px;font-size: 18px;line-height: 30px;color: #000;background-color: #e6e6e6;border: 1px solid #888;text-align: center;}
+		.none {background-color: #000;color: #fff;}
+		.focus {background-color: #222;color: #fff;}
+		.near {background-color: #808080;color: #fff;}
+		.aside {background-color: green;}
+	</style>
+	<script>
+		window.onload = function () {
+			var oUl = document.getElementsByTagName('ul')[0];
+			var aLi = oUl.children;
+			var first = oUl.firstElementChild;
+			var last = oUl.lastElementChild;
+
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].onmouseover = function(){
+					if (this == first ||this == last) {
+						this.className = 'aside';
+					}else{
+						this.className = 'focus';
+						this.nextElementSibling.className =this.previousElementSibling.className= 'near';
+						first.className = last.className = 'none';
+					}
+				};
+				aLi[i].onmouseout = function(){
+					for (var i = 0; i < aLi.length; i++) {
+						aLi[i].className = '';
+						first.className = last.className = 'none';
+
+					}
+				};
+				
+			}
+		}
+	</script>
+</head>
+<body>
+	<ul>
+		<li class="none">首行</li>
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+		<li>444</li>
+		<li>555</li>
+		<li>666</li>
+		<li>777</li>
+		<li>888</li>
+		<li>999</li>
+		<li>100</li>
+		<li>111</li>
+		<li>222</li>
+		<li class="none">末行</li>
+	</ul>
+</body>
+</html>

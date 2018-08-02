@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:200px;
+	height: 200px;
+	background: red;
+	border:10px solid #00BFFF;
+	padding:5px;
+	margin:10px;
+	position: absolute;
+}	
+</style>
+</head>
+<body>
+	<div id="div1">
+		
+	</div>
+<script type="text/javascript">
+	/*
+		可视区的宽高：
+			document.documentElement.clientWidth/document.documentElement.clientHeight
+			
+	*/
+	var div = document.getElementById('div1');
+	var clientW = document.documentElement.clientWidth;
+	var clientH = document.documentElement.clientHeight;
+	var iW = div.offsetWidth;
+	var iH = div.offsetHeight;
+	
+	div.style.left = (clientW - iW)/2 + 'px';
+	div.style.top = (clientH - iH)/2 + 'px';
+//	console.log(document.documentElement.clientWidth);
+//	console.log(document.documentElement.clientHeight);
+</script>
+</body>
+</html>

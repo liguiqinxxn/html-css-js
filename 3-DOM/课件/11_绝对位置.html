@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+/*div{
+	padding: 100px;
+}	*/
+*{
+	margin: 0;
+	padding: 0;
+}
+#div1{
+	background: red;
+	width:100px;
+	height:100px;
+	margin-left: 50px;
+	position: relative;
+	border: 10px solid #000;
+}
+#div2{
+	background: blue;
+	position: relative;
+	width:60px;
+	height:60px;
+	top:20px;
+	left:30px;
+	border: 10px solid #000;
+}
+#div3{
+	width:30px;
+	height:30px;
+	background: yellow;
+	position: absolute;
+	left:20px;
+	top:20px;
+	border: 10px solid #000;
+}
+</style>
+</head>
+<body>
+	<input type="button" name="" id="btn" value="点击就走" />
+	<div id="div1">
+		<div id="div2">
+			<div id="div3"></div>
+		</div>
+	</div>
+<script type="text/javascript">
+	/*
+	 	需求：
+	 		当点击按钮的时候，将div3的位置移动到左顶边。
+	 		
+	 		分析：
+	 			从div3开始查找它到定位父级的左距离。20
+	 			div2到div1的左距离   30
+	 			div1到body的左距离   50
+	 			
+	 			100
+	 		
+	 		先从div3开始找，找到之后，把目标变为div2，继续找，div2的位置找到之后
+	 		目标变成div1....
+	 			
+	 		
+	*/
+	var div3 = document.getElementById('div3');
+	var btn = document.getElementById('btn');
+	
+	btn.onclick = function(){
+		var left = 0;
+		var elem = div3;
+		while(elem){//如果有这个元素就会走循环
+			left += elem.offsetLeft;
+			//alert(elem.tagName);
+			elem = elem.offsetParent;//第一次计算之后，elem就变成了div2
+			//alert(left);
+		}
+	}
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="div1"></div>
+<script type="text/javascript">
+	//获取元素行间的属性
+	//elem.getAttribute('key')
+	
+	
+	//设置元素的行间属性
+	//elem.setAttribute('key','value')
+	
+	
+	//删除元素的行间属性
+	//elem.removeAttribute('key')
+	var div = document.getElementById('div1');
+	
+	div.setAttribute('index','3');
+	
+	alert(div.getAttribute('index'))
+	
+	alert('下面就删除了')
+	
+	div.removeAttribute('index');
+	
+	alert(div.getAttribute('index'))
+	//div.index = 1;
+	
+	//alert(div.index)
+	
+	//alert(div.getAttribute('index'))
+	//alert(div['id'])
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+li{
+	width:20px;
+	height: 30px;
+	background: red;
+	margin: 5px;
+	transition: 1s;
+}
+</style>
+</head>
+<body>
+<ul id="ul">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+</ul>
+<script type="text/javascript">
+	var ul = document.getElementById('ul');
+//	var lis = ul.childNodes;
+	var lis = ul.children;
+	/*
+		children:不是标准的属性，但是所有浏览器都支持。
+		找到某个元素下个所有元素子节点。
+	*/
+	
+	console.log(lis.length)
+	
+	document.onclick = function(){
+		for(var i=0;i<lis.length;i++){
+			lis[i].style.width = '150px';
+//			if(lis[i].nodeType === 1){
+//				lis[i].style.width = '150px';
+//			}
+		}
+	}
+	
+</script>
+</body>
+</html>

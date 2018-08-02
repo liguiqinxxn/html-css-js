@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+#div1{
+	width:200px;
+	height: 200px;
+	background: red;
+	border:10px solid #00BFFF;
+	padding:5px;
+	margin:10px;
+}	
+</style>
+</head>
+<body>
+	<div id="div1">
+		
+	</div>
+<script type="text/javascript">
+	/*
+		elem.clientWidth/ elem.clientHeight (获取某个元素的宽高)
+		注意：
+			不计算边框
+			加上padding
+			
+		
+		elem.offsetWidth / elem.offsetHeight  (获取某个元素的宽高)
+		注意：
+			计算边框
+			加上padding
+			
+	*/
+	var div = document.getElementById('div1');
+	console.log(div.clientWidth)
+	//console.log(div.offsetWidth)
+</script>
+</body>
+</html>

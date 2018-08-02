@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style type="text/css">
+#tab{
+	border:5px solid #333;
+}
+#tab th,#tab td{
+	width: 200px;
+	text-align: center;
+	border: 1px solid #333;
+}
+#tab thead{
+	background:#ccc;
+}
+</style>
+</head>
+<body>
+	<table id="tab">
+		<thead>
+			<th>商品全选<input type="checkbox"></th>
+			<th>商品编号</th>
+			<th>商品名称</th>
+			<th>商品价格</th>
+			<th>商品数量</th>
+			<th>商品删除</th>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+<script type="text/javascript">
+var aData = [
+	{
+		num  : 1,
+		name : '雪碧',
+		price : 2.2,
+		count : 50
+	},
+	{
+		num  : 2,
+		name : '可口可乐',
+		price : 2.3,
+		count : 55
+	},
+	
+	{
+		num  : 3,
+		name : '百事可乐',
+		price : 2.3,
+		count : 56
+	},
+	
+	{
+		num  : 4,
+		name : '美年达',
+		price : 2.1,
+		count : 45
+	},
+	
+	{
+		num  : 5,
+		name : '醒目',
+		price : 2.0,
+		count : 35
+	},
+	
+	{
+		num  : 6,
+		name : '健力宝',
+		price : 2.6,
+		count : 40
+	},
+	
+	{
+		num  : 7,
+		name : '七喜',
+		price : 2.2,
+		count : 42
+	},
+	
+	{
+		num  : 8,
+		name : '王老吉',
+		price : 3.2,
+		count : 30
+	},
+	
+	{
+		num  : 9,
+		name : '加多宝',
+		price : 3.3,
+		count : 45
+	},
+	
+	{
+		num  : 10,
+		name : '芬达',
+		price : 2.3,
+		count : 48
+	}
+];
+
+	var tab = document.getElementById('tab');
+	var tBody = tab.tBodies[0];
+	
+	//创建tr
+	for(var i=0;i<aData.length;i++){
+		var tr = document.createElement('tr');
+		
+		if(i%2){
+			tr.style.background = 'yellowgreen';
+		}else{
+			tr.style.background = 'blanchedalmond';
+		}
+		
+		//生成的全选
+		var td = document.createElement('td');
+		td.innerHTML = '<input type="checkbox">';
+		tr.appendChild(td);
+		
+		var checked = td.children[0];
+		
+		checked.onclick = function(){
+			//alert(this.checked)
+			setColor();
+		}
+		
+		//生成的数据
+		for(var attr in aData[i]){
+			var td = document.createElement('td');
+			td.innerHTML = aData[i][attr];
+			tr.appendChild(td);
+		}
+		
+		//生成的删除
+	
+		var td = document.createElement('td');
+		td.innerHTML = '<a href="javascript:;">删除</a>';
+		tr.appendChild(td);
+		
+		
+		var a = td.children[0];
+		
+		a.onclick = function(){
+			tBody.removeChild(this.parentNode.parentNode);
+		}
+		
+
+		tBody.appendChild(tr);
+	}
+	
+	var aChecked = tBody.getElementsByTagName('input');
+	console.log(aChecked.length)
+	function setColor(){
+		for(var i=0;i<aChecked.length;i++){
+			if(aChecked[i].checked){
+				aChecked[i].parentNode.parentNode.style.background = 'yellow';
+			}else{
+				if(i%2){
+					aChecked[i].parentNode.parentNode.style.background = 'yellowgreen';
+				}else{
+					aChecked[i].parentNode.parentNode.style.background = 'blanchedalmond';
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

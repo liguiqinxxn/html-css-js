@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+/*div{
+	padding: 100px;
+}	*/
+*{
+	margin: 0;
+	padding: 0;
+}
+#div1{
+	background: red;
+	width:100px;
+	height:100px;
+	margin-left: 50px;
+	position: relative;
+	
+}
+#div2{
+	background: blue;
+	position: relative;
+	width:60px;
+	height:60px;
+	border: 5px solid #008000;
+}
+#div3{
+	width:30px;
+	height:30px;
+	background: yellow;
+	position: absolute;
+	border: 5px solid #000;
+	left:20px
+}
+</style>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2">
+			<div id="div3"></div>
+		</div>
+	</div>
+<script type="text/javascript">
+	/*
+		offsetLeft:
+			外边框到有定位父级的内边框的距离。
+		
+		offsetTop
+			
+	*/
+	
+	var div3 = document.getElementById('div3');
+	
+//	console.log(div3.style.left);
+	//console.log(getComputedStyle(div3).left);
+	
+//	console.log(div3.offsetParent);
+	
+	console.log(div3.offsetLeft);
+	
+</script>
+</body>
+</html>
