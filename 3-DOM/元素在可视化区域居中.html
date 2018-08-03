@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+	body {margin: 0;}
+	div {width: 200px;height: 200px;border: 20px solid #000;background-color: red;position: absolute;left: 0;top: 0;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	var clientW = document.documentElement.clientWidth ;
+	var clientH = document.documentElement.clientHeight ;
+	var iW = oDiv.offsetWidth;
+	var iH = oDiv.offsetHeight;
+
+	oDiv.style.left = (clientW - iW) / 2 + 'px';
+	oDiv.style.top = (clientH - iH) / 2 + 'px';
+}
+</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>
