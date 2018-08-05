@@ -5,22 +5,60 @@
 <title>留言板</title>
 <style type="text/css">
 body {margin: 0;background-color: #000;}
-p {margin: 0;}
+p,h3 {margin: 0;}
 ul {margin: 0;padding: 0;list-style: none;}
 img {border: 0; vertical-align: top;}
-.bg {width: 700px;height: 500px;background: url(images/bg.jpg) no-repeat;margin: 200px auto 0;}
+.bg {width: 700px;height: 500px;background: url(images/bg.jpg) no-repeat;margin: 100px auto 100px;}
 .box {width: 360px;margin: 0 auto;}
-header {width: 360px;height: 118px;position: relative;}
-header img {width: 200px;height: 48px;margin:0 auto;display: block;padding: 35px;}
+header {width: 360px;height: 78px;position: relative;}
+header img {width: 200px;height: 48px;margin:0 auto;display: block;padding: 15px;}
 .from {width: 360px; height: 180px;position: relative;}
-.from #textarea {width: 354px;height: 124px;border: 2px solid #5a4d95; border-radius: 10px;background-color: #eeedf8;}
+.from textarea {width: 334px;height: 104px;font-size:15px;line-height: 22px;border: 2px solid #5a4d95; border-radius: 10px;padding: 10px;background-color: #eeedf8;overflow: hidden;}
 .from #submit {width: 100px;height: 30px;border: 2px solid #fff;border-radius: 12px;color: #fff;background-color: #14afd0;position: absolute;right: 0;bottom: 10px;}
 .content {width: 360px;height: 150px;}
-.content ul {}
-.content li {width: 360px;padding: 6px 0;}
+.content ul {width: 360px;height: 190px;overflow:hidden;}
+.content li {width: 360px;padding: 6px 0;position: relative;}
 .content li img {display: inline-block;border-radius: 20px;background-color: #14afd0;}
-.content li p {width: 314px;background-color: #433481;display: inline-block;border-radius: 8px;color: #fff;}
+.content li span {width: 0px;height: 0px;border: 4px solid  transparent; border-right:4px solid #433481; display: inline-block;position: absolute;top: 20px;}
+.content li p {width: 270px;line-height: 30px;background-color: #433481;display: inline-block;border-radius: 8px;color: #fff;padding: 5px 20px;margin-left: 8px;}
 </style>
+<script type="text/javascript">
+	window.onload = function(){
+		var oText = document.getElementById('textarea');
+		var oSubmit = document.getElementById('submit');
+		var oUl = document.getElementById('ul');
+		var arrText = [];
+
+		//初始化
+		function Tabfn(){
+			for (var i = 0; i < arrText.length; i++) {
+				var oLi = document.createElement('li');
+				var oImg = document.createElement('img');
+				oImg.src = 'images/logo1.png';
+				oLi.appendChild(oImg);
+				var oSpan = document.createElement('span');
+				oLi.appendChild(oSpan);
+				var oP = document.createElement('p');
+				oP.innerHTML = arrText[i];
+				oLi.appendChild(oP);
+
+				oUl.appendChild(oLi);
+			}
+		}
+		Tabfn();
+		oSubmit.onclick = function(){
+			if (oText.value == '') {
+				alert("您没有输入任何内容");
+			}else{
+				arrText.unshift(oText.value);
+				oText.value = '';
+				oUl.innerHTML = '';
+				Tabfn();	
+			}
+			
+		}
+	}
+</script>
 </head>
 <body>
 <div class="bg">
@@ -30,17 +68,12 @@ header img {width: 200px;height: 48px;margin:0 auto;display: block;padding: 35px
 		</header>
 		<div class="from">
 			<from>
-				<input type="textarea" name="liuyan" id="textarea">
+				<textarea id="textarea"></textarea>
 				<input type="submit" name="submit" id="submit" value="提交">
 			</from>
 		</div>
 		<div class="content">
 			<ul id="ul">
-				<li>
-					<img src="images/logo1.png" alt="logo">
-					<p>你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊
-					</p>
-				</li>
 			</ul>
 		</div>
 	</div>	
