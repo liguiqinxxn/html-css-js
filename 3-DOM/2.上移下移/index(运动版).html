@@ -7,36 +7,70 @@
 <style type="text/css">
 body {margin: 0;}
 p {display: inline-block;}
+li {transition: top 1s;position: absolute;}
+li:nth-child(1){top: 0px;}
+li:nth-child(2){top: 53px;}
+li:nth-child(3){top: 106px;}
+li:nth-child(4){top: 159px;}
+li:nth-child(5){top: 212px;}
 </style>
 <script type="text/javascript">
 	window.onload = function (){
 		var oUl = document.getElementsByTagName('ul')[0];
 		var aLi = oUl.getElementsByTagName('li');
+		/*var arrLi = [
+		['0',aLi[0]],
+		['1',aLi[1]],
+		['2',aLi[2]],
+		['3',aLi[3]],
+		['4',aLi[4]]
+		]*/
+		console.log(aLi);
 
-		for (var i = 0; i < aLi.length; i++) {
-			move(aLi[i]);
+		// function swapItems (arr, index1, index2) {
+	 //        arr[index1] = [arr].splice(index2, 1, arr[index1])[0];
+	 //        return arr;
+	 //    }
+		function tabFn(){
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].index = i;
+				move(aLi[i]);
 
+			};
 		}
+		tabFn();
 		
 		function move(li){
 			var aInp = li.getElementsByTagName('input');
 			aInp[0].onclick = function (){
-				if (this.parentNode.previousElementSibling) {
+				if(this.parentNode.previousElementSibling){
+					var num = this.parentNode.index;
+					var LiH1 = this.parentNode.offsetTop;
+					var LiH2 = this.parentNode.previousElementSibling.offsetTop;
+					aLi[num].style.top = LiH2 +'px';
+					aLi[num-1].style.top = LiH1 +'px';
+					// aLi = swapItems(aLi,num ,num-1);
+					// tabFn();
+				}
+
+				/*if (this.parentNode.previousElementSibling) {
 					oUl.insertBefore(this.parentNode,this.parentNode.previousElementSibling);
 				}else{
 					oUl.appendChild(this.parentNode);
-				}
+				}*/
 			};
 			aInp[1].onclick = function (){
-				if (this.parentNode.nextElementSibling) {
+
+
+				/*if (this.parentNode.nextElementSibling) {
 					oUl.insertBefore(this.parentNode.nextElementSibling,this.parentNode);
 				}else{
 					oUl.insertBefore(this.parentNode,oUl.firstElementChild);
-				}
+				}*/
 			};
 		}
 
-
+		
 	}
 </script>
 <body>
