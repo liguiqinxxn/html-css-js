@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>上移下移</title>
+</head>
+<style type="text/css">
+body {margin: 0;}
+p {display: inline-block;}
+</style>
+<script type="text/javascript">
+	window.onload = function (){
+		var oUl = document.getElementsByTagName('ul')[0];
+		var aLi = oUl.getElementsByTagName('li');
+
+		for (var i = 0; i < aLi.length; i++) {
+			move(aLi[i]);
+
+		}
+		
+		function move(li){
+			var aInp = li.getElementsByTagName('input');
+			aInp[0].onclick = function (){
+				if (this.parentNode.previousElementSibling) {
+					oUl.insertBefore(this.parentNode,this.parentNode.previousElementSibling);
+				}else{
+					oUl.appendChild(this.parentNode);
+				}
+				
+			};
+			aInp[1].onclick = function (){
+				if (this.parentNode.nextElementSibling) {
+					oUl.insertBefore(this.parentNode.nextElementSibling,this.parentNode);
+				}else{
+					oUl.insertBefore(this.parentNode,oUl.firstElementChild);
+				}
+			};
+		}
+
+
+	}
+</script>
+<body>
+	<ul>
+		<li>
+			<p>啦啦啦啦</p>
+			<span>1</span>
+			<input type="button" name="" value="上移">
+			<input type="button" name="" value="下移">
+		</li>
+		<li>
+			<p>哈哈哈哈</p>
+			<span>2</span>
+			<input type="button" name="" value="上移">
+			<input type="button" name="" value="下移">
+		</li>
+		<li>
+			<p>嘿嘿嘿嘿</p>
+			<span>3</span>
+			<input type="button" name="" value="上移">
+			<input type="button" name="" value="下移">
+		</li>
+		<li>
+			<p>呱呱呱呱</p>
+			<span>4</span>
+			<input type="button" name="" value="上移">
+			<input type="button" name="" value="下移">
+		</li>
+		<li>
+			<p>咯咯咯咯</p>
+			<span>5</span>
+			<input type="button" name="" value="上移">
+			<input type="button" name="" value="下移">
+		</li>
+	</ul>
+</body>
+</html>
