@@ -24,7 +24,8 @@ li {width: 50px;height: 50px;line-height: 50px;list-style: none;border: 1px soli
 			arr.sort(function(li1,li2){
 				var a = parseInt(li1.innerHTML);
 				var b = parseInt(li2.innerHTML);
-				return a - b;
+				// return a - b;  //升序
+				return b - a; //降序
 			});
 			for (var i = 0; i < arr.length; i++) {
 				oUl.appendChild(arr[i]);
@@ -42,7 +43,7 @@ li {width: 50px;height: 50px;line-height: 50px;list-style: none;border: 1px soli
 			<li style="background-color: red;">5aa</li>
 			<li style="background-color: green;">1搜搜</li>
 		</ul>
-		<input id="btn" type="button" value="升序">
+		<input id="btn" type="button" value="降序">
 	</div>
 	
 </body>
