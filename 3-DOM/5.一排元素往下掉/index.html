@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>一排元素往下掉</title>
+<style type="text/css">
+	div {width: 50px;height: 50px;display: inline-block;background-color: red;position: relative;top: 0px;transition: top 2s;}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var aDiv = document.getElementsByTagName('div');
+
+	for (var i = 0; i < aDiv.length; i++) {
+		aDiv[i].onclick = function(){
+			toDown(this);
+		}
+	};
+
+	function toDown(div){
+		div.style.top = '500px';
+		setTimeout(function(){
+			if (div.nextElementSibling) {
+				div.nextElementSibling.style.top = '500px';
+				toDown(div.nextElementSibling);
+			};
+			if (div.previousElementSibling) {
+				div.previousElementSibling.style.top = '500px';
+				toDown(div.previousElementSibling);
+			};
+		},100);	
+	}
+}
+</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>
