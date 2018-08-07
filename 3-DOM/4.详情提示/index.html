@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>详情提示</title>
+<style type="text/css">
+body, p {margin: 0;}
+.box {width: 530px;height: 270px;border: 5px solid #000;padding: 20px 10px;margin: 200px auto 0;position: relative;}
+.box p {text-indent: 2em;font-size: 15px;line-height: 30px;}
+.content {width: 300px;position: absolute;/*top: 43px;left: 190px;*/}
+.info {border: 1px solid #13f291;display: none;background-color: #fff;padding: 5px; }
+.info p {text-indent:0;font-size: 12px;line-height: 18px;}
+</style>
+<script type="text/javascript">
+window.onload = function (){
+	var box = document.getElementsByClassName('box')[0];
+	var aA = box.getElementsByTagName('a');
+	var con = document.getElementsByClassName('content')[0];
+	var aInfo = con.getElementsByClassName('info');
+
+	for (var i = 0; i < aA.length; i++) {
+		aA[i].index = i;
+		aA[i].onmouseover = function(){
+			var num = this.index;
+			aInfo[num].style.display = 'inline-block';
+			var H = this.offsetTop + con.getBoundingClientRect().height;
+			var W = this.offsetLeft + con.getBoundingClientRect().width;
+			if (H < 270 ) {
+				con.style.top = this.offsetTop + this.getBoundingClientRect().height +'px';
+			}else{
+				con.style.top = this.offsetTop - con.getBoundingClientRect().height +'px';
+				
+			};
+			if (W < 530 ) {
+				con.style.left = this.offsetLeft + 'px';
+			}else{
+				con.style.left = 550 - con.getBoundingClientRect().width + 'px' ;
+			}
+		};
+		aA[i].onmouseout = function() {
+			var num = this.index;
+			aInfo[num].style.display = 'none';
+		}
+
+	}
+}
+</script>
+</head>
+<body>
+<div class="box">
+	<p>1975年7月31日，3号<a href="javascript:;">台风</a>在太平洋上空形成。8月7日，台风进入驻马店地区。</p>
+	<p>在台风尚未到达时，<a href="javascript:;">驻马店</a>地区就已经普降暴雨。8月4日至8日，暴雨中心最大过程雨量达1631毫米，8月5日至7月3天的最大降雨量为1605毫米，相当于驻马店地区年平均雨量的1.8倍。4日至8日，超过400毫米的降雨面积达19410平方公里，大于1000毫米的降水区集中在<a href="javascript:;">京广铁路</a>以西板桥水库、石漫滩水库到方城一带。暴雨的降水强度，在暴雨中心一一位于板桥水库的林庄，最大6小时<a href="javascript:;">雨量</a>为830毫米，超过了当地世界最大记录一一美国宾州密士港的782毫米，最大24小时雨量为1060毫米，也创造了<a href="javascript:;">中国</a>同类指标的最高记录。</p>
+	<div class="content">
+		<div class="info">
+			<p>台风（英语：Typhoon）是赤道以北，日界线以西，亚洲太平洋国家或地区对热带气旋的一个分级。 在气象学上，按世界气象组织定义，热带气旋中心持续风速达到12级（即64节或以上、每秒32.7米或以上，又或者每小时118公里或以上）称为飓风（Hurricane）或其他在地近义字。</p>
+		</div>
+		<div class="info">
+			<p>驻马店是河南省下辖地级市，位于河南中南部，北接漯河、周口，南临信阳，地处淮河上游的丘陵平原地区。因历史上南来北往的信使、官宦在此驻驿歇马而得名。素有“豫州之腹地、天下之最中”的美称。京广铁路、京珠、大广高速和107、106国道纵贯南北，新阳高速横跨东西，上武高速和焦桐高速穿境而过，省道、县道纵横交错。</p>
+		</div>
+		<div class="info">
+			<p>京广铁路（北京－广州）是一条从首都北京市通往广东省广州市的铁路，于1957年全线建成，全长2302千米。原分为北南两段。北段从北京市到湖北汉口，称为“京汉铁路”（1949年以前称“平汉铁路”），于1897年4月动工到1906年4月建成。</p>
+		</div>
+		<div class="info">
+			<p>从气象学上的角度来讲，雨量通常指空气中水汽凝结下降及地之水量，露，霜，雹，雪等等，凝结并不包括在内。所谓雨量，就是在一定时段内，降落到水平面上（无渗漏、蒸发、流失等）的雨水深度。用雨量计测定。以毫米为单位。气象台站在有降水的情况下，每隔6小时测量一次。把一个地方多年的年降水量平均起来，就称为这个地方的“平均年雨量”。</p>
+		</div>
+		<div class="info">
+			<p>中国，是以华夏文明为源泉、中华文化为基础，并以汉族为主体民族的多民族国家，通用汉语、汉字，汉族与少数民族被统称为“中华民族”，又自称为炎黄子孙、龙的传人。</p>
+		</div>
+	</div>
+
+</div>	
+</body>
+</html>
