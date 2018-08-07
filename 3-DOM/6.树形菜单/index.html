@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>树形菜单</title>
+<style type="text/css">
+	.show {display: block;}
+	.hide {display: none;}
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var oUl = document.getElementById('oUl');
+		var aUl = oUl.getElementsByTagName('ul');
+		var aH3 = oUl.getElementsByTagName('h3');
+
+		for (var i = 0; i < aUl.length; i++) {
+			aUl[i].className = 'hide';
+		}
+
+		for (var i = 0; i < aH3.length; i++) {
+			aH3[i].onclick = function(){
+				show(this);
+			}
+		}
+		
+		function show(h3){
+			if (h3.nextElementSibling) {
+				var aUl = h3.parentNode.parentNode.getElementsByTagName('ul');
+				for (var i = 0; i < aUl.length; i++) {
+					aUl[i].className = 'hide';
+				}
+				h3.nextElementSibling.className = 'show';
+			}
+		}
+
+	}
+</script>
+</head>
+<body>
+	<ul id="oUl">
+		<li>
+			<h3>第一级菜单</h3>
+			<ul>
+				<li>
+					<h3>第二级菜单</h3>
+					<ul>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h3>第二级菜单</h3>
+					<ul>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h3>第二级菜单</h3>
+					<ul>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<h3>第一级菜单</h3>
+			<ul>
+				<li>
+					<h3>第二级菜单</h3>
+					<ul>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h3>第二级菜单</h3>
+				</li>
+				<li>
+					<h3>第二级菜单</h3>
+					<ul>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<h3>第一级菜单</h3>
+			<ul>
+				<li>
+					<h3>第二级菜单</h3>
+					<ul>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h3>第二级菜单</h3>
+				</li>
+				<li>
+					<h3>第二级菜单</h3>
+					<ul>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+						<li>
+							<h3>第三级菜单</h3>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>
