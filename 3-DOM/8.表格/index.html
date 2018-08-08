@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>表格</title>
+<style type="text/css">
+body {margin: 0;}
+#box {width: 600px; margin: 100px auto 0;text-align: center;}
+#input label {padding: 10px 20px;}
+#select {margin: 10px 0;}
+table, th, td{border:1px solid #000;}
+table {width: 600px;text-align: center;border-collapse: collapse;}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var submit = document.getElementById('submit');
+	var sort = document.getElementById('sort');
+	var deleteAll = document.getElementById('deleteAll');
+	var tbody = document.getElementsByTagName('tbody')[0];
+	var aTr = tbody.getElementsByTagName('tr');
+
+	var name =document.getElementById('name');
+	var sex = document.getElementById('sex');
+	var age = document.getElementById('age');
+	var i = 1;
+
+	//初始化
+	function fn (){
+		for (var i = 0; i < aTr.length; i++) {
+			if (i%2 ==1) {
+				aTr[i].style.backgroundColor = '#93cac5';
+			}
+			var old = '';
+			aTr[i].onmouseover = function(){
+				old = this.style.backgroundColor;
+				this.style.backgroundColor = '#04b9a9';
+			}
+			aTr[i].onmouseout = function(){
+				this.style.backgroundColor = old;
+			}
+		};
+	}
+	fn();
+
+	submit.onclick = function(){
+		if (name.value == '') {
+			alert('姓名不能为空');
+		}else if ( (age.value == '') || isNaN(age.value) ) {
+			alert('年龄不能为空且为纯数字');
+		} else {
+			var tr = document.createElement('tr');
+			tr.innerHTML = '<td><input type="checkbox"></td><td>'+ i +'</td><td>'+name.value+'</td><td>'+ sex.value +'</td><td>'+age.value+'</td><td><button>上移</button><button>下移</button><button>删除</button></td>';
+			tbody.appendChild(tr);
+			i++;
+			name.value = '';
+			age.value = '';
+		}
+		fn();
+	};
+
+	
+	
+}
+</script>
+</head>
+<body>
+<div id='box'>
+	<div id="input">
+		<label for="name">请输入姓名</label>
+		<label for="sex">请选择性别</label>
+		<label for="age">请输入年龄</label>
+		<br>
+		<input type="text" id="name" value="">
+		<select id="sex">
+			<option>男</option>
+			<option>女</option>
+		</select>
+		<input type="text" id="age">
+		<button id="submit">提交</button>
+	</div>
+	<div id='select'>
+		<label for="style">请选择排序类型：</label>
+		<select id="style">
+			<option>编号</option>
+			<option>年龄</option>
+		</select>
+		<label for="style">请选择排序方式：</label>
+		<select id="style">
+			<option>升序</option>
+			<option>降序</option>
+		</select>
+		<button id="sort">排序</button>
+		<button id="deleteAll">批量删除</button>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>全选<input type="checkbox"></th>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>年龄</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- <tr>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td>leo</td>
+				<td>男</td>
+				<td>12</td>
+				<td><button>上移</button><button>下移</button><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>2</td>
+				<td>李磊</td>
+				<td>男</td>
+				<td>27</td>
+				<td><button>上移</button><button>下移</button><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>3</td>
+				<td>小美</td>
+				<td>女</td>
+				<td>23</td>
+				<td><button>上移</button><button>下移</button><button>删除</button></td>
+			</tr> -->
+		</tbody>
+	</table>
+
+</div>
+	
+</body>
+</html>
