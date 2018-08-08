@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>京东菜单练习</title>
+<style type="text/css">
+body ,h3{margin: 0;}
+/*body {background-color: #000;}*/
+ul {list-style: none;margin: 0;padding: 0;}
+#box {margin-left: 20px;background-color: #fff;}
+.list {height: 61px;border-bottom: 1px solid #28a5c4;}
+.list h3 {display: inline-block;font-size: 18px;line-height: 60px;font-weight: normal;padding-right: 30px;}
+.list ul, .list li {display: inline-block;}
+.list li {font-size: 15px;line-height: 60px;color: #28a5c4;padding: 0 10px;}
+#select {}
+#select li {display: inline-block;}
+#select li div{border:1px solid #000;display: inline-block;margin: 5px;padding: 10px;}
+#select li span {}
+#select li strong {color: #28a5c4;}
+#select li a {text-decoration: none;color: #28a5c4;padding-left: 10px;}
+</style>
+<script type="text/javascript">
+	window.onload = function (){
+		var aList = document.getElementsByClassName('list');
+		var select = document.getElementById('select');
+		var aLi = select.children;
+		for (var i = 0; i < aList.length; i++) {
+			fn(aList[i],i); 
+		}
+
+		function fn(obj,n){
+			var li = obj.getElementsByTagName('li');
+			var old = li[0];
+			for (var i = 0; i < li.length; i++) {
+				li[i].onclick = function(){
+					var strongText = this.innerHTML; //获取选中的li内容
+					var spanText = this.parentNode.previousElementSibling.innerHTML; //获取选中的li 的 h3的内容
+
+					old.style.display = 'inline-block';//将旧的显示出来
+					this.style.display = 'none';  ////将当前选中的隐藏
+					old = this;
+
+					/*for (var i = 0; i < li.length; i++) {
+						if (li[i] == this ) {
+							this.style.display = 'none'; //将当前选中的隐藏
+						}else{
+							li[i].style.display = 'inline-block'; //将之前选中的显示出来
+						}
+					}*/
+					
+					var div = document.createElement('div');
+					div.innerHTML = '<span>'+spanText+'</span><strong>'+ strongText +'</strong><a href ="javascript:;">X</a>';
+					/*var span = document.createElement('span');
+					var strong = document.createElement('strong');
+					var a = document.createElement('a');
+					div.appendChild(span);
+					span.innerHTML = spanText ;
+					div.appendChild(strong);
+					strong.innerHTML = strongText;
+					div.appendChild(a);
+					a.innerHTML = 'X';
+					a.href = 'javascript:;';*/
+
+					aLi[n].innerHTML= '';
+					aLi[n].appendChild(div); //先清空li里面的内容,再把div放进去
+
+					var xx = aLi[n].getElementsByTagName('a')[0];
+					// console.log(xx); 
+					xx.onclick = function(){  
+						old.style.display = 'inline-block'; //恢复选中的选项
+						this.parentNode.parentNode.innerHTML = ''; //清空li的内容
+					};
+				};
+			};
+
+
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="box">
+		<div id="price" class="list">
+			<h3>价格：</h3>
+			<ul>
+				<li>300-699</li>
+				<li>700-1099</li>
+				<li>1100-1999</li>
+				<li>2000-3599</li>
+				<li>3600-4299</li>
+				<li>4300以上</li>
+			</ul>
+		</div>
+		<div id="style"  class="list">
+			<h3>类别：</h3>
+			<ul>
+				<li>文件夹</li>
+				<li>办公套装</li>
+				<li>文件筐</li>
+				<li>美工刀</li>
+				<li>三针一钉</li>
+				<li>风琴包</li>
+				<li>票夹</li>
+			</ul>
+		</div>
+		<div id="brand" class="list">
+			<h3>品牌：</h3>
+			<ul>
+				<li>得力</li>
+				<li>齐心</li>
+				<li>优比利</li>
+				<li>三木</li>
+				<li>GBC</li>
+				<li>广博</li>
+				<li>利兰</li>
+			</ul>
+		</div>
+		<ul id="select">
+			<li>
+				<!-- <div>
+					<span>价格：</span>
+					<strong>0-199</strong>
+					<a href="javascript:;"> X </a>
+				</div> -->
+			</li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>
