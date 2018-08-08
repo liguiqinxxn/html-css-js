@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>树形菜单（扩展版）</title>
+</head>
+<style type="text/css">
+	li {list-style: none;}
+</style>
+<body>
+	<ul id="menu">
+		
+	</ul>
+	<script type="text/javascript">
+		window.onload = function(){
+			var menu = document.getElementById('menu');
+			var arr = [
+			{ 'title':'第一级菜单',
+			  'child':[
+				  {'title':'第二级菜单',
+				    'child':[
+					    {'title':'第三级菜单',
+					      'child':[
+						      { 'title':'第四级菜单'},
+						      { 'title':'第四级菜单'},
+					      ]
+						},
+						{'title':'第三级菜单'},
+						{'title':'第三级菜单'}
+				    ]
+				  },
+				  {'title':'第二级菜单',
+				   'child':[
+					   {'title':'第三级菜单'},
+					   {'title':'第三级菜单'},
+					   {'title':'第三级菜单'}
+				   ]
+				  },
+				  {'title':'第二级菜单',
+				   'child':[
+					    {'title':'第三级菜单',
+					      'child':[
+						      { 'title':'第四级菜单'},
+						      { 'title':'第四级菜单'},
+					      ]
+						}
+					  ]
+					}
+				]
+			},
+			{ 'title':'第一级菜单',
+			  'child':[
+				  {'title':'第二级菜单',
+				    'child':[
+					    {'title':'第三级菜单',
+					      'child':[
+						      { 'title':'第四级菜单'},
+						      { 'title':'第四级菜单'},
+					      ]
+						},
+						{'title':'第三级菜单'},
+						{'title':'第三级菜单'}
+				    ]
+				  },
+				  {'title':'第二级菜单',
+				   'child':[
+					   {'title':'第三级菜单'},
+					   {'title':'第三级菜单'},
+					   {'title':'第三级菜单'}
+				   ]
+				  },
+				  {'title':'第二级菜单',
+				   'child':[
+					    {'title':'第三级菜单',
+					      'child':[
+						      { 'title':'第四级菜单'},
+						      { 'title':'第四级菜单'},
+					      ]
+						}
+					  ]
+					}
+				]
+			},
+			{ 'title':'第一级菜单',
+			  'child':[
+				  {'title':'第二级菜单',
+				    'child':[
+					    {'title':'第三级菜单',
+					      'child':[
+						      { 'title':'第四级菜单'},
+						      { 'title':'第四级菜单'},
+					      ]
+						},
+						{'title':'第三级菜单'},
+						{'title':'第三级菜单'}
+				    ]
+				  },
+				  {'title':'第二级菜单',
+				   'child':[
+					   {'title':'第三级菜单'},
+					   {'title':'第三级菜单'},
+					   {'title':'第三级菜单'}
+				   ]
+				  },
+				  {'title':'第二级菜单',
+				   'child':[
+					    {'title':'第三级菜单',
+					      'child':[
+						      { 'title':'第四级菜单'},
+						      { 'title':'第四级菜单'},
+					      ]
+						}
+					  ]
+					}
+				]
+			},
+		];
+
+		//初始化
+		fn( arr, menu);
+		function fn(arr,menu){
+			for (var i = 0; i < arr.length; i++) {
+				//第一层，创建li，里面有h3 和 ul
+				var li = document.createElement('li');
+				var h3 = document.createElement('h3');
+				var span = document.createElement('span'); //<h3><span>+</span>第一级菜单</h3>
+				span.innerHTML = '+';
+				li.appendChild(h3);  //h3标题放进li
+
+				if (arr[i].child) {    //假如有child，，h3里面就有span,h3后面就有ul
+					h3.appendChild(span);  // +放进h3
+					var ul = document.createElement('ul');
+					fn( arr[i].child, ul); //再次执行fn
+					li.appendChild(ul);  //生成的新的ul放进li里面h3的后面
+				}
+				h3.innerHTML += arr[i].title; //h3里面 + 后面是title
+
+				//第一级的li放进menu
+				menu.appendChild(li);
+
+			}
+		}
+
+		//给每个h3添加点击事件
+		var aH3 = menu.getElementsByTagName('h3');
+		for (var i = 0; i < aH3.length; i++) {
+			aH3[i].onclick = function (){
+				var next = this.nextElementSibling; //当前h3兄弟节点ul
+				var span = this.firstElementChild;  //当前h3的span
+				var aUl = this.parentNode.parentNode.getElementsByTagName('ul'); //找到当前h3的父级li的父级ul 里面的所有的li里面的ul
+				var aSpan = this.parentNode.parentNode.getElementsByTagName('span'); //有多少ul就有多少span
+
+				if (next) {  //如果当前h3的兄弟节点ul，存在
+					for (var i = 0; i < aUl.length; i++) {
+						if (aUl[i] !== next) {  //排除当前ul
+							aUl[i].style.display = 'none'; //其他ul，都收起来
+							aSpan[i].innerHTML = '+';   //其他span都是+
+						}
+					}
+					if (next.style.display == 'block' ) {  //当前ul 如果开就关
+						next.style.display = 'none';
+						span.innerHTML = '+';
+					}else{
+						next.style.display = 'block';
+						span.innerHTML = '-';
+					}
+				}
+			}
+		}
+		
+	}
+	</script>
+</body>
+</html>

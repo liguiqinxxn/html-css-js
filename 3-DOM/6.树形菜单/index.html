@@ -13,16 +13,19 @@
 		var aUl = oUl.getElementsByTagName('ul');
 		var aH3 = oUl.getElementsByTagName('h3');
 
+		//折叠所有子菜单
 		for (var i = 0; i < aUl.length; i++) {
 			aUl[i].className = 'hide';
 		}
 
+		//为所有菜单添加点击事件
 		for (var i = 0; i < aH3.length; i++) {
 			aH3[i].onclick = function(){
 				show(this);
 			}
 		}
 		
+		//h3下有ul就展开
 		function show(h3){
 			if (h3.nextElementSibling) {
 				var aUl = h3.parentNode.parentNode.getElementsByTagName('ul');
