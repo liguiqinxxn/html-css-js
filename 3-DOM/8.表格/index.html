@@ -13,35 +13,36 @@ table {width: 600px;text-align: center;border-collapse: collapse;}
 </style>
 <script type="text/javascript">
 window.onload = function(){
-	var submit = document.getElementById('submit');
-	var sort = document.getElementById('sort');
-	var deleteAll = document.getElementById('deleteAll');
-	var tbody = document.getElementsByTagName('tbody')[0];
-	var aTr = tbody.getElementsByTagName('tr');
+	var submit = document.getElementById('submit'); //提交
+	var oSort = document.getElementById('sort'); //排序
+	var deleteAll = document.getElementById('deleteAll'); //批量删除
+	var tbody = document.getElementsByTagName('tbody')[0]; //tbody
+	var aTr = tbody.getElementsByTagName('tr'); //tbody里面所有的tr
+	var selectAll = document.getElementById('selectAll'); //全选
+	var aSelect = tbody.getElementsByTagName('input');  //tbody里面所有选择项checkbox
 
-	var name =document.getElementById('name');
-	var sex = document.getElementById('sex');
-	var age = document.getElementById('age');
-	var i = 1;
+	var name =document.getElementById('name'); //姓名
+	var sex = document.getElementById('sex');  //性别
+	var age = document.getElementById('age');  //年龄
+	var sortS = document.getElementById('style'); //排序类型
+	var sortW = document.getElementById('way');  //排序方式
+	var id = 1; //编号
+	var arrColor = ['#93cac5','#fff','#04b9a9','#f89eb9']; 
 
 	//初始化
 	function fn (){
 		for (var i = 0; i < aTr.length; i++) {
 			if (i%2 ==1) {
-				aTr[i].style.backgroundColor = '#93cac5';
+				aTr[i].style.backgroundColor = arrColor[0];
+			}else{
+				aTr[i].style.backgroundColor = arrColor[1];
 			}
-			var old = '';
-			aTr[i].onmouseover = function(){
-				old = this.style.backgroundColor;
-				this.style.backgroundColor = '#04b9a9';
-			}
-			aTr[i].onmouseout = function(){
-				this.style.backgroundColor = old;
-			}
+			move(aTr[i]);
 		};
 	}
 	fn();
 
+	//添加数据（将填入的信息添加到表格中）
 	submit.onclick = function(){
 		if (name.value == '') {
 			alert('姓名不能为空');
@@ -49,16 +50,141 @@ window.onload = function(){
 			alert('年龄不能为空且为纯数字');
 		} else {
 			var tr = document.createElement('tr');
-			tr.innerHTML = '<td><input type="checkbox"></td><td>'+ i +'</td><td>'+name.value+'</td><td>'+ sex.value +'</td><td>'+age.value+'</td><td><button>上移</button><button>下移</button><button>删除</button></td>';
+			tr.innerHTML = '<td><input type="checkbox"></td><td>'+ id +'</td><td>'+name.value+'</td><td>'+ sex.value +'</td><td>'+age.value+'</td><td><button>上移</button><button>下移</button><button>删除</button></td>';
 			tbody.appendChild(tr);
-			i++;
+			id++;
 			name.value = '';
 			age.value = '';
 		}
 		fn();
 	};
 
-	
+	//排序
+	oSort.onclick = function(){
+		var arr = [];
+		for (var i = 0; i < aTr.length; i++) {
+			arr[i] = aTr[i];
+		}
+		arr.sort(function(tr1,tr2){
+			var a;
+			var b;
+			if (sortS.value == '编号') { //按编号排序
+				a = parseInt(tr1.firstElementChild.nextElementSibling.innerHTML);
+				b = parseInt(tr2.firstElementChild.nextElementSibling.innerHTML);
+			}else{  //按年龄排序
+				a = parseInt(tr1.lastElementChild.previousElementSibling.innerHTML);
+				b = parseInt(tr2.lastElementChild.previousElementSibling.innerHTML);
+			}
+			if (sortW.value == '升序') { //按升序的方式排序
+				return a - b ;
+			}else{
+				return b - a ; //按降序的方式排序
+			}
+
+		});
+		for (var i = 0; i < arr.length; i++) {
+			tbody.appendChild(arr[i]);
+		}
+		fn();
+	};
+
+	//全选控制选择项
+	selectAll.onclick = function(){
+		fn();
+		if (selectAll.checked) {
+			for (var i = 0; i < aSelect.length; i++) {
+				aSelect[i].parentNode.parentNode.style.backgroundColor = arrColor[3];
+				aSelect[i].checked = true;
+			}
+		}else{
+			for (var i = 0; i < aSelect.length; i++) {
+				aSelect[i].checked = false;
+			}
+		}
+		
+	};
+
+	//选择项控制全选
+	for (var i = 0; i < aSelect.length; i++) {
+		var length = aSelect.length;
+		aSelect[i].onclick = function(){
+			fn();
+			var len = 0;
+			for (var i = 0; i < aSelect.length; i++) {
+				if (aSelect[i].checked==true) {
+					aSelect[i].parentNode.parentNode.style.backgroundColor = arrColor[3];
+					len++;
+				}
+			};
+			if (length == len) {
+				selectAll.checked = true;
+			}else{
+				selectAll.checked = false;
+			}
+		};
+	}
+
+	//上移、下移、删除
+	function move(tr){
+		tr.onmouseover = function(){ //鼠标移入tr变色
+			this.style.backgroundColor = arrColor[2];
+		};
+		tr.onmouseout = function(){ //鼠标移出tr恢复原来的颜色
+			if (this.firstElementChild.firstElementChild.checked == true) {
+				this.style.backgroundColor = arrColor[3];
+			}else{
+				fn();
+				for (var i = 0; i < aSelect.length; i++) {
+					if (aSelect[i].checked==true) {
+						aSelect[i].parentNode.parentNode.style.backgroundColor = arrColor[3];
+					}
+				};
+			}
+			
+		};
+		var aBtn = tr.getElementsByTagName('button');
+		aBtn[0].onclick = function (){ //上移
+			var thisTr = this.parentNode.parentNode;
+			if (thisTr.previousElementSibling) {
+				tbody.insertBefore(thisTr,thisTr.previousElementSibling);
+			}else{
+				tbody.appendChild(thisTr);
+			}
+			fn();
+		};
+		aBtn[1].onclick = function (){ //下移
+			var thisTr = this.parentNode.parentNode;
+			if (thisTr.nextElementSibling) {
+				tbody.insertBefore(thisTr.nextElementSibling,thisTr);
+			}else{
+				tbody.insertBefore(thisTr,tbody.firstElementChild);
+			}
+			fn();
+		};
+		aBtn[2].onclick =function(){ //删除
+			var thisTr = this.parentNode.parentNode;
+			tbody.removeChild(thisTr);
+			fn();
+		}
+
+	}
+
+	//批量删除
+	deleteAll.onclick = function(){
+		var i = aSelect.length-1;
+		while(i>=0){
+			if(aSelect[i].checked){
+				tbody.removeChild(aSelect[i].parentNode.parentNode);
+			}
+			i--;
+		};
+		fn();
+		// for (var i = aSelect.length-1; i >= 0; i--) {
+		// 	if(aSelect[i].checked){
+		// 		tbody.removeChild(aSelect[i].parentNode.parentNode);
+		// 	}
+		// }
+	}
 	
 }
 </script>
@@ -84,8 +210,8 @@ window.onload = function(){
 			<option>编号</option>
 			<option>年龄</option>
 		</select>
-		<label for="style">请选择排序方式：</label>
-		<select id="style">
+		<label for="way">请选择排序方式：</label>
+		<select id="way">
 			<option>升序</option>
 			<option>降序</option>
 		</select>
@@ -95,7 +221,7 @@ window.onload = function(){
 	<table>
 		<thead>
 			<tr>
-				<th>全选<input type="checkbox"></th>
+				<th>全选<input type="checkbox" id="selectAll"></th>
 				<th>编号</th>
 				<th>姓名</th>
 				<th>性别</th>
@@ -106,7 +232,7 @@ window.onload = function(){
 		<tbody>
 			<!-- <tr>
 				<td><input type="checkbox"></td>
-				<td>1</td>
+				<td>6</td>
 				<td>leo</td>
 				<td>男</td>
 				<td>12</td>
@@ -126,6 +252,30 @@ window.onload = function(){
 				<td>小美</td>
 				<td>女</td>
 				<td>23</td>
+				<td><button>上移</button><button>下移</button><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td>leo</td>
+				<td>男</td>
+				<td>12</td>
+				<td><button>上移</button><button>下移</button><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>5</td>
+				<td>leo</td>
+				<td>男</td>
+				<td>82</td>
+				<td><button>上移</button><button>下移</button><button>删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>7</td>
+				<td>leo</td>
+				<td>男</td>
+				<td>19</td>
 				<td><button>上移</button><button>下移</button><button>删除</button></td>
 			</tr> -->
 		</tbody>
