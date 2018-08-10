@@ -1,10 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>淘宝商品广告效果</title>
+<meta charset="UTF-8">
+<title>淘宝商品广告效果</title>
+<style type="text/css">
+body {margin: 0;background-color: #000;}
+ul {list-style: none;margin: 0;padding: 0;}
+img {border:none;vertical-align: top;}
+.bg {width: 306px;height: 220px;background-color: #fff;margin: 200px auto 0;padding: 10px;}
+.box {width: 298px;height: 212px;border:1px solid #ff6300;padding: 3px;}
+.box img {width: 184px;height: 208px;margin: 2px 3px;}
+.box .list {display: inline-block;width: 54px;}
+.box .list li {width: 48px;height: 26px;font-size:12px;line-height: 26px; color:#000;border:1px solid #ffadad;margin: 2px;text-align: center;background: url(./images/img25/bg.gif) repeat-x;}
+.box .list .active {color:#fff;background-position: 0 -26px; }
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var box = document.getElementsByClassName('box')[0];
+	var oImg = box.getElementsByTagName('img')[0];
+	var aLi = box.getElementsByTagName('li');
+	var arrSrc = [
+		'./images/img25/img1_1.gif',
+		'./images/img25/img1_2.gif',
+		'./images/img25/img1_3.gif',
+		'./images/img25/img1_4.gif',
+		'./images/img25/img1_5.gif',
+		'./images/img25/img1_6.gif',
+		'./images/img25/img1_7.gif',
+		'./images/img25/img2_1.gif',
+		'./images/img25/img2_2.gif',
+		'./images/img25/img2_3.gif',
+		'./images/img25/img2_4.gif',
+		'./images/img25/img2_5.gif',
+		'./images/img25/img2_6.gif',
+		'./images/img25/img2_7.gif',
+	];
+	var num = 0;
+	var onOff = true;
+
+	//初始化
+	function fn(num){
+		oImg.src = arrSrc[num];
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].className = '';
+		}
+		aLi[num].className = 'active';
+		
+	}
+	var timer = setInterval(function(){ //开启定时器
+		fn(num);
+		if (onOff == true) {
+			if(num < aLi.length-1){
+				num++;
+			}else{
+				onOff = false;
+			}
+		}else{
+			if (num > 0) {
+				num--;
+			}else{
+				onOff = true;
+			}
+		}
+		
+	},1000);
+
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].index = i;
+	}
+
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].onmouseover = function(){//鼠标移到哪个li上，就切换哪个
+			num = this.index;
+			fn(num);
+		}
+	}
+
+	box.onmouseover = function(){ //鼠标移入此区域，清除定时器
+		clearInterval(timer);
+	};
+	box.onmouseout = function(){
+		timer = setInterval(function(){ //鼠标移出此区域，开启定时器
+			fn(num);
+			if (onOff == true) {
+				if(num < aLi.length-1){
+					num++;
+				}else{
+					onOff = false;
+				}
+			}else{
+				if (num > 0) {
+					num--;
+				}else{
+					onOff = true;
+				}
+			}
+		
+		},1000);
+	};
+
+}
+</script>
 </head>
 <body>
-	
+<div class="bg">
+	<div class="box">
+		<ul class="list">
+			<li class="active">连衣裙</li>
+			<li>雪纺</li>
+			<li>T恤</li>
+			<li>铅笔裤</li>
+			<li>婚纱</li>
+			<li>外套</li>
+			<li>连体裤</li>
+		</ul
+		><img src="./images/img25/img1_1.gif"
+		><ul class="list">
+			<li>包包</li>
+			<li>凉鞋</li>
+			<li>单鞋</li>
+			<li>太阳镜</li>
+			<li>丝袜</li>
+			<li>帆布鞋</li>
+			<li>情侣装</li>
+		</ul>
+	</div>
+</div>
 </body>
 </html>
