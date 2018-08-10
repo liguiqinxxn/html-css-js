@@ -7,42 +7,122 @@
 body {margin: 0;background-color: #000;}
 ul {margin: 0;padding: 0;list-style: none;}
 a {text-decoration: none;}
-.bg {width: 650px;height: 450px;background-color: #fff;margin: 200px auto;}
-.conment {width: 590px;height: 390px;margin: 0 auto;border:1px solid #393139;padding: 10px;position: relative;top: 20px;}
-.conment #tabs {width: 500px;height: 30px;}
+.bg {width: 720px;height: 450px;background-color: #fff;margin: 200px auto;}
+.conment {width: 660px;height: 390px;margin: 0 auto;border:1px solid #393139;padding: 10px;position: relative;top: 20px;}
+.conment #tabs {width: 500px;height: 52px;}
 .conment #tabs ul {}
-.conment #tabs li {width: 80px;height: 30px;background-color: #94ffc6;display: inline-block;}
-.conment #tabs a {font-size: 15px;line-height: 30px;}
-.conment img {}
-.conment #list {}
-.conment #list ul {}
-.conment #list li {}
-.conment #list a {}
+.conment #tabs li {display: inline-block;margin: 1px;text-align: center;background-color: #94ffc6;color: #000;}
+.conment #tabs .active{background-color: #005a63;color: #fff;}
+.conment #tabs a {width: 150px;height: 50px;font-size: 20px;line-height: 50px;display: inline-block;}
+.conment #img {width: 500px;height: 313px;float: left;}
+.conment #list {height: 313px;display: inline-block;}
+.conment #list ul {width: 150px;}
+.conment #list li {width: 150px;height: 100px;text-align: center;margin: 3px 0;}
+.conment #list a {width: 150px;height: 100px;font-size: 30px;line-height: 100px;background-color: #f7f7f7;display: inline-block;}
+.conment #list .active {background-color: #639cc6;color:#fff;}
 </style>
+<script type="text/javascript">
+window.onload = function(){
+	var con = document.getElementsByClassName('conment')[0];
+	var Img = document.getElementById('img');
+	var oTab = document.getElementById('tabs');
+	var list = document.getElementById('list');
+	
+	var aLi = list.getElementsByTagName('li');
+	var aUl = list.getElementsByTagName('ul');
+	var aTab = oTab.getElementsByTagName('li');
+	var arrImg = ['images/img24/1.jpg','images/img24/2.jpg','images/img24/3.jpg','images/img24/4.jpg','images/img24/5.jpg','images/img24/6.jpg'];
+	var num = 0;
+
+	//初始化
+	function  fn(num){
+		Img.src = arrImg[num];
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].firstElementChild.className = '';
+		}
+		aLi[num].firstElementChild.className = 'active';
+		if (num < 3) {
+			aTab[0].firstElementChild.className = 'active';
+			aTab[1].firstElementChild.className = '';
+			aUl[0].style.display = 'inline-block';
+			aUl[1].style.display = 'none';
+
+		}else{
+			aTab[0].firstElementChild.className = '';
+			aTab[1].firstElementChild.className = 'active';
+			aUl[0].style.display = 'none';
+			aUl[1].style.display = 'inline-block';
+		}
+	
+	}
+	
+	var timer = setInterval(function(){ //开启定时器
+		fn(num);
+		if (num < arrImg.length-1) {
+			num++;
+		}else{
+			num=0;
+		}
+	
+	},1000);
+
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].index = i ; //给li添加自定义属性
+	};
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].onmouseover = function(){ //鼠标移入哪个li中就显示对应的图片
+			num = this.index;
+			fn(num);
+		};
+	};
+	aTab[0].onclick = function(){ //点击菜单一，默认选中菜单一的第一个图片
+		num = 0;
+		fn(num);
+	}
+	aTab[1].onclick = function(){ //点击菜单二，默认选中菜单二的第一个图片
+		num = 3;
+		fn(num);
+	}
+	con.onmouseover = function(){  //鼠标移入此区域，清除定时器
+		clearInterval(timer);
+	}
+	con.onmouseout = function(){  //鼠标移出此区域，开启定时器
+		timer = setInterval(function(){
+			fn(num);
+			if (num < arrImg.length-1) {
+				num++;
+			}else{
+				num=0;
+			}
+		
+		},1000);
+	};
+
+}
+	
+</script>
 </head>
 <body>
 <div class="bg">
 	<div class="conment">
 		<div id="tabs">
 			<ul >
-				<li><a href="#">菜单一</a></li
+				<li ><a class="active" href="#">菜单一</a></li
 				><li><a href="#">菜单二</a></li>
 			</ul>
 		</div>
-		<img src="images/img24/1.jpg" >
+		<img id='img' src="images/img24/1.jpg" >
 		<div id="list">
 			<ul>
-				<li><a href="">图片1</a></li>
+				<li><a class='active'href="">图片1</a></li>
 				<li><a href="">图片2</a></li>
 				<li><a href="">图片3</a></li>
 			</ul>
-			<ul>
+			<ul style="display: none;">
 				<li><a href="">图片4</a></li>
 				<li><a href="">图片5</a></li>
 				<li><a href="">图片6</a></li>
 			</ul>
-
-
 		</div>
 	</div>
 </div>
