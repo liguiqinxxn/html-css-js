@@ -46,3 +46,28 @@ function doMove ( obj, attr, dir, target, endFn ) {
 	}, 30);
 }
 
+function shake ( obj, attr, endFn ) { //对象抖动
+	if(!obj.onoff){
+		var pos = parseInt( getStyle(obj, attr) );
+		var arr = [];// 20, -20, 18, -18 ..... 0
+		var timer = null;
+		var num = 0;
+			
+		for ( var i=20; i>0; i-=2 ) {
+			arr.push( i, -i );
+		}
+		arr.push(0);
+			
+		clearInterval( obj.shake );
+		obj.shake = setInterval(function (){
+			obj.style[attr] = pos + arr[num] + 'px';
+			num++;
+			if ( num === arr.length ) {
+				clearInterval( obj.shake );
+				endFn && endFn();
+				obj.onoff = false;
+			}
+		}, 50);
+		obj.onoff = true;
+	}
+}

@@ -6,44 +6,10 @@
 <style>
 img { width:100px; height:100px; position:absolute; top:200px; }
 </style>
+<script src="my.js"></script>
 <script>
-	var onoff = true;
-	// var num = 0;
-
-function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
-
-function shake ( obj, attr, endFn ) {
-	if( obj.onoff){
-		var pos = parseInt( getStyle(obj, attr) );// 有隐患的
-		var arr = [];// 20, -20, 18, -18 ..... 0
-		var timer = null;
-		var num = 0;
-			
-		for ( var i=20; i>0; i-=2 ) {
-			arr.push( i, -i );
-		}
-		arr.push(0);
-			
-		clearInterval( obj.shake );
-		obj.shake = setInterval(function (){
-			obj.style[attr] = pos + arr[num] + 'px';
-			num++;
-			if ( num === arr.length ) {
-				clearInterval( obj.shake );
-				endFn && endFn();
-				obj.onoff = true;
-			}
-		}, 50);
-		obj.onoff = false;
-	}
-}
-
 window.onload = function () {
 	var aImg = document.getElementsByTagName('img');
-	for (var i = 0; i < aImg.length; i++) {
-		aImg[i].onoff = true;
-	}
-	
 	for ( var i=0; i<aImg.length; i++ ) {
 		aImg[i].style.left = 80+i*110 + 'px';
 		
