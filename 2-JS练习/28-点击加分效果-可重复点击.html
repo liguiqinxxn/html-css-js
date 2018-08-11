@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+	body{
+		margin: 0;
+	}
+	div{
+		display: inline-block;
+		width: 500px;
+		height: 50px;
+		border:1px solid #000;
+		font-size: 0px;
+		position: relative;
+		top: 150px;
+		left: 100px;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 0px;
+		height: 50px;
+		font-size: 0px;
+		position: relative;
+		background-color: rgba(2,191,184,0);
+	}
+	li{
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		font-size: 18px;
+		line-height: 50px;
+		position: absolute;
+		top: 0px;
+	}
+</style>
+<script src="my.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var len = aLi.length;
+	var num = 0;
+	var num2 = 0;
+
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].style.left = i*50 +'px';
+	}
+	oUl.onclick = function(){
+		if (!oUl.onoff) {
+			oUl.onoff = true;
+			backgroundColorRGBA(oUl, 10, 100);
+			doMove(oUl, 'width', 50, 500);
+			clearInterval( oUl.timer );
+			oUl.timer = setInterval( function (){
+				doMove( aLi[num], 'top', 23, -150,function(){
+					opacity(aLi[num2], 12, 0);	
+					num2++;
+					if (num2 == len ) {
+						num2 = 0;
+						backgroundColorRGBA(oUl, 10, 0);
+							var fntimer = setTimeout(fn,1000);
+					}
+
+				});
+				num ++;
+				if ( num === len ) {
+					clearInterval( oUl.timer );
+					num = 0;
+				}
+			}, 100 );
+
+		}
+			
+	};
+
+	function fn(){
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].style.top = '0px';
+			aLi[i].style.opacity = 1;
+			oUl.onoff = false;
+			oUl.style.width = '0px';
+			oUl.style.backgroundColor = 'rgba(2,191,184,0)';
+		}
+	}
+ 
+}
+</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+			<li>+1</li>
+		</ul>
+	</div>
+	
+	
+</body>
+</html>
