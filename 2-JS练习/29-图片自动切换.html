@@ -1,10 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+	body {
+		margin: 0;
+		background-color: #000;
+	}
+	p, h3 {
+		margin: 0;
+	}
+	.box {
+		width: 504px;
+		height: 304px;
+		margin: 200px auto 0;
+		position: relative;
+		overflow: hidden;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 500px;
+		height: 300px;
+		border:2px solid #fff;
+		overflow: hidden;
+		position: relative;
+	}
+	li {
+		width: 500px;
+		height: 300px;
+		position: absolute;
+	}
+	.content{
+		width: 500px;
+		height: 80px;
+		position: absolute;
+		bottom: -80px;
+		overflow: hidden;
+		color: #fff;
+	}
+	.content div {
+		width: 500px;
+		height: 80px;
+		padding: 5px;
+		display: none;
+		background-color: rgba(0,0,0,0.5);
+	}
+	.content div h3 {
+		font-size: 16px;
+		line-height: 30px;
+	}
+	.content div p {
+		font-size: 14px;
+		line-height: 20px;
+		text-indent: 2em;
+	}
+</style>
+<script src="my.js"></script>
+<script>
+	window.onload = function (){
+		var oUl = document.getElementsByTagName('ul')[0];
+		var aLi = oUl.getElementsByTagName('li');
+		var oCon = document.getElementsByClassName('content')[0];
+		var aDiv = oCon.getElementsByTagName('div');
+		var len = aLi.length;
+		var num = 0;
+		var timer1 = null;
+
+		//初始化li
+		function fn(){
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].style.left = i*500 +'px' ;
+			}
+		}
+		fn();
+
+		function once(){
+			clearInterval(timer1);
+			timer1 = setInterval(function(){
+				for (var i = 0; i < aDiv.length; i++) {
+					aDiv[i].style.display = 'none';
+				}
+				aDiv[num].style.display = 'block';
+
+				for (var i = 0; i < len; i++) {
+					var target = parseInt(getStyle(aLi[i],'left')) -500; //获取当前li的目标位置
+					doMove(aLi[i],'left',20,target);
+
+					if (i == len -1) {
+						num++; //执行完一次切换num加1，用来计数
+						var movetimer = setTimeout(function(){ //div 上移和下移
+							doMove(oCon,'bottom',10,0,function(){
+								var timer3 = setTimeout(function(){
+									doMove(oCon,'bottom',10,-80,once);
+								},500);
+							});
+						},2200); //要在li完全移入时执行div上移下移操作
+					}
+				};
+
+				if (num == len-1) {
+					num = 0; //初始化num
+					var fntimer = setTimeout(fn,4000);//初始化时间要在div执行完隐藏后初始化
+				}
+				
+			},4000);
+		}
+		once();
+
+	}
+</script>
 </head>
 <body>
-	
+	<div class="box">
+		<ul>
+			<li><img src="./images/img29/img5.gif"></li>
+			<li><img src="./images/img29/img1.gif"></li>
+			<li><img src="./images/img29/img2.gif"></li>
+			<li><img src="./images/img29/img3.gif"></li>
+			<li><img src="./images/img29/img4.gif"></li>
+			<li><img src="./images/img29/img5.gif"></li>
+		</ul>
+		<div class="content">
+			<div>
+				<h3>辣爸荧幕成绩单1</h3>
+				<p>辣爸荧幕成绩单《爸爸，去哪儿？》今晚又要来了，你看过这些爸爸们的电影了么？</p>
+			</div>
+			<div>
+				<h3>辣爸荧幕成绩单2</h3>
+				<p>辣爸荧幕成绩单《爸爸，去哪儿？》今晚又要来了，你看过这些爸爸们的电影了么？</p>
+			</div>
+			<div>
+				<h3>辣爸荧幕成绩单3</h3>
+				<p>辣爸荧幕成绩单《爸爸，去哪儿？》今晚又要来了，你看过这些爸爸们的电影了么？</p>
+			</div>
+			<div>
+				<h3>辣爸荧幕成绩单4</h3>
+				<p>辣爸荧幕成绩单《爸爸，去哪儿？》今晚又要来了，你看过这些爸爸们的电影了么？</p>
+			</div>
+			<div>
+				<h3>辣爸荧幕成绩单5</h3>
+				<p>辣爸荧幕成绩单《爸爸，去哪儿？》今晚又要来了，你看过这些爸爸们的电影了么？</p>
+			</div>
+		</div>
+	</div>		
 </body>
 </html>
