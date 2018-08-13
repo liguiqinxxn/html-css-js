@@ -12,11 +12,12 @@
 		margin: 0;
 	}
 	.box {
-		width: 504px;
-		height: 304px;
+		width: 500px;
+		height: 300px;
 		margin: 200px auto 0;
 		position: relative;
 		overflow: hidden;
+		border:2px solid #fff;
 	}
 	ul {
 		list-style: none;
@@ -24,9 +25,8 @@
 		padding: 0;
 		width: 500px;
 		height: 300px;
-		border:2px solid #fff;
-		overflow: hidden;
 		position: relative;
+		left: 0;
 	}
 	li {
 		width: 500px;
@@ -78,35 +78,28 @@
 		fn();
 
 		function once(){
-			clearInterval(timer1);
-			timer1 = setInterval(function(){
-				for (var i = 0; i < aDiv.length; i++) {
-					aDiv[i].style.display = 'none';
-				}
-				aDiv[num].style.display = 'block';
+			for (var i = 0; i < aDiv.length; i++) {
+				aDiv[i].style.display = 'none';
+			}
+			aDiv[num].style.display = 'block';
+			var target = parseInt(getStyle(oUl,'left')) -500;
+			doMove(oUl,'left',20,target,function(){
+				doMove(oCon,'bottom',10,0,function(){
+					oCon.timer = setTimeout(function(){  //让div停留一秒
+						doMove(oCon,'bottom',10,-80,once);
+					},1000);
+					
+				});
+			});
+			num++;
 
-				for (var i = 0; i < len; i++) {
-					var target = parseInt(getStyle(aLi[i],'left')) -500; //获取当前li的目标位置
-					doMove(aLi[i],'left',20,target);
-
-					if (i == len -1) {
-						num++; //执行完一次切换num加1，用来计数
-						var movetimer = setTimeout(function(){ //div 上移和下移
-							doMove(oCon,'bottom',10,0,function(){
-								var timer3 = setTimeout(function(){
-									doMove(oCon,'bottom',10,-80,once);
-								},500);
-							});
-						},2200); //要在li完全移入时执行div上移下移操作
-					}
-				};
-
-				if (num == len-1) {
-					num = 0; //初始化num
-					var fntimer = setTimeout(fn,4000);//初始化时间要在div执行完隐藏后初始化
-				}
+			if (num == len -1) {
+				num = 0; //初始化num
+				oUl.timer = setTimeout(function(){ //让div隐藏后再初始化ul
+					oUl.style.left = '0px';
+				},3000);
 				
-			},4000);
+			}
 		}
 		once();
 
