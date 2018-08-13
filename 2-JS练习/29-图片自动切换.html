@@ -81,7 +81,7 @@
 				aDiv[i].style.display = 'none';
 			}
 			aDiv[num].style.display = 'block';
-			var target = parseInt(getStyle(oUl,'left')) -500;
+			var target = parseInt(getStyle(oUl,'left')) - 500;
 			doMove(oUl,'left',20,target,function(){
 				doMove(oCon,'bottom',10,0,function(){
 					oCon.timer = setTimeout(function(){  //让div停留一秒再隐藏
