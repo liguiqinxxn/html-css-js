@@ -22,6 +22,7 @@
 		height: 260px;
 		background-color: #fff;
 		margin: 200px auto 0;
+		position: relative;
 	}
 	#tab {
 		width: 700px;
@@ -42,25 +43,38 @@
 	}
 	#tab ul {
 		display: inline-block;
-		height: 38px;
+		height: 30px;
 		font-size: 0px;
-		margin-top:12px;
 		overflow: hidden;
+		position: absolute;
+		bottom: -2px;
 	}
 	#tab ul li {
 		display: inline-block;
-		width: 78px;
+		width: 76px;
 		height: 26px;
 		font-size: 12px;
 		color: #086ba5;
 		line-height: 28px;
 		border:1px solid #a5def7;
-		border-bottom: none;
+		margin-top: 2px;
+		border-bottom: 1px solid #73bdef;
+		text-align: center;
 		position: relative;
 		background:url(./images/img30/bg.gif) 0 -38px repeat-x;
 	}
 	#tab ul li:nth-child(1){
 		left: 1px;
+	}
+	#tab ul .active {
+		width: 82px;
+		height: 28px;
+		color: #087b00;
+		margin: 0px;
+		background: none;
+		background-color: #fff;
+		border-bottom: 1px solid #fff;
+
 	}
 	#content {
 		width: 700px;
@@ -68,11 +82,132 @@
 		border:1px solid #a5def7;
 		border-top: 1px solid #fff;
 	}
-	#content .con {}
-	#content .con div {}
-	#content .con ul {}
-	#content ul li {}
+	#content .con {
+		width: 700px;
+		height: 216px;
+	}
+	#content .con .img {
+		width: 188px;
+		height: 178px;
+		margin: 10px;
+	}
+	#content .con .list {
+		width: 476px;
+		height: 164px;
+		overflow: hidden;
+		display: inline-block;
+		margin: 10px 0;
+		position:relative; 
+	}
+	#content .list li {
+		width: 476px;
+		height: 164px;
+		position: absolute;
+	}
+	#content .list ul {
+		position: absolute;
+		left: 0px;
+	}
+	#content .con .move {
+		width: 476px;
+		height: 20px;
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+		text-align: center;
+	}
+	#content .move img {
+		display: inline-block;
+	}
+	#content .move ul {
+		display: inline-block;
+		height: 18px;
+	}
+	#content .move ul li {
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		background: url(./images/img30/dott.png) no-repeat;
+		margin: 4px 0 ;
+	}
+	#content .move ul .active {
+		background-position: 0 -10px;
+	}
 </style>
+<script src="my.js"></script>
+<script>
+	window.onload = function(){
+		var oTab = document.getElementById('tab');
+		var aTab = oTab.getElementsByTagName('li');
+		var aCon = document.getElementsByClassName('con');
+
+		for (var i = 0; i < aTab.length; i++) {
+			aTab[i].index = i; 
+		}
+
+		//切换选项卡
+		for (var i = 0; i < aTab.length; i++) {
+			aTab[i].onmouseover = function(){
+				var num = this.index;
+				for (var i = 0; i < aTab.length; i++) {
+					aTab[i].className = '';
+				}
+				this.className = 'active';
+				for (var i = 0; i < aCon.length; i++) {
+					aCon[i].style.display = 'none';
+				}
+				aCon[num].style.display = 'block';
+			}
+		}
+
+		for (var i = 0; i < aCon.length; i++) {
+			fnTab(aCon[i]);
+		}
+
+		function fnTab(obj){
+			var oUl = obj.getElementsByTagName('ul')[0];
+			var oList = obj.getElementsByClassName('list')[0];
+			var oMove = obj.getElementsByClassName('move')[0];
+			var aLi = oList.getElementsByTagName('li');
+			var aBtn = oMove.getElementsByTagName('img');
+			var aDott = oMove.getElementsByTagName('li');
+			var num = 0;
+			var len = aLi.length;
+			// console.log(len);
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].style.left = i*476 +'px';
+			};
+			aBtn[0].onclick = function(){ //上一页
+				if (num > 0) {
+					var target = parseInt(getStyle(oUl,'left')) + 476;
+					// console.log(target);
+					doMove ( oUl, 'left', 20, target);
+					num--;
+					// console.log(num);
+					for (var i = 0; i < len; i++) {
+						aDott[i].className = '';
+					}
+					aDott[num].className = 'active';
+				}
+			};
+			aBtn[1].onclick = function(){	//下一页
+				if (num < len-1) {
+					var target = parseInt(getStyle(oUl,'left')) - 476;
+					// console.log(target);
+					doMove ( oUl, 'left', 20, target);
+					num++;
+					// console.log(num);
+					for (var i = 0; i < len; i++) {
+						aDott[i].className = '';
+					}
+					aDott[num].className = 'active';
+				}
+			};
+			
+		}
+
+	}
+</script>
 </head>
 <body>
 	<div id="box">
@@ -80,7 +215,7 @@
 			<div>
 				<img src="./images/img30/logo.png" alt="">
 				<ul>
-					<li>新品</li>
+					<li class="active">新品</li>
 					<li>极客</li>
 				</ul>
 			</div>
@@ -88,18 +223,42 @@
 
 		<div id="content">
 			<div class="con">
-				<div></div>
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
+				<img class="img" src="./images/img30/img1.gif">
+				<div class="list">
+					<ul>
+						<li><img src="./images/img30/img1_1.gif"></li>
+						<li><img src="./images/img30/img1_1.gif"></li>
+						<li><img src="./images/img30/img1_1.gif"></li>
+					</ul>
+				</div>
+				
+				<div class="move">
+					<img src="./images/img30/pre.gif">
+					<ul>
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+					</ul>
+					<img src="./images/img30/next.gif">
+				</div>
 			</div>
-			<div class="con">
-				<div></div>
-				<ul>
-					<li></li>
-				</ul>
+			<div class="con" style="display: none;">
+				<img class="img" src="./images/img30/img2.gif">
+				<div class="list">
+					<ul>
+						<li><img src="./images/img30/img2_1.gif"></li>
+						<li><img src="./images/img30/img2_1.gif"></li>
+					</ul>
+				</div>
+					
+				<div class="move">
+					<img src="./images/img30/pre.gif">
+					<ul>
+						<li class="active"></li>
+						<li></li>
+					</ul>
+					<img src="./images/img30/next.gif">
+				</div>
 			</div>
 		</div>
 	</div>
