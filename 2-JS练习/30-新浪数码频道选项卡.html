@@ -173,34 +173,37 @@
 			var aDott = oMove.getElementsByTagName('li');
 			var num = 0;
 			var len = aLi.length;
+			var onoff = true;
 			// console.log(len);
 			for (var i = 0; i < aLi.length; i++) {
 				aLi[i].style.left = i*476 +'px';
 			};
 			aBtn[0].onclick = function(){ //上一页
-				if (num > 0) {
+				if (num > 0 && onoff) {
+					onoff = false;
 					var target = parseInt(getStyle(oUl,'left')) + 476;
-					// console.log(target);
-					doMove ( oUl, 'left', 50, target);
 					num--;
-					// console.log(num);
 					for (var i = 0; i < len; i++) {
 						aDott[i].className = '';
 					}
 					aDott[num].className = 'active';
+					doMove ( oUl, 'left', 50, target,function(){
+						onoff = true;
+					});
 				}
 			};
 			aBtn[1].onclick = function(){	//下一页
-				if (num < len-1) {
+				if (num < len-1 && onoff) {
+					onoff = false;
 					var target = parseInt(getStyle(oUl,'left')) - 476;
-					// console.log(target);
-					doMove ( oUl, 'left', 50, target);
 					num++;
-					// console.log(num);
 					for (var i = 0; i < len; i++) {
 						aDott[i].className = '';
 					}
 					aDott[num].className = 'active';
+					doMove ( oUl, 'left', 50, target,function(){
+						onoff = true;
+					});
 				}
 			};
 			
