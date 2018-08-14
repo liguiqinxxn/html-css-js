@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>时间扩展版</title>
+<style>
+	body {
+		margin: 0;
+		background-color: #000;
+		font-size: 0px;
+	}
+	img {
+		border:none;
+		vertical-align: top;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.box {
+		width: 408px;
+		height: 70px;
+		background-color: #fff;
+		margin: 200px auto 0;
+		padding: 4px 4px;
+	}
+	.box ul {
+		width: 408px;
+		height: 70px;
+		overflow: hidden;
+		position: relative;
+	}
+	.box li {
+		width: 51px;
+		height: 140px;
+		display: inline-block;
+		overflow: hidden;
+		text-align: center;
+		position: absolute;
+		top: 0px;
+	}
+	.box img {
+		width: 52px;
+		height: 70px;
+	}
+</style>
+<script src="my.js"></script>
+<script>
+	window.onload = function(){
+		var oUl = document.getElementsByTagName('ul')[0];
+		var aLi = oUl.getElementsByTagName('li');
+		var aNum = oUl.getElementsByClassName('num');
+		var str = null;
+		var next = 1;
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].style.left = i*51 + 'px';
+		}
+
+		var timer = setInterval(function(){
+			fn();
+		},1000);
+		// fn();
+		function fn(){
+			var myTime = new Date();
+			var iHours = myTime.getHours();
+			var iMin = myTime.getMinutes();
+			var iSec = myTime.getSeconds();
+			str = toTwo(iHours)+toTwo(iMin)+toTwo(iSec);
+			for (var i = 0; i < aNum.length; i++) {
+				aNum[i].index = i;
+				fnTab(aNum[i],str);
+			};
+		}
+
+		function fnTab(obj , str){
+			var num = obj.index;
+			var aImg = obj.getElementsByTagName('img');
+			obj.now = parseInt(str.charAt(num));
+			if (obj.now == 9) {
+				obj.next = 0;
+			}else{
+				obj.next = obj.now+1;
+			}
+			obj.style.top = '0px';
+			aImg[0].src = './images/img31/' + obj.now +'.jpg';
+			aImg[1].src = './images/img31/' + obj.next +'.jpg';
+			
+			if (obj.now != obj.old) {
+				obj.old = obj.now;
+				doMove(obj,'top',10,-70);
+
+			}
+		}
+
+		function toTwo( n ){
+			return n < 10 ? '0'+ n : '' + n;
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li>
+				<img src="./images/img31/colon.jpg">
+				<img src="./images/img31/colon2.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li>
+				<img src="./images/img31/colon.jpg">
+				<img src="./images/img31/colon2.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
