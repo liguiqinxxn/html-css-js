@@ -5,28 +5,170 @@
 <title>倒计时抢购商品</title>
 <style>
 	body {margin: 0;background-color: #000;}
-	p, h3 {margin: 0;}
+	p, h3 ,hr {margin: 0;}
 	ul {list-style: none;margin: 0;padding: 0;}
-	.box {width: 650px;height: 610px;background-color: #fff;margin: 100px auto 0;padding: 5px;}
+	img {border: none;vertical-align: top;}
+	.box {width: 650px;min-height: 610px;background-color: #fff;margin: 100px auto 0;padding: 5px;}
+	.box h3 {color: #636b52;font-size: 14px;line-height: 30px;}
+	.box hr {background-color: #a0a0a4;height: 0px;}
+	#a1 {}
+	#a1 ul {font-size: 0px;text-align: center;margin-bottom: 30px;}
+	#a1 li {width: 158px;height: 270px;border-left: 1px solid #efefef;border-right: 1px solid #efefef;display: inline-block;position: relative;background: url(./images/img32/img.gif) no-repeat;}
+	#a1 li:nth-child(1) {border-left: 1px solid #fff;}
+	#a1 li:nth-child(4) {border-right: 1px solid #fff;}
+	#a1 .list {background-color: #fff;padding: 5px;position: absolute;left: 0px; top: 0px; z-index: 999;}
+	#a1 .list input {width: 120px;height: 20px;font-size: 10px; background-color: #ded6e7;border:1px solid #efefef;display: inline-block;}
+	#a1 .list button {font-size: 12px;background-color: #fff;border: none;color: #522121;display: inline-block;padding: 0;}
+	#a1 .list em {font-size: 12px;color: #a0a0a4;line-height: 40px}
+	#a1 .list img {width: 138px;height: 138px;margin: 0px 5px 20px;}
+	#a1 .list p {font-size: 12px;color: #636373;}
+	#a1 .list strong {font-size: 12px;color: #bdadbd;}
+	#a1 .list span {color: #bd214a;}
+
+	#a2 {}
+	#a2 #title {height: 36px;background-color: #ded6e7;}
+	#a2 #title span {color: #522121;font-size: 12px;line-height: 36px;display: inline-block;font-weight: bold;text-align: center;}
+	#a2 #title span:nth-child(1) {width: 280px;}
+	#a2 #title span:nth-child(2) {width: 100px;}
+	#a2 p {color: #000;font-size: 15px;}
+	#a2 p span {color: #bd214a;}
+	#a2 ul li {height: 72px;background-color: #ded6e7;margin: 5px 0;position: relative;}
+	#a2 ul p {width: 280px;color: #292931;font-size: 12px;line-height: 72px; display: inline-block;text-indent: 10px;}
+	#a2 ul span {width: 100px;color: #522121;font-size: 12px;display: inline-block;text-align: center;}
+	#a2 ul img {width: 78px;height: 60px;border: 1px solid #8c4a4a;margin: 6px 20px 6px 100px;}
 </style>
+<script src="my.js"></script>
+<script>
+	window.onload = function(){
+		var a2 = document.getElementById('a2');
+		var oUl = a2.getElementsByTagName('ul')[0];
+		var aList = document.getElementsByClassName('list');
+
+		for (var i = 0; i < aList.length; i++) {
+			countDown(aList[i] ,i);
+		}
+
+		function countDown(obj ,n ){ //倒计时
+			var oInp = obj.getElementsByTagName('input')[0];
+			var oBtn = obj.getElementsByTagName('button')[0];
+			var oEm = obj.getElementsByTagName('em')[0];
+			var iNow = null;
+			var iNew = null;
+			var t = 0;
+
+			oBtn.onclick = function(){//点击确定按钮，获取倒计时
+				iNew = new Date(oInp.value);
+				clearInterval(aList[n].timer);
+				aList[n].timer = setInterval(function(){
+				//开启定时器，实时获取倒计时
+					iNow = new Date();
+					t = Math.floor((iNew - iNow)/1000);
+					
+					if (t >= 0) {
+						time = '剩余'+toTwo(Math.floor(t/86400))+'天'+toTwo(Math.floor(t%86400/3600))+'小时'+toTwo(Math.floor(t%86400%3600/60))+'分'+toTwo(t%60)+'秒';
+						oEm.innerHTML = time ;
+					}else{
+						CommodityFrame(n);
+						clearInterval(aList[n].timer);
+						
+					}
+				},1000);
+					
+			};
+		}
+
+		function CommodityFrame(n){//商品下架
+			shake(aList[n],'left', 4 ,function(){ //抖动
+				doMove ( aList[n], 'top', 20, 100,function(){ //下移
+					opacity(aList[n], 20, 0,function(){ //透明度
+						addUp(n);
+					});
+				});
+			});
+		}
+
+		function addUp(n){ //添加到商品列表
+			var oP = aList[n].getElementsByTagName('p')[0];
+			var oSpan = aList[n].getElementsByTagName('span')[0];
+			var oImg = aList[n].getElementsByTagName('img')[0];
+
+			var oUl = document.getElementById('addUp');
+			var total = document.getElementById('total');
+			var aSpan = oUl.getElementsByTagName('span');
+			var sum = 0;
+
+			//将下架的商品添加到下架商品列表中
+			oUl.innerHTML +='<li><p>'+oP.innerHTML+'</p><span>'+(oSpan.innerHTML.slice(1))+'</span><img src="'+oImg.src+'" alt=""></li>';
+
+			for (var i = 0; i < aSpan.length; i++) { //统计金额
+				sum += parseInt(aSpan[i].innerHTML);
+				total.innerHTML = sum;
+			}
+
+		}
+
+		function toTwo( n ){ //一位数时变成两位数
+			return n < 10 ? '0'+ n : '' + n;
+		}
+	}
+</script>
 </head>
 <body>
 <div class="box">
 	<h3>限购时间</h3>
 	<hr>
-	<div>
+	<div id="a1">
 		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			<li>
+				<div class="list">
+					<input type="text" value="August 25,2018 16:45:0">
+					<button>确定</button>
+					<em>剩余00天00小时00分00秒</em>
+					<img src="./images/img32/img1.gif" alt="">
+					<p>疯狂599，美的爆款隐藏式面板下拉门微波炉</p>
+					<strong>抢购价：<span>￥599.00</span></strong>
+				</div>	
+			</li>
+			<li>
+				<div class="list">
+					<input type="text" value="August 25,2018 16:56:0">
+					<button>确定</button>
+					<em>剩余00天00小时00分00秒</em>
+					<img src="./images/img32/img2.gif" alt="">
+					<p>疯狂599，美的爆款隐藏式面板下拉门微波炉</p>
+					<strong>抢购价：<span>￥3299.00</span></strong>
+				</div>
+			</li>
+			<li>
+				<div class="list">
+					<input type="text" value="August 31,2018 16:40:0">
+					<button>确定</button>
+					<em>剩余00天00小时00分00秒</em>
+					<img src="./images/img32/img3.gif" alt="">
+					<p>疯狂599，美的爆款隐藏式面板下拉门微波炉</p>
+					<strong>抢购价：<span>￥1.00</span></strong>
+				</div>
+			</li>
+			<li>
+				<div class="list">
+					<input type="text" value="August 18,2018 17:45:0">
+					<button>确定</button>
+					<em>剩余00天00小时00分00秒</em>
+					<img src="./images/img32/img4.gif" alt="">
+					<p>疯狂599，美的爆款隐藏式面板下拉门微波炉</p>
+					<strong>抢购价：<span>￥168.00</span></strong>
+				</div>
+			</li>
 		</ul>
 	</div>
-	<div>
-		<title>
+	<div id="a2">
+		<div id="title">
 			<span>商品名称</span> <span>价钱</span>
-		</title>
-		<p>总价：<span>0</span>元</p>
+		</div>
+		<ul id='addUp'>
+			
+		</ul>
+		<p>总价：<span id="total">0</span>元</p>
 	</div>
 </div>
 </body>

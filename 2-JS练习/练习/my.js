@@ -46,14 +46,16 @@ function doMove ( obj, attr, dir, target, endFn ) {
 	}, 100);
 }
 
-function shake ( obj, attr, endFn ) { //对象抖动
+function shake ( obj, attr,dir,endFn ) { //对象抖动
 	if(!obj.onoff){
 		var pos = parseInt( getStyle(obj, attr) );
 		var arr = [];// 20, -20, 18, -18 ..... 0
 		var timer = null;
 		var num = 0;
-			
-		for ( var i=20; i>0; i-=2 ) {
+		if (!dir) {
+			var dir = 20;
+		}
+		for ( var i=dir; i>0; i-=2 ) {
 			arr.push( i, -i );
 		}
 		arr.push(0);
