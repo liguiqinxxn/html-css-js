@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>时间扩展版</title>
+<style>
+	body {
+		margin: 0;
+		background-color: #000;
+		font-size: 0px;
+	}
+	img {
+		border:none;
+		vertical-align: top;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.box {
+		width: 408px;
+		height: 70px;
+		background-color: #fff;
+		margin: 200px auto 0;
+		padding: 4px 4px;
+	}
+	.box ul {
+		width: 408px;
+		height: 70px;
+		overflow: hidden;
+		position: relative;
+	}
+	.box li {
+		width: 51px;
+		height: 140px;
+		display: inline-block;
+		overflow: hidden;
+		text-align: center;
+		position: absolute;
+		top: 0px;
+	}
+	.box img {
+		width: 52px;
+		height: 70px;
+	}
+</style>
+<script src="my.js"></script>
+<script>
+	window.onload = function(){
+		var oUl = document.getElementsByTagName('ul')[0];
+		var aLi = oUl.getElementsByTagName('li');
+		var aNum = oUl.getElementsByClassName('num');
+		var aDott = oUl.getElementsByClassName('img');
+		var old = getTime();
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].style.left = i*51 + 'px';
+		}
+
+		for (var i = old.length - 1; i >= 0; i--) {
+			aNum[i].getElementsByTagName('img')[0].src = './images/img31/' + old[i] +'.jpg';
+		}
+
+		var timer = setInterval(function(){
+			//点的闪烁
+			for (var i = 0; i < aDott.length; i++) {
+				aDott[i].src = './images/img31/colon2.jpg';
+			}
+			//延迟半秒点的闪烁
+			setTimeout(function(){
+				for (var i = 0; i < aDott.length; i++) {
+					aDott[i].src = './images/img31/colon.jpg';
+				}
+			},500);
+
+			fnTab();
+		},1000);
+
+		function getTime(){
+			var myTime = new Date();
+			var iHours = myTime.getHours();
+			var iMin = myTime.getMinutes();
+			var iSec = myTime.getSeconds();
+			var time = toTwo(iHours)+toTwo(iMin)+toTwo(iSec);
+			return time;
+		}
+		
+		function fnTab(){
+			var time = getTime();
+			for (var i = 0; i < time.length; i++) {
+				if(time[i] !== old[i]) {
+					slied( i, time);//通过函数调用的形式执行，解决old = time会先执行的问题
+					
+					// var n = i;
+					// var aImg = aNum[n].getElementsByTagName('img');
+					// aImg[1].src = './images/img31/' + time[n] +'.jpg';
+					// doMove(aNum[n],'top',10,-70,function(){
+					// 	aImg[0].src = './images/img31/' + time[n] +'.jpg';
+					// 	aNum[n].style.top = '0px';
+
+					// });
+				}
+			};
+			old = time;
+		}
+		//图片切换
+		function slied( n, time){
+			var aImg= aNum[n].getElementsByTagName('img');
+			aImg[1].src = './images/img31/' + time[n] +'.jpg';
+			doMove(aNum[n],'top',10, -70,function(){
+				aImg[0].src = './images/img31/' + time[n] +'.jpg';
+				aNum[n].style.top = '0px';
+			});
+		}
+
+		function toTwo( n ){
+			return n < 10 ? '0'+ n : '' + n;
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li>
+				<img class="img" src="./images/img31/colon.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li>
+				<img class="img" src="./images/img31/colon.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+			<li class="num">
+				<img src="./images/img31/0.jpg">
+				<img src="./images/img31/1.jpg">
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
