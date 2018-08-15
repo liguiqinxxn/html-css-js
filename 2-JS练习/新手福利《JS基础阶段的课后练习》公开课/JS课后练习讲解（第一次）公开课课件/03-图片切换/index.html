@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/reset.css">
+	</head>
+	<body>
+		<div class="box">
+			<form class="btn1">
+				<input type="button" value="顺序播放" id="order">
+				<input type="button" value="循环播放" id="loop">
+			</form>	
+			<p id="btnDes">图片顺序播放</p>
+			<img src="img/1a.jpg" id="pic">
+			<p id="num">1/5</p>
+			<form>
+				<input type="button" value="上一张" id="forward">
+				<input type="button" value="下一张" id="next">				
+			</form>
+			<p id="p">这是第一张图片</p>			
+		</div>
+		<script>
+			var next=document.getElementById("next");
+			var forward=document.getElementById("forward");		
+			var order=document.getElementById("order");	
+			var loop=document.getElementById("loop");	
+			var pic=document.getElementById("pic");
+			var num=document.getElementById("num");
+			var p=document.getElementById("p");
+			var arr=["img/1a.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"];
+			var p1=["这是第一张图片","这是第二张图片","这是第三张图片","这是第四张图片","这是第五张图片"];
+			var btnDes=document.getElementById("btnDes");
+			var n = 0;
+			var onoff = true;//默认true记录为顺序播放模式 ，false为循环播放
+			loop.onclick = function(){
+				onoff = false; 
+			}
+			order.onclick = function(){
+				onoff = true;
+			}
+			next.onclick = function(){
+				n++;
+				if(n > arr.length-1){//当n超出合理范围
+					if(onoff){
+						//顺序播放
+						n = arr.length-1;
+						alert("已经到最后一张了");
+					}else{
+						//循环播放
+						n = 0;
+					}
+				}
+				change();
+			}
+			forward.onclick = function(){
+				n--;
+				if(n < 0){
+					if(onoff){
+						n = 0;
+						alert("已经到第一张了");
+					}else{
+						n = arr.length - 1;
+					}
+				}
+				change();
+			}
+			change();
+			function change(){//通过n值改变图片的src、p的内容、页码
+				pic.src = arr[n];
+				p.innerHTML = p1[n];
+				num.innerHTML = n+1 + "/" + arr.length;
+			}
+		</script>
+	</body>
+</html>

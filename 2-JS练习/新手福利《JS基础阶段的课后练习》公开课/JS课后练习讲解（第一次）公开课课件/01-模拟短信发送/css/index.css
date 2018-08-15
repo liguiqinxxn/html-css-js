@@ -1,0 +1,63 @@
+.box{
+	width: 236px;
+	height: 476px;
+	background:url(../img/phone.jpg) no-repeat;
+	margin:0 auto;
+	position: relative;
+}
+.box .box_cont{
+	width: 188px;
+	height: 333px;
+	position: absolute;
+	left:25px;
+	top: 71px;
+	
+}
+.box_cont #cont{
+	width: 188px;
+	height: 294px;
+	border-bottom: 1px solid #c7cbca;
+	overflow: auto;
+	
+}
+.box_cont .more{
+	height: 33px;
+	padding-top:5px;
+}
+.more #people{
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	border:1px solid #c7cbca;
+	border-radius: 3px;
+	margin-left: 3px;
+	cursor: pointer;
+	float: left;
+}
+.more #text{
+	width: 111px;
+	height: 24px;
+	border:1px solid #c7cbca;
+	border-radius: 3px;
+	margin-left: 3px;
+	float: left;
+}
+.more #btn{
+	border:none;
+	background-color: white;
+	height: 24px;
+	font-size: 16px;
+	color: #979596;
+	margin-left: 3px;
+}
+
+#cont #cont_word{
+	line-height: 18px;
+	font-size: 12px;
+	background-color: yellowgreen;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}

@@ -1,0 +1,14 @@
+.box_list{
+	width: 100px;
+	height: 100px;
+	background-color: palevioletred;
+	text-align: center;
+	line-height: 100px;
+	font-size: 40px;
+	color: white;
+}
+#box{
+	position: relative;
+	width: 500px;
+	height: 500px;
+}

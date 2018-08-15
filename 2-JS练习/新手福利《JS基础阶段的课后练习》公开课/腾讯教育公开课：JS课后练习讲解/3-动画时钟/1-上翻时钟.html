@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{
+				margin: 0;
+				padding: 0;
+				position: relative;
+				height: 173px;
+				overflow: -hidden;
+			}
+			li{
+				list-style: none;
+				width: 120px;
+				height: 170px;
+				position: relative;
+				float: left;
+			}
+			div{
+				height: 340px;
+				position: absolute;
+				top: 0;
+			}
+			img{
+				width: 120px;
+				height: 170px;
+				vertical-align: top;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<img src="img/colon.jpg" alt="">
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<img src="img/colon.jpg" alt="">
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var divs = document.getElementsByTagName('div');
+
+			// var imgs = divs[5].getElementsByTagName('img');
+
+			var date = new Date();
+			var h = date.getHours();
+			var m = date.getMinutes();
+			var s = date.getSeconds();
+			// '230009'
+			var time = toTwo(h)+toTwo(m)+toTwo(s);
+			console.log(time);
+			// s = s+'';
+			// console.log(s);
+			// imgs[0].src = 'img/'+s[1]+'.jpg';
+
+			for(var i=0;i<time.length;i++){
+				slied(i,time)
+			}
+			function slied(n,time){
+				var imgs = divs[n].getElementsByTagName('img');
+				imgs[0].src = 'img/'+time[n]+'.jpg';
+			}
+
+
+			//补零
+			function toTwo(n){
+				return n<10?'0'+n:''+n;
+			}
+
+
+			function move(obj,attr,target,duration,callback){
+				var b = parseFloat(getComputedStyle(obj)[attr]);
+				var c = target - b;
+				var d = duration;
+				var now = new Date().getTime();
+				obj[attr] = setInterval(function(){
+					var t = new Date().getTime() - now;
+					var value = b + c / d * t;
+					obj.style[attr] = value+"px";
+					if(t >= d){
+						clearInterval(obj[attr]);
+						obj.style[attr] = target+"px";
+						callback&&callback();//当到达目标值的时候执行回调函数
+					}
+				},30)
+			}
+		</script>
+	</body>
+</html>
+
+
+
+

@@ -1,0 +1,12 @@
+body,p{
+	margin: 0;
+	padding: 0;
+}
+img{
+	vertical-align: top;
+	border: none;
+}
+input{
+	padding: 0;
+	border: none;
+}

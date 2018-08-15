@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#wrap{
+				width: 500px;
+				height: 500px;
+				border: 1px solid #000;
+				background-image: url(img/1.jpg);
+				background-size: 500px 500px;
+				position: relative;
+			}
+			#wrap div{
+				width: 50px;
+				height: 50px;
+				background-image: url(img/2.jpg);
+				background-size:50px 50px;
+				position: absolute;
+				transition: 1s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap"></div>
+		<script>
+			/*
+			i	l	t	
+			0	0	0
+			1	50	0
+			2	100	0
+			3	150	0
+			4	200	0
+			5	250	0
+			6	300
+			7	350
+			8	400
+			9	450	0
+			10 	0	50
+			11	50	50
+			19		50
+			20		100
+			
+			
+			10%10 = 0
+			11%10 = 1
+			12%10 = 2
+			20%10 = 0
+			
+			5/10  0.5 向下取整   0
+			19/10 1.9 向下取整  1
+			
+			*/
+			var wrap = document.getElementById("wrap");
+			var str = "";
+			var l = 0;
+			var t = 0;
+		    for(var i = 0;i<100;i++){
+		    	l = (i%10)*50;
+		    	t = Math.floor(i/10) * 50;
+		    	str += "<div style='left:"+l+"px;top:"+t+"px;'></div>";
+		    }
+		    wrap.innerHTML = str;
+		    var divs = wrap.getElementsByTagName("div");
+		    for(var i = 0;i<100;i++){
+		    	divs[i].onmouseover = function(){
+		    		this.style.transform = "scale(0)";
+		    		this.style.opacity = 0;
+		    	}
+		    }
+		</script>
+	</body>
+</html>

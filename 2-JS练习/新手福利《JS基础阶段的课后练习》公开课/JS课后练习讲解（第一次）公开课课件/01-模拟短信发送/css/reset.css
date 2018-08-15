@@ -1,0 +1,13 @@
+ul,li{
+	padding:0px;
+	margin:0px;
+}
+li{
+	list-style: none;
+}
+input{
+	padding:0px;
+}
+s{
+	text-decoration: none;
+}

@@ -1,0 +1,51 @@
+.box img{
+	width: 300px;
+	height: 300px;
+}
+.box{
+	margin: 0 auto;
+	position: relative;
+	width: 300px;
+}
+.box input{
+	width: 70px;
+	font-size: 12px;
+	background-color: #8E8E8E;
+	border:none;
+	border-radius: 4px;
+	cursor: pointer;
+	color: white;
+}
+.box #p{
+	width: 300px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 16px;
+	color: black;
+	background-color: white;
+	opacity: 0.5;
+	position: absolute;
+	bottom: 0;
+	top: 320px;
+	text-align: center;
+}
+form{
+	text-align: center;
+}
+.box #num{
+	text-align: center;
+	font-size: 14px;
+	color: gray;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+.box .btn1{
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.box #btnDes{
+	text-align: center;
+	font-size: 14px;
+	color: gray;
+	margin-bottom: 5px;
+}

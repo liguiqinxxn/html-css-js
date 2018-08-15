@@ -1,0 +1,64 @@
+body{
+	background: #333;
+}
+.box{
+	width: 800px;
+	height: 500px;
+	border: 1px solid #000000;
+	background: url(../img/bg.jpg) no-repeat;
+	background-size: 100% 100%;
+	padding-top:40px ;
+	padding-left: 30px;
+	box-sizing: border-box;
+	margin: 50px auto;
+}
+.box .btn{
+	margin-bottom: 10px;
+}
+.box .btn input{
+	width: 80px;
+	height: 20px;
+	background: rgba(220,200,230,0,5);
+	border: 1px solid #666;
+	border-radius: 5px;
+}
+.box .picture{
+	
+}
+.picture .first,.picture .second{
+	position: relative;
+}
+#f-search1,#f-search2,#s-search1,#s-search2{
+	position: absolute;
+	width: 50%;
+	height: 300px;
+	top: 20px;
+}
+#f-search1,#s-search1{
+	left: 20px;
+}
+#f-search2,#s-search2{
+	right: 20px;
+}
+.picture p{
+	font: bold 14px/30px "宋体";
+	letter-spacing: 3px;
+	color: #333;
+	text-align: center;
+}
+.picture .first,.picture .second{
+	float: left;
+	background: #fff;
+	padding: 20px;
+}
+.picture .first img{
+	width: 400px;
+	height: 300px;
+}
+.picture .first{
+	margin-right: 40px;
+}
+.picture .second img{
+	width: 220px;
+	height: 300px;
+}

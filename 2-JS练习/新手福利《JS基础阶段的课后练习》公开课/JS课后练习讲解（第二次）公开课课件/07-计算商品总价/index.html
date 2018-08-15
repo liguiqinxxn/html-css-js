@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="list">
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+				单价：<em>15</em>元；
+				小计：<strong>0</strong>元；
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+				单价：<em>10</em>元；
+				小计：<strong>0</strong>元；
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+				单价：<em>5</em>元；
+				小计：<strong>0</strong>元；
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+				单价：<em>2</em>元；
+				小计：<strong>0</strong>元；
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<span>0</span>
+				<input type="button" value="+" />
+				单价：<em>1</em>元；
+				小计：<strong>0</strong>元；
+			</li>
+		</ul>
+		<p>商品一共<span id="num">0</span>件；<br />一共花费<span id="price">0</span>元；<br />其中最贵的商品单价是<span id="max">0</span>元；</p>
+		<script>
+		    var list = document.getElementById("list");
+		    var price = document.getElementById("price");
+		    var max = document.getElementById("max");
+		    var num = document.getElementById("num");
+		    var lis = list.getElementsByTagName("li");
+		    var spans = list.getElementsByTagName("span");
+		    var ems = list.getElementsByTagName("em");
+		    var strongs = list.getElementsByTagName("strong");
+//		    alert(lis.length);
+//			tab(0);
+//			tab(1);
+//			tab(2);
+//			tab(3);
+//			tab(4);
+			for(var i= 0;i<lis.length;i++){
+				tab(i);
+			}
+			function count(){
+				var b = 0;
+				var c = 0;
+				var temp = 0; 
+				for (var i = 0; i < spans.length; i++) {
+					b += parseFloat(spans[i].innerHTML);
+					c += parseFloat(strongs[i].innerHTML);
+//					当span的值不是0的时候,才去比较em的值
+					if(spans[i].innerHTML != 0){
+						if(parseFloat(ems[i].innerHTML) > temp){
+							temp = parseFloat(ems[i].innerHTML);
+						}
+					}
+				}
+				max.innerHTML = temp;
+				num.innerHTML = b;
+				price.innerHTML = c;
+			}
+//			alert("5">"150000");
+			function tab(b){
+				var li_inps = lis[b].getElementsByTagName("input");
+				var li_span = lis[b].getElementsByTagName("span")[0];
+				var li_em = lis[b].getElementsByTagName("em")[0];
+				var li_strong = lis[b].getElementsByTagName("strong")[0];
+				var a = 0;
+				li_inps[0].onclick = function(){
+					a --;
+					if(a < 0 ){
+						a = 0;
+					}
+					li_strong.innerHTML = a * li_em.innerHTML;
+					li_span.innerHTML = a;
+					count();
+				}
+				li_inps[1].onclick = function(){
+					a ++;
+					li_strong.innerHTML = a * li_em.innerHTML;
+					li_span.innerHTML = a;
+					count();
+				}
+			}
+		</script>
+	</body>
+</html>

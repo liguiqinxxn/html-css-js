@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		p,ul{
+			margin: 0;
+			padding: 0;
+		}
+		a{
+			text-decoration: none;
+		}
+		li{
+			list-style: none;
+		}
+		div{
+			float:left;
+		}
+		#left,#right{
+			width: 300px;
+			height: 150px;
+			padding: 20px;
+			border: 5px solid #940032;
+			border-radius: 15px;
+			position: relative;
+		}
+		#right{
+			border-color: #4169E1;
+		}
+		#left span,#right span{
+			width: 80px;
+			height: 40px;
+			border-radius: 5px;
+			background-color: #4169E1;
+			position: absolute;
+			bottom: 5px;
+			left: 50%;
+			margin-left: -40px; 
+			line-height: 40px;
+			text-align: center;
+			color: white;
+		}
+		#right span{
+			background-color: #940032;
+		}
+		#center{
+			width: 70px;
+			height: 100px;
+			padding: 30px;
+			position: relative;
+		}
+		#center a{
+			width: 70px;
+			height: 20px;
+			background-color: #EF3163;
+			line-height: 20px;
+			text-align: center;
+			display: block;
+			margin-top: 15px;
+			border-radius: 5px;
+			color: white;
+		}
+		#center ul{
+			position: absolute;
+			bottom: 0px;
+		}
+		#center li{
+			width: 10px;
+			height: 10px;
+			background-color: #808080;
+			float: left;
+			margin: 0 3px;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div id="left">
+		<p>拍碎双玉斗，慷慨一何多。满腔都是血泪，无处着悲歌。三百年来王气，满目山河依旧，人事竟如何？百户尚牛酒，四塞已干戈。千金剑，万言策，两蹉跎。醉中呵壁自语，醒后一滂沱。不恨年华去也，只恐少年心事，强半为销磨。愿替众生病，稽首礼维摩。</p>
+		<span></span>
+	</div>
+	<div id="center">
+		<a href="javascript:;" id="toLeft">→</a>
+		<a href="javascript:;" id="toRight">←</a>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div id="right">
+		<p></p>
+		<span></span>
+	</div>
+	<script type="text/javascript">
+		var toLeft = document.getElementById('toLeft');
+		var toRight = document.getElementById('toRight');
+		var ps = document.getElementsByTagName('p');
+		var spans = document.getElementsByTagName('span');
+		var lis = document.getElementsByTagName('li');
+		var timer = null;
+
+		toLeft.onclick = function(){
+			var len = ps[0].innerHTML.length;
+			var num = 0;
+			timer = setInterval(function(){
+				//ps[0].innerHTML to  ps[1].innerHTML;
+
+				if(ps[0].innerHTML.length<=0){
+					clearInterval(timer)
+				}
+				console.log(ps[0].innerHTML.length);
+				//每次往ps[1]里边放入ps[0]里边第一个文字。
+				ps[1].innerHTML += ps[0].innerHTML.charAt();
+				//每次把ps[0]里边的文字从头部减少一个。
+				ps[0].innerHTML = ps[0].innerHTML.substring(1);
+
+				//文字搬运的计数
+				spans[0].innerHTML = ps[0].innerHTML.length+'/'+len;
+				//跑马灯实现
+				lis[num].style.backgroundColor = '';
+				num++;
+				num%=lis.length;
+				lis[num].style.backgroundColor = 'yellow';
+
+			}, 30)
+			
+		};
+		toRight.onclick = function(){
+			var len = ps[1].innerHTML.length;
+			var num = 0;
+			timer = setInterval(function(){
+				//ps[1].innerHTML to  ps[0].innerHTML;
+
+				if(ps[1].innerHTML.length<=0){
+					clearInterval(timer)
+				}
+				// console.log(ps[0].innerHTML.length);
+				//每次往ps[1]里边放入ps[0]里边第一个文字。
+				ps[0].innerHTML += ps[1].innerHTML.charAt();
+				//每次把ps[0]里边的文字从头部减少一个。
+				ps[1].innerHTML = ps[1].innerHTML.substring(1);
+
+				//文字搬运的计数
+				spans[1].innerHTML = ps[1].innerHTML.length+'/'+len;
+				//跑马灯实现
+				lis[num].style.backgroundColor = '';
+				num++;
+				num%=lis.length;
+				lis[num].style.backgroundColor = 'yellow';
+
+			}, 30)
+			
+		};
+	</script>
+</body>
+</html>
