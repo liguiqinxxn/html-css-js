@@ -51,46 +51,58 @@
 		var oUl = document.getElementsByTagName('ul')[0];
 		var aLi = oUl.getElementsByTagName('li');
 		var aNum = oUl.getElementsByClassName('num');
-		var str = null;
-		var next = 1;
+		var aDott = oUl.getElementsByClassName('img');
+		var old = getTime();
+
 		for (var i = 0; i < aLi.length; i++) {
 			aLi[i].style.left = i*51 + 'px';
 		}
-
-		var timer = setInterval(function(){
-			fn();
+		//开始先调用一下，解决页面刚打开的时候时间延时显示的问题。
+		for (var i = 0; i < aNum.length; i++) {
+			aNum[i].getElementsByTagName('img')[0].src = './images/img31/' + old[i] +'.jpg';
+		}
+		//开定时器自动更新时间
+		setInterval(function(){
+			//点的闪烁
+			for (var i = 0; i < aDott.length; i++) {
+				aDott[i].src = './images/img31/colon2.jpg';
+			}
+			//延迟半秒点的闪烁
+			setTimeout(function(){
+				for (var i = 0; i < aDott.length; i++) {
+					aDott[i].src = './images/img31/colon.jpg';
+				}
+			},500);
+			autoPaly();
 		},1000);
-		// fn();
-		function fn(){
+
+		function getTime(){
 			var myTime = new Date();
 			var iHours = myTime.getHours();
 			var iMin = myTime.getMinutes();
 			var iSec = myTime.getSeconds();
-			str = toTwo(iHours)+toTwo(iMin)+toTwo(iSec);
-			for (var i = 0; i < aNum.length; i++) {
-				aNum[i].index = i;
-				fnTab(aNum[i],str);
-			};
+			var time = toTwo(iHours)+toTwo(iMin)+toTwo(iSec);
+			return time;
 		}
 
-		function fnTab(obj , str){
-			var num = obj.index;
-			var aImg = obj.getElementsByTagName('img');
-			obj.now = parseInt(str.charAt(num));
-			if (obj.now == 9) {
-				obj.next = 0;
-			}else{
-				obj.next = obj.now+1;
-			}
-			obj.style.top = '0px';
-			aImg[0].src = './images/img31/' + obj.now +'.jpg';
-			aImg[1].src = './images/img31/' + obj.next +'.jpg';
-			
-			if (obj.now != obj.old) {
-				obj.old = obj.now;
-				doMove(obj,'top',10,-70);
+		function autoPaly(){
+			var time = getTime();
+			for (var i = 0; i < time.length; i++) {
+				if (old[i] !== time[i]) {
 
+					slied( i, time);
+				}
 			}
+			old = time;
+		}
+		//图片切换
+		function slied( n, time){
+			var aImg= aNum[n].getElementsByTagName('img');
+			aImg[1].src = './images/img31/' + time[n] +'.jpg';
+			doMove(aNum[n],'top',10, -70,function(){
+				aImg[0].src = './images/img31/' + time[n] +'.jpg';
+				aNum[n].style.top = '0px';
+			});
 		}
 
 		function toTwo( n ){
@@ -104,35 +116,33 @@
 		<ul>
 			<li class="num">
 				<img src="./images/img31/0.jpg">
-				<img src="./images/img31/1.jpg">
+				<img src="./images/img31/0.jpg">
 			</li>
 			<li class="num">
 				<img src="./images/img31/0.jpg">
-				<img src="./images/img31/1.jpg">
+				<img src="./images/img31/0.jpg">
 			</li>
 			<li>
-				<img src="./images/img31/colon.jpg">
-				<img src="./images/img31/colon2.jpg">
+				<img class="img" src="./images/img31/colon.jpg">
 			</li>
 			<li class="num">
 				<img src="./images/img31/0.jpg">
-				<img src="./images/img31/1.jpg">
+				<img src="./images/img31/0.jpg">
 			</li>
 			<li class="num">
 				<img src="./images/img31/0.jpg">
-				<img src="./images/img31/1.jpg">
+				<img src="./images/img31/0.jpg">
 			</li>
 			<li>
-				<img src="./images/img31/colon.jpg">
-				<img src="./images/img31/colon2.jpg">
+				<img class="img" src="./images/img31/colon.jpg">
 			</li>
 			<li class="num">
 				<img src="./images/img31/0.jpg">
-				<img src="./images/img31/1.jpg">
+				<img src="./images/img31/0.jpg">
 			</li>
 			<li class="num">
 				<img src="./images/img31/0.jpg">
-				<img src="./images/img31/1.jpg">
+				<img src="./images/img31/0.jpg">
 			</li>
 		</ul>
 	</div>
