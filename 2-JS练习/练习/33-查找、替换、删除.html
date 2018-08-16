@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>查找、替换、删除</title>
+<style>
+	body {margin: 0;background-color: #000;}
+	p, h3 {margin: 0;}
+	ul {list-style: none;margin: 0;padding: 0;}
+	a {text-decoration: none;}
+	#box {width: 600px;min-height: 600px;margin: 100px auto 0;background-color: #efefe7;padding: 30px;}
+	#main {width: 460px;background-color: #fff;padding: 20px;float: left;}
+	#switch {width: 80px;float: right;}
+	#switch h3,#switch ul li {width: 80px;height: 40px;font-size: 15px;line-height: 40px;text-align: center;}
+	#switch h3 {background-color: #808080;color: #fff;}
+	#switch ul {}
+	#switch ul li {background-color: #c0c0c0;color: #000;border-top:1px solid #efefe7; }
+
+	#content {width: 440px;height: 86px;clear: both;background-color: #e7e7b5;padding: 20px;border: 10px solid #e71063;position: relative;}
+	#content .tab {width:440px;border-bottom: 2px solid #f7634a;}
+	#content .tab li {width: 80px;height: 32px;line-height: 32px; display: inline-block;font-size: 15px;background-color:#e7e7b5; text-align: center;color: #000;}
+	#content .tab .active{background-color: #e73100;color:#fff;}
+	#content a {color: #000;font-size: 15px; position: absolute;top:10px;right: 10px;}
+	#content #list {}
+	#content #list div {}
+	#content #list .text {width: 180px;height: 24px;font-size: 15px;color: #000;background-color: #fff;margin: 20px 0;}
+	#content #list .btn {height: 28px;}
+</style>
+</head>
+<body>
+	<div id="box">
+		<div id="main">
+			<p>安徽，简称“皖”，省会合肥，位于中国大陆东部，属于华东地区，介于东经114°54′－119°37′，北纬29°41′－34°38′之间，公元1667年因江南省东西分置而建省。安徽得名于“安庆府”与“徽州府”之首字。
+		安徽襟江带淮，沿江通海，经济繁荣，教育发达。下辖宿州、淮北、亳州、阜阳、蚌埠、淮南、滁州、六安、马鞍山、安庆、芜湖、铜陵、宣城、池州、黄山等16个地级市。地跨长江、淮河南北，新安江穿行而过，与江苏、浙江、湖北、江西、山东、河南接壤，东西宽约450公里，南北长约570公里，辖境面积14.01万平方千米，占全国的1.45%。地形地貌由淮北平原、江淮丘陵、皖南山区组成，境内湖泊星罗棋布，是典型的山水江南、鱼米之乡。 [1] 
+		安徽是中国史前文明的重要发祥地，拥有淮河文化、庐州文化、皖江文化、徽文化四大文化圈。 [2]  安徽与江苏、上海、浙江共同构成的长江三角洲城市群已成为国际6大世界级城市群之一。2014年，获得中国最幸福的省份荣誉，被列入中国首个新型城镇化试点省份。2015年，安徽省正式迈入中等偏上收入的快速发展阶段。 [3] 
+		2017年，安徽省生产总值27518.7亿元，按可比价格计算，比2016年增长8.5%。</p>
+		</div>
+		<div id="switch">
+			<h3>展开</h3>
+			<ul>
+				<li>查找</li>
+				<li>替换</li>
+			</ul>
+		</div>
+		<div id="content">
+			<ul class="tab">
+				<li>查找</li>
+				<li class="active">替换</li>
+			</ul>
+			<a href="#">X</a>
+			<div id="list">
+				<div>
+					<input class="text" type="text">
+					<input class="btn" type="button" value="查找">
+				</div>
+				<div style="display: none;">
+					<input class="text" type="text">
+					<input class="text" type="text">
+					<input class="btn" type="button" value="替换">
+				</div>
+			</div>
+		</div>
+	</div>
+			
+</body>
+</html>
