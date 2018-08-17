@@ -10,13 +10,16 @@
 	a {text-decoration: none;}
 	#box {width: 600px;min-height: 600px;margin: 100px auto 0;background-color: #efefe7;padding: 30px;}
 	#main {width: 460px;background-color: #fff;padding: 20px;float: left;}
+	#main span {background-color: yellow;}
 	#switch {width: 80px;float: right;}
 	#switch h3,#switch ul li {width: 80px;height: 40px;font-size: 15px;line-height: 40px;text-align: center;}
 	#switch h3 {background-color: #808080;color: #fff;}
 	#switch ul {}
-	#switch ul li {background-color: #c0c0c0;color: #000;border-top:1px solid #efefe7; }
+	#switch ul li {border-top:1px solid #efefe7; }
+	#switch ul a {width: 80px;height: 40px;background-color: #c0c0c0;color: #000;display: block;}
+	#switch ul a:hover {background-color: #e76308;color: #fff;}
 
-	#content {width: 440px;height: 86px;clear: both;background-color: #e7e7b5;padding: 20px;border: 10px solid #e71063;position: relative;}
+	#content {width: 440px;height: 86px;clear: both;background-color: #e7e7b5;padding: 20px;border: 10px solid #e71063;position: relative;display: none;}
 	#content .tab {width:440px;border-bottom: 2px solid #f7634a;}
 	#content .tab li {width: 80px;height: 32px;line-height: 32px; display: inline-block;font-size: 15px;background-color:#e7e7b5; text-align: center;color: #000;}
 	#content .tab .active{background-color: #e73100;color:#fff;}
@@ -26,6 +29,113 @@
 	#content #list .text {width: 180px;height: 24px;font-size: 15px;color: #000;background-color: #fff;margin: 20px 0;}
 	#content #list .btn {height: 28px;}
 </style>
+<script>
+	window.onload = function(){
+		var main = document.getElementById('main');
+		var oP = main.getElementsByTagName('p')[0];
+
+		var oSwitch = document.getElementById('switch');
+		var oH3 = oSwitch.getElementsByTagName('h3')[0];
+		var oUl = oSwitch.getElementsByTagName('ul')[0];
+		var aLi = oUl.getElementsByTagName('li');
+
+		var oCon = document.getElementById('content');
+		var oX = oCon.getElementsByTagName('a')[0];
+		var tab = document.getElementsByClassName('tab')[0];
+		var tabLi = tab.getElementsByTagName('li');
+		var list = document.getElementById('list');
+		var aDiv = list.getElementsByTagName('div');
+
+		var len = aLi.length;
+		var onoff = true;
+
+		for (var i = 0; i < len; i++) {
+			aLi[i].index = i;
+			tabLi[i].index = i;
+		}
+
+		oH3.onclick = function(){ //展开、折叠
+			if (onoff) {
+				oUl.style.display = 'block';
+				oH3.innerHTML = '折叠';	
+			}else{
+				oUl.style.display = 'none';
+				oH3.innerHTML = '展开';
+			}
+			onoff = !onoff;
+		}
+		
+		for (var i = 0; i < len; i++) { 
+
+			aLi[i].onclick = function(){  
+				oUl.style.display = 'none';
+				oH3.innerHTML = '展开';
+				onoff = !onoff;
+				oCon.style.display = 'block';
+				show(this.index);	
+			}
+
+			tabLi[i].onclick = function(){  //选项卡切换
+				show(this.index);
+			}
+		};
+
+		function show(num){ //显示当前查找、替换
+			for (var i = 0; i < len; i++) {
+				tabLi[i].className = '';
+				aDiv[i].style.display = 'none';
+			};
+			tabLi[num].className = 'active';
+			aDiv[num].style.display = 'block';
+		}
+
+		oX.onclick = function(){  //点击x关闭
+			oCon.style.display = 'none';
+		}
+
+		var aText = document.getElementsByClassName('text');
+		var aBtn = document.getElementsByClassName('btn');
+		var old = oP.innerHTML;
+		aBtn[0].onclick = function(){ //查找
+			oP.innerHTML = old;
+			var str = aText[0].value;
+			aText[0].value = '';
+			if (str == '') {
+				alert('请输入您要查找的内容！');
+			}else{
+				var arr = oP.innerHTML.split(str);
+				if (arr.length == '1') {
+					alert('对不起，没有找到输入的内容：【'+str+'】');
+				}
+				oP.innerHTML= arr.join('<span>'+str+'</span>');
+			}
+		}
+
+		aBtn[1].onclick = function(){ //查找
+			var str = aText[1].value;
+			var newStr = aText[2].value;
+			aText[1].value = '';
+			aText[2].value = '';
+			var arr = oP.innerHTML.split(str);
+			if (str == '') {
+				alert('请输入您要替换的内容！');
+			}else if(newStr == ''){
+				var msg = "您确定要删除【"+str+"】？";
+		        if (confirm(msg)==true){
+		        	oP.innerHTML= arr.join(newStr);
+		        	old = oP.innerHTML;
+		            return true;
+		        }else{
+		            return false;
+		        }
+			}else{
+				oP.innerHTML= arr.join(newStr);
+				old = oP.innerHTML;
+			}
+
+		}
+	}
+</script>
 </head>
 <body>
 	<div id="box">
@@ -37,15 +147,15 @@
 		</div>
 		<div id="switch">
 			<h3>展开</h3>
-			<ul>
-				<li>查找</li>
-				<li>替换</li>
+			<ul style="display: none;">
+				<li><a href="#">查找</a></li>
+				<li><a href="#">替换</a></li>
 			</ul>
 		</div>
 		<div id="content">
 			<ul class="tab">
-				<li>查找</li>
-				<li class="active">替换</li>
+				<li class="active">查找</li>
+				<li>替换</li>
 			</ul>
 			<a href="#">X</a>
 			<div id="list">
