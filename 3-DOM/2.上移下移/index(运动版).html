@@ -7,70 +7,91 @@
 <style type="text/css">
 body {margin: 0;}
 p {display: inline-block;}
-li {transition: top 1s;position: absolute;}
+li {position: absolute;}
 li:nth-child(1){top: 0px;}
 li:nth-child(2){top: 53px;}
 li:nth-child(3){top: 106px;}
 li:nth-child(4){top: 159px;}
 li:nth-child(5){top: 212px;}
 </style>
+<!-- <script src="my.js"></script> -->
 <script type="text/javascript">
 	window.onload = function (){
 		var oUl = document.getElementsByTagName('ul')[0];
 		var aLi = oUl.getElementsByTagName('li');
-		/*var arrLi = [
-		['0',aLi[0]],
-		['1',aLi[1]],
-		['2',aLi[2]],
-		['3',aLi[3]],
-		['4',aLi[4]]
-		]*/
-		console.log(aLi);
-
-		// function swapItems (arr, index1, index2) {
-	 //        arr[index1] = [arr].splice(index2, 1, arr[index1])[0];
-	 //        return arr;
-	 //    }
-		function tabFn(){
-			for (var i = 0; i < aLi.length; i++) {
-				aLi[i].index = i;
-				move(aLi[i]);
-
-			};
+		
+		for (var i = 0; i < aLi.length; i++) {
+			move(aLi[i]);
 		}
-		tabFn();
 		
 		function move(li){
 			var aInp = li.getElementsByTagName('input');
 			aInp[0].onclick = function (){
-				if(this.parentNode.previousElementSibling){
-					var num = this.parentNode.index;
-					var LiH1 = this.parentNode.offsetTop;
-					var LiH2 = this.parentNode.previousElementSibling.offsetTop;
-					aLi[num].style.top = LiH2 +'px';
-					aLi[num-1].style.top = LiH1 +'px';
-					// aLi = swapItems(aLi,num ,num-1);
-					// tabFn();
+				if (li.previousElementSibling) {
+					var preLi = li.previousElementSibling;
+					doMove( li, 'top', 10, preLi.offsetTop);
+					doMove( preLi, 'top', 10, li.offsetTop,function(){
+						oUl.insertBefore(li,preLi);
+					});
+				}else{
+					doMove( aLi[0], 'top', 30, aLi[aLi.length-1].offsetTop, function(){
+						oUl.appendChild(li);
+					});
+					for (var i = 1; i < aLi.length; i++) {
+						doMove( aLi[i], 'top', 10, aLi[i-1].offsetTop);
+					}
 				}
-
-				/*if (this.parentNode.previousElementSibling) {
-					oUl.insertBefore(this.parentNode,this.parentNode.previousElementSibling);
-				}else{
-					oUl.appendChild(this.parentNode);
-				}*/
 			};
+
 			aInp[1].onclick = function (){
-
-
-				/*if (this.parentNode.nextElementSibling) {
-					oUl.insertBefore(this.parentNode.nextElementSibling,this.parentNode);
+				if (li.nextElementSibling) {
+					var nextLi = li.nextElementSibling;
+					doMove( li, 'top', 10, nextLi.offsetTop);
+					doMove( nextLi, 'top', 10, li.offsetTop,function(){
+						oUl.insertBefore(nextLi,li);
+					});
 				}else{
-					oUl.insertBefore(this.parentNode,oUl.firstElementChild);
-				}*/
+					doMove( aLi[aLi.length-1], 'top', 30, aLi[0].offsetTop, function(){
+						oUl.insertBefore(li,oUl.firstElementChild);
+					});
+					for (var i = 0; i < aLi.length-1; i++) {
+						doMove( aLi[i], 'top', 10, aLi[i+1].offsetTop);
+					}
+				}
 			};
+
 		}
 
+	function doMove ( obj, attr, dir, target, endFn ) { 
 		
+		dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;
+		
+		clearInterval( obj.doMove );
+		
+		obj.doMove = setInterval(function () {
+			
+			var speed = parseInt(getStyle( obj, attr )) + dir;			// 步长
+			
+			if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+				speed = target;
+			}
+			
+			obj.style[attr] = speed + 'px';
+			
+			if ( speed == target ) {
+				clearInterval( obj.doMove );
+
+				endFn && endFn();
+				
+			}
+			
+		}, 100);
+	}
+
+	function getStyle( obj, attr ){  //获取对象的属性
+		return (obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle( obj )[attr]);
+	}
+	
 	}
 </script>
 <body>

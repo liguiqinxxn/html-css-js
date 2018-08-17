@@ -21,17 +21,17 @@ p {display: inline-block;}
 		function move(li){
 			var aInp = li.getElementsByTagName('input');
 			aInp[0].onclick = function (){
-				if (this.parentNode.previousElementSibling) {
-					oUl.insertBefore(this.parentNode,this.parentNode.previousElementSibling);
+				if (li.previousElementSibling) {
+					oUl.insertBefore(li,li.previousElementSibling);
 				}else{
-					oUl.appendChild(this.parentNode);
+					oUl.appendChild(li);
 				}
 			};
 			aInp[1].onclick = function (){
-				if (this.parentNode.nextElementSibling) {
-					oUl.insertBefore(this.parentNode.nextElementSibling,this.parentNode);
+				if (li.nextElementSibling) {
+					oUl.insertBefore(li.nextElementSibling,li);
 				}else{
-					oUl.insertBefore(this.parentNode,oUl.firstElementChild);
+					oUl.insertBefore(li,oUl.firstElementChild);
 				}
 			};
 		}
