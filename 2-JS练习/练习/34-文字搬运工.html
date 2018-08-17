@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>文字搬运工</title>
+<style>
+	body {
+		margin: 0px;
+		background-color: #e7eff7;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	p {
+		margin: 0;
+	}
+	.box {
+		width: 780px;
+		height: 220px;
+		border: 10px solid #c0c0c0;
+		background-color: #fff;
+		margin: 100px auto 0;
+		font-size: 0;
+		padding: 10px;
+		position: relative;
+	}
+	#left, #right {
+		width: 322px;
+		height: 222px;
+	}
+	#left {
+		float: left;	
+	}
+	#left textarea{
+		width: 310px;
+		height: 210px;
+		font-size: 12px;
+		line-height: 20px;
+		border: 1px dotted #393118;
+		padding: 5px;
+		background-color: #efefd6;
+	}
+	#center {
+		width: 120px;
+		height: 222px;
+		padding: 0px 8px;
+		display: inline-block;
+	}
+	
+	#center button {
+		width: 120px;
+		height: 40px;
+		background-color: #f76300;
+		color: #fff;
+		border: none;
+	}
+	#center p {
+		width: 120px;
+		height: 30px;
+		font-size: 15px;
+		line-height: 30px;
+		text-align: center;
+	}
+	#center ul{
+		width: 80px;
+		height: 10px;
+		opacity: 0;
+		margin: 0 20px;
+	}
+	#center ul li {
+		width: 8px;
+		height: 10px;
+		margin: 0 1px;
+		background-color: #e7a521;
+		float: left;
+	}
+	#center ul .active{
+		background-color: red;
+	}
+	#center p {
+		font-size: 15px;
+	}
+	#right {
+		float: right;
+	}
+	#right p {
+		width: 320px;
+		height: 220px;
+		font-size: 12px;
+		line-height: 20px;
+		background-color: #63eff7;
+		border: 1px dotted #393118;
+	}
+</style>
+<script src="my.js"></script>
+<script>
+	window.onload = function(){
+		var oText = document.getElementById('textarea');
+		var oBtn = document.getElementById('btn');
+		var oNum = document.getElementById('number');
+		var oP = document.getElementById('target');
+		var oUl = document.getElementById('progress');
+		var aLi =oUl.getElementsByTagName('li');
+		var num = 0;
+		var onoff = true;
+
+		oBtn.onclick = function(){
+			if (onoff) {
+				var str = oText.value; //获取文字
+				var len = str.length; //获取文字总字数
+				onoff = false;
+				oP.innerHTML = '';  //清空右侧
+
+				clearInterval(timer); 
+				var timer = setInterval(function(){ //开启定时器
+
+					str = oText.value; // 实时获取文字
+					oBtn.style.backgroundColor = '#e7cece'; //按钮置灰
+					oText.value = str.substring(1);  
+					//左侧文本框去掉第一个字符
+					oP.innerHTML += str.substring(0,1);
+					//右侧文本框加上左侧的第一个字符
+					oNum.innerHTML = +(num+1)+ '/'+ len; //统计字数
+					oUl.style.opacity = 1;  //显示进度
+
+					//更新进度
+					for (var i = 0; i < aLi.length; i++) {
+						aLi[i].className = '';
+					}
+					aLi[num%aLi.length].className = 'active';
+
+					num++;
+					if (num === len) {
+						clearInterval(timer);
+						opacity(oUl, 20, 0); //进度条慢慢消失
+						onoff = true;
+						num = 0;
+						oBtn.style.backgroundColor = '#f76300';  //按钮恢复
+					}
+
+				},30);
+			}
+				
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="box">
+		<div id="left">
+			<textarea name="" id="textarea" cols="30" rows="10">安徽得名于“安庆府”与“徽州府”之首字。安徽襟江带淮，沿江通海，经济繁荣，教育发达。下辖宿州、淮北、亳州、阜阳、蚌埠、淮南、滁州、六安、马鞍山、安庆、芜湖、铜陵、宣城、池州、黄山等16个地级市。地跨长江、淮河南北，新安江穿行而过，与江苏、浙江、湖北、江西、山东、河南接壤，东西宽约450公里，南北长约570公里，辖境面积14.01万平方千米，占全国的1.45%。地形地貌由淮北平原、江淮丘陵、皖南山区组成，境内湖泊星罗棋布，是典型的山水江南、鱼米之乡。</textarea>
+		</div>
+		<div id="center">
+			<button id="btn">把文字右移</button>
+			<p id="number">0/0</p>
+			<ul id="progress">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="right">
+			<p id="target"></p>
+		</div>
+	</div>
+	
+</body>
+</html>
