@@ -62,7 +62,6 @@
 			fn(aUl[n] ,arrImg[attr]);
 			n++;
 		}
-
 		//初始化
 		function fn(ul, img){
 			for (var i = 0; i < img.length; i++) {
@@ -82,23 +81,24 @@
 		},500);
 
 		function autoPlay(num){
-			if (!aUl[num].onoff) {
+			if (!aUl[num].onoff) { //当前运动完成再次运动
+				aUl[num].off = true;  // 运动时关闭开关
 				var aLi = aUl[num].getElementsByTagName('li');
-				var target = parseInt(getStyle( aUl[num], 'top' )) + (Math.round(Math.random()*2)-1)*310;
-				var len = aLi.length-1;
+				var target = parseInt(getStyle( aUl[num], 'top' )) + (Math.round(Math.random()*2)-1)*310;     //随机产生目标位置
+				var len = aLi.length-1;   
 				console.log('len:'+len);
-				var max = -len*310;
-				if (target > 0) {
+				var max = -len*310;  //最大的目标位置
+				if (target > 0) {  //上面没有图片时
 					target = 0;
 				}
-				if(target < max){
+				if(target < max){ //下面没有图片时
 					target = max;
 				}
 				console.log('target:'+target);
 				doMove( aUl[num], 'top', 50, target,function(){
-					aUl[num].off = false;
+					aUl[num].off = false; // 运动完成再打开开关
 				});
-				aUl[num].off = true;
+				
 			}
 		}
 
