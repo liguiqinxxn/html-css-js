@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>随机产生 100 个从 0 ~ 1000 之间不重复的整数</title>
+</head>
+<body>
+	<!-- 第一种方法 -->
+	<!-- <script>
+		var a = 0 ;
+		var arr = [];
+		var len;
+	
+		var timer = setInterval(function(){
+			fn();
+		},10);
+	
+		function fn(){
+			a = Math.round( Math.random()*1000 );
+			len = arr.length;
+			if (len == 0 ) {
+				arr.push(a);
+			}else if (len == 100) {
+				clearInterval(timer);
+				console.log(arr);
+				var arr1 = arr.sort(function(a,b){
+					return a - b ;
+				});
+				console.log(arr1);
+			}else{
+				for (var i = 0; i <len; i++) {
+					if(a == arr[i]) break;
+	
+					if (i == (len-1) ){
+						arr.push(a);
+					}
+				}
+			}
+		}
+	
+	</script> -->
+
+	<!-- 第二种方法 -->
+	<script>
+		var arr = [];
+		for (var i = 0; i < 1000; i++) {
+			arr.push(i);
+		}
+		var newarr = arr.sort(function(){
+			return Math.random() - 0.5;
+		});
+		newarr.length = 100;
+		console.log(newarr);
+	</script>
+</body>
+</html>
