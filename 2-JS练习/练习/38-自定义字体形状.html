@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>自定义字体形状</title>
+<style>
+	body {
+		margin: 0;
+		background-color: #000;
+		font-size: 15px;
+	}
+	.box{
+		width: 500px;
+		height: 350px;
+		background-color: #fff;
+		margin: 200px auto 0;
+		padding: 20px;
+	}
+	#show, textarea{
+		width: 500px;
+		height: 120px;
+		border: 1px solid #000;
+	}
+	select {
+		width: 100px;
+		height: 30px;
+		margin: 10px 0;
+	}
+	button {
+		width: 80px;
+		height: 30px;
+	}
+	p {
+		height: 48px;
+		line-height: 30px;
+	}
+	span {
+		width: 30px;
+		height: 48px;
+		display: inline-block;
+		text-align: center;
+		background: url(./images/img38/bg.gif) ;
+	}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div id="show">
+			<p></p>
+		</div>
+		<select name="字体" >
+			<option value="气球字体">普通字体</option>
+			<option value="气球字体">气球字体</option>
+			<option value="气球字体">字体</option>
+		</select>
+		<div id="input">
+			<textarea></textarea>
+		</div>
+		<button>确定</button>
+	</div>
+	<!-- <p><span>这</span><span>是</span><span>气</span>球字体</p> -->
+</body>
+</html>
