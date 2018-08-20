@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>随机图片滚动</title>
+<style>
+	body {
+		margin: 0;
+		background-color: #000;
+	}
+	.box {
+		width: 1200px;
+		height: 820px;
+		background-color: #fff;
+		margin: 50px auto 0;
+	}
+	.list {
+		width: 500px;
+		height: 310px;
+		overflow: hidden;
+		float: left;
+		margin: 50px;
+		position: relative;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		background-color: red;
+		position: absolute;
+		top: 0px;
+	}
+	li {
+		width: 500px;
+		height: 310px;
+		overflow: hidden;
+		position: absolute;
+		top: 0px;
+	}
+	img {
+		vertical-align: top;
+		border: none;
+		width: 500px;
+		height: 310px;
+	}
+</style>
+<script src="my.js"></script>
+<script>
+	window.onload = function(){
+		var box = document.getElementsByClassName('box')[0];
+		var aUl = box.getElementsByTagName('ul');
+		var n = 0;
+		var num;
+		var arrImg = {
+			'img1' : ['./images/img37/1.jpg','./images/img37/2.jpg','./images/img37/3.jpg'],
+			'img2' : ['./images/img37/4.jpg','./images/img37/5.jpg'],
+			'img3' : ['./images/img37/6.jpg','./images/img37/7.jpg','./images/img37/8.jpg','./images/img37/9.jpg'],
+			'img4' : ['./images/img37/10.jpg','./images/img37/11.jpg','./images/img37/12.jpg'],
+		};
+
+		for(var attr in arrImg){
+			fn(aUl[n] ,arrImg[attr]);
+			n++;
+		}
+
+		//初始化
+		function fn(ul, img){
+			for (var i = 0; i < img.length; i++) {
+				ul.innerHTML +='<li><img src="'+img[i]+'"></li>';
+			};
+
+			var aLi = ul.getElementsByTagName('li');
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].style.top = i*310 +'px';
+			};
+		}
+
+		setInterval(function(){
+			num = Math.round(Math.random()*3);
+			autoPlay(num);
+			console.log('num:'+num);
+		},500);
+
+		function autoPlay(num){
+			if (!aUl[num].onoff) {
+				var aLi = aUl[num].getElementsByTagName('li');
+				var target = parseInt(getStyle( aUl[num], 'top' )) + (Math.round(Math.random()*2)-1)*310;
+				var len = aLi.length-1;
+				console.log('len:'+len);
+				var max = -len*310;
+				if (target > 0) {
+					target = 0;
+				}
+				if(target < max){
+					target = max;
+				}
+				console.log('target:'+target);
+				doMove( aUl[num], 'top', 50, target,function(){
+					aUl[num].off = false;
+				});
+				aUl[num].off = true;
+			}
+		}
+
+	}
+</script>
+</head>
+<body>
+<div class="box">
+	<div class="list">
+		<ul></ul>
+	</div>
+	<div class="list">
+		<ul></ul>
+	</div>
+	<div class="list">
+		<ul></ul>
+	</div>
+	<div class="list">
+		<ul></ul>
+	</div>
+</div>
+</body>
+</html>
