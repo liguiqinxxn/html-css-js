@@ -7,12 +7,13 @@
 <body>
 <script>
 	var arr = ['很适合','hhh','s3','4'];
-	console.log(indexOfArray(arr , ''));
+	console.log(indexOfArray(arr , 'sa3'));
 
-	function indexOfArray(arr, string){
-
-		return arr.join('*');
-		// .indexOf(string);
+	function indexOfArray(arr, str){
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] === str) return i;
+			if (i === arr.length-1) return -1;
+		}
 	}
 </script>
 </body>
