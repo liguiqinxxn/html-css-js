@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>排序</title>
+<style>
+	body {margin: 0;background-color: #000;}
+	p {margin: 0;}
+	img {border: none;vertical-align: top;}
+	ul {margin: 0;padding: 0;list-style: none;}
+	.box {width: 1266px;height: 598px;background-color: #f1f1f1;margin: 100px auto 0;}
+	#button {width: 1266px;height: 40px;text-align: center;padding: 24px 0;}
+	#button input {width: 116px;height: 36px;background-color: #009999;color: #fff;}
+	#list {width: 1208px;margin: 0 auto;}
+	#list ul {width: 1208px;}
+	#list li {width: 280px;height: 222px;border:1px solid #f1f1f1; float: left;padding: 10px;background-color: #fff;}
+	#list li p {text-align: center;color: #006699;background-color: #f1f1f1;line-height: 42px;}
+</style>
+<script>
+	window.onload = function(){
+		var aInp = document.getElementsByTagName('input');
+		var oUl = document.getElementsByTagName('ul')[0];
+		var aLi = oUl.getElementsByTagName('li');
+		var arrImg = [
+		'./images/img40/img1.gif',
+		'./images/img40/img2.gif',
+		'./images/img40/img3.gif',
+		'./images/img40/img4.gif',
+		'./images/img40/img5.gif',
+		'./images/img40/img6.gif',
+		'./images/img40/img7.gif',
+		'./images/img40/img8.gif'
+		];
+		var arrText = ['1-温馨办公','2-游戏桌面','3-汽车摇滚','4-狭路相逢','5-棒球小子','6-球鞋动力','7-游戏官网','8-指尖社区',];
+		var len = arrImg.length;
+		var onOff = true;
+
+		for (var i = 0; i < len; i++) {
+			oUl.innerHTML += '<li><img src="'+arrImg[i]+'" alt=""><p>'+arrText[i]+'</p></li>';
+		};
+
+		aInp[0].onclick = function(){
+			var arr = [];
+			for (var i = 0; i < aLi.length; i++) {
+				arr[i] = aLi[i];
+			}
+			if (onOff) { //从大到小
+				onOff = !onOff;
+				aInp[0].value = '从小到大';
+				arr.sort(function(a,b){
+					var num1 = parseInt(a.getElementsByTagName('p')[0].innerHTML);
+					var num2 = parseInt(b.getElementsByTagName('p')[0].innerHTML);
+					return num2 - num1;
+				});
+			}else{ //从小到大
+				onOff = !onOff;
+				aInp[0].value = '从大到小';
+				arr.sort(function(a,b){
+					var num1 = parseInt(a.getElementsByTagName('p')[0].innerHTML);
+					var num2 = parseInt(b.getElementsByTagName('p')[0].innerHTML);
+					return num1 - num2;
+				});
+			}
+
+			for (var i = 0; i < arr.length; i++) {
+				oUl.appendChild(arr[i]);
+			}
+		}
+
+		aInp[1].onclick = function(){  //打乱顺序
+			var arr = [];
+			for (var i = 0; i < aLi.length; i++) {
+				arr[i] = aLi[i];
+			}
+			arr.sort(function(a, b){
+				return Math.random() - 0.5;
+			});
+
+			for (var i = 0; i < arr.length; i++) {
+				oUl.appendChild(arr[i]);
+			}
+		}
+
+	}
+</script>
+</head>
+<body>
+	<div class="box">
+		<div id="button">
+			<input type="button" value="从大到小">
+			<input type="button" value="打乱顺序">
+		</div>
+		<div id="list">
+			<ul>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
