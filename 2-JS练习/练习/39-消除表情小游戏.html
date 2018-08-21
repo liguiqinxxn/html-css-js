@@ -1,0 +1,118 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>消除表情小游戏</title>
+<style>
+body { background:#f1f1f1; font-family:微软雅黑; font-size:16px; user-select: none; }
+#box { width:800px; height:450px; border:1px solid #066; background:#FFF; margin:20px auto 0; position:relative; top:0; left:0; }
+#fraction { width:130px; border:1px solid #066; position:relative; top:-1px; left:-152px; background:#FFC; padding:10px; }
+#fraction p { margin:0; font-family:微软雅黑; font-size:16px; line-height:30px; }
+#qq {position: absolute;top: 0;}
+img {border: none;vertical-align: top;position: absolute;top: 0px;left: 0px;}
+
+#alert { text-align:center; }
+</style>
+<script src="my.js"></script>
+<script>
+	window.onload = function(){
+		var box = document.getElementById('box');
+		var btn = document.getElementsByTagName('input')[0];
+		var qq = document.getElementById('qq');
+		var fraction = document.getElementById('fraction');
+		var aSpan = fraction.getElementsByTagName('span');
+		var speed = 2; //初始速度
+		var num1 = 0; //点中的个数
+		var num2 = 0; //未点中的个数
+		var onOff = true;
+		var arrImg = [
+		'./images/img39/1.png',
+		'./images/img39/2.png',
+		'./images/img39/3.png',
+		'./images/img39/4.png',
+		'./images/img39/5.png',
+		'./images/img39/6.png',
+		'./images/img39/7.png',
+		'./images/img39/8.png',
+		'./images/img39/9.png',
+		'./images/img39/10.png',
+		'./images/img39/11.png',
+		];
+
+		btn.onclick = function(){
+			if (onOff) {
+				onOff = !onOff;
+				start();
+				btn.value = '游戏进行中......';
+				btn.style.color = '#98999b';
+			}	
+		}
+
+		function start(){
+
+			var n = Math.round(Math.random()*10);  //随机表情
+			var left = Math.round(Math.random()*776); //随机位置
+			qq.innerHTML = '<img src="'+arrImg[n]+'">'
+			var img = document.getElementsByTagName('img')[0];
+			img.style.left = left + 'px';
+
+			doMove ( img, 'top', speed, 426,function(){ 
+			//表情往下落，未点击时
+				num2++;
+				qq.innerHTML = '';
+				aSpan[1].innerHTML = num2;
+				shake( box, 'top',10,function(){//box抖动，并调用下一次
+					if (num2 == 10) {//失误10次游戏失败
+						alert('失败了~~重新开始吧');
+						//初始化参数
+						onOff = !onOff;
+						btn.value = '开始游戏';
+						btn.style.color = '';
+						speed = 2;
+						num1 = 0;
+						num2 = 0;
+						aSpan[0].innerHTML = num1;
+						aSpan[1].innerHTML = num2;
+					}else{
+						start();
+					}
+				});
+				 
+			});
+
+			img.onclick = function(){ //点中表情时
+				var now = parseInt( getStyle(img, 'top') );//获取当前位置
+				doMove( img, 'top', speed, now ); //停在当前位置
+				img.src = './images/img39/qq.png'; //改变表情
+				shake ( img, 'left',10, function(){  //表情抖动
+					num1++;
+					speed +=2; //点中就增加速度
+					aSpan[0].innerHTML = num1;
+					opacity(img, 20, 0,start); //表情抖动完消失，并调用下一次
+				});
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+
+<div id="alert">
+	<h2>你的鼠标有多快？</h2>
+  <p>游戏说明：点击“开始游戏”，随机掉下QQ表情，点中它，千万别让它掉下去！！</p>
+  <input type="button" value="开始游戏" />
+</div>
+
+<div id="box">
+	<div id="fraction">
+  	<p>得分：<span>0</span> 分</p>
+  	<p>失分：<span>0</span> 分</p>
+  </div>
+  <div id="qq">
+  	<!-- <img src="./images/img39/1.png"> -->
+  </div>
+</div>
+
+</body>
+</html>
