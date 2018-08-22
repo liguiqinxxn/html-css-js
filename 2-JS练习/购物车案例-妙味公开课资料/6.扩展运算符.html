@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<script>
+    //
+    var arr = [1,2,3];
+    var arr2 = [4,5,6];
+
+//    var arr3 = arr.concat(arr2);
+    var arr3 = [...arr,...arr2,5,98];
+//    console.log(arr3,arr,arr2);
+
+    var str = '123456'
+//    var str2 = str.split('');
+    var str2 = [...str,'miaov'];
+    console.log(str2);
+
+
+    var obj = {
+        a:1,
+        b:2,
+        c:3
+    }
+    var obj2 = {...obj,d:'4'};
+    console.log(obj2);
+</script>
+</body>
+</html>

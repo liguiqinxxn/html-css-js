@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+        }
+        .box1{
+            background: red;
+        }
+        .box2{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1"></div>
+    <script>
+        var box = document.querySelector('.box');
+        box.onclick = function () {
+            console.dir(this);
+            this.classList.add('box2')
+            setTimeout(()=>{
+                this.classList.remove('box2')
+            },1000)
+        }
+    </script>
+</body>
+</html>

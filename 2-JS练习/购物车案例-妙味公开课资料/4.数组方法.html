@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+<script>
+    var inputs = document.querySelectorAll('input');
+    console.dir(inputs);
+//    循环数组或集合中的对象、数据
+    inputs.forEach(function (item) {
+        console.log(item);
+    })
+
+    //数组中的每一项元素，都符合设定的条件，返回true，否则返回false
+    var inputCheck = [...inputs].every(item=>{
+        return item.checked;
+    })
+    console.log(inputCheck);
+
+
+    var inputSome = [...inputs].some(item=>{
+        return item.checked
+    })
+    console.log(inputSome);
+
+
+    var arr = [8,2,3,4];
+    var lastnum = arr.reduce((total,now)=>{
+        console.log(total,now);
+        return total + now;
+    },0)
+    console.log(lastnum);
+</script>
+</body>
+</html>
