@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+	<div id="wrap">
+		<section id="section">
+			<nav id="choose">
+				<span>你的选择:</span>
+				<div>
+					<!-- <mark>魅族<a href="javascript:;">x</a></mark>
+					<mark>魅族<a href="javascript:;">x</a></mark> -->
+				</div>
+			</nav>
+			<ul id="type">
+				<!-- <li>
+					<span>品牌：</span>
+					<a href="javascript:;">苹果</a>
+					<a href="javascript:;">小米</a>
+					<a href="javascript:;">锤子</a>
+					<a href="javascript:;">魅族</a>
+					<a href="javascript:;">华为</a>
+					<a href="javascript:;">三星</a>
+					<a href="javascript:;">OPPO</a>
+					<a href="javascript:;">vivo</a>
+					<a href="javascript:;">乐视</a>
+					<a href="javascript:;">360</a>
+					<a href="javascript:;">中兴</a>
+					<a href="javascript:;">索尼</a>
+				</li>
+				<li>
+					<span>尺寸：</span>
+					<a href="javascript:;">3.0英寸以下</a>
+					<a href="javascript:;">3.0-3.9英寸</a>
+					<a href="javascript:;">4.0-4.5英寸</a>
+					<a href="javascript:;">4.6-4.9英寸</a>
+					<a href="javascript:;">5.0-5.5英寸</a>
+					<a href="javascript:;">6.0英寸以上</a>
+				</li>
+				<li>
+					<span>系统：</span>
+					<a href="javascript:;">安卓 ( Android )</a>
+					<a href="javascript:;">苹果 ( IOS )</a>
+					<a href="javascript:;">微软 ( WindowsPhone )</a>
+					<a href="javascript:;">无</a>
+					<a href="javascript:;">其他</a>
+				</li>
+				<li>
+					<span>网络：</span>
+					<a href="javascript:;">联通3G</a>
+					<a href="javascript:;">双卡单4G</a>
+					<a href="javascript:;">双卡双4G</a>
+					<a href="javascript:;">联通4G</a>
+					<a href="javascript:;">电信4G</a>
+					<a href="javascript:;">移动4G</a>
+				</li> -->
+			</ul>
+		</section>
+		<nav class="filter-nav">
+			<span class="nav-color">综合排序</span>
+			<span>销量排序</span>
+			<span>价格低到高</span>
+			<span>价格高到低</span>
+		</nav>
+		<section class="shop-list"></section>
+	</div>
+	<script>
+	var crumbData = [
+			{
+				"title": "品牌",
+				"data": [ "苹果","小米","锤子","魅族","华为","三星","OPPO","vivo","乐视"]
+			},
+			{
+				"title": "尺寸",
+				"data": ["4.0-4.5英寸","4.6-4.9英寸","5.0-5.5英寸","6.0英寸以上"]
+			},
+			{
+				"title": "系统",
+				"data": ["android","ios","window phone","无","其他"]
+			},
+			{
+				"title": "网络",
+				"data": ["联通3G","双卡单4G","双卡双4G","联通4G"]
+			}
+		]
+
+	var type = document.querySelector("#type");
+
+	var len = crumbData.length;
+
+	var newLi = null;
+	var newSpan = null;
+	var newA = null;
+	for( var i = 0; i< len; i++ ){
+		newLi = document.createElement("li");
+		newSpan = document.createElement("span");
+
+		newSpan.innerText = crumbData[i].title;
+		newLi.appendChild(newSpan)
+
+		// 拿到每个对象中的数组，循环这个数组，生成a标签
+		for(var j = 0; j < crumbData[i].data.length; j++){
+			newA = document.createElement("a");
+			newA.href = 'javascript:;';
+			newA.innerText = crumbData[i].data[j];
+
+			newLi.appendChild(newA)
+		}
+
+		type.appendChild(newLi);
+	}
+
+	// 获取元素
+	var lis = type.children;  // 获取到所有的li
+	var itemA = null;
+	for( var k = 0; k< lis.length; k++ ){
+		//得到每一个li中的所有的a标签
+		itemA = lis[k].querySelectorAll("a");
+
+		for( var m = 0; m < itemA.length; m++ ){
+			// 给每一个a标签绑定点击处理函数
+			itemA[m].onclick = function(){
+				console.log(123)
+			}
+		}
+	}
+	
+
+	</script>
+</body>
+</html>
