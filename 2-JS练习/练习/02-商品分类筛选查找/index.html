@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+	<div id="wrap">
+		<section id="section">
+			<nav id="choose">
+				<span>你的选择:</span>
+				<div>
+					<!-- <mark>魅族<a href="javascript:;">x</a></mark>
+					<mark>魅族<a href="javascript:;">x</a></mark> -->
+				</div>
+			</nav>
+			<ul id="type">
+				<!-- <li>
+					<span>品牌：</span>
+					<a href="javascript:;">苹果</a>
+					<a href="javascript:;">小米</a>
+					<a href="javascript:;">锤子</a>
+					<a href="javascript:;">魅族</a>
+					<a href="javascript:;">华为</a>
+					<a href="javascript:;">三星</a>
+					<a href="javascript:;">OPPO</a>
+					<a href="javascript:;">vivo</a>
+					<a href="javascript:;">乐视</a>
+					<a href="javascript:;">360</a>
+					<a href="javascript:;">中兴</a>
+					<a href="javascript:;">索尼</a>
+				</li>
+				<li>
+					<span>尺寸：</span>
+					<a href="javascript:;">3.0英寸以下</a>
+					<a href="javascript:;">3.0-3.9英寸</a>
+					<a href="javascript:;">4.0-4.5英寸</a>
+					<a href="javascript:;">4.6-4.9英寸</a>
+					<a href="javascript:;">5.0-5.5英寸</a>
+					<a href="javascript:;">6.0英寸以上</a>
+				</li>
+				<li>
+					<span>系统：</span>
+					<a href="javascript:;">安卓 ( Android )</a>
+					<a href="javascript:;">苹果 ( IOS )</a>
+					<a href="javascript:;">微软 ( WindowsPhone )</a>
+					<a href="javascript:;">无</a>
+					<a href="javascript:;">其他</a>
+				</li>
+				<li>
+					<span>网络：</span>
+					<a href="javascript:;">联通3G</a>
+					<a href="javascript:;">双卡单4G</a>
+					<a href="javascript:;">双卡双4G</a>
+					<a href="javascript:;">联通4G</a>
+					<a href="javascript:;">电信4G</a>
+					<a href="javascript:;">移动4G</a>
+				</li> -->
+			</ul>
+		</section>
+		<nav class="filter-nav">
+			<span class="nav-color">综合排序</span>
+			<span>销量排序</span>
+			<span>价格低到高</span>
+			<span>价格高到低</span>
+		</nav>
+		<section class="shop-list"></section>
+	</div>
+	<script src="./shoplist.js"></script>
+	<script>
+		var crumData = [
+				{
+					"title": "品牌",
+					"data": ["苹果","小米","锥子","魅族","华为","三星","OPPO","vivo","乐视"]
+				},
+				{
+					"title": "尺寸",
+					"data": ["4.0-4.5英寸","4.6-4.9英寸","5.0-5.5英寸","6.0英寸以上"]
+				},
+				{
+					"title":"系统",
+					"data": ["Android","IOS","Windows Phone","无","其他"]
+				},
+				{
+					"title":"网络",
+					"data": ["联通3G","双卡单4G","双卡双4G","联通4G"]
+				}
+		]
+		//初始化数据
+		var type = document.querySelector('#type');
+
+		var len = crumData.length;
+
+		var newLi = null;
+		var newSpan = null;
+		var newA = null;
+		for (var i = 0; i < len; i++) {
+			newLi = document.createElement('li');
+			newSpan = document.createElement('span');
+
+			newSpan.innerText = crumData[i].title;
+			newLi.appendChild(newSpan);
+
+			// 拿到每个对象中的数组、循环这个数组、生成a标签
+			for (var j = 0; j < crumData[i].data.length; j++) {
+				newA = document.createElement('a');
+				newA.href = 'javascript:;';
+				newA.innerText = crumData[i].data[j];
+
+				newLi.appendChild(newA);
+			}
+
+			type.appendChild(newLi);
+		}
+
+
+		var lis = type.children; //获取到所有的li
+		var itemA = null;
+
+		var chooseObj = {};
+
+		// 筛选条件
+		var filterChoose = ["name","size","system","www"];
+		var filterObj = {};
+
+		for (var i = 0; i < lis.length; i++) {
+			itemA = lis[i].querySelectorAll('a');
+
+			lis[i].preNode = null; //记录点击的a标签
+
+			lis[i].index = i; //记录每一个li的下标
+
+			for (var j = 0; j < itemA.length; j++) {
+				itemA[j].onclick = function(){
+
+					var parent = this.parentNode;  // 点击的a标签的父级 li
+
+					// 把每一个li的下标作为key值，把点击的a的内容作为值
+					chooseObj[parent.index] = this.innerText;
+
+					// 生成筛选条件的结构
+					createChooseHtml();
+
+					// 存一下筛选的值
+					filterObj[filterChoose[parent.index]] = this.innerText.trim();
+					console.log(filterObj);
+					// 筛选出想要的数据
+					filterHandle();
+
+					if (parent.prevNode) {
+						parent.prevNode.style.color = '';
+					}
+					this.style.color = 'red';
+
+					parent.prevNode = this; // 点击之后记录点击的这个元素
+				}
+			}
+		}
+
+		//选择的容器
+		var chooseElement = document.querySelector('#choose div');
+
+		function createChooseHtml(){
+			var html = '';
+			for (var i = 0; i < lis.length; i++) {
+				if ( chooseObj[i] ) {
+					html += `<mark>${chooseObj[i]}<a data-index="${i}" href="javascript:;">x</a></mark>`
+				}
+			}
+
+			chooseElement.innerHTML = html;
+
+			var chooseA = chooseElement.querySelectorAll('a');
+
+			for (var i = 0; i < chooseA.length; i++) {
+				chooseA[i].onclick = function (){
+					this.parentNode.remove();
+
+					//删数据
+					delete chooseObj[this.dataset.index];
+					delete filterObj[filterChoose[this.dataset.index]];
+					console.log(filterObj);
+					filterHandle();
+
+					//点击每一个li中的a标签存的属性
+					lis[this.dataset.index].prevNode.style.color = '';
+				};
+			}
+			
+		}
+
+		var shopList = document.querySelector('.shop-list');
+		// 筛选数据
+		function filterHandle(){
+			var filterArr = shopsList;  //等于原始数组
+			for(var attr in filterObj){
+				filterArr = filterArr.filter(function(obj){
+					return obj[attr] === filterObj[attr]
+				})
+			}
+			
+
+			shopList.innerHTML = '<pre>'+JSON.stringify(filterArr,null,3)+'</pre>';
+		}
+
+	</script>
+</body>
+</html>
