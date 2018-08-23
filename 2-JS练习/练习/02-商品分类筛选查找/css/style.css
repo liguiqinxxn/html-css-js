@@ -105,3 +105,33 @@ img {
 .shop-list pre {
 	font-size: 20px;
 }
+.shop-list ul {
+
+}
+.shop-list li {
+	width: 250px;
+	height: 350px;
+	background-color: #fff;
+	float: left;
+	margin: 1px;
+}
+.shop-list li img {
+	width: 250px;
+}
+.text {
+	width: 230px;
+	margin: 0 10px;
+}
+.text p {
+	font-size: 15px;
+	/*text-align: center;*/
+}
+.text strong {
+	font-size: 15px;
+	color: red;
+	float: left;
+}
+.text em {
+	font-size: 15px;
+	float: right;
+}

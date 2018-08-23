@@ -65,145 +65,204 @@
 			<span>价格低到高</span>
 			<span>价格高到低</span>
 		</nav>
-		<section class="shop-list"></section>
+		<section>
+			<ul class="shop-list">
+				<!-- <li>
+					<img src="./img/img1.jpg">
+					<div class="text">
+						<p><span>小米 </span><span> 联通3G</span></p>
+						<strong>￥ 500</strong>
+						<em>100人付款</em>
+					</div>
+				</li> -->
+			</ul>
+		</section>
 	</div>
 	<script src="./shoplist.js"></script>
-	<script>
-		var crumData = [
-				{
-					"title": "品牌",
-					"data": ["苹果","小米","锥子","魅族","华为","三星","OPPO","vivo","乐视"]
-				},
-				{
-					"title": "尺寸",
-					"data": ["4.0-4.5英寸","4.6-4.9英寸","5.0-5.5英寸","6.0英寸以上"]
-				},
-				{
-					"title":"系统",
-					"data": ["Android","IOS","Windows Phone","无","其他"]
-				},
-				{
-					"title":"网络",
-					"data": ["联通3G","双卡单4G","双卡双4G","联通4G"]
-				}
-		]
-		//初始化数据
-		var type = document.querySelector('#type');
-
-		var len = crumData.length;
-
-		var newLi = null;
-		var newSpan = null;
-		var newA = null;
-		for (var i = 0; i < len; i++) {
-			newLi = document.createElement('li');
-			newSpan = document.createElement('span');
-
-			newSpan.innerText = crumData[i].title;
-			newLi.appendChild(newSpan);
-
-			// 拿到每个对象中的数组、循环这个数组、生成a标签
-			for (var j = 0; j < crumData[i].data.length; j++) {
-				newA = document.createElement('a');
-				newA.href = 'javascript:;';
-				newA.innerText = crumData[i].data[j];
-
-				newLi.appendChild(newA);
+<script>
+	var crumData = [
+			{
+				"title": "品牌",
+				"data": ["苹果","小米","锥子","魅族","华为","三星","OPPO","vivo","乐视"]
+			},
+			{
+				"title": "尺寸",
+				"data": ["4.0-4.5英寸","4.6-4.9英寸","5.0-5.5英寸","6.0英寸以上"]
+			},
+			{
+				"title":"系统",
+				"data": ["Android","IOS","Windows Phone","无","其他"]
+			},
+			{
+				"title":"网络",
+				"data": ["联通3G","双卡单4G","双卡双4G","联通4G"]
 			}
+	]
+	//初始化数据
+	var type = document.querySelector('#type');
+	var len = crumData.length;
+	var newLi = null;
+	var newSpan = null;
+	var newA = null;
+	for (var i = 0; i < len; i++) {
+		newLi = document.createElement('li');
+		newSpan = document.createElement('span');
 
-			type.appendChild(newLi);
+		newSpan.innerText = crumData[i].title;
+		newLi.appendChild(newSpan);
+
+		// 拿到每个对象中的数组、循环这个数组、生成a标签
+		for (var j = 0; j < crumData[i].data.length; j++) {
+			newA = document.createElement('a');
+			newA.href = 'javascript:;';
+			newA.innerText = crumData[i].data[j];
+
+			newLi.appendChild(newA);
 		}
+		type.appendChild(newLi);
+	}
+
+	// 筛选条件
+	var lis = type.children; //获取到所有的li
+	var itemA = null;
+	var chooseObj = {}; //选择的条件 
+	var shopList = document.querySelector('.shop-list');
+	var filterChoose = ["name","size","system","www"];
+	var filterObj = {}; //过滤的条件 
+	var filterArr = []; //过滤后的数据
+	filterHandle();
+	for (var i = 0; i < lis.length; i++) {
+		itemA = lis[i].querySelectorAll('a');
+		lis[i].preNode = null; //记录点击的a标签
+		lis[i].index = i; //记录每一个li的下标
+		for (var j = 0; j < itemA.length; j++) {
+			itemA[j].onclick = function(){
+				var parent = this.parentNode;  // 点击的a标签的父级 li
+				// 把每一个li的下标作为key值，把点击的a的内容作为值
+				chooseObj[parent.index] = this.innerText;
+
+				// 生成筛选条件的结构
+				createChooseHtml();
+				// 存一下筛选的值
+				filterObj[filterChoose[parent.index]] = this.innerText.trim();
+				console.log(filterObj);
+				// 筛选出想要的数据
+				filterHandle();
+
+				if (parent.prevNode) {
+					parent.prevNode.style.color = '';
+				}
+				this.style.color = 'red';
+
+				parent.prevNode = this; // 点击之后记录点击的这个元素
+			}
+		}
+	}
 
 
-		var lis = type.children; //获取到所有的li
-		var itemA = null;
+	var filterNavs = document.querySelectorAll('.filter-nav span');
+	var old = 0;//默认是综合排序
+	//排序
+	for (let i = 0; i < filterNavs.length; i++) {
+		filterNavs[i].onclick = function(){
+			filterNavs[old].classList.remove('nav-color');
+			this.classList.add('nav-color');
+			old = i;
+			sorts(i);
+		}
+	}
 
-		var chooseObj = {};
-
-		// 筛选条件
-		var filterChoose = ["name","size","system","www"];
-		var filterObj = {};
-
+	//选择的容器
+	var chooseElement = document.querySelector('#choose div');
+	function createChooseHtml(){
+		var html = '';
 		for (var i = 0; i < lis.length; i++) {
-			itemA = lis[i].querySelectorAll('a');
-
-			lis[i].preNode = null; //记录点击的a标签
-
-			lis[i].index = i; //记录每一个li的下标
-
-			for (var j = 0; j < itemA.length; j++) {
-				itemA[j].onclick = function(){
-
-					var parent = this.parentNode;  // 点击的a标签的父级 li
-
-					// 把每一个li的下标作为key值，把点击的a的内容作为值
-					chooseObj[parent.index] = this.innerText;
-
-					// 生成筛选条件的结构
-					createChooseHtml();
-
-					// 存一下筛选的值
-					filterObj[filterChoose[parent.index]] = this.innerText.trim();
-					console.log(filterObj);
-					// 筛选出想要的数据
-					filterHandle();
-
-					if (parent.prevNode) {
-						parent.prevNode.style.color = '';
-					}
-					this.style.color = 'red';
-
-					parent.prevNode = this; // 点击之后记录点击的这个元素
-				}
+			if ( chooseObj[i] ) {
+				html += `<mark>${chooseObj[i]}<a data-index="${i}" href="javascript:;">x</a></mark>`
 			}
 		}
+		chooseElement.innerHTML = html;
 
-		//选择的容器
-		var chooseElement = document.querySelector('#choose div');
+		var chooseA = chooseElement.querySelectorAll('a');
+		for (var i = 0; i < chooseA.length; i++) {
+			chooseA[i].onclick = function (){
+				this.parentNode.remove();
 
-		function createChooseHtml(){
-			var html = '';
-			for (var i = 0; i < lis.length; i++) {
-				if ( chooseObj[i] ) {
-					html += `<mark>${chooseObj[i]}<a data-index="${i}" href="javascript:;">x</a></mark>`
-				}
-			}
+				//删数据
+				delete chooseObj[this.dataset.index];
+				delete filterObj[filterChoose[this.dataset.index]];
+				filterHandle();
+				sorts(old);
 
-			chooseElement.innerHTML = html;
+				//点击每一个li中的a标签存的属性
+				lis[this.dataset.index].prevNode.style.color = '';
+			};
+		}
+		
+	}
 
-			var chooseA = chooseElement.querySelectorAll('a');
+	// 筛选数据
+	function filterHandle(){
+		filterArr = shopsList;  //等于原始数组
+		for(var attr in filterObj){
+			filterArr = filterArr.filter(function(obj){
+				return obj[attr] === filterObj[attr]
+			})
+		}
+		writeHandle();
+	}
 
-			for (var i = 0; i < chooseA.length; i++) {
-				chooseA[i].onclick = function (){
-					this.parentNode.remove();
+	//写数据
+	function writeHandle(){
+		var Li = null;
+		var img = null;
+		var div = null;
+		shopList.innerHTML = '';
+		for (var i = 0; i < filterArr.length; i++) {
+			Li = document.createElement('li');
+			img = document.createElement('img');
 
-					//删数据
-					delete chooseObj[this.dataset.index];
-					delete filterObj[filterChoose[this.dataset.index]];
-					console.log(filterObj);
-					filterHandle();
+			img.src = filterArr[i].imgUrl;
+			Li.appendChild(img);
 
-					//点击每一个li中的a标签存的属性
-					lis[this.dataset.index].prevNode.style.color = '';
-				};
-			}
-			
+			div = document.createElement('div');
+			div.classList.add('text');
+			div.innerHTML = '<p><span>'+filterArr[i].name+'</span><span> '+filterArr[i].www+'</span></p><strong>￥'+filterArr[i].price+' </strong><em>'+filterArr[i].volume+'人付款</em>';
+			Li.appendChild(div);
+			shopList.appendChild(Li);
 		}
 
-		var shopList = document.querySelector('.shop-list');
-		// 筛选数据
-		function filterHandle(){
-			var filterArr = shopsList;  //等于原始数组
-			for(var attr in filterObj){
-				filterArr = filterArr.filter(function(obj){
-					return obj[attr] === filterObj[attr]
-				})
-			}
-			
+	}
 
-			shopList.innerHTML = '<pre>'+JSON.stringify(filterArr,null,3)+'</pre>';
+	//排序
+	function sorts(n){
+		console.log(n);
+		if (n==0) {
+			filterArr.sort(function(a,b){
+				return Math.random() - 0.5;
+			});
+		}else if (n==1 ) {
+			filterArr.sort(function(a,b){
+				var num1 = a.volume;
+				var num2 = b.volume;
+				return num2 - num1;
+			});
+		}else if (n==2) {
+			filterArr.sort(function(a,b){
+				var num1 = a.price;
+				var num2 = b.price;
+				return num1 - num2;
+			});
+		}else{
+			filterArr.sort(function(a,b){
+				var num1 = a.price;
+				var num2 = b.price;
+				return num2 - num1;
+			});
 		}
-
-	</script>
+		writeHandle();
+	}
+	
+</script>
 </body>
 </html>
