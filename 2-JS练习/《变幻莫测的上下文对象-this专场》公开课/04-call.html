@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function fn(m,n){
+			console.log( this.a,m,n );
+		}	
+		fn.call( {a: 1},2,3 );
+		// 函数.call 会直接调用该函数.
+			// 并且call 的 第 0个参数就是 函数执行时候的this
+			// 后面的参数是 函数执行的时候的参数
+	</script>
+</body>
+</html>

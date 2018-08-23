@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var a = 1;
+		// var obj = {
+		// 	a: 2,
+		// 	fn: function(){
+		// 		console.log( this.a )
+		// 	}
+		// }	
+		// // obj.fn();
+		// obj.fn.bind({a: "momo"})();
+//-------------------------------------------------
+		// var obj = {
+		// 	a: 1
+		// };
+		// var fn = function(){
+		// 	console.log(this.a)
+		// }
+		// obj.fn = fn;
+
+		// var fn1 = ()=>{
+		// 	console.log(this.a)
+		// }
+		// obj.fn1 = fn1;
+
+
+		// // obj.fn();
+		// obj.fn1();
+//-------------------------------------------------
+		var a = 1;
+		var obj = {
+			a: 2,
+			o: {
+				a: 3,
+				fn: function(){
+					console.log(this.a)
+				}
+			}
+		};
+		// obj.o.fn();
+		var temp = obj.o.fn;
+		temp();
+	</script>
+
+</body>
+</html>

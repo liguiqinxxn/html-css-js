@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Fn(){
+			this.a = 10;
+
+			// return 1; //返回非 null 的对象,那么实例化结果就是返回出的对象
+			return {}; //返回非 null 的对象,那么实例化结果就是返回出的对象
+		}
+
+		var f = new Fn();
+		console.log( f );
+	</script>
+</body>
+</html>

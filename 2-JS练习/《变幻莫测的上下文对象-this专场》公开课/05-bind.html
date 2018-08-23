@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// function fn(){
+		// 	console.log( this.a )
+		// }
+		// var fn1 = fn.bind( {a: 2} );
+		// fn();
+
+		// var fn2 = fn.bind( {a: 3} );
+		// var fn3 = fn.bind( {a: 4} );
+		// console.log( fn1 )
+		// fn1();
+		// fn2();
+		// fn3();
+
+		// var fn4 = fn1.bind( {a:100} );
+		// fn4();
+//------------------------------------------------------------------
+		function fn(){
+			console.log( this )
+		}
+		var fn1 = fn.bind(1);
+		fn1();
+	</script>
+</body>
+</html>
