@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="wrap" id="box">
+		<header class="head clear">
+			<h1 class="left">
+				<a class="logo" href="javascript:;"></a>
+				|
+				<a href="javascript:;">邮箱</a>
+			</h1>
+			<nav  class="left">
+				<a href="javascript:;">邮箱首页</a>|<a href="javascript:;">设置</a>
+			</nav>
+			<p class="hint1 left"></p>
+			<p class="hint2 left"></p>
+		</header>
+		<div class="section clear">
+			<div class="fuList left">
+				<ul class="fuListBig">
+					<li class="writeLetter">写信</li>
+					<li class="collectLetter">收信</li>
+					<li class="address">通讯录</li>
+				</ul>
+				<ul class="fuListSmall">
+					<li class="inbox active">收件箱</li>
+					<li class="StarMail">星标邮件</li>
+					<li class="groupMail">群邮件</li>
+					<li class="draftBox">草稿箱</li>
+					<li class="beenSent">已发送</li>
+					<li class="beenDel hover">已删除<a class="clearBtn" href="#">清空</a></li>
+					<li class="dustbin">垃圾箱<a class="clearBtn" href="#">清空</a></li>
+				</ul>
+			</div>
+			<div class="tBody left">
+				<div class="title">
+					收件箱(共96封,其中<a href="javascript:;">未读邮件</a>9封)
+				</div>
+				<div class="emailFunctions">
+					<a id="delet" href="javascript:;">删除</a>
+					<a href="javascript:;">彻底删除</a>
+					<a href="javascript:;">转发</a>
+					<a href="javascript:;">举报</a>
+					<a href="javascript:;">全部标为已读</a>
+					<a class="selectIcon" href="javascript:;">标记为...</a>
+					<a class="selectIcon" href="javascript:;">移动到...</a>
+				</div>
+				<div class="emailList" id="emailCheckList">
+					<header class="emailHead">
+						<input type="checkbox" />
+						<p><span></span><span></span></p>
+					</header>
+					<ul class="emailListUl">
+						<!-- <li>
+							<input type="checkbox">
+							<div>
+								<span>秒味课堂1</span>
+								<span>2015-12-30</span>
+							</div>
+							<p>JS拖拽的进一步学习,移动与拉伸JS拖拽的进一步练习</p>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div id="hint3" style="display:none;">选中2封邮件</div>
+</body>
+
+<script src="js/data.js"></script>
+
+<script>
+	
+	// 数组下的一个方法 map
+
+	var html = list.map(function(item){
+		return `
+			<li>
+				<input type="checkbox" data-id = "${item.id}">
+				<div>
+					<span>${item.caption}</span>
+					<span>${item.time}</span>
+				</div>
+				<p>${item.desc}</p>
+			</li>	
+		`
+	}).join(" ")
+
+	var emailListUl = document.querySelector(".emailListUl");
+
+	emailListUl.innerHTML = html;
+
+	// 全选的按钮
+	var checkboxAll = document.querySelector(".emailHead input");
+	// 找到所有的单选按钮
+	var checkboxSingle = emailListUl.querySelectorAll("input");
+
+	var singlesLen = checkboxSingle.length;
+
+	// 点击全选按钮
+	checkboxAll.onclick = function(){
+
+		for(var i = 0; i < singlesLen; i++){
+			checkboxSingle[i].checked = this.checked;
+
+			// 如果全选被选中了，所有的input背景颜色为f2f6f9
+			if(this.checked){
+				checkboxSingle[i].parentNode.style.background = '#f2f6f9';
+			}else{
+				checkboxSingle[i].parentNode.style.background = '';
+			}
+		}
+	}
+
+	// 给每一个单选绑定点击
+	for( var j = 0; j < singlesLen; j++ ){
+		checkboxSingle[j].onclick = function(){
+			// 如果当前点击的这个单选按钮，不选中，全选按钮应该也不选中
+
+			if(!this.checked){  // 不选中
+				checkboxAll.checked = false;
+				this.parentNode.style.background = '';
+			}else{  // 选中
+				//如果这个单选input选中了，看一下其他的input是否都选中，
+				// 如果都选中，全选的按钮应该也被选中
+				var n = 0;
+				for( var k = 0; k < singlesLen; k++ ){
+					// 看下一下每一个input是否都选中了，
+					if(checkboxSingle[k].checked){
+						n++;
+					}
+				}
+
+				// for循环结束后，就可以知道input是否都选中
+				if( n == singlesLen ){  // 说明全部选中
+					checkboxAll.checked = true;
+				}
+
+				// 选中的话，就让选中的这个input的父级li，背景为#f2f6f9
+				this.parentNode.style.background = '#f2f6f9';
+			}
+		}
+	}
+
+	//　用来获选中的input
+	function whoSelected(){
+		var arr = [];
+		for(var i = 0; i < singlesLen; i++){
+			if(checkboxSingle[i].checked) arr.push(checkboxSingle[i])
+		}
+		return arr;
+	}
+
+	// 删除的按钮
+	var delet = document.getElementById('delet');
+
+	delet.onclick = function(){
+		// 被选中的input的li的结构 和数据
+
+		var selectArr = whoSelected(); // 获取选中的input
+	
+		// 删除选中input的父级li的结构
+
+		for(var j = 0; j < selectArr.length; j++){
+			selectArr[j].parentNode.remove();  // 删除被选中input的父级li
+
+			console.log(selectArr[j].dataset.id)
+			// 需要删除对应id那条数据
+
+			for( var i = 0; i < list.length; i++ ){
+				// 数据中的id等于了选中input的一个id
+				if(list[i].id == selectArr[j].dataset.id){
+					// 删除
+					list.splice(i, 1)
+				}
+			}
+
+			console.log(list)
+		}
+
+	}
+
+</script>
+
+</html>
+

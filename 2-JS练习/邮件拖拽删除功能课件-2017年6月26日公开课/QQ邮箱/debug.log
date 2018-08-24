@@ -1,0 +1,64 @@
+[0626/193230.407:ERROR:process_info.cc(608)] range at 0xfee54000, size 0x230 fully unreadable
+[0626/193230.412:ERROR:process_info.cc(608)] range at 0xfee5f000, size 0xf84 fully unreadable
+[0626/193230.423:ERROR:process_info.cc(608)] range at 0xff4ce000, size 0x230 fully unreadable
+[0626/193230.423:ERROR:process_info.cc(608)] range at 0xfe4e3000, size 0x230 fully unreadable
+[0626/193230.426:ERROR:process_info.cc(608)] range at 0xfe9cf000, size 0x230 fully unreadable
+[0626/193230.426:ERROR:process_info.cc(608)] range at 0xff4cd000, size 0xf84 fully unreadable
+[0626/193230.426:ERROR:process_info.cc(608)] range at 0xfe4ef000, size 0xf84 fully unreadable
+[0626/193230.428:ERROR:process_info.cc(608)] range at 0xff8ee000, size 0x230 fully unreadable
+[0626/193230.429:ERROR:process_info.cc(608)] range at 0xfe9cb000, size 0xf84 fully unreadable
+[0626/193230.431:ERROR:process_info.cc(608)] range at 0xff8ed000, size 0xf84 fully unreadable
+[0626/193230.434:ERROR:process_info.cc(608)] range at 0xff58f000, size 0x230 fully unreadable
+[0626/193230.437:ERROR:process_info.cc(608)] range at 0xff58e000, size 0xf84 fully unreadable
+[0626/193230.496:ERROR:process_info.cc(608)] range at 0xfeecf000, size 0x230 fully unreadable
+[0626/193230.500:ERROR:process_info.cc(608)] range at 0xfeece000, size 0xf84 fully unreadable
+[0626/193230.505:ERROR:process_reader_win.cc(233)] ReadMemory at 0x74c000f0 of 248 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.505:WARNING:pe_image_reader.cc(295)] could not read nt headers from C:\Windows\SYSTEM32\srvcli.dll
+[0626/193230.505:ERROR:process_reader_win.cc(233)] ReadMemory at 0x74be0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.505:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\wkscli.dll
+[0626/193230.505:ERROR:process_reader_win.cc(233)] ReadMemory at 0x74c50000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.505:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\NETAPI32.dll
+[0626/193230.505:ERROR:process_reader_win.cc(233)] ReadMemory at 0x65ad0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.505:WARNING:pe_image_reader.cc(281)] could not read dos header from D:\Program Files\360\360Safe\safemon\safemon.dll
+[0626/193230.505:ERROR:process_reader_win.cc(233)] ReadMemory at 0x74b40000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\shcore.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x6a700000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from D:\Program Files\360\360Safe\safemon\iNetSafe.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x6eb20000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.17810_none_a9edf09f013934e0\COMCTL32.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x761b0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\COMDLG32.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x73b50000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\dbghelp.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x77740000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\USP10.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x6fa70000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\WINSPOOL.DRV
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x74bd0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\WINNSI.DLL
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x74c30000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\IPHLPAPI.DLL
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x74850000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\Secur32.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x69460000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\DWrite.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x59f80000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\FONTSUB.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x75fe0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\MSASN1.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x75bd0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\CRYPT32.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0x75690000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.506:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\WINTRUST.dll
+[0626/193230.506:ERROR:process_reader_win.cc(233)] ReadMemory at 0xfec0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.507:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Program Files (x86)\Google\Chrome\Application\56.0.2924.87\chrome_child.dll
+[0626/193230.508:ERROR:process_reader_win.cc(233)] ReadMemory at 0xb10000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.508:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+[0626/193230.508:ERROR:process_reader_win.cc(233)] ReadMemory at 0x779f0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.508:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\ntdll.dll
+[0626/193230.508:ERROR:process_reader_win.cc(233)] ReadMemory at 0x75510000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.508:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\KERNELBASE.dll
+[0626/193230.508:ERROR:process_reader_win.cc(233)] ReadMemory at 0x757f0000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.508:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\KERNEL32.DLL
+[0626/193230.508:ERROR:process_reader_win.cc(233)] ReadMemory at 0x75b00000 of 64 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0626/193230.508:WARNING:pe_image_reader.cc(281)] could not read dos header from C:\Windows\SYSTEM32\msvcrt.dll
