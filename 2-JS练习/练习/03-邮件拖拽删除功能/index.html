@@ -75,6 +75,159 @@
 <script src="js/data.js"></script>
 <script src="js/utils.js"></script>
 
-<script></script>
+<script>
+	//数组下的一个方法 map
+
+	var html = list.map(function(item){
+		return `
+			<li>
+				<input type="checkbox" data-id = "${item.id}">
+				<div>
+					<span>${item.caption}</span>
+					<span>${item.time}</span>
+				</div>
+				<p>${item.desc}</p>
+			</li>
+		`
+	}).join("");
+	var emailListUl = document.querySelector(".emailListUl");
+	emailListUl.innerHTML = html;
+
+
+	// 全选的按钮
+	var checkboxAll = document.querySelector(".emailHead input");
+	// 找到所有的单选按钮
+	var checkboxSingle = emailListUl.getElementsByTagName('input');
+	var singlesLen = checkboxSingle.length;
+
+	// 点击全选按钮
+	checkboxAll.onclick = function(){
+		for (var i = 0; i < checkboxSingle.length; i++) {
+			checkboxSingle[i].checked = this.checked;
+
+			//如果全选被选中了，所有的input背景颜色为f2f6f9
+			if (this.checked) {
+				checkboxSingle[i].parentNode.style.background = '#f2f6f9';
+			}else{
+				checkboxSingle[i].parentNode.style.background = '';
+			}
+		}
+	}
+
+
+	// 给每个单选绑定点击事件
+	for (var i = 0; i < checkboxSingle.length; i++) {
+		checkboxSingle[i].onclick = function(){
+			// 如果当前点击的这个单选按钮，不选中，全选按钮应该也不选中
+
+			if (!this.checked) { //不选中
+				checkboxAll.checked = false;
+				this.parentNode.style.background = '';
+			}else{  //选中
+				// 如果这个单选input选中了，看一下其他的input是否都选中
+				// 如果都选中，全选的按钮应该也被选中
+				var n = 0;
+				for (var j = 0; j < checkboxSingle.length; j++) {
+					if (checkboxSingle[j].checked) {
+						n++;
+					}
+				}
+
+				// for循环结束后。就可以知道input是否都选中
+				if ( n == checkboxSingle.length ) {
+					checkboxAll.checked = true;
+				}
+
+				// 选中的话，就让选中的这个input的父级li，背景为#f2f6f9
+				this.parentNode.style.background = '#f2f6f9';
+			}
+		}
+		
+		checkboxSingle[i].onmousedown = function (ev){
+			//阻止冒泡
+			ev.stopPropagation();
+		}
+
+	}
+
+
+	// 用来获取选中的input
+	function whoSelected(){
+		var arr = [];
+		for (var i = 0; i < checkboxSingle.length; i++) {
+			if (checkboxSingle[i].checked) arr.push(checkboxSingle[i])
+		}
+		return arr;
+	}
+
+
+	//删除的按钮
+	var delet = document.getElementById('delet');
+	delet.onclick = function(){
+		//被选中的input的li的结构和数据
+		delectHtml();
+	}
+
+	//删除
+	function delectHtml(){
+		var selectArr = whoSelected(); //获取选中的input
+
+		// 删除选中input的父级li的结构
+		for (var i = 0; i < selectArr.length; i++) {
+			selectArr[i].parentNode.remove();  //删除被选中input的父级li
+
+			// 删除对应id那条数据
+			for (var j = 0; j < list.length; j++) {
+				// 数据中的id等于了选中input的一个id
+				if (list[j].id == selectArr[i].dataset.id) {
+					//删除
+					list.splice(j, 1);
+				}
+			}
+
+		}
+	}
+
+
+	// 在某一个li上mousedown的会后，让小tip出现
+	var tip = document.querySelector('#hint3');
+	var lis = emailListUl.querySelectorAll('li');
+	var beenDel = document.querySelector('.beenDel');
+
+	for (var i = 0; i < lis.length; i++) {
+		lis[i].onmousedown = function(ev){
+
+			//看一下这个li下面的input，是否是选中
+			var input = this.querySelector('input');
+			if (!input.checked) {
+				return;
+			}
+
+			var selectArr = whoSelected();
+
+			tip.style.display = 'block';
+			tip.style.left = ev.clientX+1 +'px';
+			tip.style.top = ev.clientY+1 +'px';
+			tip.innerText = `选中${selectArr.length}封邮件`
+			document.onmousemove = function(ev){
+				tip.style.left = ev.clientX +'px';
+				tip.style.top = ev.clientY +'px';
+
+				//取消默认行为
+				ev.preventDefault();
+			}
+			document.onmouseup = function(ev){
+				// 需要判断一下是否和“以删除”这一项碰上了
+				// 碰撞检测
+				if ( collision(tip,beenDel) ) {//如果碰上了就删除
+					delectHtml();
+				}
+				tip.style.display = 'none';
+
+				document.onmousemove = document.onmouseup = null;
+			}
+		}
+	}
+</script>
 </html>
 
