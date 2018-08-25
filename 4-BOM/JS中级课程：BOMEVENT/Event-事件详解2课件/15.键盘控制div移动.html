@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width: 100px; height: 100px;  background: red; position: absolute;}
+</style>
+<script>
+window.onload = function() {
+	
+	var oDiv = document.getElementById('div1');
+	
+	//不是所有元素都能够接收键盘事件，能够响应用户输入的元素，能够接收焦点的元素就能够接收键盘事件
+	
+	//onkeydown : 如果按下不抬起，那么会连续触发
+	//定时器
+	document.onkeydown = function(ev) {
+		
+		var ev = ev || event;
+		
+		switch(ev.keyCode) {
+			case 37:
+				oDiv.style.left = oDiv.offsetLeft - 10 + 'px';
+				break;
+			case 38:
+				oDiv.style.top = oDiv.offsetTop - 10 + 'px';
+				break;
+			case 39:
+				oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+				break;
+			case 40:
+				oDiv.style.top = oDiv.offsetTop + 10 + 'px';
+				break;
+		}
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+</body>
+</html>

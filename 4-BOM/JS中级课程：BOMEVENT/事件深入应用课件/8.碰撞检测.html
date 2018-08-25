@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width: 100px; height: 100px; background: red; position: absolute; z-index: 2;}
+#img1 { position: absolute; left: 500px; top: 200px;}
+</style>
+<script>
+window.onload = function() {
+	
+	var oDiv = document.getElementById('div1');
+	var oImg = document.getElementById('img1');
+	
+	drag(oDiv);
+	
+	function drag(obj) {
+		
+		obj.onmousedown = function(ev) {
+			var ev = ev || event;
+			
+			var disX = ev.clientX - this.offsetLeft;
+			var disY = ev.clientY - this.offsetTop;
+			
+			if ( obj.setCapture ) {
+				obj.setCapture();
+			}
+			
+			document.onmousemove = function(ev) {
+				var ev = ev || event;
+				
+				var L = ev.clientX - disX;
+				var T = ev.clientY - disY;
+				
+				var L1 = L;
+				var R1 = L + obj.offsetWidth;
+				var T1 = T;
+				var B1 = T + obj.offsetHeight;
+				
+				var L2 = oImg.offsetLeft;
+				var R2 = L2 + oImg.offsetWidth;
+				var T2 = oImg.offsetTop;
+				var B2 = T2 + oImg.offsetHeight;
+				
+				if ( R1 < L2 || L1 > R2 || B1 < T2 || T1 > B2 ) {
+					oImg.src = '1.jpg';
+				} else {
+					oImg.src = '2.jpg';
+				}
+				
+				obj.style.left = L + 'px';
+				obj.style.top = T + 'px';
+				
+			}
+			
+			document.onmouseup = function() {
+				document.onmousemove = document.onmouseup = null;
+				if ( obj.releaseCapture ) {
+					obj.releaseCapture();
+				}
+			}
+			
+			return false;
+			
+		}
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+    <img src="1.jpg" id="img1" />
+</body>
+</html>

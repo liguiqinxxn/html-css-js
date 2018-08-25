@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width: 100px; height:100px; background: red; position: absolute;}
+</style>
+<script>
+window.onload = function() {
+	
+	//onmousemove : 当鼠标在一个元素上面移动的触发
+	//触发频率不是像素，而是间隔时间，在一个指定时间内（很短），如果鼠标的位置和上一次的位置发生了变化，那么就会触发一次
+	
+	var i = 0;
+	
+	var oDiv = document.getElementById('div1');
+	
+	document.onmousemove = function(ev) {
+		//document.title = i++;
+		
+		var ev = ev || event;
+		
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		
+		oDiv.style.left = ev.clientX + 'px';
+		oDiv.style.top = ev.clientY + scrollTop + 'px';
+		
+	}
+	
+}
+</script>
+</head>
+
+<body style="height: 2000px;">
+	<div id="div1"></div>
+</body>
+</html>

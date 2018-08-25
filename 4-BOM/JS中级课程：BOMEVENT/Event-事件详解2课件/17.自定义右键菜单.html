@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width:100px; height: 200px; border: 1px solid red; position: absolute; display: none;}
+</style>
+<script>
+window.onload = function() {
+	
+	var oDiv = document.getElementById('div1');
+	
+	document.oncontextmenu = function(ev) {
+		var ev = ev || event;
+		
+		oDiv.style.display = 'block';
+		
+		oDiv.style.left = ev.clientX + 'px';
+		oDiv.style.top = ev.clientY + 'px';
+		
+		return false;
+		
+	}
+	
+	document.onclick = function() {
+		oDiv.style.display = 'none';
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+</body>
+</html>

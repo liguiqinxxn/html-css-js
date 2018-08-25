@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function() {
+	
+	/*
+		可视区的尺寸
+		document.documentElement.clientWidth
+		document.documentElement.clientHeight
+	
+	*/
+
+	// alert(document.documentElement.clientHeight)
+	document.onclick = function(){
+		/*
+		滚动条滚动距离
+			document.documentElement.scrollTop[scrollLeft]
+			document.body.scrollTop[scrollLeft]		
+		
+		*/
+		//alert(document.documentElement.scrollTop);
+		//alert(document.body.scrollTop)
+		
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+		// alert( scrollTop );
+
+		// 内容高 oDiv.scrollHeight(Width)
+		alert(document.getElementById('div1').scrollHeight);
+
+		// alert( document.getElementById('div1').offsetHeight );
+		// alert( document.body.offsetHeight );
+
+	}
+	
+}
+</script>
+</head>
+
+<body style="height:2000px;">
+	<div id="div1" style="width:100px;height:100px;border: 1px solid red; padding: 10px;margin: 10px;">
+    	<div style="width: 100px;height: 200px; background: blue;"></div>
+    </div>
+</body>
+</html>

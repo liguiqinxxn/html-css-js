@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+/*
+事件默认行为：当一个事件发生的时候浏览器自己会默认做的事情
+怎么阻止？
+当前这个行为是什么事件触发的，然后在这个事件的处理函数中使用return false;
+*/
+
+document.onkeydown = function() {
+	
+	return false;
+	
+}
+
+//oncontextmenu : 右键菜单事件，当右键菜单（环境菜单）显示出来的时候触发
+
+document.oncontextmenu = function() {
+	
+	//alert(1)
+	
+	return false;
+	
+}
+</script>
+</head>
+
+<body style="height: 2000px;">
+</body>
+</html>

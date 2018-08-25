@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+/*
+onscroll : 当滚动条滚动的时候触发
+onresize : 当窗口大小发生改变的时候出发
+
+*/
+var i = 0;
+
+window.onscroll = function() {
+	document.title = i++;
+}
+
+
+window.onresize = function() {
+	document.title = i++;
+}
+</script>
+</head>
+
+<body style="height:2000px;">
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+div {padding: 40px;}
+#div1 {background:red}
+#div2 {background:green}
+#div3 {background:blue; position: absolute; top: 300px;}
+</style>
+<script>
+window.onload = function() {
+	
+	/*
+		事件冒泡 : 当一个元素接收到事件的时候，会把他接收到的所有传播给他的父级，一直到顶层window.事件冒泡机制
+	*/
+	
+	var oDiv1 = document.getElementById('div1');
+	var oDiv2 = document.getElementById('div2');
+	var oDiv3 = document.getElementById('div3');
+	
+	function fn1() {
+		alert( this.id );
+	}
+	
+	//oDiv1.onclick = fn1;  给**加事件，给元素加事件处理函数
+	//事件函数绑定
+	oDiv1.onclick = fn1;//告诉div1，如果他接收到了一个点击事件，那么他就去执行fn1
+	//oDiv2.onclick = fn1;
+	oDiv3.onclick = fn1;
+	
+	//我在马路边捡到一分钱，把他交个警察叔叔
+	/*我.on马路边捡到一分钱 = function() {
+		把他交个警察叔叔
+	}*/
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1">
+    	<div id="div2">
+        	<div id="div3"></div>
+        </div>
+    </div>
+</body>
+</html>

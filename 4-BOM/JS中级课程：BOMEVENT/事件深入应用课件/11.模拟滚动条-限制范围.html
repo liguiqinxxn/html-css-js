@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width: 30px; height: 500px; background: black; position: absolute; left: 10px; top: 10px;}
+#div2 {width: 30px; height: 30px; background: red; position: absolute; left: 0; top: 0;}
+</style>
+<script>
+window.onload = function() {
+	
+	var oDiv1 = document.getElementById('div1');
+	var oDiv2 = document.getElementById('div2');
+	
+	var iMaxTop = oDiv1.offsetHeight - oDiv2.offsetHeight;
+	
+	oDiv2.onmousedown = function(ev) {
+		
+		var ev = ev || event;
+		
+		var disY = ev.clientY - this.offsetTop;
+		
+		document.onmousemove = function(ev) {
+			
+			var ev = ev || event;
+			
+			var T = ev.clientY - disY;
+			
+			if ( T < 0 ) {
+				T = 0;
+			} else if ( T > iMaxTop ) {
+				T = iMaxTop;
+			}
+			
+			oDiv2.style.top = T + 'px';
+			
+		}
+		
+		document.onmouseup = function() {
+			
+			document.onmousemove = document.onmouseup = null;
+			
+		}
+		
+		return false;
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1">
+    	<div id="div2"></div>
+    </div>
+</body>
+</html>
