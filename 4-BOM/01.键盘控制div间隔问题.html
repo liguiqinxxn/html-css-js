@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width: 100px; height: 100px;  background: red; position: absolute;}
+</style>
+<script>
+window.onload = function() {
+	
+	var oDiv = document.getElementById('div1');
+	var timer = null;
+	var toleft = false;
+	var toright = false;
+	var totop = false;
+	var tobottom = false;
+	
+	//定时器
+	document.onkeydown = function(ev) {
+		var ev = ev || event;
+		switch(ev.keyCode) {
+			case 37:
+				toleft = true;
+				break;
+			case 38:
+				totop = true;
+				break;
+			case 39:
+				toright = true;
+				break;
+			case 40:
+				tobottom = true;
+				break;
+		}
+		
+	}
+	document.onkeyup = function(ev) {
+		var ev = ev || event;
+		switch(ev.keyCode) {
+			case 37:
+				toleft = false;
+				break;
+			case 38:
+				totop = false;
+				break;
+			case 39:
+				toright = false;
+				break;
+			case 40:
+				tobottom = false;
+				break;
+		}
+		
+	}
+
+	timer = setInterval(function(){
+		if (toleft) { oDiv.style.left = oDiv.offsetLeft - 10 + 'px'; }
+		if (totop) { oDiv.style.top = oDiv.offsetTop - 10 + 'px';}
+		if (toright) { oDiv.style.left = oDiv.offsetLeft + 10 + 'px'; }
+		if (tobottom) { oDiv.style.top = oDiv.offsetTop + 10 + 'px'; }
+	},50)
+}
+</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+</body>
+</html>
