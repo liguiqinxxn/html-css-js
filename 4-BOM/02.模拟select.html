@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟select</title>
+	<style>
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			width: 200px;
+			border: 1px solid #000;
+			margin-top: 10px;
+			display: none;
+		}
+		#text , li {
+			width: 200px;
+			line-height: 40px;
+			text-indent: 10px;
+		}
+		li {
+			border-bottom: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="menu">
+		<h4>请选择字体</h4>
+		<input type="text" id="text">
+		<ul id="list">
+			<li>宋体</li>
+			<li>楷体</li>
+			<li>微软雅黑</li>
+			<li>黑体</li>
+			<li>新宋体</li>
+		</ul>
+	</div>
+</body>
+<script>
+	var oText = document.getElementById('text');
+	var oUl = document.getElementById('list');
+	var aLi = document.getElementsByTagName('li');
+
+	// 点击text ul显示
+	oText.onclick = function(ev){
+		oUl.style.display = 'block';     //  只有点击text ul才显示，点击其他地方都消失
+
+		// 阻止冒泡到父级
+		var ev = ev||event;
+		ev.cancelBubble = true;
+	}
+	// 点击其他地方 关闭ul
+	document.onclick = function(){
+		oUl.style.display = 'none';
+	}
+
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].onmouseover = function(){
+			this.style.background = 'yellow';
+		}
+		aLi[i].onmouseout = function(){
+			this.style.background = '#fff';
+		}
+		aLi[i].onclick = function(){
+			oText.value = this.innerHTML;
+		}
+	}
+
+</script>
+</html>
