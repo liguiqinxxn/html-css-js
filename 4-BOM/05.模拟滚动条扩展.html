@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟滚动条扩展</title>
+	<style>
+		#div1 {
+			width: 30px;
+			height: 400px;
+			border:1px solid #000;
+			position: absolute;
+			left: 320px;
+			/*display: none;*/
+		}
+		#btn {
+			position: absolute;
+			width: 30px;
+			/*height: 30px;*/
+			background-color: pink;
+		}
+		#box {
+			width: 300px;
+			height: 400px;
+			border:1px solid #000;
+			position: absolute;
+			left:10px;
+			top:10px;
+			overflow: hidden;
+		}
+		#main {
+			margin: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p id="main">
+			模拟滚动条 - 如果内容没有溢出就没有滚动条，
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化
+			内容越多滚动条高度越短<br>
+			当内容高度大于可视高度的时候才出现，拖拽的滚动条根据内容多少动态变化。
+		</p>
+	</div>
+	<div id="div1">
+		<div id="btn"></div>
+	</div>
+</body>
+<script>
+	var oDiv = document.getElementById('div1');
+	var oBtn = document.getElementById('btn');
+	var oBox = document.getElementById('box');
+	var oP = document.getElementById('main');
+
+	// 根据内容的高度，确定btn的高度
+	var pMax = oBox.clientHeight - oP.offsetHeight;
+	console.log(pMax);
+	if (pMax >= 0) {
+		oBtn.style.height = oDiv.clientHeight +'px';
+		oDiv.style.display = 'none';
+	}else{
+		oDiv.style.display = 'block';
+		//内容越多，btn的高越小
+		oBtn.style.height = oBox.clientHeight/oP.offsetHeight *oDiv.offsetHeight +'px';
+	}
+
+	// btn控制p的top值
+	oBtn.onmousedown = function(ev){
+		var ev = ev||event;
+		var disY = ev.clientY - oBtn.offsetTop;
+		var max = oDiv.offsetHeight - oBtn.offsetHeight; //btn可以移动的最大top
+
+		document.onmousemove = function(ev){
+			var ev = ev||event;
+			var T = ev.clientY - disY;
+			if ( T < 0) {
+				T = 0;
+			}
+			if (T > max) {
+				T = max;
+			}
+			oBtn.style.top = T +'px';
+			oP.style.top = T/max *pMax +'px';
+		}
+		document.onmouseup = function(){
+			document.onmousemove = document.onmouseup = null;	
+		}
+		return false;
+	}
+
+</script>
+</html>
