@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>碰撞重合检测</title>
+	<style>
+		#box {
+			width: 200px;
+			height: 200px;
+			background-color: #000;
+			position: absolute;
+			top: 100px;
+			left: 300px;
+		}
+		#move {
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<div id="move"></div>
+</body>
+<script>
+	// move移动， 检测是否移动到和 box 重合
+	var oBox = document.getElementById('box');
+	var oMove = document.getElementById('move');
+
+	// 移动move
+	oMove.onmousedown = function(ev){
+		var ev = ev||event;
+		var disX = ev.clientX - oMove.offsetLeft;
+		var disY = ev.clientY - oMove.offsetTop;
+		document.onmousemove = function(ev){
+			var ev = ev||event;
+			var L = ev.clientX - disX;
+			var T = ev.clientY - disY;
+			oMove.style.left = L +'px';
+			oMove.style.top = T +'px';
+			// 完全重合，就是left 和top  在box的里面
+			if ( L>=oBox.offsetLeft && T>=oBox.offsetTop && L<(oBox.getBoundingClientRect().right - oMove.offsetWidth) && T<(oBox.getBoundingClientRect().bottom - oMove.offsetHeight) ) {
+				oMove.style.background = 'red';
+			}else{
+				oMove.style.background = 'yellow';
+			}
+
+		}
+		document.onmouseup = function(){
+			document.onmousemove = document.onmouseup = null;
+		}
+		return false;
+	}
+</script>
+</html>
