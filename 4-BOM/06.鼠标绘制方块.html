@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标绘制方块</title>
+	<style>
+		#box {
+			width: 800px;
+			height: 500px;
+			background-color: #ffcccc;
+			position: absolute;
+			top: 20px;
+			left: 100px;
+		}
+		.block {
+			position: absolute;
+			border:1px solid #000;
+			/*display: inline-block;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+	// 每次鼠标down下  都会创造一个div    div的高度和宽度由鼠标move的距离决定
+	var box = document.getElementById('box');
+	box.onmousedown = function(ev){
+		var ev = ev||event;
+		var X = ev.clientX;
+		var Y = ev.clientY;
+		var oDiv = document.createElement('div');
+		box.appendChild(oDiv);
+
+		box.onmousemove = function(ev){
+			var ev = ev||event;
+			oDiv.className = 'block';
+			oDiv.style.width = Math.abs(ev.clientX - X) +'px';
+			oDiv.style.height = Math.abs(ev.clientY - Y) +'px';
+
+			if (ev.clientX - X >=0) {
+				// 向右绘制
+				oDiv.style.left = X - box.offsetLeft +'px';
+			}else{
+				// 向左绘制
+				oDiv.style.left = ev.clientX - box.offsetLeft +'px';
+			}
+
+			if (ev.clientY - Y >=0) {
+				// 向右绘制
+				oDiv.style.top = Y - box.offsetTop +'px';
+			}else{
+				// 向上绘制
+				oDiv.style.top = ev.clientY - box.offsetTop +'px';
+			}
+		}
+		document.onmouseup = function(){
+			box.onmousemove = document.onmouseup = null;
+		}
+		return false;
+	}
+</script>
+</html>
