@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽回放</title>
+	<style>
+		#div1{
+			width: 100px;
+			height: 100px;
+			background-color: brown;
+			position: absolute;
+			top: 100px;
+			left:100px;
+		}
+		input {
+			width: 100px;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" value='回放'>
+	<div id="div1"></div>
+</body>
+<script>
+	var Btn = document.getElementsByTagName('input')[0];
+	var oDiv = document.getElementById('div1');
+	var arr = [];
+	var onoff = false;
+
+	// 拖动div
+	oDiv.onmousedown = function(ev){
+		var ev = ev||event;
+		var disX = ev.clientX - oDiv.offsetLeft;
+		var disY = ev.clientY - oDiv.offsetTop;
+
+		document.onmousemove = function(ev){
+			var ev = ev||event;
+			oDiv.style.left = ev.clientX - disX + 'px';
+			oDiv.style.top = ev.clientY - disY + 'px';
+
+			arr.push({
+				left:oDiv.style.left,
+				top:oDiv.style.top
+			})
+			console.log(arr);
+		}
+		document.onmouseup = function(){
+			onoff = true;
+			document.onmousemove = document.onmouseup = null;
+		}
+		return false;
+	}
+
+	// 点击btn 回放
+	var timer = null;
+	var i = 0;
+	Btn.onclick = function(){
+		if (onoff) {
+			// 将存的arr倒过来
+			arr = arr.reverse();
+			clearInterval(timer);
+			timer = setInterval(function(){
+				// 每次定时器走一步，就获取一次arr里面的left 和top值
+				oDiv.style.left = arr[i].left;
+				oDiv.style.top = arr[i].top;
+				console.log(i);
+				i++;
+				if (i == arr.length ) {
+					clearInterval(timer);
+					arr = [];
+					i = 0;
+				}
+			},30);
+
+			onoff = false;
+		}
+	}
+</script>
+</html>
