@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟select多选</title>
+	<style>
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			width: 300px;
+			border: 1px solid #000;
+			margin-top: 10px;
+			display: none;
+		}
+		#text,li{
+			width: 300px;
+			height: 40px;
+			line-height: 40px;
+			text-indent: 10px;
+		}
+		#text {
+			border: 1px solid #000;
+		}
+		li{
+			border-bottom: 1px solid #000;
+		}
+	
+	
+	</style>
+</head>
+<body>
+	<div id="menu">
+		<h4>请选择字体</h4>
+		<p id="text"></p>
+		<!-- <input type="text" id="text"/> -->
+		<ul id="list">
+			<li>宋体</li>
+			<li>楷体</li>
+			<li>微软雅黑</li>
+			<li>黑体</li>
+			<li>新宋体</li>
+		</ul>
+
+	</div>
+</body>
+<script>
+	//   当按下ctrl 或者 shif  可以多选
+	var oText = document.getElementById('text');
+	var oUl = document.getElementById('list');
+	var aLi = document.getElementsByTagName('li');
+	var onoff2 = true;
+	var arr = [];
+
+	//  点击text ul显示
+	oText.onclick = function(ev){
+		oUl.style.display = 'block';     
+		// 阻止冒泡到父级	
+		var ev = ev||event;
+		ev.cancelBubble = true;
+	}
+
+	// 点击其他地方 关闭ul
+	document.onclick = function(){
+		oUl.style.display = 'none';
+	}
+
+	//  每个li鼠标移入 变色  点击li 赋值到text
+	for (var  i = 0; i < aLi.length; i++) {
+		aLi[i].onmouseover = function(){	
+			if( !this.onOff ){
+				this.style.background = 'yellow';
+			}	
+		}
+		aLi[i].onmouseout = function(){	
+			if( !this.onOff ){
+				this.style.background = '#fff';
+			}
+		}
+		aLi[i].onclick = function(ev){
+			var ev = ev||event;
+			var str = this.innerText;
+
+			// 假如ctrl 或者shif 按下 是true的状态
+			if( ev.ctrlKey || ev.shiftKey ){  // 多选			 
+				ev.cancelBubble = true;   // li的点击事件不能冒泡到document
+
+				// 当有一个li被选中，不能再次选中
+				ss: if( arr.length > 0){
+					for (var i = 0; i < arr.length; i++) {
+						if (arr[i] === str) {
+							arr.splice(i,1);
+							break ss; //跳出循环
+						}
+					}
+					arr.push(str);
+				}else{ 
+					arr.push(str);
+				}
+				oText.innerText = arr.join('、');
+
+			}else{ //单选
+				arr = []; //清空数组
+				arr.push(str);
+				oText.innerText = arr[0];
+				for( var  i = 0; i < aLi.length; i++ ){
+					aLi[i].style.background = '#fff';
+					aLi[i].onOff = false;
+				}
+			}
+
+			if( !this.onOff ){
+				this.style.background = 'yellow';
+			}else{
+				this.style.background = '#fff';
+			}
+
+			this.onOff = !this.onOff;
+
+		}
+	}
+
+</script>
+</html>
