@@ -177,6 +177,7 @@
 			};
 
 			document.onmouseup = function(){
+				setCheckedAll();
 				document.body.removeChild(selection);
 				document.onmousemove = document.onmouseup = null;
 			}
