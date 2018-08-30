@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.active {
+			background: red;
+		}
+	</style>
+</head>
+<body>
+<!-- 事件代理（事件委托）  -->
+<div id="box">
+	<input type="button" value="1">
+	<input type="button" value="2">
+	<input type="button" value="3">
+	<input type="button" value="4">
+	<input type="button" value="5">
+</div>
+<script type="text/javascript">
+(function(){
+	let box = document.querySelector('#box');
+	document.body.addEventListener('click', function(e) {
+		// e.target 事件源(事件目标) 事件具体发生在哪个元素上
+		let btns = box.querySelectorAll('input');
+		if(e.target.tagName === "INPUT"){
+			// console.log(e.target.value);
+			btns.forEach((item)=>{
+				item.classList.remove("active");	
+			});
+			e.target.classList.add("active");
+		}
+	});
+	// IE下 只有 冒泡 没有捕获
+	setTimeout(function(){
+		let newBtn = document.createElement("input");
+		newBtn.type = "button";
+		newBtn.value = "6";
+		box.appendChild(newBtn);
+	},1000);
+})();	
+</script>
+</body>
+</html>

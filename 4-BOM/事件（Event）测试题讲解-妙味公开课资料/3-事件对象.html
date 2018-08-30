@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+document.addEventListener('mousedown', function(a) {
+	// 在标准下是事件函数的第0个参数
+	// 在IE下 window.event
+	// let e = e||event;
+	fn(a);
+});	
+function fn(event){
+	console.log(event);
+}
+</script>	
+</body>
+</html>

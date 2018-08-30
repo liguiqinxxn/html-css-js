@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box {
+			width: 400px;
+			height: 400px;
+			background: red;
+		}	
+		#box2 {
+			width: 300px;
+			height: 300px;
+			background: yellow;
+		}
+		#box3 {
+			width: 200px;
+			height: 200px;
+			background: green;
+		}
+	</style>
+</head>
+<body>
+<div id="box">
+	<div id="box2">
+		<div id="box3"></div>
+	</div>
+</div>
+<script type="text/javascript">
+(function(){
+	let box = document.querySelector('#box');
+	let box2 = document.querySelector('#box2');
+	let box3 = document.querySelector('#box3');
+	/*
+		事件流：
+			事件的执行过程
+			事件捕获--> 事件目标-->事件冒泡 
+		
+		事件捕获: 当页面发生事件的时候，会从顶层对象一层一层向下去查找发生事件的这个元素，在查找的过程中，如果元素有对应的事件就执行
+
+		事件目标
+
+		事件冒泡: 从当前开始会一直向上传递该事件，一直传递到顶层，在传递的过程中，如果元素有对应的事件就执行	
+
+	
+	*/
+	box.addEventListener('click', function(e) {
+		console.log(this.id,"捕获阶段");	
+	},true);
+	box2.addEventListener('click', function(e) {
+		console.log(this.id,"捕获阶段");	
+	},true);
+	box3.addEventListener('click', function(e) {
+		console.log(this.id,"捕获阶段");	
+	},true);
+	box.addEventListener('click', function(e) {
+		console.log(this.id,"冒泡阶段");	
+	},false);
+	box2.addEventListener('click', function(e) {
+		console.log(this.id,"冒泡阶段");	
+	},false);
+	box3.addEventListener('click', function(e) {
+		console.log(this.id,"冒泡阶段");	
+	},false);
+})();	
+</script>
+</body>
+</html>

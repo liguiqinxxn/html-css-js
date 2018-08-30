@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top:50px;
+			}
+		</style>
+		<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="./js/TweenMax.js"></script>
+		<script>
+			$(function(){
+				var t = new TimelineMax();
+
+				t.to( "#div1",1,{left:300,onComplete:function(){
+					alert("left:300")
+				},onReverseComplete:function(){
+					alert("反向left:0");
+				}} );
+				t.to( "#div1",2,{width:300,onComplete:function(){
+					alert("width:300")
+				},onReverseComplete:function(){
+					alert("反向width:100")
+				}} );
+				/*t.to( "#div1",2,{height:300} );
+				t.to( "#div1",2,{top:300} );
+				t.to( "#div1",2,{rotationZ:180} );
+				t.to( "#div1",2,{opacity: 0} );*/
+
+				t.stop();
+
+				$("#play").click(function (){
+					t.play();		
+				})
+				$("#stop").click(function (){
+					t.stop();		
+				})
+				$("#reverse").click(function (){
+					t.reverse();		
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="play" value="播放" />
+		<input type="button" id="stop" value="停止" />
+		<input type="button" id="reverse" value="反向动画" />
+		<div id="div1"></div>
+	</body>
+</html>

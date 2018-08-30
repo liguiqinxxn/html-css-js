@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top:50px;
+			}
+
+		</style>
+		<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="./js/TweenMax.js"></script>
+		<script>
+			$(function(){
+
+				var t = new TimelineMax();
+						t.add( "state1" );
+					t.to( "#div1",2,{left:300,ease:Bounce.easeIn});
+					t.to( "#div1",6,{width:300,onComplete:function(){
+						getCurrentLabel();
+					}} );
+						t.add( "state2" )
+					t.to( "#div1",7,{height:300,onComplete:function(){
+						getCurrentLabel();
+					}} );
+						t.add( "state3" )
+
+					//alert( t.totalDuration() )
+
+					//alert( t.getLabelTime( "state3" ) )
+
+					//alert( t.currentLabel() )
+
+					getCurrentLabel();
+
+					function getCurrentLabel(){
+						//获取当前的时间
+						var currentTime = t.getLabelTime( t.currentLabel() );
+						//获取到上一个状态
+						var beforeLabel = t.getLabelBefore( currentTime );
+						//获取到下一个状态
+						var afterLabel = t.getLabelAfter( currentTime );
+
+						var str = "<p>上一个状态:"+ beforeLabel +"</p><p>当前状态:"+ t.currentLabel() +"</p><p>下一个状态:"+ afterLabel +"</p>";
+
+						$("#label").html( str );
+
+					}
+
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<div id="label"></div>
+		<div id="div1"></div>
+	</body>
+</html>

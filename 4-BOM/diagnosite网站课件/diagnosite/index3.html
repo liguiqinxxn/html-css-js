@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top:50px;
+			}
+
+		</style>
+		<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="./js/TweenMax.js"></script>
+		<script>
+			$(function(){
+
+				var t = new TimelineMax();
+
+					t.add("state1");
+
+				t.to( "#div1",1,{left:300} );
+				t.to( "#div1",2,{width:300} );
+					t.add("state2");
+				t.to( "#div1",3,{height:300} );
+					t.add("state3");
+
+				t.stop();
+
+				t.clear();
+
+				t.tweenTo( "state2" );
+
+				setInterval(function(){
+					console.log( t.time() );
+				},16)
+
+				//t.seek( "state2",false );
+
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<div id="div1"></div>
+	</body>
+</html>

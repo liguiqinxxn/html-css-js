@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="button" value="按钮">
+<script type="text/javascript">
+(function(){
+	let btn = document.querySelector('input');
+	// 事件绑定
+	// btn.onclick = function(e){
+	// 	console.log(1);
+	// };
+	// btn.onclick = function(e){
+	// 	console.log(2);
+	// };
+	// 事件监听
+	function fn(){
+		console.log(1);
+	}
+	btn.addEventListener('click', fn);
+	btn.removeEventListener('click', fn);
+
+})();	
+</script>
+</body>
+</html>
