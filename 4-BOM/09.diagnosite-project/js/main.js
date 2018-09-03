@@ -13,12 +13,19 @@ miaov.init = function(){
 	miaov.configIntAnimate(); //配置导航条的动画
 
 	miaov.button3D(".start",".state1", ".state2",0.3);
+	miaov.button3D(".button1",".state1", ".state2",0.3);
+	miaov.button3D(".button2",".state1", ".state2",0.3);
 
-	$("body").height(8500);
+	// $("body").height(8500);
+
+	// 设置每一屏中img的百分比
+	miaov.imgWidth($(".scene img"));
 
 	miaov.configTimeScroll(); //配置整屏切换的动画
 
 	twoAnimate.init(); //执行第二屏里面的动画
+	threeAnimate.init(); //执行第三屏里面的动画
+	fiveAnimate.init(); //执行第三五屏里面的动画
 }
 
 $(document).ready( miaov.init );
@@ -69,7 +76,7 @@ miaov.events = function(){
 
 	$(window).resize( miaov.resize );
 
-}
+};
 //当mouseup的时候，让当前这一屏到达某个状态
 miaov.mouseupFn = function(){
 	//在滚动过程中计算出一个比例
@@ -93,7 +100,7 @@ miaov.mouseupFn = function(){
 	if ( scale === 0) {
 		step = "step1";
 	}else if( scale === 1){
-		step = "step5";
+		step = "footer";
 	}else if (prevDvalue < nextDvalue) {
 		step = prevStep;
 	}else{
@@ -161,7 +168,7 @@ miaov.changeStep = function(value){
 		var d = Math.abs( miaov.timeScroll.time() - afterTime);
 		
 		//运动到下一个状态
-		miaov.timeScroll.tweenTo(afterStep);
+		// miaov.timeScroll.tweenTo(afterStep);
 
 		//记录当前的状态为下一个状态，方便继续切换到下一个状态上
 		miaov.currentStep = afterStep;
@@ -180,7 +187,7 @@ miaov.changeStep = function(value){
 		var d = Math.abs( miaov.timeScroll.time() - beforeTime);
 
 		//运动到上一个状态
-		miaov.timeScroll.tweenTo(beforeStep);
+		// miaov.timeScroll.tweenTo(beforeStep);
 
 		//记录当前的状态为上一个状态，方便继续切换到上一个状态上
 		miaov.currentStep = beforeStep;
@@ -191,23 +198,125 @@ miaov.changeStep = function(value){
 
 //配置整屏切换的动画以及每一屏中的小动画
 miaov.configTimeScroll = function(){
+
 	var time = miaov.timeScroll ? miaov.timeScroll.time() : 0;
 
 	if( miaov.timeScroll ) miaov.timeScroll.clear();
-	
+
 	miaov.timeScroll = new TimelineMax();
+
+		// 当从第二屏切换到第一屏的时候，让第二屏里面的动画时间点重归0
+		miaov.timeScroll.to(".scene1",0,{onReverseComplete:function(){
+			twoAnimate.timeline.seek(0,false);
+		}},0);
+
+		miaov.timeScroll.to(".footer",0,{top:"100%"});
 
 		miaov.timeScroll.add("step1");
 	miaov.timeScroll.to(".scene2",0.8,{top:0,ease:Cubic.easeInOut});
+	miaov.timeScroll.to({},0.1,{onComplete:function(){
+		menu.changeMenu("menu_state2"); //切换到第二屏调用的函数，同时传入导航条背景颜色变化的class名字
+	},onReverseComplete:function(){
+		menu.changeMenu("menu_state1");
+	}},"-=0.2");
+	//当切换到第二屏上的时候，翻转第二屏上的第一个动画
+	miaov.timeScroll.to({},0,{onComplete:function(){
+		twoAnimate.timeline.tweenTo("state1");
+	}},"-=0.2");
+
 		miaov.timeScroll.add("step2");
-	miaov.timeScroll.to(".scene3",0.8,{top:0,ease:Cubic.easeInOut});
+
+	// 主动画配置第二屏的小动画 start
+
+	miaov.timeScroll.to({},0,{onComplete:function(){
+		twoAnimate.timeline.tweenTo("state2");
+	},onReverseComplete:function(){
+		twoAnimate.timeline.tweenTo("state1");
+	}});
+
+	miaov.timeScroll.to({},0.4,{});
+
+		miaov.timeScroll.add("point1");
+
+	miaov.timeScroll.to({},0,{onComplete:function(){
+		twoAnimate.timeline.tweenTo("state3");
+	},onReverseComplete:function(){
+		twoAnimate.timeline.tweenTo("state2");
+	}});
+
+	miaov.timeScroll.to({},0.4,{});
+
+		miaov.timeScroll.add("point2");
+
+	miaov.timeScroll.to({},0,{onComplete:function(){
+		twoAnimate.timeline.tweenTo("state4");
+	},onReverseComplete:function(){
+		twoAnimate.timeline.tweenTo("state3");
+	}});
+
+	miaov.timeScroll.to({},0.4,{});
+
+		miaov.timeScroll.add("point3");
+
+	// 主动画配置第二屏的小动画 end
+
+
+	miaov.timeScroll.to(".scene3",0.8,{top:0,ease:Cubic.easeInOut,onReverseComplete:function(){
+		threeAnimate.timeline.seek(0,false);
+	}});
+	miaov.timeScroll.to({},0.1,{onComplete:function(){
+		menu.changeMenu("menu_state3");  //切换到第二屏调用的函数，同时传入导航条背景颜色变化的class名字
+	},onReverseComplete:function(){
+		menu.changeMenu("menu_state2");
+	}},"-=0.2");
+	miaov.timeScroll.to({},0.1,{onComplete:function(){
+		threeAnimate.timeline.tweenTo("threeState1");
+	}},"-=0.2");
 		miaov.timeScroll.add("step3");
+
+	// --- 主动画中配置第三屏的小动画 start
+
+	miaov.timeScroll.to({},0,{onComplete:function(){
+		threeAnimate.timeline.tweenTo("threeState2");
+	},onReverseComplete:function(){
+		threeAnimate.timeline.tweenTo("threeState1");
+	}});
+
+	miaov.timeScroll.to({},0.4,{});
+
+		miaov.timeScroll.add("threeState");
+
+	// --- 主动画中配置第三屏的小动画 end
+
+
 	miaov.timeScroll.to(".scene4",0.8,{top:0,ease:Cubic.easeInOut});
 		miaov.timeScroll.add("step4");
-	miaov.timeScroll.to(".scene5",0.8,{top:0,ease:Cubic.easeInOut});
+
+	//滚动到第五屏的时候，要让第四屏滚出屏幕外
+	miaov.timeScroll.to(".scene4",0.8,{top:-$(window).height(),ease:Cubic.easeInOut});
+	//当可视区域大于950，那么就让导航条隐藏起来
+	if ($(window).width()>950) {
+		miaov.timeScroll.to(".menu_wrapper",0.8,{top:-110,ease:Cubic.easeInOut},"-=0.8");
+	}else{
+		$(".menu_wrapper").css("top",0);
+	}
+
+	miaov.timeScroll.to(".scene5",0.8,{top:0,ease:Cubic.easeInOut,onReverseComplete:function(){
+		fiveAnimate.timeline.seek(0,false);
+	}},"-=0.8");
+	miaov.timeScroll.to({},0.1,{onComplete:function(){
+		fiveAnimate.timeline.tweenTo("fiveState");
+	}},"-=0.2");
 		miaov.timeScroll.add("step5");
 
+	miaov.timeScroll.to(".scene5",0.5,{top:-$(".footer").height(),ease:Cubic.easeInOut});
+	miaov.timeScroll.to(".footer",0.5,{top:$(window).height()-$(".footer").height(),ease:Cubic.easeInOut},"-=0.5");
+
+		miaov.timeScroll.add("footer");
+
 	miaov.timeScroll.stop();
+	//当改变浏览器的大小时，让动画走到之前已经到达的时间点
+	miaov.timeScroll.seek(time);
 }
 
 // 配置导航条的动画
@@ -271,14 +380,15 @@ miaov.nav = function(){
 // 3D翻转效果
 miaov.button3D = function(obj,element1,element2,d){
 	var button3DAnimate = new TimelineMax();
-	var ele1 = $(obj).find(element1);
-	var ele2 = $(obj).find(element2);
 
-	button3DAnimate.to( ele1,0,{rotationX:0,transformPerspective:600,transformOrigin:"center bottom"} );
-	button3DAnimate.to( ele2,0,{rotationX:-90,transformPerspective:600,transformOrigin:"top center"} );
+	button3DAnimate.to( $(obj).find(element1),0,{rotationX:0,transformPerspective:600,transformOrigin:"center bottom"} );
+	button3DAnimate.to( $(obj).find(element2),0,{rotationX:-90,transformPerspective:600,transformOrigin:"top center"} );
 
 	$(obj).bind("mouseenter",function(){
 		var enterAnimate = new TimelineMax();
+
+		var ele1 = $(this).find(element1);
+		var ele2 = $(this).find(element2);
 
 		enterAnimate.to(ele1,d,{rotationX:90,top:-ele1.height(),ease:Cubic.easeInOut},0);
 		enterAnimate.to(ele2,d,{rotationX:0,top:0,ease:Cubic.easeInOut},0);
@@ -286,6 +396,9 @@ miaov.button3D = function(obj,element1,element2,d){
 
 	$(obj).bind("mouseleave",function(){
 		var leaveAnimate = new TimelineMax();
+
+		var ele1 = $(this).find(element1);
+		var ele2 = $(this).find(element2);
 
 		leaveAnimate.to(ele1,d,{rotationX:0,top:0,ease:Cubic.easeInOut},0);
 		leaveAnimate.to(ele2,d,{rotationX:-90,top:ele2.height(),ease:Cubic.easeInOut},0);
@@ -298,13 +411,51 @@ miaov.resize = function(){
 	$(".scene").height( $(window).height() ); //设置每一屏的height
 	$(".scene:not(':first')").css("top",$(window).height());
 
-	if ( $(window).width() <= 950 ){
-		$("body").addClass("r950");
-		$(".menu").css("top",0)
+	miaov.configTimeScroll();
+
+	if ( $(window).width() <= 780 ) {
+
+		$(".wrapper").unbind();
+		$(window).unbind("mousewheel");
+		$(window).unbind("scroll");
+		$(window).unbind("mousedown");
+		$(window).unbind("mouseup");
+
+		$("body").css("height","auto");
+		$("body").addClass("r780 r950").css("overflow-y","scroll");
+
+		$("menu").css("top",0);
+		$(".menu").css("transform","none");
+		$(".menu_wrapper").css("top",0);
+
+		$("menu").removeClass("menu_state2");
+		$("menu").removeClass("menu_state3");
+	}else if ( $(window).width() <= 950 ){
+		$("body").css("height",8500);
+		$("body").removeClass("r780").addClass("r950");
+		$(".menu").css("top",0);
+		$("menu").css("transform","none");
 	}else{
-		$("body").removeClass("r950");
-		$("menu").css("top",22)
+		$("body").removeClass("r780 r950");
+		$("body").css("height",8500);
+		$("menu").css("top",22);
+		$("left_nav").css("left",300);
 	}
+}
+
+// 设置img的百分比
+miaov.imgWidth = function(elementImg){
+	elementImg.each(function(){
+		$(this).load(function(){
+			width = $(this).width();
+
+			$(this).css({
+				width:"100%",
+				"max-width":width,
+				height:"auto"
+			})
+		})
+	})
 }
 
 // 配置第二屏的动画
@@ -318,13 +469,126 @@ twoAnimate.init = function(){
 	twoAnimate.timeline.to(".points",0.2,{bottom:20},"-=1");
 
 	// 初始化第一个按钮
-	twoAnimate.timeline.to(".scene2 .point0 .text",0.1,{opacity:1});
-	twoAnimate.timeline.to(".scene2 .point0 .point_icon",0,{"background-position":"right top"});
+	twoAnimate.timeline.to(".scene2 .point0 .text",0.1,{opacity:1});  //点的上面文字
+	twoAnimate.timeline.to(".scene2 .point0 .point_icon",0,{"background-position":"right top"}); //点选中的效果
+
 
 		twoAnimate.timeline.add("state1");
 
 	twoAnimate.timeline.staggerTo(".scene2_1 img",0.2,{opacity:0,rotationX:90},0);
 
 	twoAnimate.timeline.to(".scene2_2 .left",0.4,{opacity:1});
-	twoAnimate.timeline.staggerTo(".scene2_2 .right img", 0.3,{opacity:1,rotationX:0,ease:Cubic.easeOut},0,"-=0.4");
+	twoAnimate.timeline.staggerTo(".scene2_2 .right img", 0.3,{opacity:1,rotationX:0,ease:Cubic.easeInOut},0,"-=0.4");
+
+	// 第二个按钮
+	twoAnimate.timeline.to(".scene2 .point .text",0,{opacity:0},"-=0.4");
+	twoAnimate.timeline.to(".scene2 .point1 .text",0.1,{opacity:1});
+	twoAnimate.timeline.to(".scene2 .point .point_icon",0,{"background-position":"left top"},"-=0.4");
+	twoAnimate.timeline.to(".scene2 .point1 .point_icon",0,{"background-position":"right top"},"-=0.4");
+
+		twoAnimate.timeline.add("state2");
+
+	twoAnimate.timeline.to(".scene2_2 .left",0.4,{opacity:0});
+	twoAnimate.timeline.staggerTo(".scene2_2 .right img",0.3,{opacity:0,rotationX:90,ease:Cubic.easeInOut},0,"-=0.4");
+	twoAnimate.timeline.to(".scene2_3 .left",0.4,{opacity:1});
+	twoAnimate.timeline.staggerTo(".scene2_3 .right img",0.3,{opacity:1,rotationX:0,ease:Cubic.easeInOut},0,"-=0.4");
+
+	// 第三个按钮
+	twoAnimate.timeline.to(".scene2 .point .text",0,{opacity:0},"-=0.4");
+	twoAnimate.timeline.to(".scene2 .point2 .text",0.1,{opacity:1});
+	twoAnimate.timeline.to(".scene2 .point .point_icon",0,{"background-position":"left top"},"-=0.4");
+	twoAnimate.timeline.to(".scene2 .point2 .point_icon",0,{"background-position":"right top"},"-=0.4");
+
+		twoAnimate.timeline.add("state3");
+
+	twoAnimate.timeline.to(".scene2_3 .left",0.4,{opacity:0});
+	twoAnimate.timeline.staggerTo(".scene2_3 .right img",0.3,{opacity:0,rotationX:90,ease:Cubic.easeInOut},0,"-=0.4");
+	twoAnimate.timeline.to(".scene2_4 .left",0.4,{opacity:1});
+	twoAnimate.timeline.staggerTo(".scene2_4 .right img",0.3,{opacity:1,rotationX:0,ease:Cubic.easeInOut},0,"-=0.4");
+
+	// 第三个按钮
+	twoAnimate.timeline.to(".scene2 .point .text",0,{opacity:0},"-=0.4");
+	twoAnimate.timeline.to(".scene2 .point3 .text",0.1,{opacity:1});
+	twoAnimate.timeline.to(".scene2 .point .point_icon",0,{"background-position":"left top"},"-=0.4");
+	twoAnimate.timeline.to(".scene2 .point3 .point_icon",0,{"background-position":"right top"},"-=0.4");
+
+		twoAnimate.timeline.add("state4");
+
+	twoAnimate.timeline.stop();
+};
+
+// 配置第三屏动画
+var threeAnimate = {};
+
+threeAnimate.timeline = new TimelineMax();
+
+threeAnimate.init = function(){
+	//把第三屏里面的所有的图片翻转-90，透明度设为0
+	threeAnimate.timeline.to(".scene3 .step img",0,{rotationX:-90,opacity:0,transformPerspective:600,transformOrigin:"center center"});
+
+	threeAnimate.timeline.staggerTo(".step3_1 img",0.2,{opacity:1,rotationX:0,ease:Cubic.easeInOut},0.1);
+
+	threeAnimate.timeline.add("threeState1");
+
+	threeAnimate.timeline.to(".step3_1 img",0.3,{opacity:0,rotationX:-90,ease:Cubic.easeInOut});
+	threeAnimate.timeline.to(".step3_2 img",0.3,{opacity:1,rotationX:0,ease:Cubic.easeInOut});
+
+	threeAnimate.timeline.add("threeState2");
+
+	threeAnimate.timeline.stop();
+
+}
+
+//配置第五屏的动画
+var fiveAnimate = {};
+
+fiveAnimate.timeline = new TimelineMax();
+
+fiveAnimate.init = function(){
+	//把所有图片和button翻转-90，透明度变为0，scene5_img的top初始为-220
+
+	fiveAnimate.timeline.to(".scene5 .area_content img, .scene5 .button1,.scene5 .button2",0,{rotationX:-90,transformPerspective:600,transformOrigin:"center center"});
+	fiveAnimate.timeline.to(".scene5 .scene5_img",0,{top:-220});
+
+	fiveAnimate.timeline.to(".scene5 .scene5_img",0.5,{top:0,ease:Cubic.easeInOut});
+	fiveAnimate.timeline.staggerTo(".scene5 .button1,.scene5 .button2,.scene5 .area_content img",1.2,{opacity:1,rotationX:0,ease:Elastic.easeOut},0.2 );
+
+	fiveAnimate.timeline.to(".scene5 .lines",0.5,{opacity:1});
+		fiveAnimate.timeline.add("fiveState");
+
+	fiveAnimate.timeline.stop();
+}
+
+// 实现导航条3D翻转动画
+var menu = {};
+
+// 每滚动一屏的时候，就调用这个函数，函数里面是3D翻转的具体实现细节
+menu.changeMenu = function( stateClass ){ //参数的作用：切换到某一屏的时候，要传入的class名字
+
+	// 具体实现3D翻转效果
+	var oldMenu = $(".menu");
+	var newMenu = oldMenu.clone();
+	newMenu.removeClass("menu_state1").removeClass("menu_state2").removeClass("menu_state3");
+	newMenu.addClass( stateClass );
+
+	$(".menu_wrapper").append(newMenu);
+
+	oldMenu.addClass("removeClass");
+
+	miaov.nav();
+	miaov.button3D(".start",".state1",".state2",0.3);
+
+	var menuAnimate = new TimelineMax();
+	//如果可视区域大于950，才让导航条有一个3D翻转过程
+	if ($(window).width() > 950 ) {
+		menuAnimate.to( newMenu,0,{top:100,rotationX:-90,transformPerspective:600,transformOrigin:"top center"} );
+		menuAnimate.to( oldMenu,0,{rotationX:0,top:22,transformPerspective:600,transformOrigin:"center bottom"} );
+
+		menuAnimate.to( oldMenu,0.3,{rotationX:90,top:-55,ease:Cubic.easeInOut,onComplete:function(){
+			$(".removeClass").remove();
+		}} );
+
+		menuAnimate.to(newMenu,0.3,{rotationX:0,top:22,ease:Cubic.easeInOut},"-=0.3");
+	}
+
 }
