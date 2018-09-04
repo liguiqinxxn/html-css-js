@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+	// var str = ' #div1 .div2 div';
+
+	// var str1 = str.replace(/^\s+|\s+$/g,'').replace(/\s+/,' ');
+	// console.log(str1);
+	// var div = document.createElement('div');
+	// div.onclick = function(){
+	// 	alert(1);
+	// };
+	// document.body.innerHTML = 'abc'+div.outerHTML;
+		var $ = function(selector,context){
+		var type = typeof selector,
+			doc = document;
+		if(type == 'string'){
+			var s = selector.charAt();
+			var sel = selector.substring(1);
+			switch(s){
+				case '#':return doc.getElementById(sel);
+				break;
+				case '<':return doc.createElement(sel.substring(0,sel.length-1));
+				break;
+				case '.':return (function(className,context){
+						var eles = $('*',context);
+						var arr = [];
+
+						for(var i = 0;){
+
+						}
+				})(sel,context);
+				break;
+				default:return (context||doc).getElementsByTagName(sel);	
+			}
+		}
+		if(type === 'function'){
+			return window.onload = selector;
+		}
+	};	
+	</script>
+</body>
+</html>

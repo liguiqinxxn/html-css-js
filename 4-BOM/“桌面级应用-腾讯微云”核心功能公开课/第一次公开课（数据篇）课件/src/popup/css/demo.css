@@ -1,0 +1,86 @@
+p,h3{
+	margin: 0;
+}
+a{
+	text-decoration: none;
+}
+.full-pop{
+	width: 450px;
+	border: 1px solid #B5BBBF;
+	font-family: 'Microsoft Yahei';
+	background-color: white;
+}
+.full-pop h3{
+	height: 44px;
+	line-height: 44px;
+	font-size: 18px;
+	border-bottom: 1px solid .#d8dce5;
+	padding: 0 20px;
+	cursor: move;
+}
+.full-pop h3 p{
+	display: inline;
+}
+.full-pop .close{
+	float: right;
+	color: #c7ced8;
+	font-size: 34px;
+}
+.full-pop .close:hover{
+	color: black;
+}
+.full-pop .dialog{
+	width: 410px;
+	padding: 20px;
+}
+.full-pop .dir-file{
+	line-height: 34px;
+	margin-bottom: 12px;
+	height: 34px;
+}
+.full-pop .dir-file span{
+	float: left;
+	margin-left: 10px;
+}
+.full-pop .file-img{
+	background: url(../imgs/file-small.png) no-repeat 0px 2px;
+	height: 34px;
+	width: 34px;
+}
+.full-pop .dir-box{
+	border: 1px solid #dedede;
+	font-size: 12px;
+}
+.full-pop .cur-dir{
+	padding: 8px 10px;
+	border-bottom: 1px solid #dedede;
+	color: #6c6c6c;
+}
+.full-pop .dirTree{
+	height: 200px;
+	overflow: auto;
+}
+.full-pop .pop-btns{
+	line-height: 60px;
+	text-align: right;
+	padding: 0 20px 20px;
+} 
+.full-pop .pop-btns a{
+	padding: 10px 20px;
+	margin-left: 8px;
+	border: 1px solid #ccc;
+}
+.full-pop .confirm{
+	background-color: #298ff4;
+	opacity: .5;
+	color: white; 
+}
+.full-pop .cancel{
+	color: black;
+}
+.full-pop .cancel:hover{
+	border-color: black;
+}
+.full-pop .error {
+	color:#ec202c;
+}

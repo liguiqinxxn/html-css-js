@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/demo.css">
+	<script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body>
+	<input type="button" value="弹出" id="open">
+	<!-- <div class="full-pop">
+		<h3>
+			<p class="title">选择存储位置</p>
+			<a href="javascript:void(0);" class="close" title="关闭">×</a>
+		</h3>
+		<div class="content">
+			<p class="dir-file">
+				<span class="file-img"></span>
+				<span class="file-name">老王</span>
+			</p>
+			<div class="dir-box">
+				<div class="cur-dir">
+					<span>移动到：</span><span class="fileMovePathTo">丁家庄驸马</span>
+				</div>
+				<div class="dirTree"></div>
+			</div>
+		</div>
+		<div class="pop-btns">
+			<span class="error"></span>
+			<a href="javascript:void(0)" class="confirm">确定</a>
+			<a href="javascript:void(0)" class="cancel">取消</a>
+		</div>
+	</div> -->
+	<script type="text/javascript">
+		var popup = new PopUp();
+		var btn = document.getElementById('open');
+		btn.onclick = function(){
+			popup.open();
+		};
+		popup.onclose = function(){
+			//点击关闭时执行。
+			return false //阻止关闭操作。
+		};
+		popup.onconfirm = function(){
+			//点击确定时执行。
+			//return false 阻止关闭操作。
+		};
+	</script>
+</body>
+</html>
