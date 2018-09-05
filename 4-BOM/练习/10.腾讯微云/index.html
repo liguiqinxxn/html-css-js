@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>腾讯微云</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<!-- 弹出窗口 -->
+	<link rel="stylesheet" type="text/css" href="src/popup/css/demo.css"> 
+</head>
+<body>
+	<div class="weiyun">
+		<header class="header">
+			<a href="#" class="logo">logo</a>
+			<div class="header-member"></div>
+
+			<div data-no-selection="" class="user">
+				<div class="normal">
+					<div class="inner">
+						<img src="./img/g.jpg" />
+					</div>
+				</div>
+			</div> 
+
+			<div class="header-search">
+				<div class="beautiful-input ">
+					<i class="ico"></i>
+					<label>搜素全部文件</label>
+					<!-- 
+					autocomplete 属性规定输入字段是否应该启用自动完成功能。
+						on	默认。规定启用自动完成功能。
+						off	规定禁用自动完成功能。 
+					-->
+					<input type="text" autocomplete="off" maxlength="40" aria-label="输入文件名并按下回车进行搜素">
+				</div>
+			</div>
+			<div class="ad diff-adright">
+				<a class="renew-btn" href="javascript:void(0);">
+					<i class="icon"></i> 会员中心
+				</a>
+				<a class="download-btn" href="javascript:void(0);">
+					<i class="icon"></i> 下载客户端
+				</a>
+			</div>
+		</header>
+
+		<div class="weiyun-content">
+			<!-- 左边 -->
+			<div class="lay-asides">
+				<div data-action="upload" class="upload-btn">
+					<a href="#" id="upload-btn" class="g-btn g-btn-blue" hidefocus="on">
+						<span class="btn-inner"><i>+</i><span class="text">上传</span></span>
+					</a>
+				</div>
+				<div class="aside-box" id="_main_nav_aside_box">
+					<div class="aside-wrap" id="_main_nav_aside_wrap">
+						<ul class="nav-box">
+							<li class="nav-list nav-current">
+								<a href="#" class="link all" title="目录"><i></i>目录</a>
+							</li>
+							<li class="nav-list">
+								<a href="#" class="link recent" title="最近"><i></i>最近</a>
+							</li>
+							<li class="nav-gap"><span class="gap"></span></li>
+							<li class="nav-list">
+								<a href="#" class="link doc" title="文档"><i></i>文档</a>
+							</li>
+							<li class="nav-list">
+								<a href="#" class="link pic" title="图片"><i></i>图片</a>
+							</li>
+							<li class="nav-list">
+								<a href="#" class="link voice" title="音乐"><i></i>音乐</a>
+							</li>
+							<li class="nav-list">
+								<a href="#" class="link video" title="视频"><i></i>视频</a>
+							</li>
+							<li class="nav-list">
+								<a href="#" class="link note" title="笔记"><i></i>笔记</a>
+							</li>
+							<li class="nav-gap"><span class="gap"></span></li>
+							<li class="nav-list">
+								<a href="#" class="link clip" title="剪贴板"><i></i>剪贴板</a>
+							</li>
+							<li class="nav-gap"><span class="gap"></span></li>
+							<li class="nav-list">
+								<a href="#" class="link share" title="分享的连接"><i></i>分享的连接</a>
+							</li>
+							<li class="nav-list">
+								<a href="#" class="link recycle" title="回收站"><i></i>回收站</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 右边 -->
+			<div class="main">
+				<div class="nav">
+					<nav class="clearFix navCollects">
+						<a href="#" class="move">
+							<span>
+								<i></i>
+								<span>移动到</span>
+							</span>
+						</a>
+						<a href="#" class="rename">
+							<span>
+								<i></i>
+								<span>重命名</span>
+							</span>
+						</a>
+						<a href="#" class="delect">
+							<span>
+								<i></i>
+								<span>删除</span>
+							</span>
+						</a>
+						<a href="#" class="create">
+							<span>
+								<i></i>
+								<span>新建文件夹</span>
+							</span>
+						</a>
+						<a href="#" class="reload">
+							<span>
+								<i></i>
+								<span></span>
+							</span>
+						</a>
+					</nav>
+				</div>
+				<div class="content clearFix">
+					<div class="tree-menu">
+						<!-- <ul>
+							<li>
+								<div class="tree-title tree-nav tree-contro">
+									<span>
+										<strong class="ellipsis">微云</strong>
+										<i class="ico"></i>
+									</span>
+								</div>
+								<ul>
+									<li>
+										<div class="tree-title tree-nav tree-contro">
+											<span>
+												<strong class="ellipsis">我的文档</strong>
+												<i class="ico"></i>
+											</span>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul> -->
+					</div>
+					<div class="file-show">
+						<div class="path-nav-box clearFix">
+							<label class="checked-all"></label>
+							<div class="path-nav clearFix">
+								<!-- <a href="javascript:;" style="z-index: 3" data-file-id="0">微云</a>
+								<span class="current-path" style="z-index: 1" data-file-id="0">我的文档</span> -->
+							</div>
+						</div>
+						<div class="g-empty sort-folder-empty">
+							<div class="empty-box">
+								<div class="ico"></div>
+								<p class="title">暂无文件</p>
+								<p class="content">请点击左上角的“上传”按钮添加</p>
+							</div>
+						</div>
+						<div class="file-list clearFix">
+							<div class="file-item">
+								<div class="item">
+									<label class="checkbox"></label>
+									<div class="file-img">
+										<i></i>
+									</div>
+									<p class="file-title-box">
+										<span class="file-title">我们的课程</span>
+										<span class="file-edtor">
+											<input type="text" class="edtor" value="我们的课程">
+										</span>
+									</p>
+								</div>
+								<div class="item">
+									<label class="checkbox"></label>
+									<div class="file-img">
+										<i></i>
+									</div>
+									<p class="file-title-box">
+										<span class="file-title">我们的文档</span>
+										<span class="file-edtor">
+											<input type="text" class="edtor" value="我们的文档">
+										</span>
+									</p>
+								</div>
+								<div class="item">
+									<label class="checkbox"></label>
+									<div class="file-img">
+										<i></i>
+									</div>
+									<p class="file-title-box">
+										<span class="file-title">我的音乐</span>
+										<span class="file-edtor">
+											<input type="text" class="edtor" value="我的音乐">
+										</span>
+									</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/data.js"></script>
+    <script src="js/handledata.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="src/popup/js/popup.js"></script>
+    <script src="js/htmlTemplate.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
