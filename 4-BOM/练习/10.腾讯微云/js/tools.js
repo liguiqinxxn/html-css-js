@@ -44,7 +44,7 @@ var tools = (function(){
 			element.className = classNameArr.join(" ");
 		},
 		hasClass:function(ele,classNames){
-			
+			// console.log(ele);
 			var classNameArr = ele.className.split(" ");
 			for( var i = 0; i < classNameArr.length; i++ ){
 				if( classNameArr[i] === classNames ){

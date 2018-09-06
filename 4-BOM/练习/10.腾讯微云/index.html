@@ -31,7 +31,7 @@
 						on	默认。规定启用自动完成功能。
 						off	规定禁用自动完成功能。 
 					-->
-					<input type="text" autocomplete="off" maxlength="40" aria-label="输入文件名并按下回车进行搜素">
+					<input type="text" autocomplete="off" maxlength="40" aria-label="输入文件名并按下回车进行搜索" tabindex="0">
 				</div>
 			</div>
 			<div class="ad diff-adright">
@@ -46,7 +46,7 @@
 
 		<div class="weiyun-content">
 			<!-- 左边 -->
-			<div class="lay-asides">
+			<div class="lay-aside">
 				<div data-action="upload" class="upload-btn">
 					<a href="#" id="upload-btn" class="g-btn g-btn-blue" hidefocus="on">
 						<span class="btn-inner"><i>+</i><span class="text">上传</span></span>
@@ -83,7 +83,7 @@
 							</li>
 							<li class="nav-gap"><span class="gap"></span></li>
 							<li class="nav-list">
-								<a href="#" class="link share" title="分享的连接"><i></i>分享的连接</a>
+								<a href="#" class="link share" title="分享的链接"><i></i>分享的链接</a>
 							</li>
 							<li class="nav-list">
 								<a href="#" class="link recycle" title="回收站"><i></i>回收站</a>
@@ -130,7 +130,7 @@
 				</div>
 				<div class="content clearFix">
 					<div class="tree-menu">
-						<!-- <ul>
+					<!-- 	<ul>
 							<li>
 								<div class="tree-title tree-nav tree-contro">
 									<span>
@@ -167,7 +167,7 @@
 							</div>
 						</div>
 						<div class="file-list clearFix">
-							<div class="file-item">
+							<!-- <div class="file-item">
 								<div class="item">
 									<label class="checkbox"></label>
 									<div class="file-img">
@@ -180,6 +180,8 @@
 										</span>
 									</p>
 								</div>
+							</div>
+							<div class="file-item">
 								<div class="item">
 									<label class="checkbox"></label>
 									<div class="file-img">
@@ -192,6 +194,8 @@
 										</span>
 									</p>
 								</div>
+							</div>
+							<div class="file-item">
 								<div class="item">
 									<label class="checkbox"></label>
 									<div class="file-img">
@@ -204,8 +208,8 @@
 										</span>
 									</p>
 								</div>
+							</div> -->
 
-							</div>
 						</div>
 					</div>
 				</div>
@@ -213,6 +217,63 @@
 		</div>
 	</div>
 
+	<div class="full-tip-box">
+        <span class="full-tip">
+            <span class="inner">
+                <i class="ico"></i>
+                <span class="text" data-id="label">新建文件夹成功</span>
+        </span>
+        </span>
+    </div>
+    <div class="content-menu" style="z-index: 10;">
+        <ul class="large " style="">
+            <li class="menu_li upload">
+                <a href="javascript:void(0);">
+                    <i class="ico"></i>
+                    <span>下载</span>
+                </a>
+            </li>
+            <li class="menu_li delect">
+                <a href="javascript:void(0);">
+                    <i class="ico"></i>
+                    <span>删除</span>
+                </a>
+            </li>
+            <li class="menu_li move">
+                <a href="javascript:void(0);">
+                    <i class="ico"></i>
+                    <span>移动到</span>
+                </a>
+            </li>
+            <li class="menu_li rename">
+                <a href="javascript:void(0);">
+                    <i class="ico"></i>
+                    <span>重命名</span>
+                </a>
+            </li>
+            <li class="split">
+                <div class="line">
+                    <div></div>
+                </div>
+            </li>
+            <li class="menu_li">
+                <a href="javascript:void(0);">
+                    <i class="ico-share"></i>
+                    <span>分享</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--<div class="drag-helper ui-draggable-dragging" >
+        <div class="icons"> 
+            <i class="icon icon0 filetype icon-folder"></i> 
+             <i class="icon icon0 filetype icon-folder"></i>           
+            <i class="icon icon1 filetype icon-folder"></i>       
+            <i class="icon icon2 filetype icon-folder"></i>      
+            <i class="icon icon3 filetype icon-folder"></i>   
+        </div>
+        <span class="sum">1</span>
+    </div>-->
 	<script src="js/data.js"></script>
     <script src="js/handledata.js"></script>
     <script src="js/tools.js"></script>
