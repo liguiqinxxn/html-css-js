@@ -1,7 +1,6 @@
-//准备文件区域的html结构
-function fileHtml(fileData){
-	var fileHtml = `
-		<div class="file-item">
+//单个文件的结构
+function fileConstruct(fileData){
+	var str = `
 			<div class="item" data-file-id="${fileData.id}">
 				<label class="checkbox"></label>
 				<div class="file-img">
@@ -14,6 +13,16 @@ function fileHtml(fileData){
 					</span>
 				</p>
 			</div>
+	`;
+	return str;
+}
+
+
+//准备文件区域的html结构
+function fileHtml(fileData){
+	var fileHtml = `
+		<div class="file-item">
+			${fileConstruct(fileData)}
 		</div>
 	`;
 	return fileHtml;
@@ -28,6 +37,14 @@ function createFilesHtml(datas,renderId){
 	});
 
 	return html;
+}
+
+//点击新建文件的时候，返回一div的元素对象
+function createFileElement(fileData){
+	var newDiv = document.createElement("div");
+	newDiv.className = "file-item";
+	newDiv.innerHTML = fileConstruct(fileData);
+	return newDiv;
 }
 
 // 准备树形菜单的html结构
