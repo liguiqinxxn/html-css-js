@@ -429,16 +429,14 @@
 		ul.style.display = "none";
 		ul.onoff = false;
 	});
-	console.log(treeTitles.length);
-	console.log(aUL.length);
-
+	
 	tools.each(treeTitles,function(treeTitle,index){
 
 		var ico = tools.$(".ico",treeTitle)[0];
 		var fileId = treeTitle.dataset.fileId;
 		var ishasChild = dataControl.hasChilds(datas,fileId);
 		var next = treeTitle.nextElementSibling;
-		console.log(next.onoff);
+		
 		tools.addEvent(ico,"click",function(ev){
 			next.onoff = !next.onoff;
 			if (ishasChild) {
