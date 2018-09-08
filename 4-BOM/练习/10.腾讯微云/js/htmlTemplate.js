@@ -76,6 +76,21 @@ function treeHtml(data,treeId){
 
 	return html;
 }
+// 创建文件的时候，创建一个树形菜单的li
+function createTreeHtml(options){
+	var newLi = document.createElement("li");
+	newLi.innerHTML = `
+				<div class="tree-title  tree-contro-none" data-file-id="${options.id}" style="padding-left:${options.level*14}px">
+					<span>
+						<strong class="ellipsis">${options.title}</strong>
+						<i class="ico"></i>
+					</span>
+				</div>
+				<ul></ul>
+	`;
+
+	return newLi;
+}
 
 // 通过id定位到树形菜单，添加calss
 function positionTreeById(positionId){

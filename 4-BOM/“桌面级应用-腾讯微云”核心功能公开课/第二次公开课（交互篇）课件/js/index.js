@@ -127,6 +127,7 @@
 
 	tools.each(fileItem,function(item,index){
 		fileHandle(item);
+
 	})
 
 	//给单独一个文件添加事件处理
