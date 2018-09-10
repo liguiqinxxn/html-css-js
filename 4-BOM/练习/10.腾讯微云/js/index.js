@@ -296,7 +296,16 @@
 				if ( nextElementUl.innerHTML !== "") {
 					tools.addClass(element,"tree-contro");
 					tools.removeClass(element,"tree-contro-none");
+					//给新创建的文件添加折叠、展开处理事件
+					changeTreeMenu(element);
 				}
+
+				
+				// var treeTilteLi = nextElementUl.lastElementChild;
+				// var treeTilte = tools.$(".tree-title",treeTilteLi)[0];
+				// console.log(element);
+				
+
 				// 创建成功提醒
 				tipsFn("ok","新建文件成功");
 
@@ -422,38 +431,112 @@
 		tools.removeClass(checkedAll,"checked");
 	}
 
+
 	// 折叠、展开树形文件菜单
 	var treeTitles = tools.$(".tree-title");
-	var aUL = tools.$("ul ul",treeMenu);
-	tools.each(aUL,function(ul){
-		ul.style.display = "none";
-		ul.onoff = false;
-	});
-	
-	tools.each(treeTitles,function(treeTitle,index){
 
+	tools.each(treeTitles,function(treeTitle){
+		changeTreeMenu(treeTitle);
+	})
+
+	function changeTreeMenu(treeTitle){
 		var ico = tools.$(".ico",treeTitle)[0];
 		var fileId = treeTitle.dataset.fileId;
-		var ishasChild = dataControl.hasChilds(datas,fileId);
-		var next = treeTitle.nextElementSibling;
+		// var ishasChild = dataControl.hasChilds(datas,fileId);
+		var nextElementUl = treeTitle.nextElementSibling;
+		console.log(nextElementUl);
+
+		nextElementUl.style.display = "none";
+		nextElementUl.onoff = true;
 		
 		tools.addEvent(ico,"click",function(ev){
-			next.onoff = !next.onoff;
-			if (ishasChild) {
-				if ( next.onoff) {
-					next.style.display = "block";
+			
+			if (!(nextElementUl.innerHTML == "")){
+				console.log(nextElementUl.onoff);
+
+				if( nextElementUl.onoff){
+					nextElementUl.style.display = "block";
 					tools.addClass(treeTitle,".tree-contro-false");
 					tools.removeClass(treeTitle,"tree-contro");
 				}else{
-					next.style.display = "none";
+					nextElementUl.style.display = "none";
 					tools.addClass(treeTitle,"tree-contro");
-					tools.removeClass(treeTitle,".tree-contro-false");				
+					tools.removeClass(treeTitle,".tree-contro-false");	
 				}
+
+			}else{
+				tools.addClass(treeTitle,"tree-contro-none");
+				tools.removeClass(treeTitle,".tree-contro-false");
+				tools.removeClass(treeTitle,"tree-contro");	
 			}
 
+			setTimeout(function(){
+				nextElementUl.onoff = !nextElementUl.onoff;
+			},0);
+
+			
 			ev.stopPropagation();
 		});
-			
+
+	}
+	
+
+	// 删除
+	var delect = tools.$(".delect")[0];
+
+	tools.addEvent(delect,"click",function(){
+		var selectArr = whoSelect(); //获取选中的input
+
+		// 删除选中的结构
+		tools.each(selectArr,function(select){
+
+			select.remove(); //删除被选中的结构
+
+			var currentId = select.firstElementChild.dataset.fileId;
+			var Arr = dataControl.getChilds(datas,currentId,true); //删除的文件 的所有子文件集合 ;
+
+			tools.each(Arr,function(arr){
+
+				// 删除对应id那条数据,及子数据
+				tools.each(datas,function(data,index){
+					if (data.id == arr.id ) {
+						datas.splice(index,1);
+					}
+				})
+
+				// 删除树形菜单的数据
+				tools.each(treeTitles,function(treeTitle){
+					if (treeTitle.dataset.fileId == arr.id) {
+						treeTitle.parentNode.remove();
+					}
+				})
+
+			})
+			// console.dir(datas);
+		});
+
+		//给新创建的文件添加折叠、展开处理事件
+		var pid = getPidInput.value;
+		var element = document.querySelector(".tree-title[data-file-id='"+pid+"']");
+		var hasChild = dataControl.hasChilds(datas,pid);
+
+		if ( hasChild ) {
+			empty.style.display = "none";
+		}else{
+			empty.style.display = "block";
+			tools.removeClass(element,"tree-contro");
+			tools.removeClass(element,"tree-contro-false");
+			tools.addClass(element,"tree-contro-none");
+			changeTreeMenu(element);
+		}
+		
+		//全选按钮取消选中
+		tools.removeClass(checkedAll,"checked");
+	});
+
+	// 阻止删除按钮按下时的冒泡
+	tools.addEvent(delect,"mousedown",function(ev){
+		ev.stopPropagation();
 	})
 
 }())
