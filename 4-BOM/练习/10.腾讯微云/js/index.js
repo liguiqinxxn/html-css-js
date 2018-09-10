@@ -300,12 +300,6 @@
 					changeTreeMenu(element);
 				}
 
-				
-				// var treeTilteLi = nextElementUl.lastElementChild;
-				// var treeTilte = tools.$(".tree-title",treeTilteLi)[0];
-				// console.log(element);
-				
-
 				// 创建成功提醒
 				tipsFn("ok","新建文件成功");
 
@@ -447,23 +441,22 @@
 		console.log(nextElementUl);
 
 		nextElementUl.style.display = "none";
-		nextElementUl.onoff = true;
-		
+		console.log(nextElementUl.onoff);
+		nextElementUl.onoff = false;
+
 		tools.addEvent(ico,"click",function(ev){
 			
 			if (!(nextElementUl.innerHTML == "")){
-				console.log(nextElementUl.onoff);
-
+				
 				if( nextElementUl.onoff){
-					nextElementUl.style.display = "block";
-					tools.addClass(treeTitle,".tree-contro-false");
-					tools.removeClass(treeTitle,"tree-contro");
-				}else{
 					nextElementUl.style.display = "none";
 					tools.addClass(treeTitle,"tree-contro");
-					tools.removeClass(treeTitle,".tree-contro-false");	
+					tools.removeClass(treeTitle,".tree-contro-false");
+				}else{
+					nextElementUl.style.display = "block";
+					tools.addClass(treeTitle,".tree-contro-false");
+					tools.removeClass(treeTitle,"tree-contro");	
 				}
-
 			}else{
 				tools.addClass(treeTitle,"tree-contro-none");
 				tools.removeClass(treeTitle,".tree-contro-false");
@@ -472,7 +465,7 @@
 
 			setTimeout(function(){
 				nextElementUl.onoff = !nextElementUl.onoff;
-			},0);
+			},10);
 
 			
 			ev.stopPropagation();
