@@ -499,16 +499,17 @@
     top: 0;
     width: 15px;
     height: 26px;
-    background: url(../img/folder-tree.png) no-repeat 4px -92px;
+    background: url(../img/folder-tree.png) no-repeat 4px -43px;
     opacity: 0.8;
 }
 
-
-.tree-contro .ico{
-    background-position: 3px -43px;
-}
-.tree-contro-false .ico{
+/*展开*/
+.tree-contro .ico{ 
     background-position: 3px -92px;
+}
+/*隐藏*/
+.tree-contro-false .ico{
+    background-position: 3px -43px;
 }
 .tree-contro-none .ico{
     background-position: -999px -99px;

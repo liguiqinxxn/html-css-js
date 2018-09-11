@@ -294,11 +294,11 @@
 				}));
 
 				if ( nextElementUl.innerHTML !== "") {
-					tools.addClass(element,"tree-contro");
-					tools.removeClass(element,"tree-contro-none");
-					//给新创建的文件添加折叠、展开处理事件
-					changeTreeMenu(element);
+					empty.style.display = "none";
 				}
+				nextElementUl.onoff = false;
+				//给新创建的文件添加折叠、展开处理事件
+				changeTreeMenu(element);
 
 				// 创建成功提醒
 				tipsFn("ok","新建文件成功");
@@ -431,48 +431,51 @@
 
 	tools.each(treeTitles,function(treeTitle){
 		changeTreeMenu(treeTitle);
-	})
+	});
 
 	function changeTreeMenu(treeTitle){
 		var ico = tools.$(".ico",treeTitle)[0];
 		var fileId = treeTitle.dataset.fileId;
-		// var ishasChild = dataControl.hasChilds(datas,fileId);
+		var ishasChild = dataControl.hasChilds(datas,fileId);
 		var nextElementUl = treeTitle.nextElementSibling;
-		console.log(nextElementUl);
 
-		nextElementUl.style.display = "none";
-		console.log(nextElementUl.onoff);
-		nextElementUl.onoff = false;
+		// 默认是展开的状态
+		if (nextElementUl.onoff) {
+			nextElementUl.onoff = true;  //展开
+		}else{
+			nextElementUl.onoff = false;  //隐藏
+		}
+		console.log(!nextElementUl.innerHTML == "");
+		if (!nextElementUl.innerHTML == "") {  //文件夹下有内容
+			tools.removeClass(treeTitle,"tree-contro-none");
+			tools.addClass(treeTitle,"tree-contro");
 
-		tools.addEvent(ico,"click",function(ev){
-			
-			if (!(nextElementUl.innerHTML == "")){
-				
-				if( nextElementUl.onoff){
-					nextElementUl.style.display = "none";
-					tools.addClass(treeTitle,"tree-contro");
-					tools.removeClass(treeTitle,".tree-contro-false");
-				}else{
-					nextElementUl.style.display = "block";
-					tools.addClass(treeTitle,".tree-contro-false");
-					tools.removeClass(treeTitle,"tree-contro");	
-				}
-			}else{
-				tools.addClass(treeTitle,"tree-contro-none");
-				tools.removeClass(treeTitle,".tree-contro-false");
-				tools.removeClass(treeTitle,"tree-contro");	
-			}
-
-			setTimeout(function(){
-				nextElementUl.onoff = !nextElementUl.onoff;
-			},10);
-
-			
-			ev.stopPropagation();
-		});
-
+			tools.addEvent(ico,"click",function(ev){
+				onoff(treeTitle,nextElementUl);
+				ev.stopPropagation();
+			});
+		}else{  //文件夹没有内容
+			tools.removeClass(treeTitle,"tree-contro");
+			tools.removeClass(treeTitle,"tree-contro-false");
+			tools.addClass(treeTitle,"tree-contro-none");
+		}
 	}
-	
+
+	function onoff(treeTitle,nextElementUl){
+		if (nextElementUl.onoff) {
+			console.log("展开");
+			nextElementUl.style.display = "block";
+			tools.addClass(treeTitle,"tree-contro");
+			tools.removeClass(treeTitle,".tree-contro-false");
+		}else{
+			console.log("隐藏");
+			nextElementUl.style.display = "none";
+			tools.addClass(treeTitle,".tree-contro-false");
+			tools.removeClass(treeTitle,"tree-contro");
+		}
+
+		nextElementUl.onoff = !nextElementUl.onoff;
+	}
 
 	// 删除
 	var delect = tools.$(".delect")[0];
@@ -511,17 +514,13 @@
 		//给新创建的文件添加折叠、展开处理事件
 		var pid = getPidInput.value;
 		var element = document.querySelector(".tree-title[data-file-id='"+pid+"']");
-		var hasChild = dataControl.hasChilds(datas,pid);
+		var ishasChild = dataControl.hasChilds(datas,pid);
+		var nextElementUl = element.nextElementSibling;
 
-		if ( hasChild ) {
-			empty.style.display = "none";
-		}else{
+		if (!ishasChild) {
 			empty.style.display = "block";
-			tools.removeClass(element,"tree-contro");
-			tools.removeClass(element,"tree-contro-false");
-			tools.addClass(element,"tree-contro-none");
-			changeTreeMenu(element);
 		}
+		changeTreeMenu(element);
 		
 		//全选按钮取消选中
 		tools.removeClass(checkedAll,"checked");
