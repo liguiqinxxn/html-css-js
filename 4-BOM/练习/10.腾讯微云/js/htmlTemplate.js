@@ -50,7 +50,7 @@ function createFileElement(fileData){
 // 准备树形菜单的html结构
 function treeHtml(data,treeId){
 	var childs = dataControl.getChildById(data,treeId);
-	var html = "<ul onoff=true>";
+	var html = "<ul>";
 
 	childs.forEach(function(item){
 		//获取到当前数据的层级 通过id获取

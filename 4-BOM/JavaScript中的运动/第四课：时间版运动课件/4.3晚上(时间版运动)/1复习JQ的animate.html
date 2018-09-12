@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:100px; height:100px; background:red;}
+</style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+
+//1.属性和目标点的集合 , {}
+
+//2.时间  默认 : 400
+
+//3.运动形式 : swing(慢快慢)  linear(匀速)
+
+//4.回调函数
+
+$(function(){
+	
+	$('#div1').click(function(){
+		
+		$(this).animate({width : 300 , height : 300},4000,'linear',function(){
+			alert(123);
+		});
+		
+	});
+	
+});
+
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

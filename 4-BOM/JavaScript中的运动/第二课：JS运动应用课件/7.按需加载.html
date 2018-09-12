@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#ul1 {margin: 100px auto 0; padding: 0;}
+li {float: left; margin:0 0 10px 10px; list-style:none; border: 1px solid black;}
+img {width: 290px; height: 200px; display: block;}
+</style>
+<script>
+window.onload = function() {
+	
+	var oUl = document.getElementById('ul1');
+	var aImg = oUl.getElementsByTagName('img');
+	
+	showImage();
+	
+	window.onscroll = showImage;
+	
+	function showImage() {
+		
+		var scrollTop  = document.documentElement.scrollTop || document.body.scrollTop;
+		
+		for (var i=0; i<aImg.length; i++) {
+			
+			if ( !aImg[i].isLoad && getTop(aImg[i]) < scrollTop + document.documentElement.clientHeight ) {
+				//alert(i);
+				aImg[i].src = aImg[i].getAttribute('_src');
+				aImg[i].isLoad = true;
+			}
+			
+		}
+		
+	}
+	
+	function getTop(obj) {
+		var iTop = 0;
+		while(obj) {
+			iTop += obj.offsetTop;
+			obj = obj.offsetParent;
+		}
+		return iTop;
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<ul id="ul1">
+    	<li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/1.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/2.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/3.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/4.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/5.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/6.jpg" src="img/white.JPG" /></li>
+        <li><img _src="img/7.jpg" src="img/white.JPG" /></li>
+    </ul>
+</body>
+</html>

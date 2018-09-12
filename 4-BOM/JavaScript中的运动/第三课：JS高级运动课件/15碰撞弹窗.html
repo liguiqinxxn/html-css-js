@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:100px; height:100px; background:red; position:absolute;}
+.box{ border:1px #000 solid; position:absolute;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	
+	var disX = 0;
+	var disY = 0;
+	
+	oDiv.onmousedown = function(ev){
+		var ev = ev || window.event;
+		disX = ev.clientX - oDiv.offsetLeft;
+		disY = ev.clientY - oDiv.offsetTop;
+		
+		document.onmousemove = function(ev){
+			var ev = ev || window.event;
+			oDiv.style.left = ev.clientX - disX + 'px';
+			oDiv.style.top = ev.clientY - disY + 'px';
+			
+			var oBox = document.createElement('div');
+			oBox.className = 'box';
+			document.body.appendChild(oBox);
+			oBox.style.left = ev.clientX + 'px';
+			oBox.style.top = ev.clientY + 'px';
+			
+		};
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		};
+		return false;
+	};
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

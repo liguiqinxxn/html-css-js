@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:100px; height:100px; background:red; position:absolute; left:0;}
+</style>
+<script>
+
+window.onload = function(){
+	var oInput = document.getElementById('input1');
+	var oDiv = document.getElementById('div1');
+	
+	var timer = null;
+	
+	oInput.onclick = function(){
+		
+		timer = setInterval(function(){
+			
+			if(oDiv.offsetLeft == 500){
+				clearInterval(timer);
+			}
+			else{
+				oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+			}
+			
+		},30);
+		
+	};
+	
+};
+
+</script>
+</head>
+
+<body>
+<input type="button" value="开始运动" id="input1">
+<div id="div1"></div>
+</body>
+</html>

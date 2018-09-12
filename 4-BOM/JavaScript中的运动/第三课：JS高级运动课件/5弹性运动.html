@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:100px; height:100px; background:red; position:absolute; left:0;}
+#bg{ width:1px; height:500px; background:black; position:absolute; left:500px; top:0;}
+</style>
+<script>
+
+//摩擦力 : F = fM
+
+window.onload = function(){
+	var oInput = document.getElementById('input1');
+	var oDiv = document.getElementById('div1');
+	
+	var timer = null;
+	var iSpeed = 0;
+	
+	oInput.onclick = function(){
+		startMove();
+	};
+	
+	function startMove(){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			
+			/*if( oDiv.offsetLeft < 500 ){
+				iSpeed += (500 - oDiv.offsetLeft)/50;
+			}
+			else{
+				iSpeed -= (oDiv.offsetLeft - 500)/50;
+			}*/
+			
+			iSpeed += (500 - oDiv.offsetLeft)/6;
+			iSpeed *= 0.75;
+			
+			if( Math.abs(iSpeed)<=1 && Math.abs(500 - oDiv.offsetLeft)<=1 ){
+				clearInterval(timer);
+				oDiv.style.left = '500px';
+				iSpeed = 0;
+			}
+			else{
+				oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+			}
+			
+			document.title = oDiv.style.left + ',' + iSpeed;
+			
+		},30);
+	}
+	
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="开始运动" id="input1">
+<div id="div1"></div>
+<div id="bg"></div>
+</body>
+</html>

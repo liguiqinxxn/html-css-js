@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#ul1 { margin: 0; position: absolute; right: 10px; top: 8px; width: 700px; height: 500px; border: 1px solid #000; padding: 10px; overflow: hidden;}
+li { line-height: 28px; border-bottom: 1px dotted #000; list-style: none; word-break: break-all; overflow: hidden;}
+</style>
+<script src="move.js"></script>
+<script>
+/*
+先写出没有运动的效果，然后把赋值变成运动形式
+*/
+window.onload = function() {
+	
+	var oContent = document.getElementById('content');
+	var oBtn = document.getElementById('btn');
+	var oUl = document.getElementById('ul1');
+	
+	oBtn.onclick = function() {
+		
+		var oLi = document.createElement('li');
+		oLi.innerHTML = oContent.value;
+		
+		if ( oUl.children[0] ) {
+			oUl.insertBefore( oLi, oUl.children[0] );
+		} else {
+			oUl.appendChild( oLi );
+		}
+		
+		//var iHeight = oLi.offsetHeight;
+		var iHeight = parseInt( css(oLi, 'height') );
+		
+		oLi.style.height = '0px';
+		oLi.style.opacity = '0';
+		oLi.style.filter = 'alpha(opacity=0)';
+		
+		startMove(oLi, {
+			height : iHeight,
+			opacity : 100
+		});
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<textarea id="content" rows="10" cols="50"></textarea>
+    <input type="button" value="留言" id="btn" />
+    <ul id="ul1"></ul>
+</body>
+</html>

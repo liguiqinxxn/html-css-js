@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width:100px; height: 100px; background: red; position: absolute; left: 0px; top: 30px;}
+</style>
+<script>
+//摩擦，减速 : 在运动过程中，速度越来越慢
+window.onload = function() {
+	
+	var oBtn = document.getElementById('btn');
+	var oDiv = document.getElementById('div1');
+	var iTimer = null;
+	var iSpeed = 50;
+	
+	oBtn.onclick = function() {
+		
+		clearInterval(iTimer);
+		
+		iTimer = setInterval(function() {
+			
+			iSpeed *= 0.92;
+			
+			if (oDiv.offsetLeft == 500) {
+				clearInterval(iTimer);
+			} else {
+				oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+			}
+			
+		}, 30);
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<input type="button" value="动起来" id="btn" />
+    <div id="div1"></div>
+</body>
+</html>

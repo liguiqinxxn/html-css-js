@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width:100px; height: 100px; background: red; position: absolute; left: 0px; top: 30px;}
+</style>
+<script>
+/*
+在js中，如果让一个页面元素动起来
+*/
+window.onload = function() {
+	
+	var oBtn = document.getElementById('btn');
+	var oDiv = document.getElementById('div1');
+	var iTimer = null;
+	
+	//点击按钮，让div1横向向右移动
+	//定时器
+	
+	/*
+	1.清除定时器，保证运动过程中只有一个定时器在执行
+	2.开始定时器
+	3.开始运动（同时在运动加入判断，以便在需要的时候或者是满足某个要求停止运动）
+	*/
+	oBtn.onclick = function() {
+		
+		clearInterval(iTimer);
+		
+		iTimer = setInterval(function() {
+			
+			//oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+			if (oDiv.offsetLeft == 500) {
+				clearInterval(iTimer);
+			} else {
+				oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+			}
+			
+		}, 30);
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<input type="button" value="动起来" id="btn" />
+    <div id="div1"></div>
+</body>
+</html>

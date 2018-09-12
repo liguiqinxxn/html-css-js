@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:100px; height:100px; background:red; position:absolute;}
+</style>
+<script>
+
+//碰撞运动 : 首先找到碰撞的临界点 , 再确定运动的方向 , 然后去改对应的速度（速度取反）
+
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	
+	var iSpeedX = 10;
+	var iSpeedY = 10;
+	
+	startMove();
+	
+	function startMove(){
+		setInterval(function(){
+			
+			var L = oDiv.offsetLeft + iSpeedX;
+			var T = oDiv.offsetTop + iSpeedY;
+			
+			if(T>document.documentElement.clientHeight - oDiv.offsetHeight){
+				T = document.documentElement.clientHeight - oDiv.offsetHeight;
+				iSpeedY *= -1;
+			}
+			else if(T<0){
+				T = 0;
+				iSpeedY *= -1;
+			}
+			
+			if(L>document.documentElement.clientWidth - oDiv.offsetWidth){
+				L = document.documentElement.clientWidth - oDiv.offsetWidth;
+				iSpeedX *= -1;
+			}
+			else if(L<0){
+				L = 0;
+				iSpeedX *= -1;
+			}
+			
+			oDiv.style.left = L + 'px';
+			oDiv.style.top = T + 'px';
+		},30);
+	}
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {}
+</style>
+<script>
+window.onload = function() {
+	
+	var oBtn = document.getElementById('btn');
+	var oDiv = document.getElementById('div1');
+
+	alert( oDiv.offsetWidth );//四舍五入运算
+
+}
+</script>
+</head>
+
+<body>
+	<input type="button" value="动起来" id="btn" />
+    <div id="div1" style="width:100.5px; height: 100px; background: red; position: absolute; left: 100px; top: 30px;"></div>
+    <div style="width:100px; height: 100px; background: black; position: absolute; left:100px; top: 120px; "></div>
+</body>
+</html>

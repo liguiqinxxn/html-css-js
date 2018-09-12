@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function() {
+	
+	var oImg = document.getElementById('img1');
+	
+	var oImage = new Image();
+	
+	var arr = [
+		'http://d.hiphotos.baidu.com/image/w%3D2048/sign=2846dc1369600c33f079d9c82e74500f/a044ad345982b2b7938726c333adcbef76099b98.jpg',
+		'http://f.hiphotos.baidu.com/image/w%3D2048/sign=2da141ad013b5bb5bed727fe02ebd439/7dd98d1001e9390124aacd3879ec54e736d1960f.jpg',
+		'http://g.hiphotos.baidu.com/image/w%3D2048/sign=5e067f12a918972ba33a07cad2f57b89/b8014a90f603738d27674f24b11bb051f819ec83.jpg',
+		'http://f.hiphotos.baidu.com/image/w%3D2048/sign=fc9023a7d343ad4ba62e41c0b63a5baf/4bed2e738bd4b31ca2a24ab985d6277f9e2ff812.jpg',
+		'http://f.hiphotos.baidu.com/image/w%3D2048/sign=99191869cebf6c81f7372be88806b035/9345d688d43f8794a159b42fd01b0ef41bd53a08.jpg',
+		'http://a.hiphotos.baidu.com/image/w%3D2048/sign=4aaddd39718da9774e2f812b8469f919/8b13632762d0f70391b28bd60afa513d2697c5b3.jpg',
+		'http://g.hiphotos.baidu.com/image/w%3D2048/sign=50df8b2efffaaf5184e386bfb86c95ee/fc1f4134970a304ebbdb83f2d3c8a786c9175c38.jpg'
+	];
+	
+	var iCur = 0;
+	var i = 0;
+	
+	xunlei();
+	
+	oImg.onclick = function() {
+		i++;
+		if (i < arr.length) {
+			oImg.src = arr[i];
+		}
+	}
+	
+	function xunlei() {
+		oImage.src = arr[iCur];
+		oImage.onload = function() {
+			iCur++;
+			if (iCur < arr.length) {
+				xunlei();	//递归
+			}
+			document.title = iCur + ' / ' + arr.length;
+		}
+	}
+	
+}
+</script>
+</head>
+
+<body>
+	<img src="http://b.hiphotos.baidu.com/image/w%3D2048/sign=526ef7bda41ea8d38a227304a332314e/1ad5ad6eddc451dae05f4cedb4fd5266d016320e.jpg" id="img1" style="width: 300px;" />
+</body>
+</html>

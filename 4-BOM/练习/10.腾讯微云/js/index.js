@@ -282,6 +282,7 @@
 				// 通过pid，找到属性菜单中的div元素
 				var element = document.querySelector(".tree-title[data-file-id='"+pid+"']");
 				var nextElementUl = element.nextElementSibling;
+				var aLi = tools.$("li",nextElementUl);
 
 				// 只需要找到指定的ul，append一个li元素就可以
 
@@ -296,9 +297,14 @@
 				if ( nextElementUl.innerHTML !== "") {
 					empty.style.display = "none";
 				}
-				nextElementUl.onoff = false;
-				//给新创建的文件添加折叠、展开处理事件
-				changeTreeMenu(element);
+
+				// 原来文件夹没有文件时，新建文件的父级需要添加折叠、展开事件
+				if (aLi.length ===1 ) {
+					nextElementUl.onoff = false;
+					//给新创建的文件添加折叠、展开处理事件
+					changeTreeMenu(element);
+				}
+				
 
 				// 创建成功提醒
 				tipsFn("ok","新建文件成功");
@@ -455,6 +461,9 @@
 				ev.stopPropagation();
 			});
 		}else{  //文件夹没有内容
+			tools.removeEvent(ico,"click",function(ev){
+				onoff(treeTitle,nextElementUl);
+			});
 			tools.removeClass(treeTitle,"tree-contro");
 			tools.removeClass(treeTitle,"tree-contro-false");
 			tools.addClass(treeTitle,"tree-contro-none");
@@ -518,9 +527,9 @@
 		var nextElementUl = element.nextElementSibling;
 
 		if (!ishasChild) {
+			changeTreeMenu(element);
 			empty.style.display = "block";
 		}
-		changeTreeMenu(element);
 		
 		//全选按钮取消选中
 		tools.removeClass(checkedAll,"checked");

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>淘宝幻灯滑入滑出效果</title>
+<link href="miaov_style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="miaov.js"></script>
+<script>
+
+window.onload = function(){
+	var aLi = document.getElementsByTagName('ol')[0].getElementsByTagName('li');
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi2 = oUl.getElementsByTagName('li');
+	var iNow = 0;
+	var iNow2 = 0;
+	var timer = null;
+	
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].index = i;
+		aLi[i].onmouseover = function(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className = '';
+			};
+			this.className = 'active';
+			
+			startMove(oUl,{'top' : -150*this.index});
+			iNow = this.index;
+			iNow2 = this.index;
+			clearInterval(timer);
+		};
+		
+		aLi[i].onmouseout = function(){
+			timer = setInterval(toRun,2000);
+		};
+	}
+	
+	window.onfocus = function(){
+		console.log(1);
+		timer = setInterval(toRun,2000);
+	};
+	
+	window.onblur = function(){
+		console.log(2);
+		clearInterval(timer);
+	};
+	
+	//timer = setInterval(toRun,2000);
+	
+	function toRun(){
+		if(iNow==aLi.length-1){
+			iNow = 0;
+			aLi2[0].style.position = 'relative';
+			aLi2[0].style.top = 150 * aLi2.length + 'px';
+		}
+		else{
+			iNow++;
+		}
+		
+		iNow2++;
+		
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].className = '';
+		};
+		aLi[iNow].className = 'active';		
+		startMove(oUl,{ top : -150 * iNow2},function(){
+			
+			clearInterval(timer);
+			timer = setInterval(toRun,2000);
+			
+			if(iNow==0){
+				aLi2[0].style.position = 'static';
+				oUl.style.top = 0;
+				iNow2 = 0;
+			}
+			
+		});
+	}
+	
+};
+
+
+</script>
+</head>
+
+<body>
+
+<div id="play">
+	<div class="packet"><!-- 为了消除offsetXXX的兼容性问题 -->
+	    <ol>
+	    	<li class="active">1</li>
+	        <li>2</li>
+	        <li>3</li>
+	        <li>4</li>
+	        <li>5</li>
+	    </ol>
+		<ul>
+			<li><a href="http://www.miaov.com/"><img src="images/1.jpg" alt="广告一" /></a></li>
+		  <li><a href="http://www.miaov.com/"><img src="images/2.jpg" alt="广告二" /></a></li>
+		  <li><a href="http://www.miaov.com/"><img src="images/3.jpg" alt="广告三" /></a></li>
+		  <li><a href="http://www.miaov.com/"><img src="images/4.jpg" alt="广告四" /></a></li>
+			<li><a href="http://www.miaov.com/"><img src="images/5.jpg" alt="广告五" /></a></li>
+		</ul>
+	</div>
+</div>
+
+</body>
+</html>
