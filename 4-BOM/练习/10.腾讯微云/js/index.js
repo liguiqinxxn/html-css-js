@@ -451,8 +451,8 @@
 		}else{
 			nextElementUl.onoff = false;  //隐藏
 		}
-		console.log(!nextElementUl.innerHTML == "");
-		if (!nextElementUl.innerHTML == "") {  //文件夹下有内容
+		
+		if (ishasChild) {  //文件夹下有内容
 			tools.removeClass(treeTitle,"tree-contro-none");
 			tools.addClass(treeTitle,"tree-contro");
 
