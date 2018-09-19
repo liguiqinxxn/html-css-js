@@ -1,0 +1,76 @@
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<title>无标题文档</title> 
+<style> 
+li{ list-style:none; width:100px; height:30px; background:red; margin-right:5px; float:left;} 
+</style> 
+<script> 
+
+window.onload = function(){ 
+    var aLi = document.getElementsByTagName('li'); 
+     
+    for(var i=0;i<aLi.length;i++){ 
+        aLi[i].onmouseover = function(){ 
+             
+            startMove( this ,  300 ); 
+             
+        }; 
+         
+        aLi[i].onmouseout = function(){ 
+             
+            startMove( this ,  30 ); 
+             
+        }; 
+         
+    } 
+     
+}; 
+
+var iSpeed = 0; 
+var timer = null; 
+
+function startMove( obj , iTarget ){ 
+     
+    var iNum = 3; 
+     
+    clearInterval(timer); 
+    timer = setInterval(function(){ 
+         
+        if( obj.offsetHeight < iTarget ){ 
+            iNum = 3; 
+        } 
+        else if( obj.offsetHeight > iTarget ){ 
+            iNum = -3; 
+        } 
+         
+        iSpeed += iNum; 
+         
+        var H =  obj.offsetHeight + iSpeed; 
+         
+        if( (H > iTarget && iNum == 3) || (H < iTarget && iNum == -3) ){ 
+            H = iTarget; 
+            iSpeed *= -1; 
+            iSpeed *= 0.75; 
+        } 
+         
+        obj.style.height = H + 'px'; 
+         
+         
+    },30); 
+     
+} 
+
+
+</script> 
+</head> 
+
+<body> 
+<ul> 
+    <li></li> 
+    <li></li> 
+    <li></li> 
+    <li></li> 
+</ul> 
+</body> 
+</html> 

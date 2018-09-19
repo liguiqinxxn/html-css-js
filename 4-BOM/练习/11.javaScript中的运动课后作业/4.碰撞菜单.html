@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>碰撞菜单</title>
+<style>
+	body {
+		margin: 0px;
+	}
+	ul {
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+	}
+	li {
+		width: 120px;
+		height: 30px;
+		background-color: red;
+		/*border: 1px solid #000;*/
+		margin: 5px;
+		float: left;
+	}
+</style>
+</head>
+<body>
+	<ul id="ul1">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script>
+	window.onload = function (){
+		var oUl = document.getElementById('ul1');
+		var aLi = oUl.getElementsByTagName('li');
+		
+
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].onmouseover = function(){
+				startMove(this,{height:500});
+			}
+			aLi[i].onmouseout = function(){
+				startMove(this,{height:30});
+			}
+		}
+		
+		var iSpeed = 0;
+		function startMove(obj,json,fn){
+			var iCur = 0;
+			var iNum = 3;
+			clearInterval(obj.iTimer);
+			obj.iTimer = setInterval(function(){
+				// var iBtn = true;
+				for( var attr in json ) {
+					var iTarget = json[attr];
+
+					if (attr == 'opacity') {
+						iCur = Math.round(css( obj, 'opacity' ) *100);
+					} else{
+						iCur = parseInt(css(obj,attr));
+					}
+
+					console.log(iCur);
+
+					if (iCur < iTarget) {
+						iNum = 3;
+					}else if (iCur > iTarget) {} {
+						iNum = -3
+					}
+
+					iSpeed += iNum;
+
+					var Result = iCur + iSpeed;
+
+					if ( (Result > iTarget && iNum == 3) ||(Result < iTarget && iNum == -3) ) {
+						Result = iTarget;
+						iSpeed *= -1;
+						iSpeed *= 0.75;
+					}
+					if (attr == 'opacity') {
+						obj.style.opacity = Result / 100;
+						obj.style.filter = 'alpha(opacity='+Result+')';
+					}else{
+						obj.style[attr] = Result +'px';
+					}
+					
+				}
+				document.title = obj.offsetHeight + ','+obj.offsetWidth + ',' + iSpeed;
+			},30);
+		}
+
+		function css(obj, attr){
+			if (obj.currentStyle) {
+				return obj.currentStyle[attr];
+			}else {
+				return getComputedStyle(obj, false)[attr];
+			}
+		}
+	}
+</script>
+</html>
