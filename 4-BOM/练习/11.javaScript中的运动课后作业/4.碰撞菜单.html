@@ -45,10 +45,14 @@
 			}
 		}
 		
-		var iSpeed = 0;
+		
 		function startMove(obj,json,fn){
 			var iCur = 0;
 			var iNum = 3;
+			var iSpeed = {};
+				for(var attr in json){
+						iSpeed[attr]=0;
+					}
 			clearInterval(obj.iTimer);
 			obj.iTimer = setInterval(function(){
 				// var iBtn = true;
@@ -65,18 +69,18 @@
 
 					if (iCur < iTarget) {
 						iNum = 3;
-					}else if (iCur > iTarget) {} {
+					}else if (iCur > iTarget) {
 						iNum = -3
 					}
 
-					iSpeed += iNum;
+					iSpeed[attr] += iNum;
 
-					var Result = iCur + iSpeed;
+					var Result = iCur + iSpeed[attr];
 
 					if ( (Result > iTarget && iNum == 3) ||(Result < iTarget && iNum == -3) ) {
 						Result = iTarget;
-						iSpeed *= -1;
-						iSpeed *= 0.75;
+						iSpeed[attr] *= -1;
+						iSpeed[attr] *= 0.75;
 					}
 					if (attr == 'opacity') {
 						obj.style.opacity = Result / 100;
@@ -86,7 +90,7 @@
 					}
 					
 				}
-				document.title = obj.offsetHeight + ','+obj.offsetWidth + ',' + iSpeed;
+				document.title = obj.offsetHeight + ','+obj.offsetWidth + ',' + iSpeed[attr];
 			},30);
 		}
 
