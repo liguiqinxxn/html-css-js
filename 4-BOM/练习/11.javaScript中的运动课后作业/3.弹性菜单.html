@@ -47,7 +47,10 @@
 		function startMove(obj,json,fn){
 			clearInterval(obj.iTimer);
 			var iCur = 0;
-			var iSpeed = 0;
+			var iSpeed = {};
+				for(var attr in json){
+					iSpeed[attr]=0;
+				}
 			obj.iTimer = setInterval(function(){
 				var iBtn = true;
 
@@ -61,10 +64,10 @@
 					}
 					console.log(iCur);
 
-					iSpeed += ( iTarget - iCur ) / 6;
-					iSpeed *= 0.75;
+					iSpeed[attr] += ( iTarget - iCur ) / 6;
+					iSpeed[attr] *= .75;
 	
-					if ( Math.abs(iSpeed)<=1 && Math.abs(iTarget - iCur)<=1 ) {
+					if ( Math.abs(iSpeed[attr])<=1 && Math.abs(iTarget - iCur)<=1 ) {
 						if (attr == 'opacity') {
 							obj.style.opacity = iTarget / 100;
 							obj.style.filter = 'alpha(opacity='+iTarget+')';
@@ -75,10 +78,10 @@
 					}else {
 						iBtn = false;
 						if (attr == 'opacity') {
-							obj.style.opacity = (iCur + iSpeed) / 100;
-							obj.style.filter = 'alpha(opacity='+(iCur + iSpeed)+')';
+							obj.style.opacity = (iCur + iSpeed[attr]) / 100;
+							obj.style.filter = 'alpha(opacity='+(iCur + iSpeed[attr])+')';
 						}else{
-							obj.style[attr] = iCur + iSpeed +'px';
+							obj.style[attr] = iCur + iSpeed[attr] +'px';
 						}
 						
 					}
@@ -90,7 +93,7 @@
 				}
 
 
-				document.title = obj.offsetHeight + ','+obj.offsetWidth + ',' + iSpeed;
+				document.title = obj.offsetHeight + ','+obj.offsetWidth + ',' + iSpeed[attr];
 			},30);
 		}
 
