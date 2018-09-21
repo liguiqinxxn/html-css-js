@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<style>
+	body{background:url(img/1.jpg) no-repeat;background-size:100%;}
+	*{margin:0px;padding:0px;}
+	li{list-style: none;}
+	a{text-decoration: none;}
+	#pp{width:300px;height:100px;position:absolute;top:70px;left:10px;}
+    .hh{font-size: 20px;position:absolute;left:10px;}
+    #ss{width:300px;position:absolute;left:10px;top:30px;text-indent: 20px;font: 14px/20px "微软雅黑";}
+	#warp{width:300px;height:500px;border:1px solid #000;margin:70px auto;position:relative;overflow: hidden;}
+	#bg{width:400px;height:500px;position:absolute;left:-50px;background: url(img/2.jpg) no-repeat;background-size:100% 100%;-webkit-animation: 10s move linear infinite;animation: 10s move linear infinite;}
+	#gamecontent{width:600px;height:500px;position:absolute;left:0px;}
+	#leftbox{width:30px;height:200px;background:url(img/qiang2.jpg) no-repeat;background-size:100% 100%;position:absolute;bottom:0px;left:0px;}
+	#hero{width:20px;height:20px;background:url(img/3.png);position:absolute;left:0px;bottom:200px;background-size:100%;}
+	#middlebox{height:200px;position:absolute;bottom:0px;left:200px;background:url(img/qiang2.jpg) no-repeat;background-size:100% 100%;}
+	#stick{width:0px;height:3px;background:green;position:absolute;left:28px;bottom:200px;transform:rotate(-90deg);transform-origin: 0 3px;
+	}
+	#rightbox{width:80px;height:200px;position:absolute;bottom:0px;left:400px;background:url(img/qiang2.jpg) no-repeat;background-size:100% 100%;}	
+	
+	#mass{position:relative;left:220px;top:10px;font:14px/20px "微软雅黑";color:#181719;letter-spacing:5px;}
+	#life img{width:18px;height:18px;}
+	
+	#end{width:300px;height:500px;background: rgba(0,0,0,0.6);position: absolute;left:0px;top:0px;display: none;}	
+	#end span{position:absolute;}
+	#end span:nth-of-type(1){margin:150px 80px;color:block;}
+	#end span:nth-of-type(2){margin:180px 80px;color:block;}
+	#zmark{font-style:normal;color:white;}
+	#end input{margin:220px 20px 0 20px;border-style: solid;cursor: pointer;}
+	#btn1{position:absolute;left:100px;top:150px;z-index:2;font:20px/30px "宋体";display:none;}
+	#music{position:absolute;left:20px;top:20px;}
+	@-webkit-keyframes move{
+		0%{left:-50px;}
+		25%{left:-80px;}
+		50%{left:-50px;}
+		75%{left:-20px;}
+		100%{left:-50px;}
+	}
+	@-keyframes move{
+		0%{left:-50px;}
+		25%{left:-80px;}
+		50%{left:-50px;}
+		75%{left:-20px;}
+		100%{left:-50px;}
+	}
+	
+</style>
+<style id="css"></style>
+<script>
+ window.onload = function(){
+	var owarp = document.getElementById('warp');
+	var ogamecontent = document.getElementById('gamecontent');
+	var oleftbox = document.getElementById('leftbox');
+	var omiddlebox = document.getElementById('middlebox');
+	var orightbox = document.getElementById('rightbox');
+	var ohero = document.getElementById('hero');
+	var ostick = document.getElementById('stick');
+	var olife = document.getElementById('life');
+	var liftspan = olife.getElementsByTagName('span')[0];
+	var omark = document.getElementById('mark');
+	var markspan = omark.getElementsByTagName('span')[0];
+	var oend = document.getElementById('end');
+	var alnp = oend.getElementsByTagName('input');
+	var ozmark = document.getElementById('zmark');
+	var obtn = document.getElementById('btn1');
+	var ocss = document.getElementById('css');
+	
+	//音乐
+	var omusic = document.getElementById('music');
+	var obtn1 = document.getElementById('btn');
+	
+	omusic.src='music/高安纳兰珠儿 - 一生无悔 [mqms2].mp3';
+	omusic.volume = 0.1;
+	//var onoff1 = false;
+	omusic.play();
+//	obtn1.onclick = function(){
+//		if(onoff1){
+//			omusic.play();
+//			this.value = '音乐播放';
+//		}else{
+//			omusic.pause();
+//			this.value = '音乐暂停';
+//		}
+//		onoff1=!onoff1;
+//	}
+	
+	var timer = null;
+	var num = 0;
+	var onoff = true;
+	var step = 0;
+	var isplay = false;
+	var mark = 0;
+	var life = 3;
+	
+	//中间柱子随机生成
+	omiddlebox.style.width = creatnum(25,70) + 'px';
+	omiddlebox.style.left = creatnum(40,210) + 'px';
+	
+	//按下鼠标，棍子增长
+    ogamecontent.onmousedown = function(){
+    	if(isplay){   //动画是否完成
+    		return;
+    	}
+    	
+    	//生成人物动画
+    	ocss.innerHTML = '@-webkit-keyframes jumpup{\n 0% {left:'+(ohero.offsetLeft)+'px;bottom:200px;}\n'+'50% {left:'+(ohero.offsetLeft+10)+'px;bottom:208px;}\n'+'100%{left:'+(ohero.offsetLeft+20)+'px;bottom:203px;}\n'+
+		'}\n'+
+		'#gamecontent .jumpup{left:'+(ohero.offsetLeft+20)+'px;bottom:203px;-webkit-animation:1s jumpup;}\n'+
+		'@-keyframes jumpup{\n 0% {left:'+(ohero.offsetLeft)+'px;bottom:200px;}\n'+'50% {left:'+(ohero.offsetLeft+10)+'px;bottom:208px;}\n'+'100%{left:'+(ohero.offsetLeft+20)+'px;bottom:203px;}\n'+
+		'}\n'+
+		'#gamecontent .jumpup{left:'+(ohero.offsetLeft+20)+'px;bottom:203px;animation:1s jumpup;}';
+		
+		timer = setInterval(function(){
+			//clearInterval(timer);
+			num += 2;
+			ostick.style.width = num + 'px';
+		},20);
+	}
+    
+	//松开鼠标，棍子倒下
+	ogamecontent.onmouseup = function(){
+		if(isplay){
+    		return;
+    	}
+		
+		isplay = true;
+		clearInterval(timer);
+		ostick.style.transition = 0.5 + 's';
+		ostick.style.transform = 'rotate(0deg)';
+		omiddleleft = omiddlebox.offsetLeft;
+		//右边柱子随机生成
+		next = creatnext();
+		orightbox.style.width = next[1] + 'px';
+		orightbox.style.left = next[0] +'px';
+		if(num<omiddlebox.offsetLeft-ostick.offsetLeft||num>omiddlebox.offsetLeft+omiddlebox.offsetWidth-ostick.offsetLeft){
+			onoff = false;
+		}else{
+			onoff = true;
+		}
+	}
+	
+	//ie下用attachEvent绑定事件
+	
+	//添加人物动画
+	ostick.addEventListener('transitionend',function(){
+		ohero.className = 'jumpup';
+		ohero.style.left = (ohero.offsetLeft+20)+'px';	
+	})
+	
+	//人物移动
+	ohero.addEventListener('webkitAnimationEnd',function(){
+		if(onoff){
+			ohero.className = '';
+			ohero.style.transition = '1s';
+			ohero.style.left = (omiddlebox.offsetLeft+omiddlebox.offsetWidth-25) + 'px';
+			ogamecontent.style.transition = 1 + 's';
+			mark ++;
+			
+		}else{
+			//棍子长度不够或超出，人物掉下
+			ohero.className = '';
+			ohero.style.transition = 'left '+ 1+'s,bottom '+1+'s 0.6s';
+			ohero.style.left = (num +oleftbox.offsetWidth)+ 'px';
+			ohero.style.bottom = -20 + 'px';
+			life --;
+			liftspan.innerHTML = life;
+			ogamecontent.style.transition = 1 + 's 1s';
+			
+			if(life == 0 ){
+					setTimeout(function(){
+						oend.style.display = 'block';
+						zmark.innerHTML = markspan.innerHTML;
+					},2000);
+			}
+			
+		}
+	});
+	
+	//点击按钮重新开始
+	alnp[0].onclick = obtn.onclick = restart;
+	function restart(){
+		oend.style.display = 'none';
+		mark = 0;
+		markspan.innerHTML = mark;
+		life = 3;
+	    window.location.reload();
+	}
+	
+	alnp[1].onclick = function(){
+		oend.style.display = 'none';
+		obtn.style.display = 'block';
+	}
+	
+	//画布移动
+	  ohero.addEventListener('transitionend',function(ev){
+	  	if(life<=0)
+		return;
+		var ev = ev||event;
+		//ev.cancelBubble = true;
+		ev.stopPropagation();
+		markspan.innerHTML = mark;
+		
+		ogamecontent.style.left = -omiddlebox.offsetLeft + 'px';
+		step = 1;	
+	  });
+	  
+	  //画布，人物，棍子循环
+	  ogamecontent.addEventListener('transitionend',function(){ 
+		if(step == 1){
+			ogamecontent.style.transition = 'none';
+			ogamecontent.style.left = 0 + 'px';
+			ohero.style.transition = 'none';
+			
+			ohero.style.bottom = 200 + 'px'
+			ostick.style.transition = 'none';
+			ostick.style.width = 0 + 'px';
+			ostick.style.transform = 'rotate(-90deg)';
+			oleftbox.style.width = omiddlebox.offsetWidth+'px';
+			ohero.style.left = oleftbox.offsetWidth-25+ 'px' ;
+			ostick.style.left = oleftbox.offsetWidth-2 +'px';
+			omiddlebox.style.width = next[1] + 'px'
+			omiddlebox.style.left = next[0] - omiddleleft + 'px' ;
+			num = 0;
+			step = 0;
+			isplay = false;
+		}
+	  });
+	
+	//随机数
+	function creatnum(x,y){
+		return Math.round(Math.random()*(y-x)+x);
+	}
+	
+	//随机宽度，left值
+	function creatnext(){
+		var iwidth = creatnum(25,70);
+		var ileft = creatnum(305,255+omiddleleft);
+		return [ileft,iwidth];
+	}
+	
+ }
+</script>
+</head>
+<body>
+	<audio id="music" loop="loop" controls="controls"></audio>
+	<!--<input type="button" value="音乐播放" id="btn" />-->
+	<!--游戏说明-->
+	<span id="pp">
+	   <h1 class="hh">游戏说明：</h1>
+	   <span id="ss">按下鼠标，棍子加长，松开鼠标，棍子倒下，人物向前移动，注意棍子的长度不能小于两个柱子之间的距离，也不能大于两个柱子之间距离。 
+	   </span>
+	</span>
+	
+	<!--游戏主体-->
+	<div id="warp">
+		<input type="button" value="重新开始" id="btn1"  />
+		<div id="bg"></div>
+	    <div id="gamecontent">
+	  	  <div id="leftbox"></div>
+	  	  <div id="middlebox"></div>
+	  	  <div id="rightbox"></div>
+	  	  <div id="hero"></div>
+	  	  <div id="stick"></div>
+	  	</div>
+	  	
+	  	<!--游戏信息-->
+	  	<div id="mass">
+	  		<div id="life"><img src="img/live.png" /> X <span>3</span></div>
+	  		<div id="mark">分数:<span>0</span></div>
+	  	</div>
+	  	
+	  	<!--游戏重新开始-->
+	  	<div id="end">
+	  		<span>您的生命已用完。</span>
+	  		<span>您的分数为：<em id="zmark">0</em> 分</span>
+	  		<input type="button" value="重新开始" />
+	  		<input type="button" value="游戏结束" />
+	  		<input type="button" value="分享" />
+	  	</div>
+	</div>
+</body>
+</html>
