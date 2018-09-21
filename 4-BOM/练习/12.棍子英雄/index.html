@@ -9,6 +9,7 @@
 		height: 500px;
 		border: 1px solid #000;
 		margin:120px auto;
+		position: relative;
 		overflow: hidden;
 	}
 	#gameContent{
@@ -59,11 +60,43 @@
 		transform: rotate(-90deg);
 		transform-origin: 0 6px; 
 	}
-
+	#end {
+		width: 300px;
+		height: 500px;
+		background-color: rgba(0,0,0,0.6);
+		position: absolute;
+		left: 0px;
+		top:0px;
+		display: none;
+	}
+	#end span {
+		position: absolute;
+		margin: 150px 80px;
+		/*color: block;*/
+		color:white;
+	}
+	#zmark{
+		font-style:normal;
+		color:white;
+	}
+	#end input{
+		margin:180px 18px 0 18px;
+		border-style: solid;
+		cursor: pointer;
+	}
+	#btn1{
+		position:absolute;
+		left:100px;
+		top:150px;
+		z-index:2;
+		font:20px/30px "宋体";
+		display:none;
+	}
 </style>
 </head>
 <body>
 	<div id="wrap">
+		<input type="button" value="重新开始" id="btn1"  />
 		<div id="gameContent">
 			<div id="leftdiv"></div>
 			<div id="middlediv"></div>
@@ -71,6 +104,13 @@
 			<div id="hero"></div>
 			<div id="stick"></div>
 		</div>	
+
+		<div id="end">
+			<span>您的分数为：<em id="zmark">0</em> 分</span>
+	  		<input type="button" value="重新开始" />
+	  		<input type="button" value="游戏结束" />
+	  		<input type="button" value="分享" />
+		</div>
 	</div>
 </body>
 <script>
@@ -79,15 +119,20 @@
 	var isPlaying = false;
 	var num = 0;
 	var step = 0;
+	var mark = 0;
 	var stick = document.getElementById("stick");
 	var hero = document.getElementById("hero");
 	var gameContent = document.getElementById("gameContent");
 	var leftdiv = document.getElementById("leftdiv");
 	var middlediv = document.getElementById("middlediv");
 	var rightdiv = document.getElementById("rightdiv");
+	var oMark = document.getElementById("zmark");
+	var oEnd = document.getElementById("end");
+	var aInp = oEnd.getElementsByTagName('input');
+	var oBtn = document.getElementById("btn1");
 	middlediv.style.width = creatNum(40,80) + "px";
 	middlediv.style.left = creatNum(80,220) + "px";
-	document.onmousedown = function(){
+	gameContent.onmousedown = function(){
 		if (isPlaying) {
 			return;
 		}
@@ -96,7 +141,7 @@
 			stick.style.width = num +"px";
 		},20)
 	}
-	document.onmouseup = function(){
+	gameContent.onmouseup = function(){
 		if (isPlaying) {
 			return;
 		}
@@ -120,14 +165,30 @@
 			hero.style.transition = "1s";
 			hero.style.left = middlediv.offsetLeft + "px";
 		}else{
-			alert("游戏失败动画");
+			// alert("游戏失败动画");
+			hero.style.transition = "1s";
+			hero.style.left = stick.offsetLeft + stick.offsetWidth +"px";
 		}
 	})
 	hero.addEventListener("transitionend",function(ev){
-		gameContent.style.transition = "1s";
-		gameContent.style.left = -middlediv.offsetLeft + "px";
-		step = 1;
-		ev.stopPropagation();
+		if (onoff) {
+			gameContent.style.transition = "1s";
+			gameContent.style.left = -middlediv.offsetLeft + "px";
+			step = 1;
+			mark ++;
+			ev.stopPropagation();
+		}else{
+			//棍子长度不够或超出，人物掉下
+			hero.style.transition = "1s";
+			hero.style.bottom = "-40px";
+			stick.style.transition = "none";
+			stick.style.transform = "rotate(20deg)";
+
+			hero.addEventListener("transitionend",function(){
+				oEnd.style.display = "block";
+				oMark.innerHTML = mark;
+			})
+		}		
 	})
 	gameContent.addEventListener("transitionend",function(){
 		if (step == 1) {
@@ -149,6 +210,18 @@
 			step = 0;
 		}
 	})
+
+	aInp[0].onclick = oBtn.onclick = restart;
+	function restart(){
+		oEnd.style.display = "none";
+		mark = 0;
+		oMark.innerHTML = mark;
+		window.location.reload();
+	}
+	aInp[1].onclick = function(){
+		oEnd.style.display = "none";
+		oBtn.style.display = "block";
+	}
 
 	function creatNum(start,end){
 		return parseInt(Math.random()*(end-start)+start);
