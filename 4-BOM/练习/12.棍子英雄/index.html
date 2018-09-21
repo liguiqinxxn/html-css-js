@@ -80,8 +80,8 @@
 		color:white;
 	}
 	#end input{
-		margin:180px 18px 0 18px;
-		border-style: solid;
+		margin:180px 15px 0 15px;
+		border-style: 1px solid #000;
 		cursor: pointer;
 	}
 	#btn1{
@@ -160,7 +160,7 @@
 			onoff = false;
 		}
 	}
-	stick.addEventListener("transitionend",function(){
+	bind(stick,"transitionend",function(){
 		if (onoff) {
 			hero.style.transition = "1s";
 			hero.style.left = middlediv.offsetLeft + "px";
@@ -170,7 +170,7 @@
 			hero.style.left = stick.offsetLeft + stick.offsetWidth +"px";
 		}
 	})
-	hero.addEventListener("transitionend",function(ev){
+	bind(hero,"transitionend",function(ev){
 		if (onoff) {
 			gameContent.style.transition = "1s";
 			gameContent.style.left = -middlediv.offsetLeft + "px";
@@ -190,7 +190,7 @@
 			})
 		}		
 	})
-	gameContent.addEventListener("transitionend",function(){
+	bind(gameContent,"transitionend",function(){
 		if (step == 1) {
 			gameContent.style.transition = "none";
 			gameContent.style.left = 0;
@@ -221,6 +221,17 @@
 	aInp[1].onclick = function(){
 		oEnd.style.display = "none";
 		oBtn.style.display = "block";
+	}
+
+	// 绑定事件
+	function bind(obj, evname, fn) {
+		if (obj.addEventListener) {  //标准浏览器
+			obj.addEventListener(evname, fn, false);
+		} else {   //ie下
+			obj.attachEvent('on' + evname, function() {
+				fn.call(obj);  //兼容ie下this指向window
+			});
+		}
 	}
 
 	function creatNum(start,end){
