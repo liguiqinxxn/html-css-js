@@ -148,3 +148,10 @@ function detectNum ( str ) { //检测是否全是数字
 	}
 	return true;
 }
+
+function indexOfArray(arr, str){  //数组的indexOf()方法
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] === str) return i;
+			if (i === arr.length-1) return -1;
+		}
+	}
