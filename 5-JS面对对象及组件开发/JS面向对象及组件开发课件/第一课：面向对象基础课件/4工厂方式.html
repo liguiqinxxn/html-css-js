@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//工厂方式 : 封装函数
+
+function createPerson(name){
+	
+	//1.原料
+	var obj = new Object();
+	//2.加工
+	obj.name = name;
+	obj.showName = function(){
+		alert( this.name );
+	};
+	//3.出场
+	return obj;
+	
+}
+
+var p1 = createPerson('小明');
+p1.showName();
+var p2 = createPerson('小强');
+p2.showName();
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

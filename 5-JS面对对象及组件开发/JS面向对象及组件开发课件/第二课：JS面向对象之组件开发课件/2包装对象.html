@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+/*var str = 'hello';
+
+alert( typeof str );
+
+str.charAt(0);
+str.indexOf('e');*/
+
+//null undefined
+//包装对象 : 基本类型都有自己对应的包装对象 : String  Number  Boolean 
+
+/*var str = new String('hello');
+
+//alert( typeof str );
+
+alert(str.charAt(1));
+
+String.prototype.charAt = function(){};*/
+
+
+
+//var str = 'hello';
+//str.charAt(0);  //基本类型会找到对应的包装对象类型，然后包装对象把所有的属性和方法给了基本类型，然后包装对象消失
+
+
+/*var str = 'hello';
+
+String.prototype.lastValue = function(){
+	return this.charAt(this.length-1);
+};
+
+alert( str.lastValue() );  //o*/
+
+
+var str = 'hello';
+
+str.number = 10;
+
+alert( str.number );  //undefined
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

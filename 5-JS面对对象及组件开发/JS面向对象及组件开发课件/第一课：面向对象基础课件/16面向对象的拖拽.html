@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:100px; height:100px; background:red; position:absolute;}
+</style>
+<script>
+
+/*window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	
+	var disX = 0;
+	var disY = 0;
+	
+	oDiv.onmousedown = function(ev){
+		var ev = ev || window.event;
+		disX = ev.clientX - oDiv.offsetLeft;
+		disY = ev.clientY - oDiv.offsetTop;
+		
+		document.onmousemove = function(ev){
+			var ev = ev || window.event;
+			oDiv.style.left = ev.clientX - disX + 'px';
+			oDiv.style.top = ev.clientY - disY + 'px';
+		};
+		
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		};
+		return false;
+	};
+	
+};*/
+
+//先变型
+
+/*var oDiv = null;
+var disX = 0;
+var disY = 0;
+
+window.onload = function(){
+	oDiv = document.getElementById('div1');
+	
+	init();
+	
+};
+
+function init(){
+	oDiv.onmousedown = fnDown;
+}
+
+function fnDown(ev){
+	var ev = ev || window.event;
+	disX = ev.clientX - oDiv.offsetLeft;
+	disY = ev.clientY - oDiv.offsetTop;
+	
+	document.onmousemove = fnMove;
+	document.onmouseup = fnUp;
+	
+	return false;
+}
+function fnMove(ev){
+	var ev = ev || window.event;
+	oDiv.style.left = ev.clientX - disX + 'px';
+	oDiv.style.top = ev.clientY - disY + 'px';
+}
+function fnUp(){
+	document.onmousemove = null;
+	document.onmouseup = null;
+}*/
+
+
+//改面向对象:
+
+window.onload = function(){
+	
+	var d1 = new Drag('div1');
+	d1.init();
+	
+};
+
+function Drag(id){
+	this.oDiv = document.getElementById(id);
+	this.disX = 0;
+	this.disY = 0;
+}
+Drag.prototype.init = function(){
+	
+	var This = this;
+	
+	this.oDiv.onmousedown = function(ev){
+		var ev = ev || window.event;
+		This.fnDown(ev);	
+		return false;
+	};
+};
+Drag.prototype.fnDown = function(ev){
+	
+	var This = this;
+	this.disX = ev.clientX - this.oDiv.offsetLeft;
+	this.disY = ev.clientY - this.oDiv.offsetTop;
+	
+	document.onmousemove = function(ev){
+		var ev = ev || window.event;
+		This.fnMove(ev);
+	};
+	document.onmouseup = this.fnUp;
+	
+};
+Drag.prototype.fnMove = function(ev){
+	this.oDiv.style.left = ev.clientX - this.disX + 'px';
+	this.oDiv.style.top = ev.clientY - this.disY + 'px';
+};
+Drag.prototype.fnUp = function(){
+	document.onmousemove = null;
+	document.onmouseup = null;
+};
+
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

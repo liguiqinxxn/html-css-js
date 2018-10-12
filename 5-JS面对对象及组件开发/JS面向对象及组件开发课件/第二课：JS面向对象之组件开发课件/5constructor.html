@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+//constructor : 查看对象的构造函数
+
+/*function Aaa(){
+}
+
+var a1 = new Aaa();
+
+alert( a1.constructor );  //Aaa
+
+var arr = [];
+alert( arr.constructor == Array );  //true*/
+
+
+/*function Aaa(){
+}
+//Aaa.prototype.constructor = Aaa;   //每一个函数都会有的，都是自动生成的
+
+//Aaa.prototype.constructor = Array;
+
+var a1 = new Aaa();
+alert( a1.hasOwnProperty == Object.prototype.hasOwnProperty );  //true*/
+
+
+/*function Aaa(){
+}
+
+Aaa.prototype.name = '小明';
+Aaa.prototype.age = 20;
+
+Aaa.prototype = {
+	constructor : Aaa,
+	name : '小明',
+	age : 20
+};
+
+var a1 = new Aaa();
+alert( a1.constructor );*/
+
+
+function Aaa(){
+}
+
+Aaa.prototype.name = 10;
+Aaa.prototype.constructor = Aaa;
+
+for( var attr in Aaa.prototype ){
+	alert(attr);
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

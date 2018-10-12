@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:180px; height:180px; overflow:hidden; position:relative;}
+#div1 span{ width:100px; height:100px; background:yellow; opacity:0.5; filter:alpha(opacity=50); position:absolute; left:0; top:0; display:none;}
+#mark{ width:180px; height:180px; background:red; position:absolute; left:0; top:0;opacity:0; filter:alpha(opacity=0);}
+#div2{ width:500px; height:500px; position:absolute; left:250px; top:50px; overflow:hidden;}
+#div2 img{ position:absolute; left:0; top:0;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	var oSpan = oDiv.getElementsByTagName('span')[0];
+	
+	var oDiv2 = document.getElementById('div2');
+	var img2 = oDiv2.getElementsByTagName('img')[0];
+	
+	oDiv.onmouseover = function(){
+		oSpan.style.display = 'block';
+	};
+	
+	oDiv.onmouseout = function(){
+		oSpan.style.display = 'none';
+	};
+	
+	oDiv.onmousemove = function(ev){
+		var ev = ev || window.event;
+		
+		var L = ev.clientX - oDiv.offsetLeft - oSpan.offsetWidth/2;
+		var T = ev.clientY - oDiv.offsetTop - oSpan.offsetHeight/2;
+		
+		if(L<0){
+			L = 0;
+		}
+		else if(L>oDiv.offsetWidth - oSpan.offsetWidth){
+			L = oDiv.offsetWidth - oSpan.offsetWidth;
+		}
+		
+		if(T<0){
+			T = 0;
+		}
+		else if(T>oDiv.offsetHeight - oSpan.offsetHeight){
+			T = oDiv.offsetHeight - oSpan.offsetHeight;
+		}
+		
+		oSpan.style.left = L + 'px';
+		oSpan.style.top = T + 'px';
+		
+		var scaleX = L/(oDiv.offsetWidth - oSpan.offsetWidth);
+		var scaleY = T/(oDiv.offsetHeight - oSpan.offsetHeight);
+		
+		img2.style.left = - scaleX * (img2.offsetWidth - oDiv2.offsetWidth) + 'px';
+		img2.style.top = - scaleY * (img2.offsetHeight - oDiv2.offsetHeight) + 'px';		
+		
+	};
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<img src="b2.jpg">
+    <span></span>
+    <div id="mark"></div>
+</div>
+<div id="div2">
+	<img src="b1.jpg">
+</div>
+</body>
+</html>

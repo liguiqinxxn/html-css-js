@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+//自定义事件 : 主要是跟函数有关系,就是让函数能够具备事件的某些特性
+
+/*function show(){
+	alert(1);
+	alert(2);
+	alert(3);
+}
+
+show();*/
+
+
+/*function show(){
+	alert(1);
+}
+
+function show(){
+	alert(2);
+}
+
+function show(){
+	alert(3);
+}
+
+show();*/
+
+window.addEventListener('show',function(){
+	alert(1);
+},false);
+window.addEventListener('show',function(){
+	alert(2);
+},false);
+window.addEventListener('show',function(){
+	alert(3);
+},false);
+
+show();  //主动触发自定义事件
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

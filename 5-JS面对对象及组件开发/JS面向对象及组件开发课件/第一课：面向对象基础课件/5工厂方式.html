@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+
+//当new去调用一个函数 : 这个时候函数中的this就是创建出来的对象,而且函数的的返回值直接就是this啦(隐式返回)
+
+//new后面调用的函数 : 叫做构造函数
+
+function CreatePerson(name){
+	
+	this.name = name;
+	this.showName = function(){
+		alert( this.name );
+	};
+	
+}
+
+var p1 = new CreatePerson('小明');
+//p1.showName();
+var p2 = new CreatePerson('小强');
+//p2.showName();
+
+alert( p1.showName == p2.showName );  //false
+
+var arr = new Array();
+var date = new Date();
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

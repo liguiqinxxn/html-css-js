@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+/*function show(opt){
+}
+
+show({
+	id : 'div1',
+	toDown : function(){},
+	toUp : function(){}
+});
+*/
+
+var a = {   //配置参数
+	//name : '小明'
+};
+
+var b = {   //默认参数
+	name : '小强'
+};
+
+extend( b , a );
+
+alert( b.name );
+
+
+function extend(obj1,obj2){
+	for(var attr in obj2){
+		obj1[attr] = obj2[attr];
+	}
+}
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

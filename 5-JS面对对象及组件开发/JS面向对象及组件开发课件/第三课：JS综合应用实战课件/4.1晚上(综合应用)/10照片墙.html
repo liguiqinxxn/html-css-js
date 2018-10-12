@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+#ul1{ width:660px; position:relative; margin:10px auto;}
+li{ width:200px; height:150px; margin:10px; float:left; list-style:none;}
+</style>
+<script>
+window.onload = function(){
+	var aLi = document.getElementsByTagName('li');
+	var izIndex = 2;
+	var arr = [];
+	
+	for(var i=0;i<aLi.length;i++){
+		arr.push( [ aLi[i].offsetLeft , aLi[i].offsetTop ] );
+	}
+	
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.position = 'absolute';
+		aLi[i].style.left = arr[i][0] + 'px';
+		aLi[i].style.top = arr[i][1] + 'px';
+		aLi[i].style.margin = 0;
+	}
+	
+	for(var i=0;i<aLi.length;i++){
+		drag(aLi[i]);
+	}
+	
+	function drag(obj){
+		var disX = 0;
+		var disY = 0;
+		obj.onmousedown = function(ev){
+			
+			obj.style.zIndex = izIndex++;
+			
+			var ev = ev || window.event;
+			disX = ev.clientX - obj.offsetLeft;
+			disY = ev.clientY - obj.offsetTop;
+			
+			document.onmousemove = function(ev){
+				var ev = ev || window.event;
+				obj.style.left = ev.clientX - disX + 'px';
+				obj.style.top = ev.clientY - disY + 'px';
+				
+				for(var i=0;i<aLi.length;i++){
+					if( pz(obj,aLi[i]) && obj!=aLi[i] ){
+						aLi[i].style.border = '2px red solid';
+					}
+					else{
+						aLi[i].style.border = '';
+					}
+				}
+				
+			};
+			
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+			};
+			
+			return false;
+			
+		};
+	}
+	
+	function pz(obj1,obj2){
+		var L1 = obj1.offsetLeft;
+		var R1 = obj1.offsetLeft + obj1.offsetWidth;
+		var T1 = obj1.offsetTop;
+		var B1 = obj1.offsetTop + obj1.offsetHeight;
+		
+		var L2 = obj2.offsetLeft;
+		var R2 = obj2.offsetLeft + obj2.offsetWidth;
+		var T2 = obj2.offsetTop;
+		var B2 = obj2.offsetTop + obj2.offsetHeight;
+		
+		if( R1<L2 || L1>R2 || B1<T2 || T1>B2 ){
+			return false;
+		}
+		else{
+			return true;
+		}
+		
+	}
+	
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li><img src="photo/1.jpg" /></li>
+    <li><img src="photo/2.jpg" /></li>
+    <li><img src="photo/3.jpg" /></li>
+    <li><img src="photo/4.jpg" /></li>
+    <li><img src="photo/5.jpg" /></li>
+    <li><img src="photo/1.jpg" /></li>
+    <li><img src="photo/2.jpg" /></li>
+    <li><img src="photo/3.jpg" /></li>
+    <li><img src="photo/4.jpg" /></li>
+</ul>
+</body>
+</html>

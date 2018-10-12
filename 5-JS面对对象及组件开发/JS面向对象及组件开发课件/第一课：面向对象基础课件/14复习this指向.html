@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+oDiv.onclick = function(){
+	this : oDiv
+};
+
+
+oDiv.onclick = show;
+function show(){
+	this : oDiv
+}
+
+
+oDiv.onclick = function(){
+	show();
+};
+function show(){
+	this : window
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

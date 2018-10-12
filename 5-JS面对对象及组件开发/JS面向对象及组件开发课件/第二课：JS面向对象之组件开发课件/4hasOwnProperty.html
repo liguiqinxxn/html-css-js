@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+//hasOwnProperty : 看是不是对象自身下面的属性
+
+var arr = [];
+arr.num = 10;
+Array.prototype.num2 = 20;
+
+//alert(  arr.hasOwnProperty('num')  );  //true
+
+alert(  arr.hasOwnProperty('num2')  );  //false
+
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

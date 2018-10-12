@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+#main{ width:900px; height:auto; margin:10px auto;}
+#mainLeft{ width:20%; min-height:30px; _height:30px; float:left; margin-right:5px;}
+#mainCenter{ width:48%; min-height:30px; _height:30px; float:left; margin-right:5px;}
+#mainRight{ width:30%; min-height:30px; _height:30px; float:left;}
+.box{ width:100%; height:auto; background:blue; color:#FFFFFF; margin-bottom:10px; border:1px #000000 solid;}
+.boxTit{ width:100%; height:30px; background:red; cursor:move; line-height:30px;}
+.tmp{ width:100%; height:30px; margin-bottom:10px; border:1px #666666 dashed;}
+
+#main:after{content:'\20';display:block;height:0;clear:both;}
+#main{*zoom:1;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('main');
+	var aTit = getByClass(oDiv,'boxTit');
+	for(var i=0;i<aTit.length;i++){
+		aTit[i].index = i;
+		darg(aTit[i]);
+	}
+	
+	for(var j=0;j<oDiv.children.length;j++){
+		if(getCookie(oDiv.children[j].id)!=''){
+			var arrs = getCookie(oDiv.children[j].id).split(',');
+			for(var i=0;i<arrs.length;i++){
+				oDiv.children[j].appendChild(aTit[arrs[i]].parentNode);
+			}
+		}
+	}
+	
+	function darg(obj){
+		var disX = 0;
+		var disY = 0;
+		obj.onmousedown = function(ev){
+			var ev = ev || window.event;
+			var oParent = obj.parentNode;
+			var oGrandpa = obj.parentNode.parentNode;
+			disX = ev.clientX - obj.offsetLeft;
+			disY = ev.clientY - obj.offsetTop;
+			
+			oParent.style.left = obj.offsetLeft + 'px';
+			oParent.style.top = obj.offsetTop + 'px';
+			oParent.style.width = oGrandpa.offsetWidth + 'px';
+			oParent.style.height = '30px';
+			oParent.style.overflow = 'hidden';
+			oParent.style.position = 'absolute';
+			
+			var oTmp = document.createElement('div');
+			oTmp.className = 'tmp';
+			oGrandpa.insertBefore(oTmp,oParent);
+			
+			document.body.appendChild(oParent);
+			
+			document.onmousemove = function(ev){
+				var ev = ev || window.event;
+				oParent.style.left = ev.clientX - disX + 'px';
+				oParent.style.top = ev.clientY - disY + 'px';
+				
+				var mv1 = minValue(oDiv,oParent);
+				var mv2 = minValue(mv1,oParent,'box');
+				
+				if(parseInt(jl(oParent,mv2)) < parseInt(jl(oParent,mv2,1))){
+					mv1.insertBefore(oTmp,mv2);
+				}
+				else{
+					if(mv2){
+						appendAfter(mv1,oTmp,mv2);
+					}
+					else{
+						mv1.appendChild(oTmp);
+					}
+				}	
+			};
+			
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+				oDiv.style.height = '';
+				startMove(oParent,{'top':oTmp.offsetTop,'left':oTmp.offsetLeft},function(){
+					oTmp.parentNode.insertBefore(oParent,oTmp);
+					oParent.style.position = '';
+					oParent.style.height = 'auto';
+					oParent.style.overflow = '';
+					oParent.style.width = '100%';
+					oTmp.parentNode.removeChild(oTmp);
+					oDiv.style.height = oDiv.offsetHeight + 'px';
+					
+					for(var j=0;j<oDiv.children.length;j++){
+						oDiv.children[j].arrs = [];
+						for(var i=0;i<oDiv.children[j].children.length;i++){
+							oDiv.children[j].arrs.push(first(oDiv.children[j].children[i]).index);
+						}
+						setCookie(oDiv.children[j].id,oDiv.children[j].arrs,30);
+					}
+					
+				});
+			};
+		};
+	}
+	
+	function minValue(oParent,obj,sClass){
+		var iMin = 99999;
+		var iMinIndex = -1;
+		var children = sClass ? getByClass(oParent,sClass) : oParent.children;
+		
+		for(var i=0;i<children.length;i++){
+			if(children[i].className!='tmp'){
+				var a = jl(obj,children[i]);
+				for(var j=0;j<a.length;j++){
+					if(a[j]<iMin){
+						iMin = a[j];
+						iMinIndex = i;
+					}
+				}
+			}
+		}
+		if(iMinIndex==-1){
+			return false;
+		}
+		else{
+			return children[iMinIndex];
+		}
+	}
+	
+	function jl(obj1,obj2,bBtn){
+		var arrs = [];
+		var a = obj1.offsetLeft - obj2.offsetLeft;
+		var b = bBtn ? obj1.offsetTop - (obj2.offsetTop + obj2.offsetHeight) : obj1.offsetTop - obj2.offsetTop;
+		var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+		arrs.push(c);
+		return arrs;
+	}
+};
+function getByClass(oParent,sClass){
+	var aEle = oParent.getElementsByTagName('*');
+	var arrs = [];
+	for(var i=0;i<aEle.length;i++){
+		if(aEle[i].className==sClass){
+			arrs.push(aEle[i]);
+		}
+	}
+	return arrs;
+}
+
+function appendAfter(oParent,obj1,obj2){
+	if(obj2==last(oParent)){
+		return oParent.appendChild(obj1);
+	}
+	else{
+		return oParent.insertBefore(obj1,next(obj2));
+	}
+}
+
+function next(obj){
+	return obj.nextSibling.nodeType == 1 ? obj.nextSibling : next(obj.nextSibling);
+}
+function pre(obj){
+	return obj.previousSibling.nodeType == 1 ? obj.previousSibling : pre(obj.previousSibling);
+}
+function first(obj){
+	return obj.firstChild.nodeType == 1 ? obj.firstChild : next(obj.firstChild);
+}
+
+function last(obj){
+	return obj.lastChild.nodeType == 1 ? obj.lastChild : pre(obj.lastChild);
+}
+
+function startMove(obj,json,fnEnd){
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		doMove(obj,json,fnEnd);
+	},30);
+}
+function doMove(obj,json,fnEnd){
+	var iCur = 0;
+	var attr = null;
+	var bStop = true;
+	for(attr in json){
+		if(attr=='opacity'){
+			if(parseInt(100*getStyle(obj,attr))==0){
+				iCur = parseInt(100*getStyle(obj,attr));
+			}
+			else{
+				iCur = parseInt(100*getStyle(obj,attr)) || 100;
+			}
+		}
+		else{
+			iCur = parseInt(getStyle(obj,attr)) || 0;
+		}
+		var iSpeed = (json[attr] - iCur)/3;
+		iSpeed = (iSpeed>0) ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+		if(json[attr]!=iCur){
+			bStop = false;
+		}
+		if(attr=='opacity'){
+			obj.style.filter = 'alpha(opacity='+ (iCur + iSpeed) +')';
+			obj.style.opacity = (iCur + iSpeed)/100;
+		}
+		else{
+			obj.style[attr] = iCur + iSpeed + 'px';
+		}	
+	}
+	if(bStop){
+		clearInterval(obj.timer);
+		if(fnEnd){
+			fnEnd.call(obj);
+		}
+	}
+}
+
+function getStyle(obj,attr){
+	if(obj.currentStyle){
+		return obj.currentStyle[attr];
+	}
+	else{
+		return getComputedStyle(obj)[attr];
+	}
+}
+
+function setCookie(name,value,time){
+	var oDate = new Date();
+	oDate.setDate(oDate.getDate()+time);
+	var str = name + '=' + encodeURIComponent(value) + ';expires=' + oDate;
+	document.cookie = str;
+}
+function getCookie(name){
+	var arrs1 = document.cookie.split('; ');
+	for(var i=0;i<arrs1.length;i++){
+		var arrs2 = arrs1[i].split('=');
+		if(arrs2[0]==name){
+			return decodeURIComponent(arrs2[1]);
+		}
+	}
+	return '';
+}
+function removeCookie(name){
+	setCookie(name,1,-1);
+}
+</script>
+</head>
+
+<body>
+<div id="main">
+	<div id="mainLeft">
+    	<div class="box">
+        	<div class="boxTit">1</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+        <div class="box">
+        	<div class="boxTit">2</div>
+            <p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+        </div>
+        <div class="box">
+        	<div class="boxTit">3</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+    </div>
+    
+    
+    <div id="mainCenter">
+    	<div class="box">
+        	<div class="boxTit">4</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+        <div class="box">
+        	<div class="boxTit">5</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+        <div class="box">
+        	<div class="boxTit">6</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+    </div>
+    
+    
+    <div id="mainRight">
+    	<div class="box">
+        	<div class="boxTit">7</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+        <div class="box">
+        	<div class="boxTit">8</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+        <div class="box">
+        	<div class="boxTit">9</div>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+            <p>哈哈</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

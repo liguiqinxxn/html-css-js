@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+var arr = [34,71,8,934,10];
+
+var value = 9999;
+var index = -1;
+
+for(var i=0;i<arr.length;i++){
+	if( arr[i] < value ){
+		value = arr[i];
+		index = i;
+	}
+}
+
+alert( '最小值:'+value+',位置:'+ index );
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

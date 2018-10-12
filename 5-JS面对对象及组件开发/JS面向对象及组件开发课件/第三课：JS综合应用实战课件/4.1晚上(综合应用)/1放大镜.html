@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:180px; height:180px; overflow:hidden; position:relative;}
+#div1 span{ width:100px; height:100px; background:yellow; opacity:0.5; filter:alpha(opacity=50); position:absolute; left:0; top:0; display:none;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	var oSpan = oDiv.getElementsByTagName('span')[0];
+	
+	oDiv.onmouseover = function(){
+		oSpan.style.display = 'block';
+	};
+	
+	oDiv.onmouseout = function(){
+		oSpan.style.display = 'none';
+	};
+	
+	oDiv.onmousemove = function(ev){
+		var ev = ev || window.event;
+		
+		oSpan.style.left = ev.clientX - oDiv.offsetLeft - oSpan.offsetWidth/2 + 'px';
+		oSpan.style.top = ev.clientY - oDiv.offsetTop - oSpan.offsetHeight/2 + 'px';
+		
+	};
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<img src="b2.jpg">
+    <span></span>
+</div>
+</body>
+</html>

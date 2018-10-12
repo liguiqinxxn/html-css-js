@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:200px; height:200px; background:red;}
+#div2{ width:100px; height:100px; background:yellow;}
+</style>
+<script>
+
+
+window.onload = function(){
+	var oDiv1 = document.getElementById('div1');
+	var oDiv2 = document.getElementById('div2');
+	
+	oDiv1.onmouseover = function(ev){
+		var ev = ev || window.event;
+		var a = this, b = ev.relatedTarget;
+		
+		//console.log(a.innerHTML);
+		//console.log(b.innerHTML);
+		
+		if( !elContains(a,b) && a!=b ){
+			
+			document.title += '1';
+			
+		}
+	};
+	
+	oDiv1.onmouseout = function(ev){
+		
+		var ev = ev || window.event;
+		var a = this, b = ev.relatedTarget;
+		
+		if(!elContains(a,b) && a!=b){
+			document.title += '2';
+			
+		}
+	};
+};
+
+function elContains(a, b){  //判断两个元素是否是嵌套关系
+	
+	return a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16);
+	
+}
+
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<div id="div2"></div>
+</div>
+</body>
+</html>
