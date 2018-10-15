@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>面对对象的选项卡</title>
+<style>
+	#div1 div {width: 200px;height: 200px; border: 1px #000 solid; display: none;}
+	.active {background-color: red;}
+</style>
+<script>
+	window.onload = function(){
+		var oParent = document.getElementById('div1');
+		var aInput = oParent.getElementsByTagName('input');
+		var aDiv = oParent.getElementsByTagName('div');
+
+		for (var i = 0; i < aInput.length; i++) {
+			aInput[i].index = i;
+			aInput[i].onclick = function(){
+				for (var i = 0; i < aInput.length; i++) {
+					aInput[i].className = '';
+					aDiv[i].style.display = 'none';
+				}
+				this.className = 'active';
+				aDiv[this.index].style.display = 'block';
+			};
+		}
+	};
+	
+</script>
+</head>
+<body>
+	<div id="div1">
+		<input class="active" type="button" value="1">
+		<input type="button" value="2">
+		<input type="button" value="3">
+		<div style="display: block">11111</div>
+		<div>22222</div>
+		<div>33333</div>
+	</div>
+</body>
+</html>
