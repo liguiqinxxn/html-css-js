@@ -5,9 +5,10 @@
 <title>弹窗的组件开发</title>
 <style>
 * {margin: 0; padding: 0;}
-.login { background-color: white; border: 1px #000 solid; position: absolute;top: 0; }
+.login { background-color: white; border: 1px #000 solid; position: absolute;top: 0; z-index: 2;}
 .title {height: 30px; background-color: gray;color: white;}
 .title .close { float: right; }
+#mark { background-color: black; filter: alpha(opacity=50); opacity: 0.5; position: absolute; left: 0; top: 0; z-index: 1; }
 </style>
 <script>
 	window.onload = function(){
@@ -16,6 +17,7 @@
 		aInput[0].onclick = function(){
 			var d1 = new Dialog();
 			d1.init({  //配置参数
+				iNow : 0,
 				title : '登录'
 			});
 
@@ -24,6 +26,7 @@
 		aInput[1].onclick = function(){
 			var d1 = new Dialog();
 			d1.init({ //配置参数
+				iNow : 1,
 				w : 100,
 				h : 400,
 				dir : 'right',
@@ -31,6 +34,15 @@
 			});
 
 		};
+
+		aInput[2].onclick = function(){
+
+			var d1 = new Dialog();
+			d1.init({  //配置参数
+				iNow : 2,
+				mark :true
+			});
+		}
 	};
 
 	function Dialog(){
@@ -41,15 +53,32 @@
 			w : 300,
 			h : 300,
 			dir : 'center',
-			title : ''
+			title : '',
+			mark : false
 		};
 	}
+
+	Dialog.prototype.json = {};
+
 	Dialog.prototype.init = function( opt ){
 
 		extend( this.settings , opt );
 
-		this.create();
-		this.fnClose();
+		if ( this.json[opt.iNow] == undefined ) {
+			 this.json[opt.iNow] = true;
+		}
+
+		if ( this.json[opt.iNow]) {
+			this.create();
+			this.fnClose();
+
+			if (this.settings.mark) {
+				this.createMark();
+			}
+
+			this.json[opt.iNow] = false;
+
+		}
 
 	};
 
@@ -86,7 +115,26 @@
 		oClose.onclick = function(){
 
 			document.body.removeChild( This.oLogin );
+
+			if (This.settings.mark) {
+				document.body.removeChild( This.oMark );
+			}
+
 		};
+	};
+
+	Dialog.prototype.createMark = function(){
+
+		var oMark = document.createElement('div');
+		oMark.id = 'mark';
+
+		document.body.appendChild( oMark );
+
+		this.oMark = oMark;
+
+		oMark.style.width = viewWidth() + 'px';
+		oMark.style.height = viewHeight() + 'px';
+
 	};
 
 	function extend(obj1,obj2){
