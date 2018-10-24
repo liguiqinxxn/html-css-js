@@ -41,10 +41,10 @@
 
 		obj.listeners[events].push( fn );
 
-		if (obj.addEventListener) {
+		if (obj.addEventListener) {  //标准浏览器
 			obj.addEventListener(events,fn,false);
 		}
-		else {
+		else { //ie下
 			obj.attachEvent('on'+events,fn);
 		}
 	}
