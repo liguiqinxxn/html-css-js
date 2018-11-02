@@ -1,8 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>照片墙</title>
+<meta charset="UTF-8">
+<title>照片墙</title>
+<style>
+* { margin:0; padding: 0;}
+#ul1 { width: 660px; position: relative; margin: 10px auto; }
+li { width: 200px; height: 150px; margin: 10px; float: left; list-style: none; }	
+</style>
+<script src="move.js"></script>
+<script>
+	window.onload = function(){
+		var aLi = document.getElementsByTagName('li');
+		var izIndex = 2;
+		var arr = [];
+		var oInput = document.getElementById('input1');
+
+		for (var i = 0; i < aLi.length; i++) {
+			arr.push( [ aLi[i].offsetLeft , aLi[i].offsetTop ] );
+		}
+
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].style.position = 'absolute';
+			aLi[i].style.left = arr[i][0] + 'px';
+			aLi[i].style.top = arr[i][1] + 'px';
+			aLi[i].style.margin = 0;
+		}
+	}
+
+</script>
 </head>
 <body>
 <input type="button" value="随机" id="input1">
