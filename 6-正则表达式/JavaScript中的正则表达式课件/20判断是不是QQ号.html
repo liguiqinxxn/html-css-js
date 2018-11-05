@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//^ : 正则的最开始位置，就代笔起始的意思
+//$ : 正则的最后位置 , 就代笔结束的意思
+
+window.onload = function(){
+	var aInput = document.getElementsByTagName('input');
+	
+	var re = /^[1-9]\d{4,11}$/;
+	
+	aInput[1].onclick = function(){
+		
+		if( re.test(aInput[0].value) ){
+			alert('是QQ号');
+		}
+		else{
+			alert('不是QQ号');
+		}
+		
+	};
+	
+};
+
+</script>
+</head>
+
+<body>
+<input type="text" /><input type="button" value="确定" />
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//alert('\'');
+
+window.onload = function(){
+	var aLi = getByClass(document,'box1');
+	
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.background = 'red';
+	}
+	
+	/*function getByClass(oParent,sClass){
+		var arr = [];
+		var aEle = oParent.getElementsByTagName('*');
+		
+		for(var i=0;i<aEle.length;i++){
+			if( aEle[i].className == sClass ){
+				arr.push( aEle[i] );
+			}
+		}
+		
+		return arr;
+		
+	}*/
+	
+	function getByClass(oParent,sClass){
+		var arr = [];
+		var aEle = oParent.getElementsByTagName('*');
+		
+		//var re = /sClass/;  //当正则需要传参的时候，一定要用全称的写法
+		var re = new RegExp('\\b'+sClass+'\\b');
+		
+		for(var i=0;i<aEle.length;i++){
+			if( re.test(aEle[i].className) ){
+				arr.push( aEle[i] );
+			}
+		}
+		
+		return arr;
+		
+	}
+	
+};
+
+</script>
+</head>
+
+<body>
+<ul>
+	<li class="box1">111</li>
+    <li>111</li>
+    <li class="box1box2">111</li>
+    <li>111</li>
+    <li class="box1 box2">111</li>
+</ul>
+</body>
+</html>

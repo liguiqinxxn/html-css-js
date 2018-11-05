@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//菲称仁爱礁附近17艘中国船均在菲军监视之下
+
+//| : 或的意思
+
+//replace : 第二个参数：可以是字符串，也可以是一个回调函数
+
+window.onload = function(){
+	var aT = document.getElementsByTagName('textarea');
+	var oInput = document.getElementById('input1');
+	
+	var re = /菲称|中国船|监视之下/g;
+	
+	oInput.onclick = function(){
+		
+		 //aT[1].value = aT[0].value.replace(re,'*');
+		 
+		 aT[1].value = aT[0].value.replace(re,function(str){
+		//函数的第一个参数：就是匹配成功的字符	 
+		
+			 //alert( str );
+			 
+			 var result = '';
+			 
+			 for(var i=0;i<str.length;i++){
+				 result += '*';
+			 }
+			 
+			 
+			 return result;
+			 
+		 });
+		
+	};
+	
+};
+
+</script>
+</head>
+
+<body>
+替换前<br />
+<textarea>
+</textarea><br />
+替换后<br />
+<textarea>
+</textarea><br />
+<input type="button" value="确定" id="input1" />
+</body>
+</html>

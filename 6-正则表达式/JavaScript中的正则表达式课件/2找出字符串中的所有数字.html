@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+var str = 'haj123sdk54hask33dkhalsd879';
+
+
+function findNum(str){
+	
+	var arr = [];
+	
+	var tmp = '';
+	
+	for(var i=0;i<str.length;i++){
+		if( str.charAt(i)<='9' && str.charAt(i)>='0' ){
+			tmp += str.charAt(i);
+		}
+		else{
+			if(tmp){
+				arr.push(tmp);
+				tmp = '';
+			}
+		}
+	}
+	
+	if(tmp){
+		arr.push(tmp);
+		tmp = '';
+	}
+	
+	
+	return arr;
+	
+}
+
+alert( findNum(str) );   //[123,54,33,879]
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+//匹配用户名 : 汉字/字母/数字 (5-10位)
+
+var str = 'asfasf';
+
+var re = /[a-z]/g;
+var re2 = /[\u4e00-\u9fa50-9]?/g;
+
+if( re.test(str) && re2.test(str) && str.length >= 5 && str.length <= 10 ){
+	alert('正确');
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

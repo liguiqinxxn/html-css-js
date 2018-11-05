@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+
+var str = 'border-bottom-color';
+
+function test(str){
+	
+	var re = /-(\w)/g;
+	
+	return str.replace(re,function($0,$1){
+		
+		return $1.toUpperCase();
+		
+	});
+	
+}
+
+alert( test(str) );
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

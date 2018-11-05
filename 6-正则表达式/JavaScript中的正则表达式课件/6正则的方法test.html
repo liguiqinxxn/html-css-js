@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//test : 正则去匹配字符串，如果匹配成功就返回真，如果匹配失败就返回假
+
+//test的写法 : 正则.test(字符串)
+
+/*var str = 'abcdef';
+
+var re = /b/;
+
+alert( re.test(str) );*/
+
+
+//转义字符:
+
+//alert('a\nb');
+
+/*n \n
+r \r
+t \t*/
+
+/*\s : 空格
+\S : 非空格
+\d : 数字
+\D : 非数字
+\w : 字符   ( 字母 ，数字，下划线_ )
+\W : 非字符*/
+
+
+var str = '374829348791';
+
+var re = /\D/;
+
+if( re.test(str) ){
+	alert('不全是数字');
+}
+else{
+	alert('全是数字');
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

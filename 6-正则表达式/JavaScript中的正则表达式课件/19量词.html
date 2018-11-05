@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//量词 : {}
+
+/*{4,7}  : 最少出现4次，最多出现7次
+{4,} : 最少出现4次
+{4} : 正好出现4次
+
++ : {1,}  //\d{1,}
+? : {0,1}  : 出现0次或者1次
+* : {0,}  : 至少出现0次*/
+
+var str = 'ac';
+var re = /ab*/;
+
+alert(re.test(str));
+
+</script>
+</head>
+
+<body>
+</body>
+</html>
