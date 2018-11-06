@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>敏感词过滤</title>
+<script>
+//菲称仁爱礁附近17艘中国船均在菲军监视之下
+window.onload = function(){
+	var aT = document.getElementsByTagName('textarea');
+	var oInput = document.getElementById('input1');
+
+	var re = /菲称|中国船|监视之下/g;
+
+	oInput.onclick = function(){
+		aT[1].value = aT[0].value.replace(re,function(str){
+			// 函数的第一个参数：就是匹配成功的字符
+			var result = '';
+
+			for (var i = 0; i < str.length; i++) {
+				result += '*';
+			}
+
+			return result;
+
+		});
+	};
+};
+
+</script>
+</head>
+<body>
+	替换前<br>
+	<textarea></textarea><br>
+	替换后<br>
+	<textarea></textarea><br>
+	<input type="button" value="确定" id="input1">
+</body>
+</html>

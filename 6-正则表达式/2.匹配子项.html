@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匹配子项</title>
+</head>
+<script>
+	// 匹配子项：小括号() (还有另外一个意思，分组操作)
+	var str = '2018-11-6';
+
+	var re = /(\d+)(-)/g;
+
+	str = str.replace(re,function($0,$1,$2){
+		// alert( $0 );
+
+		// alert( $2 );
+
+		// return $1 + '.';
+		// 或
+		return $0.substring(0,$0.length) + '.';  //substring() 方法用于提取字符串中介于两个指定下标之间的字符
+
+	});
+
+	alert( str ); //2018.11.6
+</script>
+<body>
+
+</body>
+</html>
