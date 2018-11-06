@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>过滤标签</title>
+<script>
+	window.onload = function(){
+		var aT = document.getElementsByTagName('textarea');
+		var oInput = document.getElementById('input1');
+
+		var re = /<[^>]+>/g;
+
+		oInput.onclick = function(){
+
+			aT[1].value = aT[0].value.replace(re,'');
+
+		};
+	};
+</script>
+</head>
+<body>
+	替换前<br>
+	<textarea></textarea><br>
+	替换后<br>
+	<textarea></textarea><br>
+	<input type="button" value="确定" id="input1">
+</body>
+</html>
