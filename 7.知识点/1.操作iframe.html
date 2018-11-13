@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>操作iframe</title>
+	<script>
+		 //chrom需要在服务器上运行
+
+		window.onload = function(){
+			var oInput = document.getElementById('input1');
+			var oIframe = document.getElementById('iframe1');
+
+			oInput.onclick = function(){
+				oIframe.contentWindow.document.getElementById('div1').style.color = 'red';  //获取window对象，所有浏览器都是支持的
+
+				oIframe.contentDocument.getElementById('div1').style.background = 'red';  //获取document对象，ie6、ie7是不支持的
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="改变" id="input1" />
+	<iframe src="iframe1.html" id="iframe1"></iframe>
+</body>
+</html>

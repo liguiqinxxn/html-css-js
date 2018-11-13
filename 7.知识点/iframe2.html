@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	window.onload = function(){
+		var oInput = document.getElementById('input1');
+
+		oInput.onclick = function(){
+
+			// window.parent.document.getElementById('div1').style.color = 'red';  //改变父页面的元素
+
+			window.top.document.getElementById('div1').style.color = 'red';  //改变顶层页面的元素
+		};
+
+	};
+</script>
+</head>
+<body>
+	<input type="button" id="input1" value="改变"/>
+</body>
+</html>
