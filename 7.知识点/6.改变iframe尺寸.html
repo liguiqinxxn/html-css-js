@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	window.onload = function(){
+		var aInput = document.getElementsByTagName('input');
+		var oIframe = document.getElementById('iframe1');
+
+		function changeHeight(){
+
+			setTimeout(function(){
+				oIframe.height = oIframe.contentWindow.document.body.offsetHeight;
+			},100);
+			
+		}
+		changeHeight();
+
+		aInput[0].onclick = function(){
+			oIframe.src = 'iframe4.html';
+			changeHeight();
+		};
+
+		aInput[1].onclick = function(){
+			oIframe.src = 'iframe5.html';
+			changeHeight();
+		};
+	};
+</script>
+</head>
+<body>
+	<input type="button" value="切换1" />
+	<input type="button" value="切换2" />
+	<iframe src="iframe4.html" id="iframe1" scrolling="no"></iframe>
+</body>
+</html>
