@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// function add( a,b ){
+		// 	// var _b = b || 100;
+
+		// 	var _b = b === undefined ? 100 : b;
+		// 	return a+_b;
+		// }
+
+		// function add( a,b=100 ){
+		// 	return a+b;
+		// }
+
+		// console.log( add( 10 ) ) // 110
+		// console.log( add( 10,5 ) ) // 15
+		// console.log( add( 10,0 ) ) // 10
+		// console.log( add( 10,undefined ) ) // 10
+//-------------------------------------------------
+		// function fn( a,b, ...r ){
+		// 	// console.log( a,arguments );
+		// 	console.log( r );
+		// }
+		// fn(1,2,3,4,5)
+//-------------------------------------------------
+		// function add(a,b){
+		// 	return a+b
+		// }
+			
+		// var add = (a,b)=>{return a+b}
+
+		// var add = (a,b)=>a+b
+		// var add = (a,b)=>({miaov: 3})
+
+		// var add = (a,b)=>{
+		// 	miaov: for( var i = 0;i<10;i++ ){
+		// 		console.log( i )
+		// 		if( i==3 ){
+		// 			break miaov;
+		// 		}
+		// 	}
+		// }
+		
+		// var add = a=> a*100
+		// console.log( add(2) )
+
+		// var arr = [10,2,31,48,15,6];
+		// var res = arr.filter( function(item){
+		// 	return item > 20
+		// } );
+			
+		// var res = arr.filter( item=>item > 20 )
+		// console.log( res )
+
+//-------------------------------------------------
+		var fn = (...r)=>{
+			// console.log( this )
+			// console.log( arguments );
+			console.log( r );
+		}
+		// var fn = function(){
+		// 	console.log( this )
+		// }
+		// fn(1,2,3) 
+		// fn.bind({a:1});
+		// document.onclick = fn;
+
+		// var obj = new fn();
+	</script>
+</body>
+</html>

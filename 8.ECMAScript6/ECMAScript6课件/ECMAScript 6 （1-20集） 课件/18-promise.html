@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var p = new Promise( (res,rej)=>{res()} )
+		// p
+		// .then( ()=>{ console.log(1) } )
+		// .then( ()=>{ return new Promise( (res,rej)=>{res(200)} ) } )
+		// .then( ()=>{ return Promise.resolve( 400 ) })
+		// .then( ()=>{ return Promise.reject( "失败!" ) })
+		// .then( (data)=>{ console.log(data) } ) 
+		// .catch( (err)=>{ console.log( err ) } )
+		//-------------------------------------------------
+		
+		var p1 = new Promise( (res,rej)=>{
+			setTimeout( ()=>{
+				res("a")
+			},1000 )
+		} )
+		var p2 = new Promise( (res,rej)=>{
+			setTimeout( ()=>{
+				res("b")
+			},1500 )
+		} )
+		var p3 = new Promise( (res,rej)=>{
+			setTimeout( ()=>{
+				res("c")
+			},500 )
+		} )
+		
+		// var p = Promise.all( [p1,p2,p3] );
+		var p = Promise.race( [p1,p2,p3] );
+		// console.log( p )
+		p.then( data=>console.log( data ) )
+	</script>
+</body>
+</html>

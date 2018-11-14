@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class Person{
+			constructor(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			static isHuman( obj ){
+				// console.log( "isHuman" )
+				return obj instanceof Person
+			}
+			say(){
+				console.log( "我叫"+this.name+"今年,"+this.age );
+			}
+			eat(){
+				console.log( "eat...." );
+			}
+		}
+
+		class Coder extends Person{
+			constructor(name,age,money){
+				super(name,age);
+				this.money = money;
+			}
+			say(){
+				console.log( "我叫"+this.name+"今年,"+this.age+",一月赚"+this.money );
+			}
+		}
+		var c1 = new Coder("zm",30,30000);
+		console.log( c1 );
+		c1.say();
+		console.log( Coder.isHuman( c1 ) );
+
+		var p1 = new Person("momo",20);
+		console.log( p1 );
+		p1.say();
+
+
+
+		
+	</script>
+</body>
+</html>

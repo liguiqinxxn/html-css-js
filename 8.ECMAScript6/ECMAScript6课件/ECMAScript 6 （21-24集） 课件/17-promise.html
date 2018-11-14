@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var p = new Promise( (res,rej)=>{
+		// 	res("成功")
+		// } )
+
+		// var p2 = p.then( ()=>{ return 111 } );
+		// var p2 = p.then( ()=>{ return undefined } );
+		
+		// var p2 = p.then( ()=>{ return new Promise( (res,rej)=>{rej()} ) } );
+		// console.log( p2 )
+
+		// p2.then( data=>{
+		// 	console.log( "p2 then: ",data )
+		// } )
+
+		//-------------------------------------------------
+		
+		var p = new Promise( (res,rej)=>{
+			res("成功")
+		} )
+
+		var res =  p.then( ()=>{
+			console.log( 1 )
+		} )
+		.then( ()=>{
+			console.log( 2 )
+			a
+		} )
+		.then( ()=>{
+			console.log( 3 )
+			b
+		} )
+		.catch( (err)=>{
+			console.log( err )
+		} )
+		.finally( ()=>{
+			console.log( "执行完了..." )
+		} )
+		
+		console.log( 333 )
+	</script>
+</body>
+</html>

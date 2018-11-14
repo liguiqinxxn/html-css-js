@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var obj = {
+		// 	name: "miaov"
+		// };
+		// var momo = {
+		// 	name: "m"
+		// };
+		// console.log(momo.toString())
+		// obj[momo] = 1;
+		// console.log( obj )
+
+		var m = new Map([ ["name","miaov"],["aaa",200] ]);
+		// console.log( m.size );
+		// console.log( m.get( "name" ) )
+		// m.set( "age",100 );
+		// var momo = { name: "m" };
+		// m.set( momo,1 );
+
+		// var res = m.delete( momo );
+		// var res = m.delete( "z" );
+
+		// console.log( m.has( momo ) );
+		// console.log( m.has( "z" ) );
+
+		// m.clear()
+
+		// console.log( m )
+
+		// m.forEach( function( item,key,map ){
+		// 	console.log(item,key,map)
+		// } )
+		
+		// var res = m.keys();
+		// console.log( res.next() );
+		// console.log( res.next() );
+		// console.log( res.next() );
+		// console.log( res.next() );
+
+		// var res = m.values();
+		// console.log( res.next() );
+		// console.log( res.next() );
+		// console.log( res.next() );
+		// console.log( res.next() );
+
+		var res = m.entries();
+		console.log( res )
+		// console.log( res.next() );
+		// console.log( res.next() );
+		// console.log( res.next() );
+		// console.log( res.next() );
+
+		// m.set( {},2 );
+		// m.set( {},3 );
+		// console.log( m.get( {} ) );
+
+		var obj = {};
+		m.set( obj,2 );
+		// m.set( obj,3 );
+
+		console.log( m.get( obj ) );
+	</script>
+</body>
+</html>

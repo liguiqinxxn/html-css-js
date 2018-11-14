@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var a = 1;
+		// var obj = {
+		// 	a: a,
+		// 	fn: function(){
+		// 		console.log( "fn" )
+		// 	}
+		// }
+//-------------------------------------------------
+		// var obj = { 
+		// 	a,
+		// 	fn(){
+		// 		console.log( "fn执行了" )
+		// 	},
+		// 	b: 100
+		// };
+		// console.log( obj )
+		// obj.fn();
+
+//-------------------------------------------------
+		// var attrname = "width";
+		// var attrObj = {};
+		// var attrFn = "fn";
+		// var obj = {
+		// 	[attrname]: 100,
+		// 	[attrObj]: "hello",
+		// 	[attrFn](){
+		// 		console.log( "attrFn执行了" )
+		// 	}
+		// }
+		// console.log( obj )
+		// obj.fn()
+//-------------------------------------------------
+		// console.log( 1 == "1" )
+		// console.log( NaN === NaN )
+		// console.log( Object.is( 1,1 ) )
+		// console.log( Object.is( 1,"1" ) )
+		// console.log( Object.is( NaN,NaN ) )
+		// console.log( Object.is( {},{} ) )
+		// var obj = {};
+		// console.log( Object.is( obj,obj ) )
+//-------------------------------------------------
+		
+		// function move(obj){
+		// 	var defaultObj = {
+		// 		ease: "linear",
+		// 		duration: 1000
+		// 	}
+		// 	// var para = {
+		// 	// 	ease: obj.ease || defaultObj.ease,
+		// 	// 	duration: obj.duration || defaultObj.duration
+		// 	// }
+		// 	var para = {}
+		// 	Object.assign( para,defaultObj,obj )
+		// 	console.log( para )
+
+
+		// }
+		// move({
+		// 	duration: 2000
+		// })
+//-------------------------------------------------
+		// var obj = {
+		// 	a: 1,
+		// 	b: 2
+		// }
+		
+		// console.log( Object.keys(obj) )
+		// console.log( Object.values(obj) )
+		// console.log( Object.entries(obj) )
+
+		// for( var attr of Object.values(obj) ){
+		// for( var [key,val] of Object.entries(obj) ){
+		// 	console.log( key,val )
+		// }
+//-------------------------------------------------
+		// var obj = {
+		// 	a: 1,
+		// 	b: 2
+		// }
+		// var res = {
+		// 	...obj,
+		// 	c: 3
+		// }
+		// console.log( res )
+
+		// var arr = [1,2,3,4];
+		// console.log( arr );
+		// console.log( 1,2,3,4 );
+		// console.log( ...arr );
+			
+		// var arr = [1,23,4,5];
+		// console.log( Math.max( 1,23,4,5 ) );
+		// console.log( Math.max( ...arr ) );
+
+		var arr = [1,1,12,2,3,2,1,2];
+		var res = [...new Set(arr)];
+		console.log( res );
+	</script>
+</body>
+</html>

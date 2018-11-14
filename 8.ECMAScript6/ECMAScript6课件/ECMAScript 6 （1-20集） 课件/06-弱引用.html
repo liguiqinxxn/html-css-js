@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var m = new Map();
+		var wm = new WeakMap();
+
+		var zm = {
+			name: "zmouse",
+			age: 30
+		};
+		var reci = {
+			name: "reci",
+			age: 20
+		}
+		// m.set( zm,"miaov" );
+		// m.set( reci,"miaov2" );
+		wm.set( zm,"miaov" );
+		wm.set( reci,"miaov2" );
+
+		// wm.set( 1,"miaov" );
+		
+		for( var v of wm ){
+			console.log(v)
+		}
+
+	</script>
+</body>
+</html>

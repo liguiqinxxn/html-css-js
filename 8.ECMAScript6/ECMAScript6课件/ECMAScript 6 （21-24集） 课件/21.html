@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function* gen(a){
+			console.log("第一次执行")
+			console.log( yield 999 )
+			console.log( yield a )
+		}
+
+		var g = gen()
+		res = g.next(100)
+		console.log( 111,res )
+
+		res = g.next(200)
+		console.log( 222,res )
+
+		// res = g.next(300)
+		// console.log( 333,res )
+
+	</script>
+</body>
+</html>

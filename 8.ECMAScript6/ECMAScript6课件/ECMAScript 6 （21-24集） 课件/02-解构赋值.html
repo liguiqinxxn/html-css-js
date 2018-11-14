@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var obj = {
+			name: "kim",
+			age: 28,
+			c:undefined,
+			a: 1,
+			b: 2
+		};
+		var {a,b,...r} = obj;
+		console.log( a,b,r )
+
+		// var name = obj.name;
+		// var age = obj.age;
+		// console.log( name,age );
+
+		// var {name, age} = obj;
+		// console.log( name,age );
+
+		// var name = "";
+		// ({name} = obj);
+		// console.log( name );
+
+		// var { name: str } = obj;
+		// console.log( str,name );
+
+		// var {c=100} = obj;
+		// console.log(c);
+
+		// var {gender:g="male"} = obj;
+		// console.log(g);
+		
+		// var arr = "miaov".split("");
+		// var f = arr[0];
+		// var s = arr[1];
+		// console.log(f,s);
+		// var [f,s,,fouth] = arr;
+		// console.log(f,s,fouth);
+		// arr[0] = undefined;
+		// console.log(arr);
+		
+		// var [ a="123456",b,c ] = arr;
+		// console.log(a,b,c);
+		
+		// var [a,b,c,...r] = arr;
+		// console.log( a,b,c,r )
+	</script>
+</body>
+</html>

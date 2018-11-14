@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// function send(url,callback){
+		// 	// var xhr = ....
+		// 	// ...
+		// 	callback()
+		// }
+		// send( "/url1" ,()=>{
+		// 	send( "/url2" ,()=>{
+		// 		send( "/url3" ,()=>{
+		// 			send( "/url4" ,()=>{
+						
+		// 			})
+		// 		})
+		// 	})
+		// })
+
+		// 异步编程解决方案
+
+		// var p = new Promise( ( resolve,reject )=>{
+		// 	console.log( "实例化..." );
+			
+		// 	return resolve("成功!");
+		// 	// reject();
+		// 	// console.log( "222" );
+		// } );
+
+		// // console.log( p )
+		// p.then( ( data )=>{
+		// 	console.log( "then: ",data )
+		// } )
+
+	//-------------------------------------------------
+		// console.log( 1 );
+			
+		// setTimeout( ()=>{
+		// 	console.log( 3 );
+		// } )
+
+		// setTimeout( ()=>{
+		// 	console.log( 4 );
+		// } )
+
+		// var p = new Promise( (res,rej)=>{
+		// 	console.log( 5 )
+		// 	res()
+		// } )
+
+		// p.then( ()=>{ 
+		// 	console.log( 6 )
+		// } )
+
+		// console.log( 2 );
+
+		//-------------------------------------------------
+
+		// var p = new Promise( (res,rej)=>{
+		// 	res("成功")
+		// 	// rej();
+		// } )
+
+		// p.then( (data)=>{
+		// 	console.log( data )
+		// },()=>{
+		// 	console.log( "失败" )
+		// } )
+
+		// p.catch( ()=>{
+		// 	console.log( "失败" )
+		// } )
+		// var p2 = p.then( (data)=>{
+			// console.log( data )
+		// } )
+		// console.log( p2 === p )
+		
+
+	</script>
+
+</body>
+</html>

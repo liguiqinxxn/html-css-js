@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class Person{
+			constructor(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			say(){
+				console.log( "我叫"+this.name+"今年,"+this.age )
+			}
+			eat(){
+				console.log( "eat...." )
+			}
+		}
+
+		// var p1 = new Person( "kimoo",27 );
+		// console.log( Person.prototype );
+		// Person("kimoo",27)
+		// p1.say();
+		// p1.eat();
+		// console.log( Object.keys( Person.prototype ) )
+
+		class Student{
+			constructor(){}
+		}
+		var s = new Student();
+		console.log( s )
+	</script>
+</body>
+</html>

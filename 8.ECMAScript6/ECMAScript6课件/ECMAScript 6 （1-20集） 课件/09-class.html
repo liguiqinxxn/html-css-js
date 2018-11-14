@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class Person{
+			constructor(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			static isHuman( obj ){
+				return obj instanceof Person
+			}
+			say(){
+				console.log( "我叫"+this.name+"今年,"+this.age )
+			}
+			eat(){
+				console.log( "eat...." )
+			}
+		}
+		Person.staticProps = "miaov";
+		console.log( Person.staticProps )
+		var p1 = new Person( "kimoo",27 );
+		// p1.say();
+		// p1.isHuman();// 报错
+		console.log( Person.isHuman( 1 ) );
+		console.log( Person.isHuman( p1 ) );
+		// var str = "妙";
+		// console.log( str.charCodeAt(0) ) //22937
+		// console.log( String.fromCharCode( 22937 ) ) 
+	</script>
+</body>
+</html>
