@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+	#box{
+		background: red;
+		width: 100px;
+		height: 100px;
+	}
+</style>
+<script>
+	window.onload = function(){
+		var box = document.getElementById('box');
+		function movePromise(obj,attr,target,duration){
+			return new Promise( (res,rej)=>{
+				var b = parseInt(obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj, false)[attr]);
+				var c = target - b;
+				var d = duration;
+				var temp = new Date().getTime();
+				var timer = setInterval(function(){
+					var t = new Date().getTime()-temp;
+					if ( t >= d) {
+						clearInterval(timer);
+						t = d;
+					}
+					var v = c/d*t+b ;
+					obj.style[attr] = v + "px";
+					if ( t === d ) {
+						res()
+					}
+				},20 )
+			})
+		}
+		
+		movePromise( box,"width",200,500)
+		.then( ()=>movePromise(box,"height",300,1000) )
+		.then( ()=>movePromise(box,"left",300,1000) )
+		.then( ()=>movePromise(box,"top",300,1000) )
+		.then( ()=>console.log( "done" ) )
+	}
+		
+</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>
