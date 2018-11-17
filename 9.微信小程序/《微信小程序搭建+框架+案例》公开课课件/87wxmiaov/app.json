@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/test/test"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f00",
+    "navigationBarTitleText": "小程序",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "index"
+    },
+    {
+      "pagePath": "pages/test/test",
+      "text": "text"
+    },
+    {
+      "pagePath": "pages/logs/logs",
+      "text": "logs"
+    }]
+  }
+}

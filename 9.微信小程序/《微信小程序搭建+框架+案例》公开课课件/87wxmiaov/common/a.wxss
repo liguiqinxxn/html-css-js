@@ -1,0 +1,5 @@
+.box{
+  width: 375rpx;
+  height: 35px;
+  background-color: red
+}

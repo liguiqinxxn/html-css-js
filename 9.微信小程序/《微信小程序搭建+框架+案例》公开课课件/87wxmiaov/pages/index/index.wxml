@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view>
+  hello world
+</view>
+<view> 我是 {{user}} </view>
+<view id='{{idName}}'></view>
+<view>{{ "我"+"爱"+"你们" }}</view>
+<view>{{ "你们"+ 666 }}</view>
+<view>{{ obj.name }}</view>
+
+<view wx:if="{{ age<10 }}" >天线babies</view> 
+<view wx:if="{{ 10<= age&&age < 18 }}">一人之下</view> 
+<view wx:if="{{ age>=18 }}">deadpool</view>
+
+<view wx:if="{{ age<10 }}" >天线babies</view> 
+<view wx:elif="{{ age < 18 }}">一人之下</view> 
+<view wx:else>deadpool</view>
+
+<view wx:if="{{ flag }}">a</view>
+<view wx:if="{{ flag }}">a</view>
+<view wx:if="{{ !flag }}">b</view>
+<view wx:if="{{ !flag }}">b</view>
+
+<block wx:if="{{flag}}">
+  <view>a</view>
+  <view>a</view>
+</block>
+<block wx:else>
+  <view>b</view>
+  <view>b</view>
+</block>
+
+<view hidden='{{true}}'>abc</view>
+
+<view wx:for="{{arr}}" wx:key="id" bindtap='tap' data-id="{{item.id}}" >{{item.text}}</view>
+
+<view wx:for="{{arr}}" wx:key="id" bindtap='tap' data-id="{{item.id}}" wx:for-item='i' >{{i.text}}</view>
+
+<import src="/common/hello.wxml" />
+<template is="h"></template>
+<template is="h"></template>
+<template is="hi" data="{{user:'k'}}"></template>
+
+<view class='box'>box</view>

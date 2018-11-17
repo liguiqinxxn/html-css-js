@@ -1,0 +1,7 @@
+<template name="h">
+  hello~
+</template>
+
+<template name="hi">
+  hi~ {{user}}
+</template>
