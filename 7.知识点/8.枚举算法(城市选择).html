@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	window.onload = function(){
+		var aA = document.getElementsByTagName('a');
+		var oUl = document.getElementById('ul1');
+		var aLi = oUl.getElementsByTagName('li');
+
+		for (var i = 0; i < aA.length; i++) {
+			aA[i].onclick = function(){
+				if (mj(this.innerHTML)) {
+					var oLi = document.createElement('li');
+					oLi.innerHTML = this.innerHTML;
+					
+					if (oLi[0]) {
+						oUl.appendChild(oLi);
+					}else{
+						oUl.insertBefore(oLi,aLi[0]);
+					}
+				}else{
+					mj2(this.innerHTML)
+				}
+			}
+		}
+
+		function mj(text){
+			var result = true;
+
+			for (var i = 0; i < aLi.length; i++) {
+				if(aLi[i].innerHTML == text){
+					result = false;
+				}
+			}
+			return result;
+		}
+
+		function mj2(text){
+			for (var i = 0; i < aLi.length; i++) {
+				if (aLi[i].innerHTML == text) {
+					oUl.insertBefore(aLi[i],aLi[0]);
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<a href="javascript:;">北京</a>
+<a href="javascript:;">上海</a>
+<a href="javascript:;">深圳</a>
+<a href="javascript:;">广州</a>
+<a href="javascript:;">沈阳</a>
+<a href="javascript:;">南京</a>
+<a href="javascript:;">天津</a>
+<a href="javascript:;">武汉</a>
+<a href="javascript:;">西安</a>
+<ul id="ul1"></ul>
+</body>
+</html>
