@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	var obj = {
+		a : { b : 10 }
+	};
+
+	function deepCopy(obj){  //深拷贝
+		if (typeof obj != 'object') {
+			console.trace();
+			return obj;
+		}
+		var newObj = {};
+
+		for(var attr in obj){
+			newObj[attr] = deepCopy(obj[attr]);
+		}
+
+		return newObj;
+	}
+
+	var obj2 = deepCopy(obj);
+	obj2.a.b = 20;
+	alert(obj.a.b);  //10
+
+</script>
+</head>
+<body>
+	
+</body>
+</html>

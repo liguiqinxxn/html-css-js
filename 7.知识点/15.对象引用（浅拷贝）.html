@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	var obj = {
+		a : 10
+	};
+
+	function copy(obj){ //浅拷贝
+		var newObj = {};
+
+		for(var attr in obj){
+			newObj[attr] = obj[attr];
+		}
+
+		return newObj;
+	}
+
+	var obj2 = copy(obj);
+	obj2.a = 20;
+	alert(obj.a);  //10
+
+</script>
+</head>
+<body>
+	
+</body>
+</html>
