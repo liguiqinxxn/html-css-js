@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+	<script>
+		// 尽量避免全局变量，而且还可以达到让变量起到累加的作用
+
+		/*var a = 1;
+		function aaa(){
+			a++;
+			alert(a);
+		}
+		aaa(); //2
+		aaa(); //3*/
+
+
+		/*function aaa(){
+			var a = 1;
+			a++;
+			alert(a);
+		}
+		aaa(); //2
+		aaa(); //2*/
+
+
+		// 闭包
+		/*function aaa(){
+			var a = 1;
+			return function(){
+				a++;
+				alert(a);
+			}
+		}
+		var b = aaa();
+		b();  //2
+		b();  //3
+		// alert(a);*/
+
+		/*//函数表达式的方式
+		var aaa = (function(){
+			var a = 1;
+			return function(){
+				a++;
+				alert(a);
+			}
+		})();
+		aaa();
+		aaa();*/
+
+		// 模块化
+		var aaa = (function(){
+			var a = 1;
+
+			function bbb(){
+				a++;
+				alert(a);
+			}
+
+			function ccc(){
+				a++;
+				alert(a);
+			}
+
+			return {
+				b: bbb,
+				c: ccc,
+			}
+		})
+
+		aaa.b();  //2
+		aaa.c();  //3
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

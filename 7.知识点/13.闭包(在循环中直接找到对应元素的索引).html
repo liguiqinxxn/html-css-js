@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+window.onload = function(){
+	var aLi = document.getElementsByTagName('li');
+
+	/*for (var i = 0; i < aLi.length; i++) {
+
+		(function(i){
+
+			aLi[i].onclick = function(){
+				alert(i);
+			};
+
+		})(i);
+
+	}*/
+
+
+	for (var i = 0; i < aLi.length; i++) {
+
+		aLi[i].onclick = (function(i){
+
+			return function(){
+				alert(i);
+			}
+
+		})(i);
+
+	}
+
+
+}
+</script>
+</head>
+<body>
+	<ul>
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+</body>
+</html>

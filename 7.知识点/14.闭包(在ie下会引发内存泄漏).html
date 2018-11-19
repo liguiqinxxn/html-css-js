@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	// 在ie下会引发内存泄漏
+
+	// 第一种解决方案
+	/*window.onload = function(){
+		var oDiv = document.getElementById('div1');
+
+		oDiv.onclick = function(){
+			alert(oDiv.id);
+		};
+
+		window.onunload = function(){
+			oDiv.onclick = null;
+		};
+	};*/
+
+	// 第二种解决方案
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+		var id = oDiv.id; 
+
+		oDiv.onclick = function(){
+			alert(id);
+		};
+
+		oDiv = null;
+	};
+
+</script>
+</head>
+<body>
+	<div id="div1">aaaa</div>
+</body>
+</html>
