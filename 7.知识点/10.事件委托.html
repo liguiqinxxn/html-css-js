@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	window.onload = function(){
+		var oUl = document.getElementById('ul1');
+		var aLi = document.getElementsByTagName('li');
+		var oInput = document.getElementsByTagName('input');
+		var iNow = 5;
+
+		// for (var i = 0; i < aLi.length; i++) {
+		// 	aLi[i].onmouseover = function(){
+		// 		this.style.background = 'red';
+		// 	};
+
+		// 	aLi[i].onmouseout = function(){
+		// 		this.style.background = '';
+		// 	};
+		// }
+
+		oUl.onmouseover = function(){
+			var ev = ev || window.event;
+			var target = ev.target || ev.srcElement;
+
+			// alert(target.innerHTML);
+			if (target.nodeName.toLowerCase() == 'li') {
+				target.style.background = 'red';
+			}
+
+		};
+
+		oUl.onmouseout = function(){
+			var ev = ev || window.event;
+			var target = ev.target || ev.srcElement;
+
+			if (target.nodeName.toLowerCase() == 'li') {
+				target.style.background = '';
+			}
+
+		};
+
+		oInput[0].onclick = function(){
+
+			iNow++;
+			var oLi = document.createElement('li');
+			oLi.innerHTML = 111 * iNow;
+			oUl.appendChild(oLi);
+		};
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="添加">
+	<ul id="ul1">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+		<li>444</li>
+		<li>555</li>
+	</ul>
+</body>
+</html>
