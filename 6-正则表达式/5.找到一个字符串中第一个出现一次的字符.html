@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+	str ='adddcccaabreg';
+	console.log(FirstNotRepeatingChar(str));
+	
+	function FirstNotRepeatingChar(str) {
+    if (str.length == 0)
+        return -1;
+
+    var map = {};
+    for (var i = 0; i < str.length; i++) {
+        var charX = str[i]
+        if (!map[charX]) {
+            map[charX] = 1;
+        } else {
+            map[charX]++;
+        }
+    }
+
+    for (var i = 0; i < str.length; i++) {
+        var charY = str[i];
+        if (map[charY ] == 1)
+            return str[i];
+    }
+}
+
+	
+</script>
+</head>
+<body>
+</body>
+</html>
